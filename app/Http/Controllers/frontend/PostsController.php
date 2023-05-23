@@ -42,5 +42,4 @@ class PostsController extends Controller
             ->limit(4)
             ->get();
     }
-
 }

@@ -1,11 +1,12 @@
 <footer>
     <div class="footer content">
         <div >
-            <div class="footer-logo"><img src="{{ URL::to('/') }}/images/footer-logo.svg" alt="logo"></div>
+            <div class="footer-logo"><img src="{{ URL::to('/') }}/images/svg/footer-logo.svg" alt="logo"></div>
             <div class="footer-menu">
                 <a href="">Մեր մասին</a>
                 <a href="">Հեղինակներ</a>
                 <a href="">Գրքեր...</a>
+                <a href="">Թարգմանիչներ</a>
                 <a href="">Հոդվածներ</a>
             </div>
         </div>

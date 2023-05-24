@@ -11,56 +11,19 @@ class TranslatorsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function translators()
     {
-        //
+        $translators = Translators::all();
+
+        return view('translator/translators', compact('translators'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function view()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Translators $translators)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Translators $translators)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Translators $translators)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Translators $translators)
-    {
-        //
-    }
 }

@@ -7,7 +7,7 @@
                 <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 13L1 7L7 1" stroke="#6D6E72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <a href="">Հոդվածներ</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/articles/') }}">Հոդվածներ</a>
             </div>
 
             <div class="article-itm-page-banner-info">
@@ -28,7 +28,6 @@
             </div>
         </section>
 
-
         <section class="article-itm-page-info-and-video content">
             {!! $post['text_' . app()->getLocale()] !!}
         </section>
@@ -43,7 +42,7 @@
                     @foreach($otherPosts as $otherPost)
                         <div class="article-box-item">
                             <div class="article-box-item-img">
-                                <a href="{{ LaravelLocalization::localizeUrl('/article/' . $otherPost['id']) }}">
+                                <a href="{{ LaravelLocalization::localizeUrl('/article/' . $otherPost['slug']) }}">
                                     <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
                                 </a>
                             </div>

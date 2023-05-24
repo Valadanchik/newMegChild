@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('book_id');
-            $table->string('image', 255);
+        Schema::create('post_categories', function (Blueprint $table) {
+            $table->id()->unsigned();
+            $table->string('title_hy')->unique();
+            $table->string('title_en')->unique();
+            $table->text('image')->nullable();
             $table->timestamps();
-
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('post_categories');
     }
 };

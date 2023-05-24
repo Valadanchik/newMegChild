@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Authors;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class AuthorSeeder extends Seeder
 {
@@ -17,6 +14,7 @@ class AuthorSeeder extends Seeder
     {
         $authors = [
             [
+                'slug' => 'sona-babajanyan',
                 'name_hy' => 'Սոնա Բաբաջանյանը ',
                 'name_en' => 'Sona Babajanyan',
                 'about_hy' => 'Սոնա Բաբաջանյանը (ծնվ. 1965) ավստրալաբնակ հայ նկարիչ է և գեղարվեստական գրականության թարգմանիչ:
@@ -28,6 +26,7 @@ class AuthorSeeder extends Seeder
                 'image' => 'images/authors/Sona.png',
             ],
             [
+                'slug' => 'jeff-kinney',
                 'name_hy' => 'Ջեֆֆ Քիննի',
                 'name_en' => 'Jeff Kinney',
                 'about_hy' => 'Դենիել Ջ. Սիգելը (ծնվ. 1957) ամերիկացի մանկական հոգեթերապևտ է:
@@ -44,6 +43,7 @@ class AuthorSeeder extends Seeder
 
         foreach ($authors as $author) {
             DB::table('authors')->insert([
+                'slug' => $author['slug'],
                 'name_hy' => $author['name_hy'],
                 'name_en' => $author['name_en'],
                 'about_hy' => $author['about_hy'],

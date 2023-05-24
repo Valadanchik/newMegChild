@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
             ImageSeeder::class,
             BookAuthorsSeeder::class,
             BookTranslatorsSeeder::class,
+            PostCategoriesSeeder::class,
             PostSeeder::class,
-//            PostFactory::class
         ]);
 
 //        PostFactory::class;

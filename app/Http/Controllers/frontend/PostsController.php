@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\PostCategory;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -13,18 +14,25 @@ class PostsController extends Controller
      */
     public function articles(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
+//        dd(self::getPostCategories());
         $posts = Post::all();
+        $postCategories = self::getPostCategories();
+        return view('article/articles', compact('posts'), compact('postCategories'));
+    }
 
-        return view('article/articles', compact('posts'));
+    public static function getPostCategories(): \Illuminate\Database\Eloquent\Collection|array
+    {
+       return PostCategory::with('post')->get();
+//        dd($categories);
     }
 
     /**
      * Display the specified resource.
      */
-    public function view(Post $post, $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function view(Post $post, $slug): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $otherPosts = $this->otherPosts($id);
-        $post = $post::where('id', $id)
+        $otherPosts = $this->otherPosts($slug);
+        $post = $post::where('slug', $slug)
             ->firstOrFail();
 
         return view('article/index', compact('post'), compact('otherPosts'));
@@ -37,7 +45,7 @@ class PostsController extends Controller
 
     public function otherPosts($id): mixed
     {
-        return Post::where('id', '!=', $id)
+        return Post::where('slug', '!=', $id)
             ->inRandomOrder()
             ->limit(4)
             ->get();

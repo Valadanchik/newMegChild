@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('authors', function (Blueprint $table) {
             $table->id()->unsigned();
+            $table->string('slug')->unique();
             $table->string('name_hy')->unique();
             $table->string('name_en')->unique();
             $table->text('about_hy')->nullable();

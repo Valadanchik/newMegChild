@@ -8,7 +8,7 @@
         <div class="header-menu">
             <nav>
                 <ul class="header-menu-list">
-                    <li><a href="">Մեր մասին</a></li>
+                    <li><a href="{{ LaravelLocalization::localizeUrl('/about') }}">Մեր մասին</a></li>
                     <li><a href="{{ LaravelLocalization::localizeUrl('/books') }}">Գրքեր...</a></li>
                     <li><a href="{{ LaravelLocalization::localizeUrl('/authors') }}">Հեղինակներ</a></li>
                     <li><a href="{{ LaravelLocalization::localizeUrl('/translators') }}">Թարգմանիչներ</a></li>

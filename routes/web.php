@@ -19,19 +19,29 @@ Route::group(
         'prefix' => LaravelLocalization::setLocale()
     ], function () {
 
-    /* Home Roure */
-    Route::get('/', [\App\Http\Controllers\frontend\HomeController::class, 'index'])->name('index');
+    /* Home Route */
+    Route::get('/', '\App\Http\Controllers\frontend\HomeController@index')->name('index');
 
-    /* Books routers */
+    /* Books Routers */
     Route::get('books', 'App\Http\Controllers\frontend\BooksController@books')->name('books');
     Route::get('book/{slug}', 'App\Http\Controllers\frontend\BooksController@view')->name('view');
 
-    /* Posts routers */
+    /* Posts Routers */
     Route::get('articles', 'App\Http\Controllers\frontend\PostsController@articles')->name('articles');
-    Route::get('article/{id}', 'App\Http\Controllers\frontend\PostsController@view')->name('view');
+    Route::get('article/{slug}', 'App\Http\Controllers\frontend\PostsController@view')->name('view');
 
+    /* Posts Routers */
+    Route::get('authors', 'App\Http\Controllers\frontend\AuthorsController@authors')->name('authors');
+    Route::get('author/{slug}', 'App\Http\Controllers\frontend\AuthorsController@view')->name('view');
 
+    /* Translators Routers */
+    Route::get('translators', 'App\Http\Controllers\frontend\TranslatorsController@translators')->name('translators');
+    Route::get('translator/{slug}', 'App\Http\Controllers\frontend\TranslatorsController@view')->name('view');
 
+    /* About Us Router*/
+    Route::get('/about', function () {
+        return view('about-us/about');
+    });
 
 
 

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('post_categories', function (Blueprint $table) {
             $table->id()->unsigned();
+            $table->string('slug')->unique();
             $table->string('title_hy')->unique();
             $table->string('title_en')->unique();
             $table->text('image')->nullable();

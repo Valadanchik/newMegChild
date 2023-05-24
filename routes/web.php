@@ -29,6 +29,7 @@ Route::group(
     /* Posts Routers */
     Route::get('articles', 'App\Http\Controllers\frontend\PostsController@articles')->name('articles');
     Route::get('article/{slug}', 'App\Http\Controllers\frontend\PostsController@view')->name('view');
+    Route::get('medias/{slug}', 'App\Http\Controllers\frontend\PostsController@medias')->name('medias');
 
     /* Posts Routers */
     Route::get('authors', 'App\Http\Controllers\frontend\AuthorsController@authors')->name('authors');
@@ -42,23 +43,6 @@ Route::group(
     Route::get('/about', function () {
         return view('about-us/about');
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

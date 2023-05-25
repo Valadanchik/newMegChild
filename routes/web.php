@@ -44,9 +44,12 @@ Route::group(
         return view('about-us/about');
     });
 
+    /* Order Router */
 
+    Route::get('order', 'App\Http\Controllers\frontend\OrderController@index')->name('order');
 
-
+//    Route::get('/add-to-cart', 'App\Http\Controllers\frontend\ShopController@addToCart')->name('addToCart');
+    Route::post('/add-to-cart', [App\Http\Controllers\frontend\ShopController::class, 'addToCart'])->name('addToCart');
 
 
 });

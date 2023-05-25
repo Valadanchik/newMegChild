@@ -18,7 +18,6 @@ class PostsController extends Controller
         return view('article/articles', compact('posts'), compact('postCategories'));
     }
 
-
     /**
      * Display the specified resource.
      */

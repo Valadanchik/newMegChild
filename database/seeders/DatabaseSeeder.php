@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             BookTranslatorsSeeder::class,
             PostCategoriesSeeder::class,
             PostSeeder::class,
+            RegionsTableSeeder::class,
+            CountriesTableSeeder::class,
         ]);
 
 //        PostFactory::class;

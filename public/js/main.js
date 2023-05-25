@@ -225,6 +225,7 @@ function checkInputsShoppingCart() {
     if(acceptContent2.content == "none"){
         setErrorForShopping(accept2, 'Cannot be checked');
     }else {
+        console.log('sssss')
         setSuccessForShopping(accept2);
     }
     if(country.value == 'Ընտրեք երկիրը *'){

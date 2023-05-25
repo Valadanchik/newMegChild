@@ -135,10 +135,13 @@ const postCode = document.getElementById('post-code');
 const tell = document.getElementById('home-tell')
 const emailShop = document.getElementById('email-shop');
 const reviewSoppingCart = document.getElementById('review-sopping-cart')
-const country = document.getElementById('country')
 const accept2 = document.getElementById('accept-sopping-cart')
 const acceptContent2 = getComputedStyle(accept2, "::before");
-console.log(country)
+const country = document.getElementById('country')
+
+
+console.log(accept2)
+
 
 
 form_shopping_cart?.addEventListener('submit', e => {
@@ -156,7 +159,7 @@ function checkInputsShoppingCart() {
     const postCodeValue = postCode.value.trim();
     const tellValue = tell.value.trim();
     const emailShopValue = emailShop.value.trim();
-    const reviewSoppingCartValue = reviewSoppingCart.value.trim();
+    const reviewSoppingCartValue = reviewSoppingCart?.value?.trim();
 
 
 

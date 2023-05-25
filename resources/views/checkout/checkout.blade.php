@@ -85,7 +85,7 @@
                                 </div>
 
                                 <div class=" form-control form-shopping-cart-count">
-                                    <select id="count">
+                                    <select id="country">
                                         <option hidden>Ընտրեք երկիրը *</option>
                                         <option>aaaa</option>
                                         <option>bbbb</option>
@@ -132,7 +132,7 @@
                                 </div>
 
                                 <div class=" form-control form-shopping-cart-review">
-                <textarea class="accept-input" id="review"
+                <textarea class="accept-input" id="review-sopping-cart"
                           placeholder="Ձեր պատվերի մասին նշումներ, օրինակ, հատուկ նշումներ առաքման համար *"
                           type="checkbox"></textarea>
                                     <small></small>
@@ -144,8 +144,8 @@
                                 </div>
 
 
-                                <div class=" form-control accept accept-sopping-cart">
-                                    <input class="accept-input" type="checkbox">
+                                <div class=" form-control accept" >
+                                    <input class="accept-input" id="accept-sopping-cart"  type="checkbox">
                                     <span id="accept">Կարդացել և համաձայնվում եմ ոգտագործման պայմանների հետ</span>
                                     <small></small>
                                 </div>

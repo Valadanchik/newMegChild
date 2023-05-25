@@ -144,7 +144,7 @@
                                 </div>
 
 
-                                <div class=" form-control accept">
+                                <div class=" form-control accept accept-sopping-cart">
                                     <input class="accept-input" type="checkbox">
                                     <span id="accept">Կարդացել և համաձայնվում եմ ոգտագործման պայմանների հետ</span>
                                     <small></small>

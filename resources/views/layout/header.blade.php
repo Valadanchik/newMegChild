@@ -2,7 +2,7 @@
     <div class="header content">
         <div class="header-logo">
             <a href="{{ LaravelLocalization::localizeUrl('/') }}">
-                <img src="{{ URL::to('/images/logo.svg') }}" alt="logo images">
+                <img src="{{ URL::to('/images/svg/logo.svg') }}" alt="logo images">
             </a>
         </div>
         <div class="header-menu">

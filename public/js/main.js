@@ -21,7 +21,7 @@ tabs.forEach((tab)=>{
     })
 })
 
-document.getElementById('add-to-cart').addEventListener('click', function () {
+document.getElementById('add-to-cart')?.addEventListener('click', function (event) {
     event.preventDefault()
     document.querySelector('.loader-container').style.display = 'flex';
     var xhr = new XMLHttpRequest();
@@ -87,38 +87,38 @@ function activMenuItem (e){
 
 /////////////////count///////////////
 
-let min = document.querySelector('.min');
-let del = document.querySelector('.del')
-let plus = document.querySelector('.shopping-cart-products-count-item-plus');
-let count = document.querySelector('.count-shop')
-let shoppingCart = document.querySelectorAll('.shopping-cart-products-item')
-let countValue = 1
-console.log(shoppingCart)
-
-
-console.log(countValue)
-count.innerHTML =countValue
-min.addEventListener('click', (e)=>{
-
-    if(countValue === 1){
-        count.innerHTML= countValue
-        min.classList.add ('min-none')
-    } else if(countValue >= 1  ){
-        count.innerHTML= --countValue
-    }
-
-})
-
-plus.addEventListener('click', (e)=>{
-    if(countValue >= 1){
-        count.innerHTML= ++countValue
-        min.classList.remove( 'min-none')
-    }
-    if(countValue === 0){
-        count.innerHTML= ++countValue
-    }
-
-})
+// let min = document.querySelector('.min');
+// let del = document.querySelector('.del')
+// let plus = document.querySelector('.shopping-cart-products-count-item-plus');
+// let count = document.querySelector('.count-shop')
+// let shoppingCart = document.querySelectorAll('.shopping-cart-products-item')
+// let countValue = 1
+// console.log(shoppingCart)
+//
+//
+// console.log(countValue)
+// count.innerHTML =countValue
+// min.addEventListener('click', (e)=>{
+//
+//     if(countValue === 1){
+//         count.innerHTML= countValue
+//         min.classList.add ('min-none')
+//     } else if(countValue >= 1  ){
+//         count.innerHTML= --countValue
+//     }
+//
+// })
+//
+// plus.addEventListener('click', (e)=>{
+//     if(countValue >= 1){
+//         count.innerHTML= ++countValue
+//         min.classList.remove( 'min-none')
+//     }
+//     if(countValue === 0){
+//         count.innerHTML= ++countValue
+//     }
+//
+// })
 
 
 
@@ -135,9 +135,9 @@ const postCode = document.getElementById('post-code');
 const tell = document.getElementById('home-tell')
 const emailShop = document.getElementById('email-shop');
 const reviewSoppingCart = document.getElementById('review-sopping-cart')
+const country = document.getElementById('country')
 const accept2 = document.getElementById('accept-sopping-cart')
 const acceptContent2 = getComputedStyle(accept2, "::before");
-const country = document.getElementById('country')
 console.log(country)
 
 
@@ -329,3 +329,6 @@ function setSuccessFor(input) {
 function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
+
+
+

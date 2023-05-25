@@ -59,7 +59,13 @@
                     </svg>
                 </h3>
                 <div class="book-page-item-btn">
-                    <a href="">Գնել</a>
+{{--                    <a class="add-to-cart" href="{{ LaravelLocalization::localizeUrl('add-to-cart') }}">Գնել</a>--}}
+                    <a id="add-to-cart" href="#">Գնել</a>
+                    <input id="add-to-cart-url" type="hidden" value="{{ route('addToCart') }}">
+                    <input id="checkout-router" type="hidden" value="{{ route('order') }}">
+                    <input id="product-id" type="hidden" value="{{ $book['id'] }}">
+                    <input id="quantity" type="hidden" value="1" name="number">
+
                 </div>
                 <div class="book-item-desc">
                     <h4>Բովանդակություն</h4>
@@ -156,3 +162,4 @@
         </section>
     </main>
 @endsection
+

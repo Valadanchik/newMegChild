@@ -49,3 +49,4 @@
     </div>
 
 </header>
+@include('components.loader')

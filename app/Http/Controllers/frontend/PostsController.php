@@ -18,7 +18,6 @@ class PostsController extends Controller
         return view('article/articles', compact('posts'), compact('postCategories'));
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -40,7 +39,8 @@ class PostsController extends Controller
         $postCategoryID = self::getPostCategoryId($slug);
         $mediaPosts = Post::where('post_category_id', $postCategoryID)->get();
 
-        return view('article/medias', compact('mediaPosts'));
+        dd($mediaPosts);
+//        return view('article/medias', compact('mediaPosts'));
     }
 
 
@@ -54,11 +54,11 @@ class PostsController extends Controller
 
     /**
      * @param $slug
-     * @return \Illuminate\Database\Eloquent\Collection|array
+     * @return int
      */
-    public static function getPostCategoryId($slug): \Illuminate\Database\Eloquent\Collection|array
+    public static function getPostCategoryId($slug): int
     {
-        return  PostCategory::where('slug', $slug)->firstOrFail()->id;
+        return PostCategory::where('slug', $slug)->firstOrFail()->id;
     }
 
     /**

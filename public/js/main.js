@@ -86,39 +86,48 @@ function activMenuItem (e){
 
 
 /////////////////count///////////////
+let min = document.querySelectorAll('.min');
 
-// let min = document.querySelector('.min');
-// let del = document.querySelector('.del')
-// let plus = document.querySelector('.shopping-cart-products-count-item-plus');
-// let count = document.querySelector('.count-shop')
-// let shoppingCart = document.querySelectorAll('.shopping-cart-products-item')
-// let countValue = 1
-// console.log(shoppingCart)
-//
-//
-// console.log(countValue)
-// count.innerHTML =countValue
-// min.addEventListener('click', (e)=>{
-//
-//     if(countValue === 1){
-//         count.innerHTML= countValue
-//         min.classList.add ('min-none')
-//     } else if(countValue >= 1  ){
-//         count.innerHTML= --countValue
-//     }
-//
-// })
-//
-// plus.addEventListener('click', (e)=>{
-//     if(countValue >= 1){
-//         count.innerHTML= ++countValue
-//         min.classList.remove( 'min-none')
-//     }
-//     if(countValue === 0){
-//         count.innerHTML= ++countValue
-//     }
-//
-// })
+
+let plus = document.querySelectorAll('.shopping-cart-products-count-item-plus');
+let counts = document.querySelectorAll('.count-shop')
+console.log(counts)
+let shoppingCart = document.querySelectorAll('.shopping-cart-products-item')
+let countValue = 1
+console.log(shoppingCart)
+
+
+counts.forEach((count) =>{
+
+    count.innerHTML = countValue
+
+    min?.forEach((item) =>{
+        item.addEventListener('click', (event)=>{
+
+            if(countValue === 1){
+                count.innerHTML= countValue
+                item.target.classList.add ('min-none')
+            } else if(countValue >= 1  ){
+                count.innerHTML= --countValue
+            }
+
+        })
+    })
+
+    plus?.forEach((item) =>{
+        item.addEventListener('click', (event)=>{
+            if(countValue >= 1){
+                count.innerHTML= ++countValue
+                item.classList.remove( 'min-none')
+            }
+            if(countValue === 0){
+                count.innerHTML= ++countValue
+            }
+
+        })
+    })
+
+})
 
 
 
@@ -135,12 +144,16 @@ const postCode = document.getElementById('post-code');
 const tell = document.getElementById('home-tell')
 const emailShop = document.getElementById('email-shop');
 const reviewSoppingCart = document.getElementById('review-sopping-cart')
+
+
 const accept2 = document.getElementById('accept-sopping-cart')
-const acceptContent2 = getComputedStyle(accept2, "::before");
+let acceptContent2
+if(accept2){
+    acceptContent2 = getComputedStyle(accept2, "::before");
+}
+
 const country = document.getElementById('country')
 
-
-console.log(accept2)
 
 
 
@@ -262,77 +275,77 @@ function isEmailShop(email) {
 
 /*________________validacia_____________*/
 
-const form = document.querySelector('.forms');
-
-const name = document.getElementById('firs-name');
-const email = document.getElementById('email');
-const accept = document.getElementById('accept')
-const acceptContent = getComputedStyle(accept, "::before");
-const review = document.getElementById('review')
-
-
-
-
-form?.addEventListener('submit', e => {
-    e.preventDefault();
-    checkInputs();
-});
-
-
-function checkInputs() {
-    // trim to remove the whitespaces
-    const emailValue = email.value.trim();
-    const nameValue = name.value.trim();
-    const reviewValue = name.value.trim();
-
-
-    if(emailValue === '') {
-        setErrorFor(email, 'Email cannot be blank');
-    } else if (!isEmail(emailValue)) {
-        setErrorFor(email, 'Not a valid email');
-    } else {
-        setSuccessFor(email);
-    }
-
-    if(nameValue ===''){
-        setErrorFor(name, 'Name cannot be blank');
-    } else {
-        setSuccessFor(name);
-    }
-
-
-    if(acceptContent.content == "none"){
-        setErrorFor(accept, 'Cannot be checked');
-    }else {
-        setSuccessFor(accept);
-    }
-
-    if(reviewValue ==='' && reviewValue.length < 10 ){
-        setErrorFor(review, 'Name cannot be blank');
-    }   else {
-        setSuccessFor(review);
-    }
-
-}
-
-
-function setErrorFor(input, message) {
-    const formControl = input.parentElement;
-    const small = formControl.querySelector('small');
-    formControl.classList.add("error");
-    formControl.classList.remove('success');
-    small.innerText = message;
-}
-
-function setSuccessFor(input) {
-    const formControl = input.parentElement;
-    formControl.classList.add('success');
-    formControl.classList.remove("error")
-}
-
-function isEmail(email) {
-    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-}
+// const form = document.querySelector('.forms');
+//
+// const name = document.getElementById('firs-name');
+// const email = document.getElementById('email');
+// const accept = document.getElementById('accept')
+// const acceptContent = getComputedStyle(accept, "::before");
+// const review = document.getElementById('review')
+//
+//
+//
+//
+// form?.addEventListener('submit', e => {
+//     e.preventDefault();
+//     checkInputs();
+// });
+//
+//
+// function checkInputs() {
+//     // trim to remove the whitespaces
+//     const emailValue = email.value.trim();
+//     const nameValue = name.value.trim();
+//     const reviewValue = name.value.trim();
+//
+//
+//     if(emailValue === '') {
+//         setErrorFor(email, 'Email cannot be blank');
+//     } else if (!isEmail(emailValue)) {
+//         setErrorFor(email, 'Not a valid email');
+//     } else {
+//         setSuccessFor(email);
+//     }
+//
+//     if(nameValue ===''){
+//         setErrorFor(name, 'Name cannot be blank');
+//     } else {
+//         setSuccessFor(name);
+//     }
+//
+//
+//     if(acceptContent.content == "none"){
+//         setErrorFor(accept, 'Cannot be checked');
+//     }else {
+//         setSuccessFor(accept);
+//     }
+//
+//     if(reviewValue ==='' && reviewValue.length < 10 ){
+//         setErrorFor(review, 'Name cannot be blank');
+//     }   else {
+//         setSuccessFor(review);
+//     }
+//
+// }
+//
+//
+// function setErrorFor(input, message) {
+//     const formControl = input.parentElement;
+//     const small = formControl.querySelector('small');
+//     formControl.classList.add("error");
+//     formControl.classList.remove('success');
+//     small.innerText = message;
+// }
+//
+// function setSuccessFor(input) {
+//     const formControl = input.parentElement;
+//     formControl.classList.add('success');
+//     formControl.classList.remove("error")
+// }
+//
+// function isEmail(email) {
+//     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+// }
 
 
 

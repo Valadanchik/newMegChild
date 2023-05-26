@@ -79,51 +79,45 @@
                 <h2>Լրացուցիչ տեղեկություն</h2>
                 <div class="book-page-item-additional-information-list">
                     <div class="additional-information-list-item">
-                        <span>Օրիգինալ անուն</span>
-                        <svg height="1" viewBox="0 0 139 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="0.5" y1="0.5" x2="138.5" y2="0.5" stroke="#444444" stroke-linecap="round"
-                                  stroke-dasharray="4 4"/>
-                        </svg>
-                        <span>{{ $book['title_' . app()->getLocale()]  }}</span>
+                        <p>Օրիգինալ անուն</p>
+                        <div class="additional-information-list-item-img">
+                            <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                        </div>
+                        <span >{{ $book['title_' . app()->getLocale()]  }}</span>
                     </div>
                     <div class="additional-information-list-item">
                         <p>Կատեգորիա</p>
-                        <svg width="175" height="1" viewBox="0 0 175 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="0.5" y1="0.5" x2="174.5" y2="0.5" stroke="#444444" stroke-linecap="round"
-                                  stroke-dasharray="4 4"/>
-                        </svg>
+                        <div class="additional-information-list-item-img">
+                            <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                        </div>
                         <span>{{ $book->category->age }} տարեկաններ</span>
                     </div>
                     <div class="additional-information-list-item">
                         <p>ISBN</p>
-                        <svg width="258" height="1" viewBox="0 0 258 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="0.5" y1="0.5" x2="257.5" y2="0.5" stroke="#444444" stroke-linecap="round"
-                                  stroke-dasharray="4 4"/>
-                        </svg>
+                        <div class="additional-information-list-item-img">
+                            <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                        </div>
                         <span>{{ $book['isbn']  }}</span>
                     </div>
                     <div class="additional-information-list-item">
                         <p>Հրատարակության տարին</p>
-                        <svg width="173" height="1" viewBox="0 0 173 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="0.5" y1="0.5" x2="172.5" y2="0.5" stroke="#444444" stroke-linecap="round"
-                                  stroke-dasharray="4 4"/>
-                        </svg>
+                        <div class="additional-information-list-item-img">
+                            <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                        </div>
                         <span>{{ $book['published_date']  }}</span>
                     </div>
                     <div class="additional-information-list-item">
                         <p>էջերի քանակ</p>
-                        <svg width="301" height="1" viewBox="0 0 301 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="0.5" y1="0.5" x2="300.5" y2="0.5" stroke="#444444" stroke-linecap="round"
-                                  stroke-dasharray="4 4"/>
-                        </svg>
+                        <div class="additional-information-list-item-img">
+                            <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                        </div>
                         <span>{{ $book['page_count']  }}</span>
                     </div>
                     <div class="additional-information-list-item">
                         <p>Չափս</p>
-                        <svg width="248" height="1" viewBox="0 0 248 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="0.5" y1="0.5" x2="247.5" y2="0.5" stroke="#444444" stroke-linecap="round"
-                                  stroke-dasharray="4 4"/>
-                        </svg>
+                        <div class="additional-information-list-item-img">
+                            <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                        </div>
                         <span>{{ $book['book_size_' . app()->getLocale()]  }}</span>
                     </div>
                 </div>

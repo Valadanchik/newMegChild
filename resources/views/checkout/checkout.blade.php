@@ -33,9 +33,9 @@
                                         <div class="shopping-cart-products-item-count-img">
                                             <div class="shopping-cart-products-count-item-min">
                                                 <img class="min" src="{{ URL::to('/images/svg/shopping-cart-min-img.svg') }}"
-                                                     alt="min img">
+                                                     alt="min img" data-id="min-1">
                                             </div>
-                                            <p>1</p>
+                                            <p class="count-shop"></p>
                                             <div class="shopping-cart-products-count-item-plus">
                                                 <img  src="{{ URL::to('/images/svg/shopping-cart-plus-img.svg') }}"
                                                      alt="plus img">
@@ -187,8 +187,8 @@
                                         </div>
                                     </div>
 
-                                    <div class=" form-control form-shopping-cart-review">
-                                        <textarea name="order_text" value="{{old('order_text')}}" class="accept-input" id="review"
+                                    <div class=" form-control form-shopping-cart-review " >
+                                        <textarea name="order_text" value="{{old('order_text')}}" class="accept-input" id="review-sopping-cart"
                                           placeholder="Ձեր պատվերի մասին նշումներ, օրինակ, հատուկ նշումներ առաքման համար *"
                                           type="checkbox">
                                         </textarea>
@@ -207,7 +207,7 @@
 
                                     <div class="form-control accept">
                                         <input name="terms" class="accept-input" type="checkbox" value=" value="{{old('terms')}}"">
-                                        <span id="accept">Կարդացել և համաձայնվում եմ ոգտագործման պայմանների հետ</span>
+                                        <span id="accept-sopping-cart">Կարդացել և համաձայնվում եմ ոգտագործման պայմանների հետ</span>
                                         <small></small>
                                         @error('terms')
                                             <div style="color: red" class="required--error">{{ $message }}</div>

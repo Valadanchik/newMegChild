@@ -9,14 +9,12 @@ class Order extends Model
 {
     use HasFactory;
 
-    const PAYMENT_METHOD_CASH = 1;
-    const PAYMENT_METHOD_BANK = 2;
-    const PAYMENT_METHOD_IDRAM = 3;
-    const PAYMENT_METHOD_TELCELL = 4;
-    const PAYMENT_METHOD_GIFT_CARD = 5;
+    const PAYMENT_METHOD_BANK = 1;
+    const PAYMENT_METHOD_IDRAM = 2;
+    const PAYMENT_METHOD_TELCELL = 3;
+
 
     const PAYMENT_METHODS = [
-        self::PAYMENT_METHOD_CASH,
         self::PAYMENT_METHOD_BANK,
         self::PAYMENT_METHOD_IDRAM,
         self::PAYMENT_METHOD_TELCELL,
@@ -67,6 +65,13 @@ class Order extends Model
     public function region()
     {
         return $this->belongsTo(Region::class);
+    }
+
+    public function books()
+    {
+        return $this->belongsToMany(Books::class,'order_book_pivote', 'order_id', 'book_id')
+            ->withPivot('id', 'quantity', 'price', 'status')
+            ->withTimestamps();
     }
 
 }

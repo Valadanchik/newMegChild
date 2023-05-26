@@ -44,7 +44,7 @@
                         </div>
                         <div class="book-btn">
                             <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
-                                <button>Գնել</button>
+                                Գնել
                             </a>
                         </div>
                     </div>

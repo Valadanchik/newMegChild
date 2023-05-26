@@ -38,4 +38,9 @@ class Books extends Model
     {
         return $this->hasMany(Images::class, 'book_id', 'id');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class,'order_book_pivote', 'book_id', 'order_id')->withPivot('id', 'quantity', 'price', 'status');
+    }
 }

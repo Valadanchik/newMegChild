@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id')->nullable();
             $table->unsignedBigInteger('order_id')->nullable();
             $table->integer('quantity');
+            $table->double('price');
+            $table->unsignedInteger('status');
             $table->timestamps();
 
             $table->foreign('book_id')->references('id')->on('books')->onUpdate('cascade');

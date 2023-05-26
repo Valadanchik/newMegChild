@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\frontend\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,12 @@ Route::group(
 
     /* Order Router */
 
-    Route::get('order', 'App\Http\Controllers\frontend\OrderController@index')->name('order');
+//    Route::get('order', 'App\Http\Controllers\frontend\OrderController@index')->name('order');
+//    Route::post('/order', 'App\Http\Controllers\frontend\OrderController@create')->name('order.create');
+
+    Route::get('/order', [OrderController::class, 'index'])->name('order');
+    Route::post('/order', [OrderController::class, 'create'])->name('order.create');
+
 
 //    Route::get('/add-to-cart', 'App\Http\Controllers\frontend\ShopController@addToCart')->name('addToCart');
     Route::post('/add-to-cart', [App\Http\Controllers\frontend\ShopController::class, 'addToCart'])->name('addToCart');

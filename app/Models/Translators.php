@@ -9,7 +9,6 @@ class Translators extends Model
 {
     use HasFactory;
 
-
     public function Translators(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Books::class, 'book_translators_pivot', 'translator_id', 'book_id');

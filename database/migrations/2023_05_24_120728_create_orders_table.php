@@ -15,15 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('region_id')->nullable();
-            $table->integer('payment_id')->nullable();
             $table->string('name');
             $table->string('lastname');
+            $table->string('company')->nullable();
             $table->string('email');
             $table->string('phone');
             $table->string('region')->nullable();
             $table->string('street')->nullable();
             $table->string('house')->nullable();
-            $table->string('apartment')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('order_text')->nullable();
             $table->unsignedInteger('total_price')->nullable();
             $table->unsignedInteger('total_price_with_discount')->nullable();
             $table->unsignedInteger('payment_method');

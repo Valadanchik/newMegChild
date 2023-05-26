@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('isbn');
             $table->integer('in_stock');
             $table->string('published_date');
+            $table->boolean('status')->default(1);
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

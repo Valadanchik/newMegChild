@@ -3,50 +3,45 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Front\Order\CreateRequest;
-use App\Models\Books;
 
-use App\Services\Front\PaymentService;
-
+use App\Http\Requests\OrderStoreRequest;
+use App\Services\Frontend\OrderService;
+use App\Services\Frontend\PaymentService;
 
 class OrderController extends Controller
 {
-    protected $orderService = null;
+    protected OrderService $orderService;
+
+    public function __construct(OrderService $orderService)
+    {
+        $this->orderService = $orderService;
+    }
 
     public function index()
     {
 
-//        dd(array_keys(session()->get('cart')));
+        $cardBooks = [];
+        if (session()->get('cart')) {
+            $regions = $this->orderService->getRegions();
+            $countries = $this->orderService->getCountries();
+            $cardBooks = $this->orderService->getCartProducts();
+            $data = compact('cardBooks', 'regions', 'countries');
+        } else {
+            $data = compact('cardBooks');
+        }
 
-        $sessionProductsId = array_keys(session()->get('cart'));
-
-        $cardBooks = Books::with(['authors' => function ($query) {
-            $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
-        }, 'translators' => function ($query) {
-            $query->select('translators.id', 'translators.name_hy', 'translators.name_en');
-        }])
-            ->whereIn('id', $sessionProductsId)
-            ->get();
-
-//        dd($cardBooks);
-
-
-
-//        $getBooks = Books::
-//
-//
-//        dd(session()->get('cart'));
-
-//        $regions = $this->orderService->getRegions();
-//        $countries = $this->orderService->getCountries();
-
-//        $orders = $this->orderService->getOrders();
-
-
-
-
-        return view('checkout.checkout', compact('cardBooks'));
+        return view('checkout.checkout', $data);
     }
 
+    public function create(OrderStoreRequest $request)
+    {
+
+        $order = $this->orderService->create($request);
+
+
+        $this->orderService->createOrderBook($order);
+
+
+    }
 
 }

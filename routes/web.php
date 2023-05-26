@@ -56,6 +56,7 @@ Route::group(
 
 //    Route::get('/add-to-cart', 'App\Http\Controllers\frontend\ShopController@addToCart')->name('addToCart');
     Route::post('/add-to-cart', [App\Http\Controllers\frontend\ShopController::class, 'addToCart'])->name('addToCart');
+    Route::post('/remove-from-card', [App\Http\Controllers\frontend\ShopController::class, 'removeFromCart'])->name('removeFromCart');
 
 
 });

@@ -37,7 +37,6 @@ class OrderService
 
     public function create(Request $request)
     {
-        $request->request->add(['status' => Order::STATUS_NEW]);
         return Order::create($request->except(['_token','terms']));
     }
 

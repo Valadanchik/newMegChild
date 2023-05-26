@@ -47,18 +47,21 @@
                                         <p>{{ $card['price'] }} ֏</p>
                                     </div>
                                     <div class="shopping-cart-products-count-close-icon">
-                                        <img src="{{ URL::to('/images/svg/close.svg') }}" alt="close">
+                                        <img src="{{ URL::to('/images/svg/close.svg') }}" class="remove-product-from-card" alt="close" data-book-id="{{ $card['id'] }}">
                                     </div>
                                 </div>
                             @endforeach
-{{--                            <div class="shopping-cart-buttons">
-                                <div class="shopping-cart-code-input">
-                                    <input type="text" placeholder="Կոդը" value="code"/>
-                                </div>
-                                <div class="shopping-cart-promo-code-btn">
-                                    <a href="">Կիրառել արժեկտրոնը</a>
-                                </div>
-                            </div>--}}
+
+                                <input id="remove-from-cart-url" type="hidden" value="{{ route('removeFromCart') }}">
+
+                            {{--                            <div class="shopping-cart-buttons">
+                                                            <div class="shopping-cart-code-input">
+                                                                <input type="text" placeholder="Կոդը" value="code"/>
+                                                            </div>
+                                                            <div class="shopping-cart-promo-code-btn">
+                                                                <a href="">Կիրառել արժեկտրոնը</a>
+                                                            </div>
+                                                        </div>--}}
 
                         </div>
 

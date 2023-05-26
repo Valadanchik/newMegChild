@@ -10,16 +10,16 @@ use App\Services\Frontend\PaymentService;
 
 class OrderController extends Controller
 {
-    protected OrderService $orderService;
+//    protected OrderService $orderService;
 
-    public function __construct(OrderService $orderService)
+    public function __construct(protected OrderService $orderService)
     {
         $this->orderService = $orderService;
     }
 
     public function index()
     {
-
+//        phpinfo();
         $cardBooks = [];
         if (session()->get('cart')) {
             $regions = $this->orderService->getRegions();
@@ -36,12 +36,18 @@ class OrderController extends Controller
     public function create(OrderStoreRequest $request)
     {
 
+//        dd($request->all());
+
         $order = $this->orderService->create($request);
 
 
         $this->orderService->createOrderBook($order);
 
+        $payment_service = new PaymentService();
 
+        dd(3);
+
+        return $payment_service->makePayment($order);
     }
 
 }

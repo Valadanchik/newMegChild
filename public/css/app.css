@@ -149,8 +149,11 @@ main{
 
 .banner-img  a img {
     width: 100%;
+    transition-duration: .3s;
 }
-
+.banner-img  a img:hover{
+    transform: scale(1.1);
+}
 
 
 
@@ -250,21 +253,57 @@ main{
 }
 
 .color-info-description-btn {
-    border: 1px solid #fff;
+
     width: 100%;
-    text-align: center;
-    cursor: pointer;
+
     max-width: 220px;
     margin-top: 42px;
-    padding: 15px 38px;
+
 }
 .color-info-description-btn a{
     font-weight: 500;
+    border: 1px solid #fff;
+    text-align: center;
+    cursor: pointer;
     font-size: 16px;
+    padding: 15px 38px;
     line-height: 20px;
+    display: inline-block;
     letter-spacing: 0.01em;
     color: #FFFFFF;
+    transition-duration: .3s;
 }
+
+
+/*.ben-color .color-info-description-btn:hover,*/
+/*.gim-color .color-info-description-btn:hover,*/
+/*.da-color .color-info-description-btn:hover{*/
+/*    background: #ffffff;*/
+/*}*/
+
+.ben-color .color-info-description-btn a:hover{
+    background: #ffffff;
+    color: #fbb713;
+}
+.da-color .color-info-description-btn a:hover{
+    color: #4db748;
+    background: #ffffff;
+}
+.gim-color .color-info-description-btn a:hover{
+    background: #ffffff;
+    color: #8e52a0;
+}
+.ayb-color .color-info-description-btn a:hover{
+    background: #ffffff;
+    color: #8e52a0;
+}
+
+.color-info-description-btn a:hover{
+    background: #ffffff;
+    color: #6c6d73;
+}
+
+
 .orange-info-img:hover ,
 .green-info-img:hover,
 .purple-info-img:hover,
@@ -814,6 +853,8 @@ a.footer-address:hover{
     margin-left: 16px;
     letter-spacing: 0.01em;
     color: #646464;
+    padding-bottom: 24px;
+    display: inline-block;
 }
 .section-media-info h3{
     font-family: 'Montserrat arm';
@@ -1492,6 +1533,15 @@ h2.book-page-leave-review-title {
 
 
 
+.forms.shopping-cart-forms .accept span {
+    color: #000;
+}
+.forms.shopping-cart-forms .accept input{
+    border: 1px solid #000;
+    border-radius: 4px;
+}
+
+
 /*__________________________reade-more_____________________________*/
 .reade-more-info-item {
     display: flex;
@@ -1750,7 +1800,7 @@ section.books {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1116px;
+    max-width: 800px;
     padding: 30px;
     margin-bottom: 15px;
     border-radius: 20px;
@@ -1763,6 +1813,7 @@ section.books {
     line-height: 27px;
     /* identical to box height */
     color: #000000;
+    margin: 0;
 }
 
 .shopping-cart-products-item-desc p {
@@ -1829,7 +1880,7 @@ section.books {
 }
 .shopping-cart-products-buy-items {
     width: 100%;
-    max-width: 1116px;
+    max-width: 800px;
 }
 
 .shopping-cart-products-item-img {
@@ -1856,7 +1907,7 @@ section.books {
     width: 100%;
     border-radius: 20px;
     margin-bottom: 100px;
-    max-width: 1116px;
+    max-width: 800px;
     filter: drop-shadow(0px 1px 14px rgba(83, 83, 83, 0.12));
 }
 
@@ -1943,8 +1994,7 @@ section.books {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 20px;
-    row-gap: 20px;
-    gap: 40px;
+    gap: 20px;
 }
 
 .form-shopping-cart-home,
@@ -1962,7 +2012,7 @@ section.books {
 .form-post-code input,
 .form-shopping-cart-home-tell input,
 .form-shopping-cart-email input{
-    padding: 17px 0 17px 20px;
+    padding: 17px 0 17px 15px;
     display: inline-block;
     width: 100%;
     background: #FFFFFF;
@@ -1972,8 +2022,9 @@ section.books {
 .shopping-cart-forms{
     width: 100%;
     max-width: 996px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-bottom: 60px;
 }
 
 .shopping-cart-payment-details-title {
@@ -1994,7 +2045,7 @@ section.books {
 .form-control.form-shopping-cart-last-name input::placeholder,
 .form-shopping-cart-company input::placeholder{
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 26px;
     color: #4C4C4C;
 
@@ -2009,10 +2060,11 @@ section.books {
     display: flex;
     align-items: center;
     gap: 20px;
+    padding: 0 20px;
 }
 .my-radio {
     accent-color: #f24802;
-    width: 20px;
+    width: 15px;
     border: 1px solid #D8DFE9;
     height: 20px;
 }
@@ -2037,6 +2089,7 @@ section.books {
     color: #000000;
     margin-top: 36px;
     margin-bottom: 20px;
+    padding: 0 20px;
 }
 
 .packaging-none label,
@@ -2063,6 +2116,7 @@ section.books {
 .your-order-radio {
     display: flex;
     gap: 15px;
+    padding: 20px;
     align-items: center;
 }
 .oll-result-total,
@@ -2072,6 +2126,9 @@ section.books {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.oll-result {
+    padding-right: 20px;
 }
 
 .oll-result-total  p,
@@ -2101,8 +2158,8 @@ section.books {
 
 .payment-cart-btn{
     width: 100%;
-    margin-top: 20px;
-    max-width:424px;
+    margin: 20px auto 0;
+    max-width:310px;
 }
 .payment-cart-btn button{
     font-weight: 400;
@@ -2112,13 +2169,12 @@ section.books {
     background: #F34802;
     border-radius: 10px;
     color: #FFFFFF;
-    padding: 14px 142px;
+    padding: 14px 90px;
     text-align: center;
     border: 1px solid #F34802 ;
 }
 .other-services{
     box-shadow: 0px 1px 14px rgba(83, 83, 83, 0.12);
-    padding: 20px;
     border-radius:20px ;
 }
 
@@ -2150,3 +2206,6 @@ section.books {
     display: flex;
     position: relative;
 }
+
+
+

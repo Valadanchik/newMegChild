@@ -56,38 +56,38 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
     xhr.send(data);
 });
 
-document.querySelectorAll('.remove-product-from-card').forEach(element => element.addEventListener('click', event => {
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', document.getElementById('remove-from-cart-url').value);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
-    var bookId = event.target.getAttribute("data-book-id");
-    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var data = JSON.stringify({ _token: csrfToken, book_id: bookId });
-
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            console.log(xhr.responseText);
-            var data = JSON.parse(xhr.responseText);
-            window.location.reload();
-        }
-
-    };
-
-    xhr.onerror = function () {
-        // Handle error
-    };
-
-    xhr.onloadend = function () {
-        document.querySelector('.loader-container').style.display = 'none';
-    };
-
-    xhr.send(data);
-
-
-    console.log(bookId);
-}));
+// document.querySelectorAll('.remove-product-from-card').forEach(element => element.addEventListener('click', event => {
+//
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('POST', document.getElementById('remove-from-cart-url').value);
+//     xhr.setRequestHeader('Content-Type', 'application/json');
+//     xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
+//     var bookId = event.target.getAttribute("data-book-id");
+//     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+//     var data = JSON.stringify({ _token: csrfToken, book_id: bookId });
+//
+//     xhr.onload = function () {
+//         if (xhr.status === 200) {
+//             console.log(xhr.responseText);
+//             var data = JSON.parse(xhr.responseText);
+//             // window.location.reload();
+//         }
+//
+//     };
+//
+//     xhr.onerror = function () {
+//         // Handle error
+//     };
+//
+//     xhr.onloadend = function () {
+//         document.querySelector('.loader-container').style.display = 'none';
+//     };
+//
+//     xhr.send(data);
+//
+//
+//     console.log(bookId);
+// }));
 
 
 
@@ -186,18 +186,55 @@ deleteBtn?.forEach((item) =>{
         let rowItemElement = document.getElementById('shopping-cart-products-item-' + dataItem);
         let rowItemCountElement = document.getElementById('count-shop-' + dataItem);
 
-        let payPriceElement = document.querySelector('.all-result-payable-to span span');
-        let totalPriceElement = document.querySelector('.all-result-total span span');
-        let totalPrice = parseInt(totalPriceElement.innerHTML);
-        let payPrice = parseInt(totalPriceElement.innerHTML);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', document.getElementById('remove-from-cart-url').value);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
+        var bookId = event.target.getAttribute("data-book-id");
+        var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        var data = JSON.stringify({ _token: csrfToken, book_id: bookId });
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+                var data = JSON.parse(xhr.responseText);
+                // window.location.reload();
 
 
-        totalPriceElement.innerHTML = totalPrice - parseInt(rowItemCountElement.value) * itemPrice;
-        payPriceElement.innerHTML = payPrice - parseInt(rowItemCountElement.value) * itemPrice;
+                let payPriceElement = document.querySelector('.all-result-payable-to span span');
+                let totalPriceElement = document.querySelector('.all-result-total span span');
+                let totalPrice = parseInt(totalPriceElement.innerHTML);
+                let payPrice = parseInt(totalPriceElement.innerHTML);
+
+
+                totalPriceElement.innerHTML = totalPrice - parseInt(rowItemCountElement.value) * itemPrice;
+                payPriceElement.innerHTML = payPrice - parseInt(rowItemCountElement.value) * itemPrice;
 
 
 
-        rowItemElement.remove();
+                rowItemElement.remove();
+
+            }
+
+        };
+
+        xhr.onerror = function () {
+            // Handle error
+        };
+
+        xhr.onloadend = function () {
+            document.querySelector('.loader-container').style.display = 'none';
+        };
+
+        xhr.send(data);
+
+
+        console.log(bookId);
+
+
+
+
+
 
     })
 });

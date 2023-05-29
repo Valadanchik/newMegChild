@@ -4,11 +4,9 @@ namespace App\Services\Frontend;
 
 use App\Jobs\OrderAdminJob;
 use App\Jobs\OrderUserJob;
-use App\Mail\OrderAdminMail;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Mail;
 
 class PaymentService
 {
@@ -98,7 +96,7 @@ class PaymentService
                     self::updateOrderBooksPivotStatus($order,Order::STATUS_FAILED);
                 } else {
                     self::updateOrderBooksPivotStatus($order,Order::STATUS_COMPLETED);
-                    self::dispatchEmailJob($order->id);
+                    self::dispatchEmailJobs($order);
                     echo "OK";
                 }
             }
@@ -162,7 +160,7 @@ class PaymentService
         $order->payment_callback = json_encode($request->all());
         if ($request->status == 'PAID') {
             self::updateOrderBooksPivotStatus($order,Order::STATUS_COMPLETED);
-            self::dispatchEmailJob($order->id);
+            self::dispatchEmailJobs($order);
         } else {
             self::updateOrderBooksPivotStatus($order,Order::STATUS_FAILED);
         }
@@ -280,7 +278,7 @@ class PaymentService
         if ($error) {
             return redirect()->route('payment.fail');
         } else {
-            self::dispatchEmailJob($order->id);
+            self::dispatchEmailJobs($order);
 
             return redirect()->route('payment.success');
         }
@@ -305,22 +303,13 @@ class PaymentService
     }
 
     /**
-     * @param $order_id
+     * @param Order $order
      * @return void
      */
-    public static function dispatchEmailJob($order_id): void
+    public static function dispatchEmailJobs(Order $order): void
     {
-        try {
-            OrderAdminJob::dispatch($order_id);
-        } catch (\Exception $e) {
-            info('OrderAdminJob error-1: ' . $e->getMessage());
-        }
-
-        try {
-            OrderUserJob::dispatch($order_id);
-        } catch (\Exception $e) {
-            info('OrderAdminJob error-1: ' . $e->getMessage());
-        }
+        OrderAdminJob::dispatch($order);
+        OrderUserJob::dispatch($order);
     }
 
 }

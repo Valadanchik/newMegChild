@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Authors;
 use App\Models\Books;
 use App\Models\Categories;
-use App\Models\Order;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 
@@ -25,12 +24,7 @@ class HomeController extends Controller
             'lastParentBook' => self::getHomeLastParentBook(),
         ];
 
-        $order = Order::where('id', 1)->with('books')->first();
-
-//        dd($order);
-
-//        return view('index', compact('data'));
-        return view('emails.order-admin', compact('order'));
+        return view('index', compact('data'));
     }
 
     /**

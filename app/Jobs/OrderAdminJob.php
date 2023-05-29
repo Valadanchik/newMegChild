@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Interfaces\OrderMailingInterface;
 use App\Mail\OrderAdminMail;
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
@@ -9,25 +10,29 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Mail;
 
 class OrderAdminJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $order;
-
-    public function __construct(int $order_id)
+    /**
+     * @param Order $order
+     * @param OrderMailingInterface $mailer
+     */
+    public function __construct(protected Order $order, protected OrderMailingInterface $mailer)
     {
-        $this->order = Order::where('id', $order_id)->with('variations', 'variations.product', 'variations.images')->first();
+
     }
 
-    public function handle()
+    /**
+     * @return void
+     */
+    public function handle(): void
     {
         try {
-            Mail::to(env('EMAIL_NEW_MAG_CHILD'))->send(new OrderAdminMail($this->order));
+            $this->mailer->send(new OrderAdminMail($this->order));
         } catch (\Exception $e) {
-            info('OrderAdminJob: error-2: ' . $e->getMessage());
+            info('OrderUserJob: error-2: ' . $e->getMessage());
         }
     }
 }

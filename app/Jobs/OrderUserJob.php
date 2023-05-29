@@ -2,31 +2,35 @@
 
 namespace App\Jobs;
 
+use App\Interfaces\OrderMailingInterface;
 use App\Mail\OrderUserMail;
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Mail;
 
 class OrderUserJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $order;
-
-    public function __construct(int $order_id)
+    /**
+     * @param Order $order
+     * @param OrderMailingInterface $mailer
+     */
+    public function __construct(protected Order $order, protected OrderMailingInterface $mailer)
     {
-        $this->order = Order::where('id', $order_id)->with('variations', 'variations.product', 'variations.images')->first();
+
     }
 
-    public function handle()
+    /**
+     * @return void
+     */
+    public function handle(): void
     {
         try {
-            Mail::to($this->order->email)->send(new OrderUserMail($this->order));
+            $this->mailer->send(new OrderUserMail($this->order));
         } catch (\Exception $e) {
             info('OrderUserJob: error-2: ' . $e->getMessage());
         }

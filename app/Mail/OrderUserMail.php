@@ -8,20 +8,25 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderUserMail extends Mailable
+class OrderUserMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-    public $order;
 
-    public function __construct(Order $order)
+    /**
+     * @param Order $order
+     */
+    public function __construct(public Order $order)
     {
-        $this->order = $order;
+
     }
 
+    /**
+     * @return OrderUserMail
+     */
     public function build()
     {
-        return $this->view('emails.order-user', [
-            'order' => $this->order,
-        ]);
+        return $this->subject('Order Info')
+            ->view('emails.order-user')
+            ->with('order', $this->order);
     }
 }

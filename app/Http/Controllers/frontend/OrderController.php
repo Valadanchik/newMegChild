@@ -5,6 +5,9 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\OrderStoreRequest;
+use App\Jobs\OrderAdminJob;
+use App\Jobs\OrderUserJob;
+use App\Mailers\OrderMailer;
 use App\Services\Frontend\OrderService;
 use App\Services\Frontend\PaymentService;
 
@@ -33,13 +36,13 @@ class OrderController extends Controller
         return view('checkout.checkout', $data);
     }
 
+
     public function create(OrderStoreRequest $request)
     {
 
 //        dd($request->all());
 
         $order = $this->orderService->create($request);
-
 
         $this->orderService->createOrderBook($order);
 

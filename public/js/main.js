@@ -86,48 +86,87 @@ function activMenuItem (e){
 
 
 /////////////////count///////////////
-let min = document.querySelectorAll('.min');
-
-
+let min = document.querySelectorAll('.shopping-cart-products-count-item-min');
 let plus = document.querySelectorAll('.shopping-cart-products-count-item-plus');
-let counts = document.querySelectorAll('.count-shop')
-console.log(counts)
-let shoppingCart = document.querySelectorAll('.shopping-cart-products-item')
-let countValue = 1
-console.log(shoppingCart)
+let deleteBtn = document.querySelectorAll('.shopping-cart-products-count-close-icon');
 
 
-counts.forEach((count) =>{
 
-    count.innerHTML = countValue
 
-    min?.forEach((item) =>{
-        item.addEventListener('click', (event)=>{
+min?.forEach((item) =>{
+    item.addEventListener('click', (event)=>{
+        let payPriceElement = document.querySelector('.all-result-payable-to span span');
+        let totalPriceElement = document.querySelector('.all-result-total span span');
+        let totalPrice = parseInt(totalPriceElement.innerHTML);
+        let dataItem = parseInt(event.currentTarget.dataset.item);
+        let itemPrice = parseInt(event.currentTarget.dataset.price);
+        let countElement = document.getElementById('count-shop-' + dataItem);
+        let minBtn = document.querySelector(`.min-count-${dataItem} img`);
+        console.log(minBtn);
+        if(parseInt(countElement.value) > 2) {
+            countElement.value = parseInt(countElement.value) - 1;
+            totalPriceElement.innerHTML = totalPrice - itemPrice;
+            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
+        } else {
+            countElement.value = parseInt(countElement.value) - 1;
+            totalPriceElement.innerHTML = totalPrice - itemPrice;
+            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
+            event.currentTarget.classList.add('min-none');
+            minBtn.src = "/images/svg/shopping-cart-min-img.svg";
+        }
 
-            if(countValue === 1){
-                count.innerHTML= countValue
-                item.target.classList.add ('min-none')
-            } else if(countValue >= 1  ){
-                count.innerHTML= --countValue
-            }
-
-        })
     })
+});
 
-    plus?.forEach((item) =>{
-        item.addEventListener('click', (event)=>{
-            if(countValue >= 1){
-                count.innerHTML= ++countValue
-                item.classList.remove( 'min-none')
-            }
-            if(countValue === 0){
-                count.innerHTML= ++countValue
-            }
+plus?.forEach((item) =>{
+    item.addEventListener('click', (event)=>{
 
-        })
+        let payPriceElement = document.querySelector('.all-result-payable-to span span');
+        let totalPriceElement = document.querySelector('.all-result-total span span');
+        let totalPrice = parseInt(totalPriceElement.innerHTML);
+        let dataItem = parseInt(event.currentTarget.dataset.item);
+        let itemPrice = parseInt(event.currentTarget.dataset.price);
+        let maxCount = parseInt(event.currentTarget.dataset.max);
+        let countElement = document.getElementById('count-shop-' + dataItem);
+
+        let minBtn = document.querySelector(`.min-count-${dataItem}`);
+
+        console.log(minBtn);
+        if(parseInt(countElement.value) < maxCount) {
+            countElement.value = parseInt(countElement.value) + 1;
+            totalPriceElement.innerHTML = totalPrice +  itemPrice;
+            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) +  itemPrice;
+            minBtn.querySelector('img').src = "/images/svg/shopping-cart-plus-img.svg";
+            minBtn.classList.remove('min-none');
+        }
+
     })
+});
 
-})
+deleteBtn?.forEach((item) =>{
+    item.addEventListener('click', (event)=>{
+
+        let dataItem = parseInt(event.currentTarget.dataset.item);
+        let itemPrice = parseInt(event.currentTarget.dataset.price);
+
+        let rowItemElement = document.getElementById('shopping-cart-products-item-' + dataItem);
+        let rowItemCountElement = document.getElementById('count-shop-' + dataItem);
+
+        let payPriceElement = document.querySelector('.all-result-payable-to span span');
+        let totalPriceElement = document.querySelector('.all-result-total span span');
+        let totalPrice = parseInt(totalPriceElement.innerHTML);
+        let payPrice = parseInt(totalPriceElement.innerHTML);
+
+
+        totalPriceElement.innerHTML = totalPrice - parseInt(rowItemCountElement.value) * itemPrice;
+        payPriceElement.innerHTML = payPrice - parseInt(rowItemCountElement.value) * itemPrice;
+
+
+
+        rowItemElement.remove();
+
+    })
+});
 
 
 
@@ -143,18 +182,16 @@ const city = document.getElementById('city');
 const postCode = document.getElementById('post-code');
 const tell = document.getElementById('home-tell')
 const emailShop = document.getElementById('email-shop');
-const reviewSoppingCart = document.getElementById('review-sopping-cart')
+const reviewSoppingCart = document.getElementById('review-sopping-cart');
 
 
-const accept2 = document.getElementById('accept-sopping-cart')
+const accept2 = document.getElementById('accept-sopping-cart');
 let acceptContent2
 if(accept2){
     acceptContent2 = getComputedStyle(accept2, "::before");
 }
 
-const country = document.getElementById('country')
-
-
+const country = document.getElementById('country');
 
 
 form_shopping_cart?.addEventListener('submit', e => {

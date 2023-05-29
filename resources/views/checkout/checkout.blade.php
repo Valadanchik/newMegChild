@@ -12,8 +12,8 @@
                     @csrf
                     <div class="shopping-cart-products-buy" style="margin-right: 20px">
                         <div class="shopping-cart-products-buy-items">
-                            @foreach($cardBooks as $card)
-                                <div class="shopping-cart-products-item">
+                            @foreach($cardBooks as $card_key => $card)
+                                <div id="shopping-cart-products-item-{{$card_key}}" class="shopping-cart-products-item">
 
                                     <div class="shopping-cart-products-item-img">
                                         <img src="{{ URL::to('storage/' . $card['main_image']) }}" alt="">
@@ -31,13 +31,13 @@
                                     </div>
                                     <div class="shopping-cart-products-item-count">
                                         <div class="shopping-cart-products-item-count-img">
-                                            <div class="shopping-cart-products-count-item-min">
+                                            <div data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-min min-none min-count-{{$card_key}}">
                                                 <img class="min" src="{{ URL::to('/images/svg/shopping-cart-min-img.svg') }}"
                                                      alt="min img" data-id="min-1">
                                             </div>
-                                            <p class="count-shop"></p>
-                                            <div class="shopping-cart-products-count-item-plus">
-                                                <img  src="{{ URL::to('/images/svg/shopping-cart-plus-img.svg') }}"
+                                            <input type="number" class="count-shop" id="count-shop-{{$card_key}}" value="1">
+                                            <div data-max="{{ $card['in_stock'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-plus">
+                                                <img src="{{ URL::to('/images/svg/shopping-cart-plus-img.svg') }}"
                                                      alt="plus img">
                                             </div>
                                         </div>
@@ -46,19 +46,19 @@
                                     <div class="shopping-cart-products-item-price">
                                         <p>{{ $card['price'] }} ֏</p>
                                     </div>
-                                    <div class="shopping-cart-products-count-close-icon">
+                                    <div data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-close-icon">
                                         <img src="{{ URL::to('/images/svg/close.svg') }}" alt="close">
                                     </div>
                                 </div>
                             @endforeach
-{{--                            <div class="shopping-cart-buttons">
-                                <div class="shopping-cart-code-input">
-                                    <input type="text" placeholder="Կոդը" value="code"/>
-                                </div>
-                                <div class="shopping-cart-promo-code-btn">
-                                    <a href="">Կիրառել արժեկտրոնը</a>
-                                </div>
-                            </div>--}}
+                            {{--                            <div class="shopping-cart-buttons">
+                                                            <div class="shopping-cart-code-input">
+                                                                <input type="text" placeholder="Կոդը" value="code"/>
+                                                            </div>
+                                                            <div class="shopping-cart-promo-code-btn">
+                                                                <a href="">Կիրառել արժեկտրոնը</a>
+                                                            </div>
+                                                        </div>--}}
 
                         </div>
 
@@ -72,15 +72,15 @@
                                     <div class="form-shopping-cart-name-lastName">
                                         <div class=" form-control form-shopping-cart-first-name">
                                             <label for="shopping-cart-firs-name"></label>
-                                                <input class="accept-input"
-                                                    type="text"
-                                                    id="shopping-cart-firs-name"
-                                                    placeholder="Անուն*"
-                                                    name="name"
-                                                    value="{{old('name')}}">
+                                            <input class="accept-input"
+                                                   type="text"
+                                                   id="shopping-cart-firs-name"
+                                                   placeholder="Անուն*"
+                                                   name="name"
+                                                   value="{{old('name')}}">
                                             <small></small>
                                             @error('name')
-                                                <div style="color: red" class="required--error">{{ $message }}</div>
+                                            <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
@@ -91,7 +91,7 @@
                                                    value="{{old('lastname')}}">
                                             <small></small>
                                             @error('lastname')
-                                                <div style="color: red" class="required--error">{{ $message }}</div>
+                                            <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -103,7 +103,7 @@
                                                value="{{old('company')}}">
                                         <small></small>
                                         @error('company')
-                                            <div style="color: red" class="required--error">{{ $message }}</div>
+                                        <div style="color: red" class="required--error">{{ $message }}</div>
                                         @enderror
                                     </div>
 
@@ -119,30 +119,30 @@
                                         </select>
                                         <small></small>
                                         @error('country_id')
-                                            <div style="color: red" class="required--error">{{ $message }}</div>
+                                        <div style="color: red" class="required--error">{{ $message }}</div>
                                         @enderror
                                     </div>
-     {{--                               <div class="form-control form-shopping-cart-count">
-                                        <select name="region_id" id="region">
-                                            @foreach($regions as $region)
-                                                <option
-                                                    value="{{$region->id}}"
-                                                    @if(old('region_id') == $region->id) selected @endif>
-                                                    {{$region->{'name_'.app()->getLocale()} }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <small></small>
-                                        @error('region_id')
-                                            <div style="color: red" class="required--error">{{ $message }}</div>
-                                        @enderror
-                                    </div>--}}
+                                    {{--                               <div class="form-control form-shopping-cart-count">
+                                                                       <select name="region_id" id="region">
+                                                                           @foreach($regions as $region)
+                                                                               <option
+                                                                                   value="{{$region->id}}"
+                                                                                   @if(old('region_id') == $region->id) selected @endif>
+                                                                                   {{$region->{'name_'.app()->getLocale()} }}
+                                                                               </option>
+                                                                           @endforeach
+                                                                       </select>
+                                                                       <small></small>
+                                                                       @error('region_id')
+                                                                           <div style="color: red" class="required--error">{{ $message }}</div>
+                                                                       @enderror
+                                                                   </div>--}}
                                     <div class="form-home-address-oll">
                                         <div class=" form-control form-shopping-cart-home">
                                             <input name="street" value="{{old('street')}}" type="text" id="home" placeholder="Տան համար և փողոց *">
                                             <small></small>
                                             @error('street')
-                                                <div style="color: red" class="required--error">{{ $message }}</div>
+                                            <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
@@ -150,7 +150,7 @@
                                             <input name="house" value="{{old('house')}}" type="text" id="apartment" placeholder="Բնակարան, կացարան և ալն․․․">
                                             <small></small>
                                             @error('house')
-                                                <div style="color: red" class="required--error">{{ $message }}</div>
+                                            <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
@@ -158,7 +158,7 @@
                                             <input name="region" value="{{old('region')}}" type="text" id="city" placeholder="Քաղաք/Վարչական շրջան *">
                                             <small></small>
                                             @error('region')
-                                                <div style="color: red" class="required--error">{{ $message }}</div>
+                                            <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
@@ -166,7 +166,7 @@
                                             <input type="text" value="{{old('postal_code')}}" name="postal_code" id="post-code" placeholder="Փոստային կոդ *">
                                             <small></small>
                                             @error('postal_code')
-                                                <div style="color: red" class="required--error">{{ $message }}</div>
+                                            <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
@@ -174,7 +174,7 @@
                                             <input type="text" value="{{old('phone')}}" name="phone" id="home-tell" placeholder="Հեռախոս *">
                                             <small></small>
                                             @error('phone')
-                                                <div style="color: red" class="required--error">{{ $message }}</div>
+                                            <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
@@ -182,19 +182,19 @@
                                             <input name="email" value="{{old('email')}}" type="text" id="email-shop" placeholder="Էլեկտրոնային հասցե*">
                                             <small></small>
                                             @error('email')
-                                                <div style="color: red" class="required--error">{{ $message }}</div>
+                                            <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
 
                                     <div class=" form-control form-shopping-cart-review " >
                                         <textarea name="order_text" value="{{old('order_text')}}" class="accept-input" id="review-sopping-cart"
-                                          placeholder="Ձեր պատվերի մասին նշումներ, օրինակ, հատուկ նշումներ առաքման համար *"
-                                          type="checkbox">
+                                                  placeholder="Ձեր պատվերի մասին նշումներ, օրինակ, հատուկ նշումներ առաքման համար *"
+                                                  type="checkbox">
                                         </textarea>
                                         <small></small>
                                         @error('order_text')
-                                            <div style="color: red" class="required--error">{{ $message }}</div>
+                                        <div style="color: red" class="required--error">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-text-info">
@@ -210,7 +210,7 @@
                                         <span id="accept-sopping-cart">Կարդացել և համաձայնվում եմ ոգտագործման պայմանների հետ</span>
                                         <small></small>
                                         @error('terms')
-                                            <div style="color: red" class="required--error">{{ $message }}</div>
+                                        <div style="color: red" class="required--error">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -221,26 +221,26 @@
 
                     <div class="payment-cart">
                         <div class="other-services">
-{{--                            <div class="other-services-title">
-                                <h2>Այլ ծառայություններ</h2>
-                            </div>
-                            <p>Փաթեթավորում</p>
+                            {{--                            <div class="other-services-title">
+                                                            <h2>Այլ ծառայություններ</h2>
+                                                        </div>
+                                                        <p>Փաթեթավորում</p>
 
-                            <div class="ackaging">
+                                                        <div class="ackaging">
 
-                                <div class="packaging-none">
-                                    <input type="radio" id="no" class="my-radio" name="contact">
-                                    <label for="no">Հարկավոր չէ</label>
-                                </div>
-                                <div class="packaging-standart">
-                                    <input type="radio" id="st" class="my-radio" name="contact">
-                                    <label for="st">Ստանդարտ</label>
-                                </div>
-                                <div class="packaging-premium">
-                                    <input type="radio" id="pr" class="my-radio" name="contact">
-                                    <label for="pr">Պրեմիում</label>
-                                </div>
-                            </div>--}}
+                                                            <div class="packaging-none">
+                                                                <input type="radio" id="no" class="my-radio" name="contact">
+                                                                <label for="no">Հարկավոր չէ</label>
+                                                            </div>
+                                                            <div class="packaging-standart">
+                                                                <input type="radio" id="st" class="my-radio" name="contact">
+                                                                <label for="st">Ստանդարտ</label>
+                                                            </div>
+                                                            <div class="packaging-premium">
+                                                                <input type="radio" id="pr" class="my-radio" name="contact">
+                                                                <label for="pr">Պրեմիում</label>
+                                                            </div>
+                                                        </div>--}}
                             <div class="your-order">
                                 <div class="your-order-title">
                                     <h2>Ձեր պատվերը</h2>
@@ -260,8 +260,8 @@
 
                                     <div class="packaging-standart">
                                         <input type="radio" id="idram" name="payment_method"  class="my-radio"
-                                            value="{{\App\Models\Order::PAYMENT_METHOD_IDRAM}}"
-                                            @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_IDRAM) checked @endif>
+                                               value="{{\App\Models\Order::PAYMENT_METHOD_IDRAM}}"
+                                               @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_IDRAM) checked @endif>
 
                                         <label for="idram">
                                             <img src="{{ URL::to('images/svg/idram.svg') }}" alt="idram logo">
@@ -277,22 +277,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="oll-result">
-                                <div class="oll-result-total">
+                            <div class="all-result">
+                                <div class="all-result-total">
                                     <p>Ընդամենը՝</p>
-                                    <span>4800 ֏</span>
+                                    <span><span>12600</span> ֏</span>
                                 </div>
-{{--                                <div class="oll-result-premium-packaging">
-                                    <p>Պրեմիում Փաթեթավորում՝</p>
-                                    <span>1000 ֏</span>
-                                </div>--}}
-                                <div class="oll-result-shipment">
+                                {{--                                <div class="all-result-premium-packaging">
+                                                                    <p>Պրեմիում Փաթեթավորում՝</p>
+                                                                    <span>1000 ֏</span>
+                                                                </div>--}}
+                                <div class="all-result-shipment">
                                     <p>Առաքում՝</p>
                                     <span>Անվճար</span>
                                 </div>
-                                <div class="oll-result-payable-to">
+                                <div class="all-result-payable-to">
                                     <p>Վճարման ենթակա՝</p>
-                                    <span>14400֏</span>
+                                    <span><span>12600</span> ֏</span>
                                 </div>
                             </div>
                             <div class="payment-cart-btn">

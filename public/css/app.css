@@ -1866,7 +1866,8 @@ section.books {
 }
 .shopping-cart-products-item-count-img{
     display: flex;
-    gap: 30px;
+    gap: 0;
+    align-items: center;
 }
 .shopping-cart-products-item-count-img p{
     font-weight: 600;
@@ -2155,32 +2156,32 @@ section.books {
     padding: 20px;
     align-items: center;
 }
-.oll-result-total,
-.oll-result-premium-packaging,
-.oll-result-shipment,
-.oll-result-payable-to{
+.all-result-total,
+.all-result-premium-packaging,
+.all-result-shipment,
+.all-result-payable-to{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.oll-result {
+.all-result {
     padding-right: 20px;
 }
 
-.oll-result-total  p,
-.oll-result-premium-packaging  p,
-.oll-result-shipment  p,
-.oll-result-payable-to  p{
+.all-result-total  p,
+.all-result-premium-packaging  p,
+.all-result-shipment  p,
+.all-result-payable-to  p{
     font-weight: 300;
     font-size: 18px;
     line-height: 25px;
     color: #000000;
 }
 
-.oll-result-total span,
-.oll-result-premium-packaging span,
-.oll-result-shipment span,
-.oll-result-payable-to span{
+.all-result-total span,
+.all-result-premium-packaging span,
+.all-result-shipment span,
+.all-result-payable-to span{
     font-weight: 600;
     font-size: 18px;
     line-height: 25px;
@@ -2251,6 +2252,8 @@ section.books {
 
 .shopping-cart-products-count-item-plus {
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .min{
@@ -2259,4 +2262,26 @@ section.books {
 
 .min-none{
     pointer-events: none;
+}
+input.count-shop {
+    font-weight: 600;
+    font-size: 20px;
+    color: #4C4C4C;
+    display: inline-block;
+    border: none;
+    width: 50px;
+    text-align: center;
+    font-family: 'Montserrat arm';
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }

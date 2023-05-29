@@ -48,23 +48,19 @@ class ShopService
     {
         $cart = session()->get('cart');
         if ($cart && is_array($cart)) {
-            if (isset($cart[$request->variation])) {
-                $cart[$request->variation] = $request->quantity;
+            if (isset($cart[$request->book_id])) {
+                $cart[$request->book_id] = $request->quantity;
             }
             session()->put('cart', $cart);
         }
     }
 
-    public function removeFromCart(Request $request)
+    public function removeFromCart(Request $request): void
     {
-        if (isset($request->remove_all)) {
-            session()->forget('cart');
-        } else {
-            $cart = session()->get('cart');
-            if (isset($cart[$request->variation])) {
-                unset($cart[$request->variation]);
-                session()->put('cart', $cart);
-            }
+        $cart = session()->get('cart');
+        if (isset($cart[$request->book_id])) {
+            unset($cart[$request->book_id]);
+            session()->put('cart', $cart);
         }
     }
 

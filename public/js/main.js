@@ -56,6 +56,40 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
     xhr.send(data);
 });
 
+document.querySelectorAll('.remove-product-from-card').forEach(element => element.addEventListener('click', event => {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', document.getElementById('remove-from-cart-url').value);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
+    var bookId = event.target.getAttribute("data-book-id");
+    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    var data = JSON.stringify({ _token: csrfToken, book_id: bookId });
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText);
+            var data = JSON.parse(xhr.responseText);
+            window.location.reload();
+        }
+
+    };
+
+    xhr.onerror = function () {
+        // Handle error
+    };
+
+    xhr.onloadend = function () {
+        document.querySelector('.loader-container').style.display = 'none';
+    };
+
+    xhr.send(data);
+
+
+    console.log(bookId);
+}));
+
+
 
 // ___________________class row-reverse____________________
 
@@ -171,6 +205,7 @@ deleteBtn?.forEach((item) =>{
 
 
 //////////////////////////shoping cart validacia//////////////////////////////
+/*
 
 let form_shopping_cart = document.querySelector('.form-shopping-cart')
 
@@ -307,6 +342,7 @@ function isEmailShop(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
+*/
 
 
 

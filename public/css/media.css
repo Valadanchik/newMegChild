@@ -1,0 +1,7 @@
+@media (max-width: 1600px) {
+    .book-section {
+        justify-content: unset;
+        gap: 450px;
+    }
+
+}

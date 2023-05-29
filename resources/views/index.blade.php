@@ -19,7 +19,9 @@
                 <div style="{{ $index % 2 === 1 ? "flex-direction: row-reverse;" : "flex-direction: row;" }}" class="book-section content">
                     <div class="color-info ">
                         <div class="orange-info-img">
-                            <img src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
+                            <a  href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
+                                <img src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
+                            </a>
                         </div>
                     </div>
                     <div class="color-info-description">

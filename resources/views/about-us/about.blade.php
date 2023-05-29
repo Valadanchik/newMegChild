@@ -1,9 +1,9 @@
 @extends('layout.layout')
 
 @section('content')
-    <main class="news-articles content">
-        <main class="news-articles content">
-            <section class="about-us">
+    <main class="news-articles ">
+
+            <section class="about-us content">
                 <h2>Երազ մատենաշարի մասին</h2>
                 <p>Newmag հրատարակչությունը և «Սոմնիում» ընկերությունների խմբի «Երազ Փրոջեքթսը» համատեղ նախաձեռնել են
                     «Երազ» մատենաշարը։ Գործակցության շնորհիվ «Երազը» կներկայացնի հայ և արտասահմանյան մանկագիրների
@@ -25,6 +25,6 @@
                 <p> Գրքերից բացի մատենաշարը կներկայացնի նաև «Երազի» գրքերի հերոսներով գրենական պիտույքներ:</p>
 
             </section>
-        </main>
+
     </main>
 @endsection

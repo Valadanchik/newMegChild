@@ -23,5 +23,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Order::observe(OrderObserver::class);
 
+        // mixed content
+        if (config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
     }
 }

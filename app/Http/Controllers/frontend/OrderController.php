@@ -43,6 +43,7 @@ class OrderController extends Controller
     }
 
 
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
      */

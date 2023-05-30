@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\frontend\OrderController;
+use App\Http\Controllers\frontend\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,10 @@ use App\Http\Controllers\frontend\OrderController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+Route::get('/payment/fail', [PaymentController::class, 'fail'])->name('payment.fail');
+Route::get('/payment/telcellRedirect', [PaymentController::class, 'telcellRedirect'])->name('payment.telcell_redirect');
+Route::get('/payment/arcaCallback', [PaymentController::class, 'arcaCallback'])->name('payment.arca_callback');
 
 Route::group(
     [

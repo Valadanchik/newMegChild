@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Http;
 class PaymentService
 {
     public ?string $lang = null; // EDP_LANGUAGE for idram
-    private $ameriaIdPrefix = '777';
 
     public function __construct()
     {
@@ -24,14 +23,6 @@ class PaymentService
         $order_id = $order->id;
         $payment_method = $order->payment_method;
 
-
-//       return  match ($payment_method) {
-//            Order::PAYMENT_METHOD_IDRAM =>  $this->idramPayment($amount, $order_id),
-//            Order::PAYMENT_METHOD_TELCELL => $this->telcellPayment($amount, $order_id),
-//            Order::PAYMENT_METHOD_BANK => $this->ameriaPayment($amount, $order_id),
-//            default => null,
-//        };
-
         if ($payment_method == Order::PAYMENT_METHOD_IDRAM) {
 
             return $this->idramPayment($amount, $order_id);
@@ -42,9 +33,8 @@ class PaymentService
 
         } elseif ($payment_method == Order::PAYMENT_METHOD_BANK) {
 
-            return $this->ameriaPayment($amount, $order_id);
+            return $this->arcaPayment($amount, $order->order_payment_id);
         }
-
     }
 
 
@@ -93,9 +83,9 @@ class PaymentService
                     $request['EDP_TRANS_DATE'];
                 $order->payment_callback = json_encode($request->all());
                 if (strtoupper($request['EDP_CHECKSUM']) != strtoupper(md5($txtToHash))) {
-                    self::updateOrderBooksPivotStatus($order,Order::STATUS_FAILED);
+                    self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
                 } else {
-                    self::updateOrderBooksPivotStatus($order,Order::STATUS_COMPLETED);
+                    self::updateOrderBooksPivotStatus($order, Order::STATUS_COMPLETED);
                     self::dispatchEmailJobs($order);
                     echo "OK";
                 }
@@ -152,21 +142,19 @@ class PaymentService
         $new_checksum = hash('md5', env('TELCELL_KEY') . $request->invoice . $request->issuer_id . $request->payment_id . $request->currency . $request->sum . $request->time . $request->status);
         if ($request->checksum != $new_checksum) {
             $order->payment_callback = 'telcell checksum failed';
-            self::updateOrderBooksPivotStatus($order,Order::STATUS_FAILED);
+            self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
 
             abort(404);
         }
 
         $order->payment_callback = json_encode($request->all());
         if ($request->status == 'PAID') {
-            self::updateOrderBooksPivotStatus($order,Order::STATUS_COMPLETED);
+            self::updateOrderBooksPivotStatus($order, Order::STATUS_COMPLETED);
             self::dispatchEmailJobs($order);
         } else {
-            self::updateOrderBooksPivotStatus($order,Order::STATUS_FAILED);
+            self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
         }
     }
-
-
 
     public function telcellRedirect(Request $request): \Illuminate\Http\RedirectResponse
     {
@@ -191,97 +179,40 @@ class PaymentService
         return hash('md5', $shop_key . $issuer . $currency . $price . $product . $issuer_id . $valid_days);
     }
 
-    public function ameriaPayment($amount, $order_id)
+    public function arcaPayment($amount, $order_id)
     {
-        $url = env('AMERIA_PAYMENT_URL') . env('AMERIA_PAYMENT_EDP_INIT_URL');
-        $id = $this->ameriaIdPrefix . $order_id;
+        $url = 'https://ipay.arca.am/payment/rest/register.do';
         $data = [
-            'ClientID' => env('AMERIA_CLIENT_ID'),
-            'Username' => env('AMERIA_USERNAME'),
-            'Password' => env('AMERIA_PASSWORD'),
-            'Currency' => 'AMD',
-            'Description' => 'Danz.am - Visa,Mastercard,ArCA',
-            'OrderID' => $id,
-            'Amount' => $amount,
-
-
-            'BackURL' => route('payment.ameria_callback'),
-            'Opaque' => '' #TODO: add Opaque
+            'userName' => '34540336_api',
+            'password' => '$newmag2018$',
+            'orderNumber' => $order_id,
+            'jsonParams' => '{"FORCE_3DS2":"true"}',
+            'amount' => 1,
+            'currency' => '051',
+            'returnUrl' => route('payment.arca_callback'),
+            'description' => '', // TODO: add description if needed
+            'language' => 'hy',
         ];
 
-        $req = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-        ])->post($url, $data);
+        $req = Http::post($url, $data);
 
         $response = $req->json();
-        $lang = $this->lang;
-        if ($response["ResponseCode"] === 1) {
-            return redirect()->away("https://services.ameriabank.am/VPOS/Payments/Pay?id={$response['PaymentID']}&lang={$lang}");
+
+        if ($response['errorCode'] == 0) {
+
+            return redirect()->away($response['formUrl']);
         } else {
-            $order = Order::find($order_id);
 
-            $order->update([
-                'status' => Order::STATUS_FAILED,
-                'payment_callback' => json_encode($response)
-            ]);
-
-            self::updateOrderBooksPivotStatus($order,Order::STATUS_FAILED);
-
-            return redirect()->route('payment.fail');
+            //TODO: add error to order
+            dd($response);
         }
     }
 
-    public function ameriaCallback(Request $request): \Illuminate\Http\RedirectResponse
+    public function arcaCallback(Request $request)
     {
-        //log request
-        try {
-            info($request->all());
-        } catch (\Exception $e) {
-            info($e->getMessage());
-            info('Ameria callback request log error');
-        }
-        $error = false;
-        if (!$request->has("orderID"))
-            abort(404);
 
-        $order_id = substr($request->orderID, strlen($this->ameriaIdPrefix));
-//        $order = Order::find($order_id);
-        $order = Order::where('order_payment_id', $order_id)->first();
+        dd($request->all());
 
-
-        if ($request->paymentID) {
-            $url = env('AMERIA_PAYMENT_URL') . env('AMERIA_PAYMENT_EDP_PAYMENT_DETAILS_URL');
-            $data = [
-                "PaymentID" => $request->paymentID,
-                "Username" => env("AMERIA_USERNAME"),
-                "Password" => env("AMERIA_PASSWORD"),
-            ];
-            $req = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ])->post($url, $data);
-            $response = $req->json();
-            $order->payment_callback = json_encode($response);
-        }
-
-
-        switch ($request->resposneCode) {
-            case '00':
-                self::updateOrderBooksPivotStatus($order,Order::STATUS_COMPLETED);
-                break;
-            default:
-                $error = true;
-                self::updateOrderBooksPivotStatus($order,Order::STATUS_FAILED);
-        }
-
-        if ($error) {
-            return redirect()->route('payment.fail');
-        } else {
-            self::dispatchEmailJobs($order);
-
-            return redirect()->route('payment.success');
-        }
     }
 
     /**

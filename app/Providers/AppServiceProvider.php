@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // mixed content
+        if (config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
     }
 }

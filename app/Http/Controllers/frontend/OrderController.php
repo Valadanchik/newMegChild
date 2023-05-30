@@ -40,15 +40,11 @@ class OrderController extends Controller
     public function create(OrderStoreRequest $request)
     {
 
-//        dd($request->all());
-
         $order = $this->orderService->create($request);
 
         $this->orderService->createOrderBook($order);
 
         $payment_service = new PaymentService();
-
-        dd(3);
 
         return $payment_service->makePayment($order);
     }

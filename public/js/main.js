@@ -170,6 +170,38 @@ deleteBtn?.forEach((item) =>{
 
 
 
+
+// ____________hamburger menu____________
+
+
+let nav = document.querySelector('.header-menu ')
+let nav_icon1 = document.querySelector('#nav-icon1');
+let modal = document.querySelector('.modal')
+let body = document.querySelector('.body')
+
+nav_icon1.addEventListener("click", menuOpen)
+
+function menuOpen(){
+
+    nav.classList.toggle('menu-show')
+    nav_icon1.classList.toggle('open')
+    modal.classList.toggle('modal-open')
+    body.classList.toggle('body-open')
+}
+
+modal?.addEventListener('click' , modalClose)
+
+function modalClose() {
+    modal.classList.remove('modal-open')
+    nav_icon1.classList.remove('open')
+    nav.classList.remove('menu-show')
+    body.classList.remove('body-open')
+
+}
+
+
+
+
 //////////////////////////shoping cart validacia//////////////////////////////
 
 let form_shopping_cart = document.querySelector('.form-shopping-cart')
@@ -309,9 +341,9 @@ function isEmailShop(email) {
 
 
 
-
-/*________________validacia_____________*/
-
+//
+// /*________________validacia_____________*/
+//
 // const form = document.querySelector('.forms');
 //
 // const name = document.getElementById('firs-name');
@@ -383,6 +415,6 @@ function isEmailShop(email) {
 // function isEmail(email) {
 //     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 // }
-
-
-
+//
+//
+//

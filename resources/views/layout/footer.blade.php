@@ -1,3 +1,4 @@
+
 <footer>
     <div class="footer content">
         <div >
@@ -45,3 +46,4 @@
         <p>Newmag © 2011-2023</p>
     </div>
 </footer>
+<div class="modal "></div>

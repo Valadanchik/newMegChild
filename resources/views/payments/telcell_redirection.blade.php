@@ -2,8 +2,12 @@
 @section('title', 'Telcell')
 @section('description', 'Telcell Payment')
 @section('content')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <div class="anim-reload"><div></div><div></div><div></div></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div class="anim-reload">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
     <div class="form-container-wrapper">
         <div class="container">
             <div class="row no-gutters">
@@ -23,9 +27,10 @@
         </div>
     </div>
     <style>
-        body{
+        body {
             background: #F16D30FF;
         }
+
         .anim-reload {
             display: inline-block;
             width: 80px;
@@ -37,6 +42,7 @@
             top: 0;
             margin: auto;
         }
+
         .anim-reload div {
             display: inline-block;
             position: absolute;
@@ -45,18 +51,22 @@
             background: #fff;
             animation: anim-reload 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
         }
+
         .anim-reload div:nth-child(1) {
             left: 8px;
             animation-delay: -0.24s;
         }
+
         .anim-reload div:nth-child(2) {
             left: 32px;
             animation-delay: -0.12s;
         }
+
         .anim-reload div:nth-child(3) {
             left: 56px;
             animation-delay: 0;
         }
+
         @keyframes anim-reload {
             0% {
                 top: 8px;
@@ -69,12 +79,11 @@
         }
 
     </style>
-{{--    TODO: uncomment--}}
-        <script>
-            jQuery(document).ready(function () {
-                    jQuery('#telcell_form').submit();
-            });
-        </script>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('#telcell_form').submit();
+        });
+    </script>
 @endsection
 
 

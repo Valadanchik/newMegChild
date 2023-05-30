@@ -22,7 +22,7 @@ class OrderService
         return Country::where('status', true)->orderBy('order')->get();
     }
 
-    public function getCartProducts()
+    public function getCartProducts(): \Illuminate\Database\Eloquent\Collection|array
     {
         $sessionProductsId = array_keys(session()->get('cart'));
 
@@ -39,7 +39,6 @@ class OrderService
 
     public function create(Request $request)
     {
-
         return Order::create($request->except(['_token','terms']));
     }
 

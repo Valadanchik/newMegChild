@@ -3,8 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Books;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use App\Models\Order;
 
 class OrderObserver
 {
@@ -16,7 +15,22 @@ class OrderObserver
         try {
             Books::changeInStockAfterOrder();
         } catch (\Exception  $e) {
-             echo $e->getMessage();
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     * @param Order $order
+     * @return void
+     */
+    public function updated(Order $order): void
+    {
+        if ($order->status === Order::STATUS_COMPLETED) {
+            try {
+                Books::changeInStockAfterOrder();
+            } catch (\Exception  $e) {
+                echo $e->getMessage();
+            }
         }
     }
 

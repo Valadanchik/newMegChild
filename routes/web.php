@@ -61,12 +61,10 @@ Route::group(
     Route::get('/order/success', [OrderController::class, 'success'])->name('order.success');
     Route::get('/order/fail', [OrderController::class, 'fail'])->name('order.fail');
 
-
-//    Route::get('/add-to-cart', 'App\Http\Controllers\frontend\ShopController@addToCart')->name('addToCart');
     Route::post('/add-to-cart', [ShopController::class, 'addToCart'])->name('addToCart');
     Route::post('/remove-from-card', [ShopController::class, 'removeFromCart'])->name('removeFromCart');
 
     Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('updateCart');
-    Route::post('/cart/totalCount', [ShopController::class, 'getCartTotalCount'])->name('getCartTotalCount');
+//    Route::post('/cart/totalCount', [ShopController::class, 'getCartTotalCount'])->name('getCartTotalCount');
 
 });

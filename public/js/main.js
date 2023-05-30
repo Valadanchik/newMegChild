@@ -122,6 +122,7 @@ function updateCartProductCount (quantity, productId){
     document.querySelector('.loader-container').style.display = 'flex';
 
     let totalPriceElement = document.querySelector('.total-price');
+    let totalPriceToPayElement = document.querySelector('.total-price-to-pay');
     // let totalPrice = parseInt(totalPriceElement.innerHTML);
 
 
@@ -140,6 +141,7 @@ function updateCartProductCount (quantity, productId){
                 var data = JSON.parse(xhr.responseText);
                 console.log(data);
                 totalPriceElement.innerHTML = data.total_price;
+                totalPriceToPayElement.innerHTML = data.total_price;
             }
 
         };

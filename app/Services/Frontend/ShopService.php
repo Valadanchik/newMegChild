@@ -3,24 +3,23 @@
 namespace App\Services\Frontend;
 
 use App\Models\Books;
-use App\Models\Category;
-use App\Models\Coupon;
-use App\Models\Gender;
-use App\Models\Sort;
-use App\Models\Style;
-use App\Models\Variation;
 use Illuminate\Http\Request;
 
 class ShopService
 {
 
-    public function addToCart(Request $request)
+    /**
+     * @param Request $request
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function addToCart(Request $request): void
     {
         $prod = [
             $request->product => $request->quantity,
         ];
         $cart = session()->get('cart');
-
 
         if (!$cart) {
             session()->put('cart', $prod);
@@ -32,10 +31,14 @@ class ShopService
             }
             session()->put('cart', $cart);
         }
-//        dd(session()->get('cart'));
     }
 
-    public function getCartProductsCount()
+    /**
+     * @return int
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function getCartProductsCount(): int
     {
         $cart = session()->get('cart');
         $total_count = 0;
@@ -45,26 +48,30 @@ class ShopService
         return $total_count;
     }
 
-
-    public function updateCart(Request $request)
+    /**
+     * @param Request $request
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function updateCart(Request $request): void
     {
         $cart = session()->get('cart');
-//        dump($request->all());
-//        dump($cart);
 
         if ($cart && is_array($cart)) {
             if (isset($cart[$request->book_id])) {
                 $cart[$request->book_id] = $request->quantity;
-//                dump($cart);
                 session()->put('cart', $cart);
-
             }
-//            dump($cart);
         }
-//        dd(session()->get('cart'));
-
     }
 
+    /**
+     * @param Request $request
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function removeFromCart(Request $request): void
     {
         $cart = session()->get('cart');
@@ -74,23 +81,24 @@ class ShopService
         }
     }
 
-    public function getCartTotalPrice()
+    /**
+     * @return float|int
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function getCartTotalPrice(): float|int
     {
         $cart = session()->get('cart');
-
-//        dump($cart);
         $total_price = 0;
-        if ($cart && is_array($cart)) {
 
+        if ($cart && is_array($cart)) {
             $sessionProductsId = array_keys(session()->get('cart'));
             $books = Books::whereIn('id', $sessionProductsId)->where('status', true)->get();
-
             foreach ($books as $book) {
                 $total_price += $book->price * $cart[$book->id];
             }
         }
 
         return $total_price;
-
     }
 }

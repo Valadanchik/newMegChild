@@ -9,20 +9,16 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    protected $paymentService = null;
+//    protected $paymentService = null;
 
-    public function __construct(PaymentService $paymentService)
+    public function __construct(protected PaymentService $paymentService)
     {
-        $this->paymentService = $paymentService;
+//        $this->paymentService = $paymentService;
     }
 
     public function success()
     {
-        // empty cart
-        session()->forget('cart');
-        session()->forget('coupon');
-
-        return view('payments.success');
+        return view('payments.order_success');
     }
 
     public function fail()

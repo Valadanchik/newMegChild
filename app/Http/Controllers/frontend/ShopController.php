@@ -42,7 +42,6 @@ class ShopController extends Controller
             'variation',
         ]);
         $this->shopService->updateCart($request);
-//        $this->shopService->getCartTotalPrice();
 
         return response()->json([
             'success' => true,
@@ -59,14 +58,6 @@ class ShopController extends Controller
         return response()->json([
             'success' => true,
             'cartProductsCount' => $this->shopService->getCartProductsCount(),
-        ]);
-    }
-
-    public function getCartTotalCount()
-    {
-        return response()->json([
-            'success' => true,
-//            'total_price' => $this->shopService->getCartTotalCount(),
         ]);
     }
 

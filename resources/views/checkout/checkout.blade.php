@@ -74,6 +74,13 @@
 
                         </div>
 
+
+                        <div class="">
+                            @if(session('product_is_not_in_stock'))
+                                <div style="color: red" class="required--error"> {{ session('product_is_not_in_stock') }}</div>
+                            @endif
+                        </div>
+
                         <div class="shopping-cart-payment-details">
                             <div class="shopping-cart-payment-details-title">
                                 <h2>Վճարման տվյալները</h2>
@@ -202,8 +209,7 @@
                                     <div class=" form-control form-shopping-cart-review " >
                                         <textarea name="order_text" value="{{old('order_text')}}" class="accept-input" id="review-sopping-cart"
                                                   placeholder="Ձեր պատվերի մասին նշումներ, օրինակ, հատուկ նշումներ առաքման համար *"
-                                                  type="checkbox">
-                                        </textarea>
+                                                  type="checkbox"></textarea>
                                         <small></small>
                                         @error('order_text')
                                         <div style="color: red" class="required--error">{{ $message }}</div>
@@ -260,7 +266,7 @@
                                 <p>Վճարման եղանակ</p>
                                 <div class="your-order-radio">
 
-                                    <div class="packaging-none">
+                                    {{--<div class="packaging-none">
                                         <input type="radio" id="arca" class="my-radio" name="payment_method"
                                                value="{{\App\Models\Order::PAYMENT_METHOD_BANK}}"
                                                @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_BANK) checked @endif
@@ -269,7 +275,7 @@
                                             <img src="{{ URL::to('images/svg/arca.svg') }}" alt="arca logo">
                                         </label>
                                     </div>
-
+--}}
                                     <div class="packaging-standart">
                                         <input type="radio" id="idram" name="payment_method"  class="my-radio"
                                                value="{{\App\Models\Order::PAYMENT_METHOD_IDRAM}}"
@@ -279,20 +285,20 @@
                                             <img src="{{ URL::to('images/svg/idram.svg') }}" alt="idram logo">
                                         </label>
                                     </div>
-                                    <div class="packaging-premium">
+                                    {{--<div class="packaging-premium">
                                         <input type="radio" id="telcell" name="payment_method" class="my-radio"
                                                value="{{\App\Models\Order::PAYMENT_METHOD_IDRAM}}"
                                                @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_IDRAM) checked @endif>
                                         <label for="telcell">
                                             <img src="{{ URL::to('images/svg/telcell.svg') }}" alt="telcell logo">
                                         </label>
-                                    </div>
+                                    </div>--}}
                                 </div>
                             </div>
                             <div class="all-result">
                                 <div class="all-result-total">
                                     <p>Ընդամենը՝</p>
-                                    <span><span  class="total-price">12600</span> ֏</span>
+                                    <span><span class="total-price">{{$cardProductsTotalPrice}}</span> ֏</span>
                                 </div>
                                 {{--                                <div class="all-result-premium-packaging">
                                                                     <p>Պրեմիում Փաթեթավորում՝</p>
@@ -304,7 +310,7 @@
                                 </div>
                                 <div class="all-result-payable-to">
                                     <p>Վճարման ենթակա՝</p>
-                                    <span><span class="total-price">12600</span> ֏</span>
+                                    <span><span class="total-price-to-pay">{{$cardProductsTotalPrice}}</span> ֏</span>
                                 </div>
                             </div>
                             <div class="payment-cart-btn">

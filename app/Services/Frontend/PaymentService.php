@@ -23,6 +23,14 @@ class PaymentService
         $order_id = $order->id;
         $payment_method = $order->payment_method;
 
+
+//       return  match ($payment_method) {
+//            Order::PAYMENT_METHOD_IDRAM =>  $this->idramPayment($amount, $order_id),
+//            Order::PAYMENT_METHOD_TELCELL => $this->telcellPayment($amount, $order_id),
+//            Order::PAYMENT_METHOD_BANK => $this->ameriaPayment($amount, $order_id),
+//            default => null,
+//        };
+
         if ($payment_method == Order::PAYMENT_METHOD_IDRAM) {
 
             return $this->idramPayment($amount, $order_id);

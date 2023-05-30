@@ -7,6 +7,7 @@
                 <h2>Զամբյուղ</h2>
             </div>
 
+{{--            {{ dd(session()->get('cart')) }}--}}
             @if(count($cardBooks))
                 <form action="{{route('order.create')}}" method="POST" class="shopping-cart form-shopping-cart">
                     @csrf
@@ -31,12 +32,12 @@
                                     </div>
                                     <div class="shopping-cart-products-item-count">
                                         <div class="shopping-cart-products-item-count-img">
-                                            <div data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-min min-none min-count-{{$card_key}}">
+                                            <div data-product="{{ $card['id'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-min min-none min-count-{{$card_key}}">
                                                 <img class="min" src="{{ URL::to('/images/svg/shopping-cart-min-img.svg') }}"
                                                      alt="min img" data-id="min-1">
                                             </div>
-                                            <input type="number" class="count-shop" id="count-shop-{{$card_key}}" value="1">
-                                            <div data-max="{{ $card['in_stock'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-plus">
+                                            <input type="number" class="count-shop" id="count-shop-{{$card_key}}" value="{{ session()->get('cart')[$card['id']] }}">
+                                            <div data-product="{{ $card['id'] }}" data-max="{{ $card['in_stock'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-plus">
                                                 <img src="{{ URL::to('/images/svg/shopping-cart-plus-img.svg') }}"
                                                      alt="plus img">
                                             </div>
@@ -51,9 +52,16 @@
                                         <img src="{{ URL::to('/images/svg/close.svg') }}" class="remove-product-from-card" alt="close" data-book-id="{{ $card['id'] }}">
                                     </div>
                                 </div>
+                                <input id="product-id" type="hidden" value="{{ $card['id'] }}">
+                                <input id="quantity" type="hidden" value="{{ session()->get('cart')[$card['id']] }}" name="number">
+
                             @endforeach
 
                                 <input id="remove-from-cart-url" type="hidden" value="{{ route('removeFromCart') }}">
+                                <input id="change-cart-product-count" type="hidden" value="{{ route('updateCart') }}">
+
+
+{{--                                {{ dd(session()->get('cart')) }}--}}
 
                             {{--                            <div class="shopping-cart-buttons">
                                                             <div class="shopping-cart-code-input">
@@ -284,7 +292,7 @@
                             <div class="all-result">
                                 <div class="all-result-total">
                                     <p>Ընդամենը՝</p>
-                                    <span><span>12600</span> ֏</span>
+                                    <span><span  class="total-price">12600</span> ֏</span>
                                 </div>
                                 {{--                                <div class="all-result-premium-packaging">
                                                                     <p>Պրեմիում Փաթեթավորում՝</p>
@@ -296,7 +304,7 @@
                                 </div>
                                 <div class="all-result-payable-to">
                                     <p>Վճարման ենթակա՝</p>
-                                    <span><span>12600</span> ֏</span>
+                                    <span><span class="total-price">12600</span> ֏</span>
                                 </div>
                             </div>
                             <div class="payment-cart-btn">

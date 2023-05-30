@@ -2285,3 +2285,16 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+.payment-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.payment-fail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

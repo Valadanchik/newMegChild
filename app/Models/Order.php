@@ -14,7 +14,6 @@ class Order extends Model
     const PAYMENT_METHOD_IDRAM = 2;
     const PAYMENT_METHOD_TELCELL = 3;
 
-
     const PAYMENT_METHODS = [
         self::PAYMENT_METHOD_BANK,
         self::PAYMENT_METHOD_IDRAM,

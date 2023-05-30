@@ -5,9 +5,6 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\OrderStoreRequest;
-use App\Jobs\OrderAdminJob;
-use App\Jobs\OrderUserJob;
-use App\Mailers\OrderMailer;
 use App\Services\Frontend\OrderService;
 use App\Services\Frontend\PaymentService;
 
@@ -22,7 +19,6 @@ class OrderController extends Controller
 
     public function index()
     {
-//        phpinfo();
         $cardBooks = [];
         if (session()->get('cart')) {
             $regions = $this->orderService->getRegions();
@@ -39,18 +35,28 @@ class OrderController extends Controller
 
     public function create(OrderStoreRequest $request)
     {
-
-//        dd($request->all());
-
         $order = $this->orderService->create($request);
-
         $this->orderService->createOrderBook($order);
+//        $payment_service = new PaymentService();
+//        return $payment_service->makePayment($order);
+        return redirect()->route('order.success');
+    }
 
-        $payment_service = new PaymentService();
 
-        dd(3);
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+     */
+    public function success(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('payments.order_success');
+    }
 
-        return $payment_service->makePayment($order);
+    /**
+     * @return \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application\
+     */
+    public function fail(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('payments.fail');
     }
 
 }

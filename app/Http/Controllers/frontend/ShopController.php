@@ -35,18 +35,20 @@ class ShopController extends Controller
         ]);
     }
 
-//    public function updateCart(Request $request)
-//    {
-//        $request->only([
-//            'quantity',
-//            'variation',
-//        ]);
-//        $this->shopService->updateCart($request);
-//
-//        return response()->json([
-//            'success' => true,
-//        ]);
-//    }
+    public function updateCart(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $request->only([
+            'quantity',
+            'variation',
+        ]);
+        $this->shopService->updateCart($request);
+//        $this->shopService->getCartTotalPrice();
+
+        return response()->json([
+            'success' => true,
+            'total_price' => $this->shopService->getCartTotalPrice(),
+        ]);
+    }
 
     public function removeFromCart(Request $request): \Illuminate\Http\JsonResponse
     {
@@ -60,12 +62,12 @@ class ShopController extends Controller
         ]);
     }
 
-//    public function getCartTotalCount()
-//    {
-//        return response()->json([
-//            'success' => true,
-//            'price' => $this->shopService->getCartTotalCount(),
-//        ]);
-//    }
+    public function getCartTotalCount()
+    {
+        return response()->json([
+            'success' => true,
+//            'total_price' => $this->shopService->getCartTotalCount(),
+        ]);
+    }
 
 }

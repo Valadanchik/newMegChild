@@ -2,6 +2,7 @@
 
 namespace App\Services\Frontend;
 
+use App\Models\Books;
 use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Gender;
@@ -34,11 +35,12 @@ class ShopService
 //        dd(session()->get('cart'));
     }
 
-    public function getCartProductsCount() {
+    public function getCartProductsCount()
+    {
         $cart = session()->get('cart');
         $total_count = 0;
         if ($cart && is_array($cart)) {
-            $total_count =  count($cart);
+            $total_count = count($cart);
         }
         return $total_count;
     }
@@ -47,12 +49,20 @@ class ShopService
     public function updateCart(Request $request)
     {
         $cart = session()->get('cart');
+//        dump($request->all());
+//        dump($cart);
+
         if ($cart && is_array($cart)) {
             if (isset($cart[$request->book_id])) {
                 $cart[$request->book_id] = $request->quantity;
+//                dump($cart);
+                session()->put('cart', $cart);
+
             }
-            session()->put('cart', $cart);
+//            dump($cart);
         }
+//        dd(session()->get('cart'));
+
     }
 
     public function removeFromCart(Request $request): void
@@ -64,43 +74,23 @@ class ShopService
         }
     }
 
-    public function getCartTotalCount()
+    public function getCartTotalPrice()
     {
         $cart = session()->get('cart');
+
+//        dump($cart);
         $total_price = 0;
-        $coupon_price = 0;
         if ($cart && is_array($cart)) {
-            $coupons = $this->getCoupons();
 
-            foreach ($cart as $variation => $quantity) {
-                $product = Variation::where('id', $variation)->where('status', true)->first();
-                if ($product) {
+            $sessionProductsId = array_keys(session()->get('cart'));
+            $books = Books::whereIn('id', $sessionProductsId)->where('status', true)->get();
 
-                    $total_price += $product->actual_price * $quantity;
-                    $coupon_price += ($product->actual_price * $quantity);
-                    foreach ($coupons as $coupon) {
-                        if ($coupon->type === Coupon::COUPON_TYPE_INDIVIDUAL_PERCENT && $coupon->products->contains($product->product_id)) {
-                            $coupon_price -= ($product->actual_price * $quantity * $coupon->discount / 100);
-                        } elseif ($coupon->type === Coupon::COUPON_TYPE_INDIVIDUAL_AMOUNT && $coupon->products->contains($product->product_id)) {
-                            $coupon_price -= $coupon->discount;
-                        }
-                    }
-                }
-            }
-            if ($total_price > 0) {
-                foreach ($coupons as $coupon) {
-                    if ($coupon->type === Coupon::COUPON_TYPE_GENERAL_PERCENT) {
-                        $coupon_price -= ($total_price * $coupon->discount / 100);
-                    } elseif ($coupon->type === Coupon::COUPON_TYPE_GENERAL_AMOUNT) {
-                        $coupon_price -= $coupon->discount;
-                    }
-                }
+            foreach ($books as $book) {
+                $total_price += $book->price * $cart[$book->id];
             }
         }
 
-        return [
-            'totalPrice' => $total_price,
-            'couponPrice' => $coupon_price,
-        ];
+        return $total_price;
+
     }
 }

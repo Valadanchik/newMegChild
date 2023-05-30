@@ -39,7 +39,7 @@ class BookSeeder extends Seeder
                 'page_count' => '140',
                 'font_size' => '24-16pt',
                 'isbn' => '978-9939-884-91-2',
-                'in_stock' => '100',
+                'in_stock' => '0',
                 'published_date' => '2023',
             ],
             [
@@ -76,7 +76,7 @@ class BookSeeder extends Seeder
                 'page_count' => '320',
                 'font_size' => '24-16pt',
                 'isbn' => '978-9939-884-91-2',
-                'in_stock' => '100',
+                'in_stock' => '2',
                 'published_date' => '2023',
             ],
             [
@@ -101,7 +101,7 @@ class BookSeeder extends Seeder
                 'page_count' => '222',
                 'font_size' => '24-16pt',
                 'isbn' => '978-9939-884-92-9',
-                'in_stock' => '100',
+                'in_stock' => '5',
                 'published_date' => '2023',
             ],
             [
@@ -138,7 +138,7 @@ class BookSeeder extends Seeder
                 'page_count' => '228',
                 'font_size' => '24-16pt',
                 'isbn' => '978-9939-884-91-2',
-                'in_stock' => '100',
+                'in_stock' => '9',
                 'published_date' => '2022',
             ],
             [
@@ -212,7 +212,7 @@ class BookSeeder extends Seeder
                 'page_count' => '228',
                 'font_size' => '24-16pt',
                 'isbn' => '978-9939-884-91-2',
-                'in_stock' => '100',
+                'in_stock' => '10',
                 'published_date' => '2022',
             ],
         ];

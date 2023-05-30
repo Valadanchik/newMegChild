@@ -10,6 +10,7 @@ class Books extends Model
     use HasFactory;
 
     const HOME_PAGE_BOOKS_COUNT = 4;
+
     protected $fillable = [
         'title ',
         'word_count',
@@ -18,6 +19,27 @@ class Books extends Model
         'author_id',
         'translator_id',
     ];
+
+    /**
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public static function changeInStockAfterOrder(): void
+    {
+        $card = session()->get('cart');
+        $sessionProductsId = array_keys(session()->get('cart'));
+        $books = Books::whereIn('id', $sessionProductsId)->get();
+
+        foreach ($books as $book) {
+            $oldInStock = $book->in_stock;
+            $newInStock = (int) $card[$book->id];
+            $quantityToSubtract = $oldInStock - $newInStock;
+            $book->in_stock = $quantityToSubtract;
+            $book->save();
+        }
+        session()->forget('cart');
+    }
 
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

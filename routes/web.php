@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\frontend\ShopController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\frontend\OrderController;
@@ -41,9 +42,9 @@ Route::group(
     Route::get('translator/{slug}', 'App\Http\Controllers\frontend\TranslatorsController@view')->name('view');
 
     /* About Us Router*/
-    Route::get('/about', function () {
+    Route::get('about', function () {
         return view('about-us/about');
-    });
+    })->name('about');
 
     /* Order Router */
 
@@ -52,11 +53,15 @@ Route::group(
 
     Route::get('/order', [OrderController::class, 'index'])->name('order');
     Route::post('/order', [OrderController::class, 'create'])->name('order.create');
+    Route::get('/order/success', [OrderController::class, 'success'])->name('order.success');
+    Route::get('/order/fail', [OrderController::class, 'fail'])->name('order.fail');
 
 
 //    Route::get('/add-to-cart', 'App\Http\Controllers\frontend\ShopController@addToCart')->name('addToCart');
-    Route::post('/add-to-cart', [App\Http\Controllers\frontend\ShopController::class, 'addToCart'])->name('addToCart');
-    Route::post('/remove-from-card', [App\Http\Controllers\frontend\ShopController::class, 'removeFromCart'])->name('removeFromCart');
+    Route::post('/add-to-cart', [ShopController::class, 'addToCart'])->name('addToCart');
+    Route::post('/remove-from-card', [ShopController::class, 'removeFromCart'])->name('removeFromCart');
 
+    Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('updateCart');
+    Route::post('/cart/totalCount', [ShopController::class, 'getCartTotalCount'])->name('getCartTotalCount');
 
 });

@@ -60,7 +60,12 @@
                 </h3>
                 <div class="book-page-item-btn">
 {{--                    <a class="add-to-cart" href="{{ LaravelLocalization::localizeUrl('add-to-cart') }}">Գնել</a>--}}
-                    <a id="add-to-cart" href="#">Գնել</a>
+                    @if($book['in_stock'])
+                        <a id="add-to-cart" href="#">Գնել</a>
+                    @else
+                        <div style="color:red; margin: 20px">Առկա Չէ</div>
+                    @endif
+
                     <input id="add-to-cart-url" type="hidden" value="{{ route('addToCart') }}">
                     <input id="checkout-router" type="hidden" value="{{ route('order') }}">
                     <input id="product-id" type="hidden" value="{{ $book['id'] }}">

@@ -8,11 +8,11 @@
         <div class="header-menu">
             <nav>
                 <ul class="header-menu-list">
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/about') }}">Մեր մասին</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/books') }}">Գրքեր...</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/authors') }}">Հեղինակներ</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/translators') }}">Թարգմանիչներ</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/articles') }}">Հոդվածներ</a></li>
+                    <li><a href="{{ LaravelLocalization::localizeUrl('/about') }}" class="{{ isRouteActive('about') ? 'active-menu-underline' : '' }}">Մեր մասին</a></li>
+                    <li><a href="{{ LaravelLocalization::localizeUrl('/books') }}" class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">Գրքեր...</a></li>
+                    <li><a href="{{ LaravelLocalization::localizeUrl('/authors') }}" class="{{ isRouteActive('authors') ? 'active-menu-underline' : '' }}">Հեղինակներ</a></li>
+                    <li><a href="{{ LaravelLocalization::localizeUrl('/translators') }}" class="{{ isRouteActive('translators') ? 'active-menu-underline' : '' }}">Թարգմանիչներ</a></li>
+                    <li><a href="{{ LaravelLocalization::localizeUrl('/articles') }}" class="{{ isRouteActive('articles') ? 'active-menu-underline' : '' }}">Հոդվածներ</a></li>
                 </ul>
             </nav>
         </div>

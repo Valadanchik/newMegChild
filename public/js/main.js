@@ -50,7 +50,7 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
     };
 
     xhr.onloadend = function () {
-        document.querySelector('.loader-container').style.display = 'none';
+        // document.querySelector('.loader-container').style.display = 'none';
     };
 
     xhr.send(data);
@@ -117,6 +117,44 @@ function activMenuItem (e){
 
 }
 
+function updateCartProductCount (quantity, productId){
+
+    document.querySelector('.loader-container').style.display = 'flex';
+
+    let totalPriceElement = document.querySelector('.total-price');
+    // let totalPrice = parseInt(totalPriceElement.innerHTML);
+
+
+    var xhr = new XMLHttpRequest();
+        xhr.open('POST', document.getElementById('change-cart-product-count').value);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
+
+        var product = document.getElementById('product-id').value;
+        var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        var data = JSON.stringify({ _token: csrfToken, quantity: quantity, book_id: productId });
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+                var data = JSON.parse(xhr.responseText);
+                console.log(data);
+                totalPriceElement.innerHTML = data.total_price;
+            }
+
+        };
+
+        xhr.onerror = function () {
+            // Handle error
+        };
+
+        xhr.onloadend = function () {
+            document.querySelector('.loader-container').style.display = 'none';
+        };
+
+        xhr.send(data);
+}
+
 
 
 /////////////////count///////////////
@@ -126,24 +164,25 @@ let deleteBtn = document.querySelectorAll('.shopping-cart-products-count-close-i
 
 
 
-
 min?.forEach((item) =>{
     item.addEventListener('click', (event)=>{
-        let payPriceElement = document.querySelector('.all-result-payable-to span span');
-        let totalPriceElement = document.querySelector('.all-result-total span span');
-        let totalPrice = parseInt(totalPriceElement.innerHTML);
+        // let payPriceElement = document.querySelector('.all-result-payable-to span span');
+        // let totalPriceElement = document.querySelector('.all-result-total span span');
+        // let totalPrice = parseInt(totalPriceElement.innerHTML);
         let dataItem = parseInt(event.currentTarget.dataset.item);
         let itemPrice = parseInt(event.currentTarget.dataset.price);
+        let productId = parseInt(event.currentTarget.dataset.product);
         let countElement = document.getElementById('count-shop-' + dataItem);
         let minBtn = document.querySelector(`.min-count-${dataItem} img`);
-        console.log(minBtn);
+
+        countElement.value = parseInt(countElement.value) - 1;
+        updateCartProductCount(countElement.value, productId);
+
         if(parseInt(countElement.value) > 2) {
-            countElement.value = parseInt(countElement.value) - 1;
-            totalPriceElement.innerHTML = totalPrice - itemPrice;
+            // totalPriceElement.innerHTML = totalPrice - itemPrice;
             payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
         } else {
-            countElement.value = parseInt(countElement.value) - 1;
-            totalPriceElement.innerHTML = totalPrice - itemPrice;
+            // totalPriceElement.innerHTML = totalPrice - itemPrice;
             payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
             event.currentTarget.classList.add('min-none');
             minBtn.src = "/images/svg/shopping-cart-min-img.svg";
@@ -154,22 +193,20 @@ min?.forEach((item) =>{
 
 plus?.forEach((item) =>{
     item.addEventListener('click', (event)=>{
-
-        let payPriceElement = document.querySelector('.all-result-payable-to span span');
-        let totalPriceElement = document.querySelector('.all-result-total span span');
-        let totalPrice = parseInt(totalPriceElement.innerHTML);
+        // let totalPrice = parseInt(totalPriceElement.innerHTML);
         let dataItem = parseInt(event.currentTarget.dataset.item);
         let itemPrice = parseInt(event.currentTarget.dataset.price);
+        let productId = parseInt(event.currentTarget.dataset.product);
         let maxCount = parseInt(event.currentTarget.dataset.max);
         let countElement = document.getElementById('count-shop-' + dataItem);
-
         let minBtn = document.querySelector(`.min-count-${dataItem}`);
 
-        console.log(minBtn);
+        countElement.value = parseInt(countElement.value) + 1;
+        updateCartProductCount(countElement.value, productId);
+
         if(parseInt(countElement.value) < maxCount) {
-            countElement.value = parseInt(countElement.value) + 1;
-            totalPriceElement.innerHTML = totalPrice +  itemPrice;
-            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) +  itemPrice;
+            // totalPriceElement.innerHTML = totalPrice +  itemPrice;
+            // payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) +  itemPrice;
             minBtn.querySelector('img').src = "/images/svg/shopping-cart-plus-img.svg";
             minBtn.classList.remove('min-none');
         }

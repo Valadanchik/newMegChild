@@ -20,7 +20,6 @@ class PaymentService
     public function makePayment(Order $order)
     {
         $amount = $order->total_price_with_discount;
-        $order_id = $order->id;
         $payment_method = $order->payment_method;
 
 
@@ -33,7 +32,7 @@ class PaymentService
 
         if ($payment_method == Order::PAYMENT_METHOD_IDRAM) {
 
-            return $this->idramPayment(1, $order->order_payment_id);
+            return $this->idramPayment($amount, $order->order_payment_id);
 
         } elseif ($payment_method == Order::PAYMENT_METHOD_TELCELL) {
 
@@ -61,6 +60,7 @@ class PaymentService
 
     public function idramCallback(Request $request)
     {
+
         define("SECRET_KEY", env('IDRAM_SECRET_KEY'));
         define("EDP_REC_ACCOUNT", env('IDRAM_EDP_REC_ACCOUNT'));
 

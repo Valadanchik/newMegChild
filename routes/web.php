@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\frontend\PaymentController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +55,6 @@ Route::group(
 
     /* Order Router */
 
-//    Route::get('order', 'App\Http\Controllers\frontend\OrderController@index')->name('order');
-//    Route::post('/order', 'App\Http\Controllers\frontend\OrderController@create')->name('order.create');
-
     Route::get('/order', [OrderController::class, 'index'])->name('order');
     Route::post('/order', [OrderController::class, 'create'])->name('order.create');
     Route::get('/order/success', [OrderController::class, 'success'])->name('order.success');
@@ -63,8 +62,32 @@ Route::group(
 
     Route::post('/add-to-cart', [ShopController::class, 'addToCart'])->name('addToCart');
     Route::post('/remove-from-card', [ShopController::class, 'removeFromCart'])->name('removeFromCart');
-
     Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('updateCart');
-//    Route::post('/cart/totalCount', [ShopController::class, 'getCartTotalCount'])->name('getCartTotalCount');
 
 });
+
+
+Route::get('admin/login', [AuthController::class, 'loginView'])->name('loginView');
+Route::post('admin/login', [AuthController::class, 'login'])->name('login');
+
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

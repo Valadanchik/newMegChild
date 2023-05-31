@@ -57,7 +57,7 @@ class OrderController extends Controller
      * @param OrderStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function create(OrderStoreRequest $request): \Illuminate\Http\RedirectResponse
+    public function create(OrderStoreRequest $request)
     {
        if(!$this->checkIsProductsAvailable()){
            return redirect()->route('order')->with('product_is_not_in_stock', 'Ապրանքը արդեն առկա չէ');
@@ -65,10 +65,9 @@ class OrderController extends Controller
 
         $order = $this->orderService->create($request);
         $this->orderService->createOrderBook($order);
-//        $payment_service = new PaymentService();
-//        return $payment_service->makePayment($order);
 
-        return redirect()->route('order.success');
+        $payment_service = new PaymentService();
+        return $payment_service->makePayment($order);
     }
 
     /**

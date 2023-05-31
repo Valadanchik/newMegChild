@@ -33,11 +33,11 @@ class PaymentService
 
         if ($payment_method == Order::PAYMENT_METHOD_IDRAM) {
 
-            return $this->idramPayment($amount, $order_id);
+            return $this->idramPayment(1, $order->order_payment_id);
 
         } elseif ($payment_method == Order::PAYMENT_METHOD_TELCELL) {
 
-            return $this->telcellPayment($amount, $order_id);
+            return $this->telcellPayment($amount, $order->order_payment_id);
 
         } elseif ($payment_method == Order::PAYMENT_METHOD_BANK) {
 
@@ -69,7 +69,7 @@ class PaymentService
             if ($request['EDP_PRECHECK'] == "YES") {
                 if ($request['EDP_REC_ACCOUNT'] == EDP_REC_ACCOUNT) {
                     $bill_no = $request['EDP_BILL_NO'];
-                    if (Order::where('id', $bill_no)->exists()) {
+                    if (Order::where('order_payment_id', $bill_no)->exists()) {
                         echo "OK";
                     }
                 }

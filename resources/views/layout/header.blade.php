@@ -14,7 +14,7 @@
         <div class="header-menu">
             <nav class="nav">
                 <ul class="header-menu-list">
-                    <li class="menu-about-us {{ isRouteActive('about') ? 'active-menu-underline' : '' }}">Մատենաշարի մասին
+                    <li class="menu-about-us {{ isRouteActive('about') ? 'active-menu-underline' : '' }}">Մեր մասին
                         <ul class="menu-drop-down">
                             <li><a href="{{ LaravelLocalization::localizeUrl('/about') }}" class="{{ isRouteActive('about') ? 'active-menu-underline' : '' }}">Մատենաշարի մասին</a></li>
                             <li><a href="#">Կապ</a></li>
@@ -28,7 +28,10 @@
             </nav>
         </div>
         <div class="header-icon">
-            <div class="header-icon-serch">
+            <div class="header-icon-serch search">
+
+
+
                 <svg  viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.8643 19C16.2825 19 19.8643 15.4183 19.8643 11C19.8643 6.58172 16.2825 3 11.8643 3C7.44598 3 3.86426 6.58172 3.86426 11C3.86426 15.4183 7.44598 19 11.8643 19Z"
                           stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

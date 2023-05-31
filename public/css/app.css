@@ -134,6 +134,16 @@ ul.header-menu-list li a {
 .menu-drop-down  {
     display: none;
 }
+.menu-about-us{
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #000000;
+    transition-duration: .3s;
+}
+
 
 .menu-about-us:hover .menu-drop-down{
     display: block;
@@ -141,9 +151,8 @@ ul.header-menu-list li a {
     top: 50px;
     background: rgb(255, 255, 255);
     padding: 16px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     line-height: 30px;
-
 }
 .menu-drop-down li a{
     font-weight: 400;
@@ -458,7 +467,7 @@ main{
 
 .parent{
     background-color: rgb(109 110 114 / 92%);
-    padding: 51px;
+    padding: 51px 0;
 }
 .parent-section{
     display: flex;
@@ -2417,4 +2426,5 @@ input[type=number] {
     flex-direction: column;
     align-items: center;
 }
+
 

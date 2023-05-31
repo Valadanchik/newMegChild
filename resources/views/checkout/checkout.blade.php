@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="shopping-cart-products-item-count">
                                         <div class="shopping-cart-products-item-count-img">
-                                            <div data-product="{{ $card['id'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-min min-none min-count-{{$card_key}}">
+                                            <div data-product="{{ $card['id'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-min  min-none min-count-{{$card_key}}">
                                                 <img class="min" src="{{ URL::to('/images/svg/shopping-cart-min-img.svg') }}"
                                                      alt="min img" data-id="min-1">
                                             </div>
@@ -44,6 +44,9 @@
                                         </div>
                                         <span>Հասանելի է {{ $card['in_stock'] }} հատ</span>
                                     </div>
+
+
+
                                     <div class="shopping-cart-products-item-price">
                                         <p>{{ $card['price'] }} ֏</p>
                                     </div>

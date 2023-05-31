@@ -166,6 +166,127 @@ let deleteBtn = document.querySelectorAll('.shopping-cart-products-count-close-i
 
 
 
+
+
+min?.forEach((item) =>{
+    item.addEventListener('click', (event)=>{
+        let payPriceElement = document.querySelector('.all-result-payable-to span span');
+        let totalPriceElement = document.querySelector('.all-result-total span span');
+        let totalPrice = parseInt(totalPriceElement.innerHTML);
+        let dataItem = parseInt(event.currentTarget.dataset.item);
+        let itemPrice = parseInt(event.currentTarget.dataset.price);
+        let countElement = document.getElementById('count-shop-' + dataItem);
+        let minBtn = document.querySelector(`.min-count-${dataItem} img`);
+        let productId = parseInt(event.currentTarget.dataset.product);
+
+        console.log(minBtn);
+        if(parseInt(countElement.value) > 2) {
+            countElement.value = parseInt(countElement.value) - 1;
+            updateCartProductCount(countElement.value, productId)
+
+            totalPriceElement.innerHTML = totalPrice - itemPrice;
+            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
+        } else {
+            countElement.value = parseInt(countElement.value) - 1;
+            updateCartProductCount(countElement.value, productId)
+
+            totalPriceElement.innerHTML = totalPrice - itemPrice;
+            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
+            event.currentTarget.classList.add('min-none');
+            minBtn.src = "/images/svg/shopping-cart-min-img.svg";
+        }
+
+    })
+});
+
+plus?.forEach((item) =>{
+    item.addEventListener('click', (event)=>{
+
+        let payPriceElement = document.querySelector('.all-result-payable-to span span');
+        let totalPriceElement = document.querySelector('.all-result-total span span');
+        let totalPrice = parseInt(totalPriceElement.innerHTML);
+        let dataItem = parseInt(event.currentTarget.dataset.item);
+        let itemPrice = parseInt(event.currentTarget.dataset.price);
+        let maxCount = parseInt(event.currentTarget.dataset.max);
+        let countElement = document.getElementById('count-shop-' + dataItem);
+        let productId = parseInt(event.currentTarget.dataset.product);
+
+
+        let minBtn = document.querySelector(`.min-count-${dataItem}`);
+
+        console.log(minBtn);
+        if(parseInt(countElement.value) < maxCount) {
+            countElement.value = parseInt(countElement.value) + 1;
+            updateCartProductCount(countElement.value, productId)
+            totalPriceElement.innerHTML = totalPrice +  itemPrice;
+            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) +  itemPrice;
+            minBtn.querySelector('img').src = "/images/svg/minus-circle.svg";
+            minBtn.classList.remove('min-none');
+        }
+
+    })
+});
+
+deleteBtn?.forEach((item) =>{
+    item.addEventListener('click', (event)=>{
+
+        let dataItem = parseInt(event.currentTarget.dataset.item);
+        let itemPrice = parseInt(event.currentTarget.dataset.price);
+
+        let rowItemElement = document.getElementById('shopping-cart-products-item-' + dataItem);
+        let rowItemCountElement = document.getElementById('count-shop-' + dataItem);
+
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', document.getElementById('remove-from-cart-url').value);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
+        var bookId = event.target.getAttribute("data-book-id");
+        var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        var data = JSON.stringify({ _token: csrfToken, book_id: bookId });
+
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+                var data = JSON.parse(xhr.responseText);
+                // window.location.reload();
+                let payPriceElement = document.querySelector('.all-result-payable-to span span');
+                let totalPriceElement = document.querySelector('.all-result-total span span');
+                let totalPrice = parseInt(totalPriceElement.innerHTML);
+                let payPrice = parseInt(totalPriceElement.innerHTML);
+
+
+                totalPriceElement.innerHTML = totalPrice - parseInt(rowItemCountElement.value) * itemPrice;
+                payPriceElement.innerHTML = payPrice - parseInt(rowItemCountElement.value) * itemPrice;
+
+
+
+                rowItemElement.remove();
+
+            } };
+
+        xhr.onerror = function () {
+            // Handle error
+        };
+
+        xhr.onloadend = function () {
+            document.querySelector('.loader-container').style.display = 'none';
+        };
+
+        xhr.send(data);
+
+
+        console.log(bookId);
+
+
+    })
+});
+
+
+
+/*
 min?.forEach((item) =>{
     item.addEventListener('click', (event)=>{
         // let payPriceElement = document.querySelector('.all-result-payable-to span span');
@@ -214,8 +335,9 @@ plus?.forEach((item) =>{
         }
 
     })
-});
+});*/
 
+/*
 deleteBtn?.forEach((item) =>{
     item.addEventListener('click', (event)=>{
 
@@ -277,6 +399,7 @@ deleteBtn?.forEach((item) =>{
 
     })
 });
+*/
 
 
 
@@ -313,7 +436,7 @@ function modalClose() {
 
 
 //////////////////////////shoping cart validacia//////////////////////////////
-/*
+
 
 let form_shopping_cart = document.querySelector('.form-shopping-cart')
 
@@ -359,19 +482,19 @@ function checkInputsShoppingCart() {
 
 
     if(firstNameValue ===''){
-        setErrorForShopping(firstName, 'Name cannot be blank');
+        setErrorForShopping(firstName, 'Գրեք Ձեր անունը');
     } else {
         setSuccessForShopping(firstName);
     }
 
     if(lastNameValue ===''){
-        setErrorForShopping(lastName, 'Name cannot be blank');
+        setErrorForShopping(lastName, 'Գրեք Ձեր ազգանունը');
     } else {
         setSuccessForShopping(lastName);
     }
 
     if(homeValue ===''){
-        setErrorForShopping(home, 'Name cannot be blank');
+        setErrorForShopping(home, 'Գրեք Ձեր փողոցը');
     } else {
         setSuccessForShopping(home);
     }
@@ -383,42 +506,41 @@ function checkInputsShoppingCart() {
     }
 
     if(cityValue ===''){
-        setErrorForShopping(city, 'Name cannot be blank');
+        setErrorForShopping(city, 'Գրեք Ձեր քաղաքը');
     } else {
         setSuccessForShopping(city);
     }
 
     if(postCodeValue ===''){
-        setErrorForShopping(postCode, 'Name cannot be blank');
+        setErrorForShopping(postCode, 'Գրեք Ձեր փոստային կոդը');
     } else {
         setSuccessForShopping(postCode);
     }
 
     if(tellValue ===''){
-        setErrorForShopping(tell, 'Name cannot be blank');
+        setErrorForShopping(tell, 'Գրեք Ձեր հեռախոսահամարը');
     } else {
         setSuccessForShopping(tell);
     }
 
 
     if(emailShopValue === '') {
-        setErrorForShopping(emailShop, 'Email cannot be blank');
+        setErrorForShopping(emailShop, 'Գրեք Ձեր էլ.հասցեն');
     } else if (!isEmailShop(emailShopValue)) {
-        setErrorForShopping(emailShop, 'Not a valid email');
+        setErrorForShopping(emailShop, 'էլ․հասցեն ճիծտ չէ');
     } else {
         setSuccessForShopping(emailShop);
     }
 
     if(reviewSoppingCartValue === '' || reviewSoppingCartValue.length < 10 ){
-        setErrorForShopping(reviewSoppingCart, 'Name cannot be blank');
+        setErrorForShopping(reviewSoppingCart, 'Դաշտը լրացված չէ');
     }   else {
         setSuccessForShopping(reviewSoppingCart);
     }
 
     if(acceptContent2.content == "none"){
-        setErrorForShopping(accept2, 'Cannot be checked');
+        setErrorForShopping(accept2, 'Կարդացեք և համաձայնվեք օգտագործման պայմանների հետ');
     }else {
-        console.log('sssss')
         setSuccessForShopping(accept2);
     }
     if(country.value == 'Ընտրեք երկիրը *'){
@@ -450,7 +572,7 @@ function isEmailShop(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
-*/
+
 
 
 //
@@ -530,3 +652,9 @@ function isEmailShop(email) {
 //
 //
 //
+
+
+
+
+
+

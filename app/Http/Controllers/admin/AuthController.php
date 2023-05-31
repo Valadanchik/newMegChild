@@ -31,8 +31,8 @@ class AuthController extends Controller
             $user = Auth::user();
             $user->createToken('MyApp')->plainTextToken;
             return redirect()->route('admin.index');
-        } else{
-            return redirect()->route('admin.loginView');
+        } else {
+            return redirect()->route('loginView');
         }
     }
 

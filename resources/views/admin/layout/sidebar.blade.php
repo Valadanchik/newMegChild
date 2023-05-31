@@ -12,7 +12,7 @@
 
                 <div class="sidenav-menu-heading">Books</div>
                 <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('books.index') }}">
                     <div class="nav-link-icon"><i data-feather="book"></i></div>
                     Books
                 </a>

@@ -28,15 +28,17 @@ class Books extends Model
     public static function changeInStockAfterOrder(): void
     {
         $card = session()->get('cart');
-        $sessionProductsId = array_keys(session()->get('cart'));
-        $books = Books::whereIn('id', $sessionProductsId)->get();
+        if(count($card)) {
+            $sessionProductsId = array_keys($card);
+            $books = Books::whereIn('id', $sessionProductsId)->get();
 
-        foreach ($books as $book) {
-            $oldInStock = $book->in_stock;
-            $newInStock = (int) $card[$book->id];
-            $quantityToSubtract = $oldInStock - $newInStock;
-            $book->in_stock = $quantityToSubtract;
-            $book->save();
+            foreach ($books as $book) {
+                $oldInStock = $book->in_stock;
+                $newInStock = (int) $card[$book->id];
+                $quantityToSubtract = $oldInStock - $newInStock;
+                $book->in_stock = $quantityToSubtract;
+                $book->save();
+            }
         }
         session()->forget('cart');
     }

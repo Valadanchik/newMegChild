@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\frontend\PaymentController;
+
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AuthController;
+use App\Http\Controllers\admin\BooksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,18 +69,27 @@ Route::group(
 });
 
 
-Route::get('admin/login', [AuthController::class, 'loginView'])->name('loginView');
-Route::post('admin/login', [AuthController::class, 'login'])->name('login');
+/*************************** ADMIN ROUTES **************************/
+
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::get('login', [AuthController::class, 'loginView'])->name('loginView');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+
+    Route::group(['middleware' => ['auth:sanctum']], function () {
+
+        Route::get('/', function () {
+            return view('admin.dashboard.index');
+        })->name('admin.index');
+
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+        Route::resource('books', BooksController::class);
 
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum']], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
+    });
 });
-
-
-
 
 
 

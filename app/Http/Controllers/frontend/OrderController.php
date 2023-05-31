@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\OrderStoreRequest;
-use App\Models\Order;
 use App\Services\Frontend\OrderService;
 use App\Services\Frontend\PaymentService;
 use App\Services\Frontend\ShopService;
-use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
@@ -25,7 +22,7 @@ class OrderController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function index()
     {
         $cardBooks = [];
         if (session()->get('cart')) {

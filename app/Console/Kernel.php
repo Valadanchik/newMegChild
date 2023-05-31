@@ -19,10 +19,6 @@ class Kernel extends ConsoleKernel
         'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
         'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
-//        'throttle'                => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-//        'verified'                => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'admin'                   => \App\Http\Middleware\IsAdmin::class,
-
     ];
     /**
      * Define the application's command schedule.

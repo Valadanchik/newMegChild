@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +13,6 @@ class Order extends Model
     const PAYMENT_METHOD_BANK = 1;
     const PAYMENT_METHOD_IDRAM = 2;
     const PAYMENT_METHOD_TELCELL = 3;
-
 
     const PAYMENT_METHODS = [
         self::PAYMENT_METHOD_BANK,
@@ -37,6 +37,7 @@ class Order extends Model
     ];
 
     protected $fillable = [
+        'order_payment_id',
         'name',
         'lastname',
         'email',
@@ -56,6 +57,17 @@ class Order extends Model
         'payment_callback',
         'status',
     ];
+
+    //on create
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($order) {
+            $order->order_payment_id = rand(1000000, 9999999) . time();
+            $order->status = self::STATUS_NEW;
+        });
+    }
 
     public function country()
     {

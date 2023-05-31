@@ -22,7 +22,7 @@ class OrderService
         return Country::where('status', true)->orderBy('order')->get();
     }
 
-    public function getCartProducts()
+    public function getCartProducts(): \Illuminate\Database\Eloquent\Collection|array
     {
         $sessionProductsId = array_keys(session()->get('cart'));
 
@@ -32,12 +32,13 @@ class OrderService
             $query->select('translators.id', 'translators.name_hy', 'translators.name_en');
         }])
             ->whereIn('id', $sessionProductsId)
+            ->where('status',true )
+            ->where('in_stock', '>', 0)
             ->get();
     }
 
     public function create(Request $request)
     {
-        $request->request->add(['status' => Order::STATUS_NEW]);
         return Order::create($request->except(['_token','terms']));
     }
 
@@ -47,26 +48,20 @@ class OrderService
 
         $cart = session()->get('cart');
         $total_price = 0;
-        $coupon_price = 0;
         if ($cart && is_array($cart)) {
-            foreach ($cart as $book_id => $quantity) {
 
-                $book = Books::where('id', $book_id)->where('status', true)->first();
+            $sessionProductsId = array_keys(session()->get('cart'));
+            $books = Books::whereIn('id', $sessionProductsId)->where('status', true)->get();
+            foreach ($books as $book) {
+                $total_price += $book->price * $cart[$book->id];
 
-                if ($book) {
-                    $total_price += $book->price * $quantity;
-
-                    $book->save();
-                    $order->books()->attach($book->id, ['quantity' => $quantity, 'price' => $book->price, 'status' => Order::STATUS_NEW]);
-                } else {
-                    info('variation' . $book . 'not found');
-                }
+                $book->save();
+                $order->books()->attach($book->id, ['quantity' => $cart[$book->id], 'price' => $book->price, 'status' => Order::STATUS_NEW]);
             }
         }
 
         $order->update([
             'total_price' => $total_price,
-            'total_price_with_discount' => $coupon_price
         ]);
     }
 

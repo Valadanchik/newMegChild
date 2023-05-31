@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('region_id')->nullable();
+            $table->unsignedBigInteger('order_payment_id');
             $table->string('name');
             $table->string('lastname');
             $table->string('company')->nullable();

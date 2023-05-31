@@ -2320,10 +2320,6 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-
-
-
-
 /* Icon 1 */
 
 #nav-icon1 {
@@ -2408,6 +2404,17 @@ input[type=number] {
     right: 0;
 }
 
-
 /* Icon 1 */
+
+.payment-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.payment-fail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 

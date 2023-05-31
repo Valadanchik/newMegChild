@@ -9,14 +9,19 @@ use Illuminate\Support\Facades\View;
 
 class ShopController extends Controller
 {
-    protected $shopService = null;
+//    protected $shopService = null;
 
-    public function __construct(ShopService $shopService)
+    public function __construct(protected ShopService $shopService)
     {
-        $this->shopService = $shopService;
+//        $this->shopService = $shopService;
     }
 
-
+//    public function cart()
+//    {
+//        $cart = $this->shopService->getVariations();
+//
+//        return view('front.shop.cart', compact( 'cart'));
+//    }
 
     public function addToCart(Request $request)
     {
@@ -30,8 +35,30 @@ class ShopController extends Controller
         ]);
     }
 
+    public function updateCart(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $request->only([
+            'quantity',
+            'variation',
+        ]);
+        $this->shopService->updateCart($request);
 
+        return response()->json([
+            'success' => true,
+            'total_price' => $this->shopService->getCartTotalPrice(),
+        ]);
+    }
 
+    public function removeFromCart(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $request->only(['book_id']);
 
+        $this->shopService->removeFromCart($request);
+
+        return response()->json([
+            'success' => true,
+            'cartProductsCount' => $this->shopService->getCartProductsCount(),
+        ]);
+    }
 
 }

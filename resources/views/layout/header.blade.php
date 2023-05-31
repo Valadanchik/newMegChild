@@ -11,24 +11,19 @@
             </a>
         </div>
 
-
         <div class="header-menu">
             <nav class="nav">
                 <ul class="header-menu-list">
-                    <li class="menu-about-us"><a href="{{ LaravelLocalization::localizeUrl('/about') }}">Մեր մասին</a>
-
+                    <li class="menu-about-us {{ isRouteActive('about') ? 'active-menu-underline' : '' }}">Մատենաշարի մասին
                         <ul class="menu-drop-down">
-                            <li><a href="">Մատենաշարի մասին</a></li>
-                            <li><a href="">Կապ</a></li>
+                            <li><a href="{{ LaravelLocalization::localizeUrl('/about') }}" class="{{ isRouteActive('about') ? 'active-menu-underline' : '' }}">Մատենաշարի մասին</a></li>
+                            <li><a href="#">Կապ</a></li>
                         </ul>
-
                     </li>
-
-
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/books') }}">Գրքեր...</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/authors') }}">Հեղինակներ</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/translators') }}">Թարգմանիչներ</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/articles') }}">Հոդվածներ</a></li>
+                    <li><a href="{{ LaravelLocalization::localizeUrl('/books') }}" class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">Գրքեր...</a></li>
+                    <li><a href="{{ LaravelLocalization::localizeUrl('/authors') }}" class="{{ isRouteActive('authors') ? 'active-menu-underline' : '' }}">Հեղինակներ</a></li>
+                    <li><a href="{{ LaravelLocalization::localizeUrl('/translators') }}" class="{{ isRouteActive('translators') ? 'active-menu-underline' : '' }}">Թարգմանիչներ</a></li>
+                    <li><a href="{{ LaravelLocalization::localizeUrl('/articles') }}" class="{{ isRouteActive('articles') ? 'active-menu-underline' : '' }}">Հոդվածներ</a></li>
                 </ul>
             </nav>
         </div>

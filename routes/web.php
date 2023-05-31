@@ -33,20 +33,20 @@ Route::group(
 
     /* Books Routers */
     Route::get('books', 'App\Http\Controllers\frontend\BooksController@books')->name('books');
-    Route::get('book/{slug}', 'App\Http\Controllers\frontend\BooksController@view')->name('view');
+    Route::get('book/{slug}', 'App\Http\Controllers\frontend\BooksController@view')->name('book.view');
 
     /* Posts Routers */
     Route::get('articles', 'App\Http\Controllers\frontend\PostsController@articles')->name('articles');
-    Route::get('article/{slug}', 'App\Http\Controllers\frontend\PostsController@view')->name('view');
+    Route::get('article/{slug}', 'App\Http\Controllers\frontend\PostsController@view')->name('article.view');
     Route::get('medias/{slug}', 'App\Http\Controllers\frontend\PostsController@medias')->name('medias');
 
     /* Posts Routers */
     Route::get('authors', 'App\Http\Controllers\frontend\AuthorsController@authors')->name('authors');
-    Route::get('author/{slug}', 'App\Http\Controllers\frontend\AuthorsController@view')->name('view');
+    Route::get('author/{slug}', 'App\Http\Controllers\frontend\AuthorsController@view')->name('author.view');
 
     /* Translators Routers */
     Route::get('translators', 'App\Http\Controllers\frontend\TranslatorsController@translators')->name('translators');
-    Route::get('translator/{slug}', 'App\Http\Controllers\frontend\TranslatorsController@view')->name('view');
+    Route::get('translator/{slug}', 'App\Http\Controllers\frontend\TranslatorsController@view')->name('translator.view');
 
     /* About Us Router*/
     Route::get('about', function () {

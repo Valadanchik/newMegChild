@@ -32,6 +32,7 @@
 }
 body{
     font-family: 'Montserrat arm';
+    background-color: #FEFDFB;
 }
 
 .news-articles{
@@ -138,7 +139,7 @@ ul.header-menu-list li a {
     font-weight: 500;
     font-size: 16px;
     cursor: pointer;
-    line-height: 20px;
+    line-height: 23px;
     letter-spacing: 0.01em;
     color: #000000;
     transition-duration: .3s;
@@ -148,17 +149,38 @@ ul.header-menu-list li a {
 .menu-about-us:hover .menu-drop-down{
     display: block;
     position: absolute;
-    top: 50px;
+    top: 49px;
     background: rgb(255, 255, 255);
     padding: 16px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 20px rgba(176, 176, 176, 0.25);
     line-height: 30px;
 }
 .menu-drop-down li a{
     font-weight: 400;
 }
 
-
+.drop-down-articles{
+    display: none;
+}
+.menu-drop-down-articles{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #000000;
+    transition-duration: .3s;
+}
+.menu-drop-down-articles:hover .drop-down-articles{
+    display: block;
+    position: absolute;
+    top: 50px;
+    background: rgb(255, 255, 255);
+    padding: 16px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    line-height: 30px;
+}
 
 main{
     background-image: url("../images/background-main.png");
@@ -167,7 +189,7 @@ main{
     background-attachment: fixed;
 }
 .banner{
-    background-color: #ffffff;
+    background-color: #FEFDFB;
     padding-top: 64px;
     padding-bottom: 100px;
 }
@@ -382,7 +404,7 @@ main{
 }
 
 .articles{
-    background-color: #FFFFFF;
+    background-color: #FEFDFB;
     padding-top: 90px;
 }
 
@@ -547,7 +569,7 @@ main{
 
 /*-------------------------Outhers---------------------*/
 .authors{
-    background-color: #FFFFFF;
+    background-color: #FEFDFB;
     padding-top: 74px;
     padding-bottom: 100px;
 }
@@ -2119,7 +2141,7 @@ section.books {
 .shopping-cart-payment-details-title {
     margin: 60px 0;
     padding: 20px 60px;
-    background: #f24802;
+    background: #f36f21;
     border-radius: 20px 20px 0px 0px;
 }
 
@@ -2192,7 +2214,7 @@ section.books {
 }
 .your-order-title {
     padding: 20px 30px;
-    background: #f34802;
+    background: #f36f21;
     border-radius: 20px 20px 0 0;
 }
 .your-order-title h2 {
@@ -2255,19 +2277,19 @@ section.books {
     font-size: 16px;
     line-height: 22px;
     text-align: center;
-    background: #F34802;
+    background: #f36f21;
     border-radius: 10px;
     color: #FFFFFF;
     padding: 14px 90px;
     text-align: center;
     transition-duration: .3s;
     cursor: pointer;
-    border: 1px solid #F34802 ;
+    border: 1px solid #f36f21;
 }
 
 .payment-cart-btn button:hover {
     background: #FFF;
-    color: #f34802;
+    color: #f36f21;
 }
 .payment-cart {
     width: 100%;
@@ -2444,18 +2466,23 @@ input[type=number] {
 }
 
 
+/*/////////////////////search popup//////////////////////*/
+
 
 .search-section{
-    display: none;
-}
-.search-section.open{
-    display: block;
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 0;
+    top: -200px;
+    background: rgb(255 255 255);
     bottom: 0;
     right: 0;
-    margin: auto;
+    box-shadow: 0 4px 20px rgba(103, 103, 103, 0.25);
+    height: 200px;
+    z-index: 999;
+    transition: top .3s;
+}
+.search-section.open{
+    top: 0;
 }
 .open {
     opacity: 1;
@@ -2463,3 +2490,257 @@ input[type=number] {
     transition: 0.5s all ease-in-out;
 }
 
+.popup-search-input {
+    position: absolute;
+    right: 0;
+    margin-top: 48px;
+    width: 100%;
+    left: 0;
+}
+
+.search-box {
+    font-size: 30px;
+    padding: 0 0px 10px;
+    border-bottom: 1px solid #000000;
+    background-color: #ffffff;
+    width: 900px;
+    margin: auto;
+    display: flex;
+    gap: 33px;
+    transition: .2s;
+}
+
+
+
+
+
+input {
+    font-family: Proxima Nova;
+    letter-spacing: -0.2px;
+    font-size: 20px;
+    border: none;
+    color: #323232;
+    width: 100%;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+
+.clear:not(:valid) ~ .search-clear {
+    display: none;
+}
+.close-popup-img {
+    text-align: right;
+    cursor: pointer;
+}
+.search-box input::placeholder{
+    font-family: 'Montserrat arm';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #B1B1B1;
+}
+
+
+
+
+
+/*////////////////////authors-single-page//////////////////////////////////*/
+
+.author-single-page-info {
+    display: flex;
+    gap: 30px;
+    margin-top: 52px;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.author-single-page-info-desc h2 {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    /* identical to box height */
+    letter-spacing: 0.01em;
+    color: #000000;
+}
+
+.author-single-page-info-desc p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    letter-spacing: 0.01em;
+    color: #444444;
+    margin-top: 32px;
+}
+
+.author-single-page-info-img {
+    width: 100%;
+    max-width: 330px;
+}
+
+.author-single-page-info-img img {
+    width: 100%;
+}
+.author-single-page-back-btn span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.01em;
+    color: #646464;
+}
+
+.author-single-page-back-btn .au-sing-active a{
+    color: #000000;
+}
+.author-single-page-info-desc {
+    width: 100%;
+    max-width: 1074px;
+}
+
+.author-single-page-books {
+    display: grid;
+    grid-template-columns: repeat(4, 342px);
+}
+
+.author-single-page-books-section h2{
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0.01em;
+    color: #000000;
+    margin-bottom: 32px;
+}
+
+.author-single-page-book-item h3 {
+    font-weight: 600;
+    margin-top: 13px;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.01em;
+    color: #444444;
+    margin-bottom: 34px;
+}
+
+.author-single-page-book-item p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #444444;
+}
+
+.author-single-page-book-item-images {
+    display: flex;
+    padding: 6px 13px;
+    border: 1px solid rgba(109, 110, 114, 0.2);
+}
+
+.book-price-authot-single-page p {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.03em;
+    color: #444444;
+    margin: 16px 0 24px;
+}
+
+.book-btn {
+    width: 100%;
+    max-width: 220px;
+}
+.content.author-single-page-books-section {
+    margin-bottom: 110px;
+}
+
+
+/*////////////////////////contact page/////////////////////////*/
+
+.contacts-page.content {
+    margin-bottom: 130px;
+}
+section.contacts-page h2 {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 49px;
+    /* identical to box height */
+    letter-spacing: 0.01em;
+    color: #000000;
+    text-align: center;
+}
+
+.contacts-page-info-decsription p,
+.new-book-or-translation-desc p,
+.contact-page-sale-desc p,
+.contact-page-work-desc p,
+.contact-page-sponsorship-desc p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: 0.01em;
+    color: #444444;
+}
+
+.new-book-or-translation-desc ol li{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    list-style: circle;
+    color: #444444;
+}
+
+.contacts-page-info-decsription span {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    color: #8F52A1;
+}
+
+.contacts-page-info-decsription {
+    margin: 50px 0;
+}
+
+.new-book-or-translation-desc h3,
+.contact-page-sale-desc h3,
+.contact-page-work-desc h3,
+.contact-page-partnership-desc h3,
+.contact-page-sponsorship-desc h3{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    color: #8F52A1;
+    margin-bottom: 16px;
+}
+.contact-page-sale-desc,
+.contact-page-work-desc,
+.contact-page-partnership-desc{
+    margin: 48px 0;
+}
+
+.new-book-or-translation-desc p span,
+.contact-page-sale-desc p span,
+.contact-page-sale-desc p span,
+.contact-page-work-desc p span,
+.contact-page-partnership-desc p span,
+.contact-page-sponsorship-desc p span{
+    color: rgba(38, 98, 188, 1);
+}
+
+.new-book-or-translation-desc ol {
+    margin-top: 32px;
+}
+.new-book-or-translation-desc ol li{
+    margin-bottom: 24px;
+}

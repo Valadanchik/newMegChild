@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="shopping-cart-products-item-count">
                                         <div class="shopping-cart-products-item-count-img">
-                                            <div data-product="{{ $card['id'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-min  min-none min-count-{{$card_key}}">
+                                            <div data-product="{{ $card['id'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-min @if(session()->get('cart')[$card['id']] == 1) min-none @endif min-count-{{$card_key}}">
                                                 <img class="min" src="{{ URL::to('/images/svg/shopping-cart-min-img.svg') }}"
                                                      alt="min img" data-id="min-1">
                                             </div>
@@ -131,6 +131,7 @@
 
                                     <div class="form-control form-shopping-cart-count">
                                         <select name="country_id" id="country">
+                                            <option value="" hidden>Ընտրեք երկիրը *</option>
                                             @foreach($countries as $country)
                                                 <option
                                                     value="{{$country->id}}"
@@ -282,7 +283,7 @@
                                     <div class="packaging-standart">
                                         <input type="radio" id="idram" name="payment_method"  class="my-radio"
                                                value="{{\App\Models\Order::PAYMENT_METHOD_IDRAM}}"
-                                               @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_IDRAM) checked @endif>
+                                               @if(!old('payment_method') || old('payment_method') == \App\Models\Order::PAYMENT_METHOD_IDRAM) checked @endif>
 
                                         <label for="idram">
                                             <img src="{{ URL::to('images/svg/idram.svg') }}" alt="idram logo">

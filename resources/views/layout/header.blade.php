@@ -23,7 +23,15 @@
                     <li><a href="{{ LaravelLocalization::localizeUrl('/books') }}" class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">Գրքեր...</a></li>
                     <li><a href="{{ LaravelLocalization::localizeUrl('/authors') }}" class="{{ isRouteActive('authors') ? 'active-menu-underline' : '' }}">Հեղինակներ</a></li>
                     <li><a href="{{ LaravelLocalization::localizeUrl('/translators') }}" class="{{ isRouteActive('translators') ? 'active-menu-underline' : '' }}">Թարգմանիչներ</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/articles') }}" class="{{ isRouteActive('articles') ? 'active-menu-underline' : '' }}">Հոդվածներ</a></li>
+                    <li  class="menu-drop-down-articles">
+{{--                        <a href="{{ LaravelLocalization::localizeUrl('/articles') }}" class="{{ isRouteActive('articles') ? 'active-menu-underline' : '' }}">--}}
+                            Հոդվածներ
+{{--                        </a>--}}
+                    <ul class="drop-down-articles">
+                        <li><a href="#">Լուրեր</a></li>
+                        <li><a href="#">Մեդիա</a></li>
+                    </ul>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -58,16 +66,7 @@
 
 
         </div>
-
-
-        <div class="search-section">
-
-            <p>44444444444</p>
-            <p>44444444444</p>
-            <p>44444444444</p>
-            <p>44444444444</p>
-            <p>44444444444</p>
-        </div>
+        @include('components.search')
     </div>
 
 </header>

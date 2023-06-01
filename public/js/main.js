@@ -443,12 +443,12 @@ let form_shopping_cart = document.querySelector('.form-shopping-cart')
 const firstName = document.getElementById('shopping-cart-firs-name');
 const lastName = document.getElementById('last-name');
 const home = document.getElementById('home');
-const apartment = document.getElementById('apartment');
+//const apartment = document.getElementById('apartment');
 const city = document.getElementById('city');
 const postCode = document.getElementById('post-code');
 const tell = document.getElementById('home-tell')
 const emailShop = document.getElementById('email-shop');
-const reviewSoppingCart = document.getElementById('review-sopping-cart');
+//const reviewSoppingCart = document.getElementById('review-sopping-cart');
 
 
 const accept2 = document.getElementById('accept-sopping-cart');
@@ -470,12 +470,12 @@ function checkInputsShoppingCart() {
     const firstNameValue = firstName.value.trim();
     const lastNameValue = lastName.value.trim();
     const homeValue = home.value.trim();
-    const apartmentValue = apartment.value.trim();
+    // const apartmentValue = apartment.value.trim();
     const cityValue = city.value.trim();
     const postCodeValue = postCode.value.trim();
     const tellValue = tell.value.trim();
     const emailShopValue = emailShop.value.trim();
-    const reviewSoppingCartValue = reviewSoppingCart?.value?.trim();
+    //const reviewSoppingCartValue = reviewSoppingCart?.value?.trim();
 
 
 
@@ -499,11 +499,11 @@ function checkInputsShoppingCart() {
         setSuccessForShopping(home);
     }
 
-    if(apartmentValue ===''){
-        setErrorForShopping(apartment, 'Name cannot be blank');
-    } else {
-        setSuccessForShopping(apartment);
-    }
+    // if(apartmentValue ===''){
+    //     setErrorForShopping(apartment, 'Name cannot be blank');
+    // } else {
+    //     setSuccessForShopping(apartment);
+    // }
 
     if(cityValue ===''){
         setErrorForShopping(city, 'Գրեք Ձեր քաղաքը');
@@ -532,19 +532,19 @@ function checkInputsShoppingCart() {
         setSuccessForShopping(emailShop);
     }
 
-    if(reviewSoppingCartValue === '' || reviewSoppingCartValue.length < 10 ){
-        setErrorForShopping(reviewSoppingCart, 'Դաշտը լրացված չէ');
-    }   else {
-        setSuccessForShopping(reviewSoppingCart);
-    }
+    // if(reviewSoppingCartValue === '' || reviewSoppingCartValue.length < 10 ){
+    //     setErrorForShopping(reviewSoppingCart, 'Դաշտը լրացված չէ');
+    // }   else {
+    //     setSuccessForShopping(reviewSoppingCart);
+    // }
 
-    if(acceptContent2.content == "none"){
+    if(acceptContent2.content === "none"){
         setErrorForShopping(accept2, 'Կարդացեք և համաձայնվեք օգտագործման պայմանների հետ');
     }else {
         setSuccessForShopping(accept2);
     }
-    if(country.value == 'Ընտրեք երկիրը *'){
-        setErrorForShopping(country, 'Name cannot be blank');
+    if(!country.value){
+        setErrorForShopping(country, 'Նշեք երկիրը');
     } else {
         setSuccessForShopping(country);
     }
@@ -655,13 +655,26 @@ function isEmailShop(email) {
 
 let searchBtn = document.querySelector('.search');
 let searchSection = document.querySelector(".search-section");
+let closePopup = document.querySelector('.close-popup-img')
+let closeModal = document.querySelector('.modal')
 
 
-searchBtn.addEventListener('click', ()=>{
+
+searchBtn?.addEventListener('click', ()=>{
     searchSection.classList.toggle("open")
+    body.classList.toggle('body-open')
+    modal.classList.toggle('modal-open')
 })
 
+closePopup?.addEventListener('click', ()=>{
+    searchSection.classList.remove("open")
+    modal.classList.remove('modal-open')
+    body.classList.remove('body-open')
 
+})
+closeModal?.addEventListener('click', ()=>{
+    searchSection.classList.remove("open")
 
+})
 
 

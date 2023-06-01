@@ -2,6 +2,8 @@
 
 @section('content')
     <main>
+
+
         <section class="banner">
             <div class="banner-info content">
                 @foreach($data['categories'] as $category)
@@ -16,10 +18,11 @@
 
         @foreach($data['books'] as $index => $book)
             <section class="{{ $book->category->name_en }}-color">
-                <div style="{{ $index % 2 === 1 ? "flex-direction: row-reverse;" : "flex-direction: row;" }}" class="book-section content">
+                <div style="{{ $index % 2 === 1 ? "flex-direction: row-reverse;" : "flex-direction: row;" }}"
+                     class="book-section content">
                     <div class="color-info ">
                         <div class="orange-info-img">
-                            <a  href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
+                            <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
                                 <img src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
                             </a>
                         </div>
@@ -159,11 +162,16 @@
                 <div class="article-btn">
                     <a href="{{ LaravelLocalization::localizeUrl('/authors') }}">Տեսնել բոլորը</a>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13 17L18 12L13 7" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6 17L11 12L6 7" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13 17L18 12L13 7" stroke="black" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M6 17L11 12L6 7" stroke="black" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
                     </svg>
                 </div>
             </div>
         </section>
+
+
+
     </main>
 @endsection

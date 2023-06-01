@@ -810,6 +810,15 @@ a.footer-address:hover{
 }
 .media-scrol-bar p{
     text-align: left;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+    letter-spacing: 0.01em;
+
+    /* 6-9 */
+    cursor: pointer;
+    color: #000;
 }
 
 
@@ -2125,7 +2134,7 @@ section.books {
 .form-control.form-shopping-cart-last-name input::placeholder,
 .form-shopping-cart-company input::placeholder{
     font-weight: 400;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 26px;
     color: #4C4C4C;
 
@@ -2251,7 +2260,14 @@ section.books {
     color: #FFFFFF;
     padding: 14px 90px;
     text-align: center;
+    transition-duration: .3s;
+    cursor: pointer;
     border: 1px solid #F34802 ;
+}
+
+.payment-cart-btn button:hover {
+    background: #FFF;
+    color: #f34802;
 }
 .payment-cart {
     width: 100%;
@@ -2427,4 +2443,23 @@ input[type=number] {
     align-items: center;
 }
 
+
+
+.search-section{
+    display: none;
+}
+.search-section.open{
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+.open {
+    opacity: 1;
+    z-index: 0;
+    transition: 0.5s all ease-in-out;
+}
 

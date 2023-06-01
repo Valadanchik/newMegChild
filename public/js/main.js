@@ -653,6 +653,13 @@ function isEmailShop(email) {
 //
 //
 
+let searchBtn = document.querySelector('.search');
+let searchSection = document.querySelector(".search-section");
+
+
+searchBtn.addEventListener('click', ()=>{
+    searchSection.classList.toggle("open")
+})
 
 
 

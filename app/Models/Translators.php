@@ -11,6 +11,6 @@ class Translators extends Model
 
     public function Translators(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Books::class, 'book_translators_pivot', 'translator_id', 'book_id');
+        return $this->belongsToMany(Books::class, 'book_translators_pivot', 'translator_id', 'book_id')->withTimestamps();
     }
 }

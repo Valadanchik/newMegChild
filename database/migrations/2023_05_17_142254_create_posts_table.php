@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('text_hy');
             $table->text('text_en');
             $table->text('image');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('post_category_id')->references('id')->on('post_categories')->onDelete('cascade');

@@ -17,6 +17,6 @@ class Authors extends Model
 
     public function books(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Books::class, 'book_authors_pivot', 'author_id', 'book_id');
+        return $this->belongsToMany(Books::class, 'book_authors_pivot', 'author_id', 'book_id')->withTimestamps();
     }
 }

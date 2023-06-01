@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class OrderAdminJob implements ShouldQueue
 {
@@ -19,7 +20,7 @@ class OrderAdminJob implements ShouldQueue
      * @param Order $order
      * @param OrderMailingInterface $mailer
      */
-    public function __construct(protected Order $order, protected OrderMailingInterface $mailer)
+    public function __construct(protected Order $order)
     {
 
     }
@@ -30,7 +31,7 @@ class OrderAdminJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            $this->mailer->send(new OrderAdminMail($this->order));
+            Mail::to(env('EMAIL_NEW_MAG_CHILD'))->send(new OrderAdminMail($this->order));
         } catch (\Exception $e) {
             info('OrderUserJob: error-2: ' . $e->getMessage());
         }

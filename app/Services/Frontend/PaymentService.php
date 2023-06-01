@@ -8,6 +8,7 @@ use App\Mailers\OrderMailer;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Events\OrderPayment;
 
 class PaymentService
 {
@@ -23,7 +24,7 @@ class PaymentService
         $amount = $order->total_price_with_discount;
         $payment_method = $order->payment_method;
 
-        return match ((int)$payment_method) {
+        return match ((int) $payment_method) {
             Order::PAYMENT_METHOD_IDRAM => $this->idramPayment($amount, $order->order_payment_id),
             Order::PAYMENT_METHOD_TELCELL => $this->telcellPayment($amount, $order->order_payment_id),
             Order::PAYMENT_METHOD_BANK => $this->arcaPayment($amount, $order->order_payment_id)
@@ -90,10 +91,13 @@ class PaymentService
                     $request['EDP_TRANS_DATE'];
                 $order->payment_callback = json_encode($request->all());
                 if (strtoupper($request['EDP_CHECKSUM']) != strtoupper(md5($txtToHash))) {
-                    self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
+//                    self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
+                    event(New OrderPayment(false,$order,Order::STATUS_FAILED));
+
                 } else {
-                    self::updateOrderBooksPivotStatus($order, Order::STATUS_COMPLETED);
-                    self::dispatchEmailJobs($order);
+//                    self::updateOrderBooksPivotStatus($order, Order::STATUS_COMPLETED);
+//                    self::dispatchEmailJobs($order);
+                    event(New OrderPayment(true,$order,Order::STATUS_COMPLETED));
                     echo "OK";
                 }
             }
@@ -149,17 +153,21 @@ class PaymentService
         $new_checksum = hash('md5', env('TELCELL_KEY') . $request->invoice . $request->issuer_id . $request->payment_id . $request->currency . $request->sum . $request->time . $request->status);
         if ($request->checksum != $new_checksum) {
             $order->payment_callback = 'telcell checksum failed';
-            self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
+//            self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
+            event(New OrderPayment(false,$order,Order::STATUS_FAILED));
 
             abort(404);
         }
 
         $order->payment_callback = json_encode($request->all());
         if ($request->status == 'PAID') {
-            self::updateOrderBooksPivotStatus($order, Order::STATUS_COMPLETED);
-            self::dispatchEmailJobs($order);
+//            self::updateOrderBooksPivotStatus($order, Order::STATUS_COMPLETED);
+//            self::dispatchEmailJobs($order);
+            event(New OrderPayment(true,$order,Order::STATUS_COMPLETED));
         } else {
-            self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
+//            self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
+            event(New OrderPayment(false,$order,Order::STATUS_FAILED));
+
         }
     }
 
@@ -217,37 +225,6 @@ class PaymentService
 
     public function arcaCallback(Request $request)
     {
-
         dd($request->all());
-
     }
-
-    /**
-     * @param $order
-     * @param $status
-     * @return void
-     */
-    public static function updateOrderBooksPivotStatus($order, $status): void
-    {
-        $order->status = $status;
-
-        $orderProducts = $order->books;
-        foreach ($orderProducts as $orderProduct) {
-            $order->books()->updateExistingPivot($orderProduct->id, [
-                'status' => $status
-            ]);
-        }
-        $order->save();
-    }
-
-    /**
-     * @param Order $order
-     * @return void
-     */
-    public static function dispatchEmailJobs(Order $order): void
-    {
-        OrderAdminJob::dispatch($order, new OrderMailer());
-        OrderUserJob::dispatch($order, new OrderMailer());
-    }
-
 }

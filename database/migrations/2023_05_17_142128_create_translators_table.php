@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('about_hy')->nullable();
             $table->text('about_en')->nullable();
             $table->text('image');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

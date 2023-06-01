@@ -4,20 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Books extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     const HOME_PAGE_BOOKS_COUNT = 4;
 
+    const BOOK_IMAGE_PATH = 'public/images/books';
+
     protected $fillable = [
-        'title ',
+        'title_hy',
+        'title_en',
+        'text_hy',
+        'text_en',
+        'description_hy',
+        'description_en',
+        'book_size_hy',
+        'book_size_en',
+        'video_url',
+        'slug',
+        'price',
         'word_count',
+        'page_count',
         'font_size',
+        'isbn',
+        'in_stock',
+        'main_image',
         'category_id',
-        'author_id',
-        'translator_id',
+        'published_date',
     ];
 
     /**
@@ -50,12 +66,12 @@ class Books extends Model
 
     public function authors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Authors::class, 'book_authors_pivot', 'book_id', 'author_id');
+        return $this->belongsToMany(Authors::class, 'book_authors_pivot', 'book_id', 'author_id')->withTimestamps();
     }
 
     public function translators(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Translators::class, 'book_translators_pivot', 'book_id', 'translator_id');
+        return $this->belongsToMany(Translators::class, 'book_translators_pivot', 'book_id', 'translator_id')->withTimestamps();
     }
 
     public function images(): \Illuminate\Database\Eloquent\Relations\HasMany

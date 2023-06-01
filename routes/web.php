@@ -66,30 +66,32 @@ Route::group(
     Route::post('/remove-from-card', [ShopController::class, 'removeFromCart'])->name('removeFromCart');
     Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('updateCart');
 
-});
+    /*************************** ADMIN ROUTES **************************/
+
+    Route::group(['prefix' => 'admin'], function () {
+
+        Route::get('login', [AuthController::class, 'loginView'])->name('loginView');
+        Route::post('login', [AuthController::class, 'login'])->name('login');
+
+        Route::group(['middleware' => ['auth:sanctum']], function () {
+
+            Route::get('/', function () {
+                return view('admin.dashboard.index');
+            })->name('admin.index');
+
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+            Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+            Route::resource('books', BooksController::class);
 
 
-/*************************** ADMIN ROUTES **************************/
-
-Route::group(['prefix' => 'admin'], function () {
-
-    Route::get('login', [AuthController::class, 'loginView'])->name('loginView');
-    Route::post('login', [AuthController::class, 'login'])->name('login');
-
-    Route::group(['middleware' => ['auth:sanctum']], function () {
-
-        Route::get('/', function () {
-            return view('admin.dashboard.index');
-        })->name('admin.index');
-
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
-        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-        Route::resource('books', BooksController::class);
-
-
+        });
     });
+
 });
+
+
+
 
 
 

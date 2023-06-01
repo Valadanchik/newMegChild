@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/payment/telcellCallback', [\App\Http\Controllers\frontend\PaymentController::class, 'telcellCallback'])->name('payment.telcell_callback');
+Route::post('/telcellCallback', [\App\Http\Controllers\frontend\PaymentController::class, 'telcellCallback'])->name('payment.telcell_callback');
 Route::post('/payment/idramCallback', [\App\Http\Controllers\frontend\PaymentController::class, 'idramCallback'])->name('payment.idram_callback');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

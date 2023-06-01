@@ -285,14 +285,14 @@
                                             <img src="{{ URL::to('images/svg/idram.svg') }}" alt="idram logo">
                                         </label>
                                     </div>
-                                    {{--<div class="packaging-premium">
+                                    <div class="packaging-premium">
                                         <input type="radio" id="telcell" name="payment_method" class="my-radio"
-                                               value="{{\App\Models\Order::PAYMENT_METHOD_IDRAM}}"
-                                               @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_IDRAM) checked @endif>
+                                               value="{{\App\Models\Order::PAYMENT_METHOD_TELCELL}}"
+                                               @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_TELCELL) checked @endif>
                                         <label for="telcell">
                                             <img src="{{ URL::to('images/svg/telcell.svg') }}" alt="telcell logo">
                                         </label>
-                                    </div>--}}
+                                    </div>
                                 </div>
                             </div>
                             <div class="all-result">

@@ -6,6 +6,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\frontend\PaymentController;
 
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\AuthController;
+use App\Http\Controllers\admin\BooksController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,20 +35,20 @@ Route::group(
 
     /* Books Routers */
     Route::get('books', 'App\Http\Controllers\frontend\BooksController@books')->name('books');
-    Route::get('book/{slug}', 'App\Http\Controllers\frontend\BooksController@view')->name('view');
+    Route::get('book/{slug}', 'App\Http\Controllers\frontend\BooksController@view')->name('book.view');
 
     /* Posts Routers */
     Route::get('articles', 'App\Http\Controllers\frontend\PostsController@articles')->name('articles');
-    Route::get('article/{slug}', 'App\Http\Controllers\frontend\PostsController@view')->name('view');
+    Route::get('article/{slug}', 'App\Http\Controllers\frontend\PostsController@view')->name('article.view');
     Route::get('medias/{slug}', 'App\Http\Controllers\frontend\PostsController@medias')->name('medias');
 
     /* Posts Routers */
     Route::get('authors', 'App\Http\Controllers\frontend\AuthorsController@authors')->name('authors');
-    Route::get('author/{slug}', 'App\Http\Controllers\frontend\AuthorsController@view')->name('view');
+    Route::get('author/{slug}', 'App\Http\Controllers\frontend\AuthorsController@view')->name('author.view');
 
     /* Translators Routers */
     Route::get('translators', 'App\Http\Controllers\frontend\TranslatorsController@translators')->name('translators');
-    Route::get('translator/{slug}', 'App\Http\Controllers\frontend\TranslatorsController@view')->name('view');
+    Route::get('translator/{slug}', 'App\Http\Controllers\frontend\TranslatorsController@view')->name('translator.view');
 
     /* About Us Router*/
     Route::get('about', function () {
@@ -53,9 +57,6 @@ Route::group(
 
     /* Order Router */
 
-//    Route::get('order', 'App\Http\Controllers\frontend\OrderController@index')->name('order');
-//    Route::post('/order', 'App\Http\Controllers\frontend\OrderController@create')->name('order.create');
-
     Route::get('/order', [OrderController::class, 'index'])->name('order');
     Route::post('/order', [OrderController::class, 'create'])->name('order.create');
     Route::get('/order/success', [OrderController::class, 'success'])->name('order.success');
@@ -63,8 +64,41 @@ Route::group(
 
     Route::post('/add-to-cart', [ShopController::class, 'addToCart'])->name('addToCart');
     Route::post('/remove-from-card', [ShopController::class, 'removeFromCart'])->name('removeFromCart');
-
     Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('updateCart');
-//    Route::post('/cart/totalCount', [ShopController::class, 'getCartTotalCount'])->name('getCartTotalCount');
 
 });
+
+
+/*************************** ADMIN ROUTES **************************/
+
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::get('login', [AuthController::class, 'loginView'])->name('loginView');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+
+    Route::group(['middleware' => ['auth:sanctum']], function () {
+
+        Route::get('/', function () {
+            return view('admin.dashboard.index');
+        })->name('admin.index');
+
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+        Route::resource('books', BooksController::class);
+
+
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+

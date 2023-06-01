@@ -12,11 +12,11 @@ class OrderObserver
      */
     public function created(): void
     {
-        try {
-            Books::changeInStockAfterOrder();
-        } catch (\Exception  $e) {
-            echo $e->getMessage();
-        }
+//        try {
+//            Books::changeInStockAfterOrder();
+//        } catch (\Exception  $e) {
+//            echo $e->getMessage();
+//        }
     }
 
     /**

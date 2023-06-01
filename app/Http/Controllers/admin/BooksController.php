@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\frontend;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Books;
@@ -13,7 +13,8 @@ class BooksController extends Controller
      */
     public function index()
     {
-        //
+        $books = Books::all();
+        return view('admin.books.index', compact('books'));
     }
 
     /**

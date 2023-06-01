@@ -4,6 +4,7 @@ namespace App\Services\Frontend;
 
 use App\Jobs\OrderAdminJob;
 use App\Jobs\OrderUserJob;
+use App\Mailers\OrderMailer;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -20,29 +21,26 @@ class PaymentService
     public function makePayment(Order $order)
     {
         $amount = $order->total_price_with_discount;
-        $order_id = $order->id;
         $payment_method = $order->payment_method;
 
+        return match ((int)$payment_method) {
+            Order::PAYMENT_METHOD_IDRAM => $this->idramPayment($amount, $order->order_payment_id),
+            Order::PAYMENT_METHOD_TELCELL => $this->telcellPayment($amount, $order->order_payment_id),
+            Order::PAYMENT_METHOD_BANK => $this->arcaPayment($amount, $order->order_payment_id)
+        };
 
-//       return  match ($payment_method) {
-//            Order::PAYMENT_METHOD_IDRAM =>  $this->idramPayment($amount, $order_id),
-//            Order::PAYMENT_METHOD_TELCELL => $this->telcellPayment($amount, $order_id),
-//            Order::PAYMENT_METHOD_BANK => $this->ameriaPayment($amount, $order_id),
-//            default => null,
-//        };
-
-        if ($payment_method == Order::PAYMENT_METHOD_IDRAM) {
-
-            return $this->idramPayment($amount, $order_id);
-
-        } elseif ($payment_method == Order::PAYMENT_METHOD_TELCELL) {
-
-            return $this->telcellPayment($amount, $order_id);
-
-        } elseif ($payment_method == Order::PAYMENT_METHOD_BANK) {
-
-            return $this->arcaPayment($amount, $order->order_payment_id);
-        }
+//        if ($payment_method == Order::PAYMENT_METHOD_IDRAM) {
+//
+//            return $this->idramPayment($amount, $order->order_payment_id);
+//
+//        } elseif ($payment_method == Order::PAYMENT_METHOD_TELCELL) {
+//
+//            return $this->telcellPayment($amount, $order->order_payment_id);
+//
+//        } elseif ($payment_method == Order::PAYMENT_METHOD_BANK) {
+//
+//            return $this->arcaPayment($amount, $order->order_payment_id);
+//        }
     }
 
 
@@ -61,6 +59,7 @@ class PaymentService
 
     public function idramCallback(Request $request)
     {
+
         define("SECRET_KEY", env('IDRAM_SECRET_KEY'));
         define("EDP_REC_ACCOUNT", env('IDRAM_EDP_REC_ACCOUNT'));
 
@@ -69,7 +68,7 @@ class PaymentService
             if ($request['EDP_PRECHECK'] == "YES") {
                 if ($request['EDP_REC_ACCOUNT'] == EDP_REC_ACCOUNT) {
                     $bill_no = $request['EDP_BILL_NO'];
-                    if (Order::where('id', $bill_no)->exists()) {
+                    if (Order::where('order_payment_id', $bill_no)->exists()) {
                         echo "OK";
                     }
                 }
@@ -247,8 +246,8 @@ class PaymentService
      */
     public static function dispatchEmailJobs(Order $order): void
     {
-        OrderAdminJob::dispatch($order);
-        OrderUserJob::dispatch($order);
+        OrderAdminJob::dispatch($order, new OrderMailer());
+        OrderUserJob::dispatch($order, new OrderMailer());
     }
 
 }

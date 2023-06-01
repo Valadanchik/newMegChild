@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Factories\PostFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +23,7 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             RegionsTableSeeder::class,
             CountriesTableSeeder::class,
+            UserSeeder::class,
         ]);
 
 //        PostFactory::class;

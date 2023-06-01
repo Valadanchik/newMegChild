@@ -80,7 +80,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('/', function () {
             return view('admin.dashboard.index');
-        })->name('admin.index');
+        });
 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

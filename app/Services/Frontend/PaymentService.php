@@ -140,7 +140,6 @@ class PaymentService
 
             abort(404);
         }
-//        $order = Order::find($request->issuer_id);
         $order = Order::where('order_payment_id', $request->issuer_id)->first();
 
         if (!$order)

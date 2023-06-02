@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
 use App\Models\Authors;
-use Illuminate\Http\Request;
 use App\Traits\GeneralTrait;
 
 class AuthorsController extends Controller
@@ -65,7 +64,6 @@ class AuthorsController extends Controller
         $author = $authors::findOrFail($id);
         return view('admin.author.edit', compact('author'));
     }
-
 
     /**
      * Update the specified resource in storage.

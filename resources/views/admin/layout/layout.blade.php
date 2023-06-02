@@ -12,6 +12,18 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('/admin/img/favicon.png') }}" />
     <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+    <script type="text/javascript">
+
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     var elements = document.querySelectorAll('.ckeditor');
+        //     elements.forEach(function(element) {
+        //         ClassicEditor.create(element);
+        //     });
+        // });
+
+    </script>
 </head>
 <body class="nav-fixed">
 

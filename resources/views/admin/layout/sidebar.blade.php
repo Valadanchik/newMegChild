@@ -31,7 +31,7 @@
 
                 <div class="sidenav-menu-heading">Posts</div>
                 <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('posts.index') }}">
                     <div class="nav-link-icon"><i data-feather="edit"></i></div>
                     Posts
                 </a>

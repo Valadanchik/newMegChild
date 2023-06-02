@@ -19,7 +19,7 @@ class BooksController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $books = Books::all();
         return view('admin.book.index', compact('books'));
@@ -28,7 +28,7 @@ class BooksController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $authors = Authors::all();
         $translators = Translators::all();
@@ -40,7 +40,7 @@ class BooksController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBookRequest $request, Books $books)
+    public function store(StoreBookRequest $request, Books $books): \Illuminate\Http\RedirectResponse
     {
         DB::beginTransaction();
 
@@ -73,7 +73,7 @@ class BooksController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Books $books, $id)
+    public function edit(Books $books, $id): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $authors = Authors::all();
         $translators = Translators::all();
@@ -89,7 +89,7 @@ class BooksController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBookRequest $request, Books $books)
+    public function update(UpdateBookRequest $request, Books $books): \Illuminate\Http\RedirectResponse
     {
         DB::beginTransaction();
         try {
@@ -115,9 +115,9 @@ class BooksController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Books $books, $id)
+    public function destroy(Books $books, $id): \Illuminate\Http\RedirectResponse
     {
-        $model = $books::find($id);
+        $model = $books::findOrFail($id);
 
         if (!$model) {
             return redirect()->back()->with('error', 'Model not found.');

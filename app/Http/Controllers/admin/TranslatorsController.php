@@ -61,7 +61,7 @@ class TranslatorsController extends Controller
      */
     public function edit(Translators $translators, $id): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $translator = $translators::find($id);
+        $translator = $translators::findOrFail($id);
         return view('admin.translator.edit', compact('translator'));
     }
 
@@ -72,7 +72,7 @@ class TranslatorsController extends Controller
     public function update(UpdateTranslatorRequest $request, Translators $translators): \Illuminate\Http\RedirectResponse
     {
         try {
-            $translator = $translators::find($request->id);
+            $translator = $translators::findOrFail($request->id);
             if ($request->file('file')) {
                 $imageName = self::imageUpload($request->file('file'), Translators::TRANSLATOR_IMAGE_PATH);
                 $request->merge(['image' => $imageName]);
@@ -91,7 +91,7 @@ class TranslatorsController extends Controller
     public function destroy(Translators $translators, $id): \Illuminate\Http\RedirectResponse
     {
         try {
-            $translator = $translators::find($id);
+            $translator = $translators::findOrFail($id);
             $translator->delete();
             return redirect()->route('translators.index')->with('success', 'Translator deleted successfully');
         } catch (\Exception $e) {

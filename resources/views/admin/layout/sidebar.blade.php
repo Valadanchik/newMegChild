@@ -24,7 +24,7 @@
                     <div class="nav-link-icon"><i data-feather="user"></i></div>
                     Translators
                 </a>
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('categories.index') }}">
                     <div class="nav-link-icon"><i data-feather="list"></i></div>
                     Categories
                 </a>

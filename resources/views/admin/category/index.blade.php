@@ -9,11 +9,9 @@
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="users"></i></div>
-                                Translators
+                                Categories
                             </h1>
-                            <div class="page-header-subtitle mt-4">
-                                <a href="{{ url('admin/translators/create ') }}" class="btn btn-outline-light" type="button">+ Add new translator</a>
-                            </div>
+                            <div class="page-header-subtitle mt-4"><a href="{{ url('admin/categories/create ') }}" class="btn btn-outline-light" type="button">+ Add new category</a></div>
                         </div>
                     </div>
                 </div>
@@ -26,45 +24,46 @@
                     {{ session('success') }}
                 </div>
             @endif
+
             @if(session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
             @endif
             <div class="card mb-4">
-                <div class="card-header">Translators list</div>
+                <div class="card-header">categories list</div>
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Name hy</th>
+                            <th>Name en</th>
+                            <th>Age</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>Name</th>
+                            <th>Name hy</th>
+                            <th>Name en</th>
+                            <th>Age</th>
                             <th>Actions</th>
                         </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($translators as $index => $translator)
+                            @foreach($categories as $index => $category)
                                 <tr>
-                                    <td>{{ $translator['name_' . app()->getLocale()]  }}</td>
+                                    <td>{{ $category['name_hy']  }}</td>
+                                    <td>{{ $category['name_en']  }}</td>
+                                    <td>{{ $category['age']  }}</td>
                                     <td>
-                                        <a href="{{ url('admin/translators/' . $translator['id'] . '/edit' ) }}"
-                                           class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                        <a href="{{ url('admin/categories/' . $category['id'] . '/edit' ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">
                                             <i class="fa-regular fa-edit"></i>
                                         </a>
-                                        <form style="display: inline-block"
-                                              action="{{ route('translators.destroy', $translator['id']) }}" method="POST">
+                                        <form style="display: inline-block" action="{{ route('categories.destroy', $category['id']) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                                                    type="submit"
-                                                    onclick="return confirm('Are you sure you want to delete this model?')">
-                                                <i class="fa-regular fa-trash-can"></i>
-                                            </button>
+                                            <button  class="btn btn-datatable btn-icon btn-transparent-dark me-2" type="submit" onclick="return confirm('Are you sure you want to delete this model?')"> <i class="fa-regular fa-trash-can"></i></button>
                                         </form>
                                     </td>
                                 </tr>

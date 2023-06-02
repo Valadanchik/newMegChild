@@ -62,7 +62,7 @@ class AuthorsController extends Controller
      */
     public function edit(Authors $authors, $id): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $author = $authors::find($id);
+        $author = $authors::findOrFail($id);
         return view('admin.author.edit', compact('author'));
     }
 
@@ -73,7 +73,7 @@ class AuthorsController extends Controller
     public function update(UpdateAuthorRequest $request, Authors $authors): \Illuminate\Http\RedirectResponse
     {
         try {
-            $author = $authors::find($request->id);
+            $author = $authors::findOrFail($request->id);
             if ($request->file('file')) {
                 $imageName = self::imageUpload($request->file('file'), Authors::AUTHOR_IMAGE_PATH);
                 $request->merge(['image' => $imageName]);
@@ -92,7 +92,7 @@ class AuthorsController extends Controller
     public function destroy(Authors $authors, $id): \Illuminate\Http\RedirectResponse
     {
         try {
-            $author = $authors::find($id);
+            $author = $authors::findOrFail($id);
             $author->delete();
             return redirect()->route('authors.index')->with('success', 'Author deleted successfully');
         } catch (\Exception $e) {

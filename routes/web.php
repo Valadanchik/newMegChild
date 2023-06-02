@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BooksController;
 use App\Http\Controllers\admin\AuthorsController;
 use App\Http\Controllers\admin\TranslatorsController;
+use App\Http\Controllers\admin\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,7 @@ Route::group(
             Route::resource('books', BooksController::class);
             Route::resource('authors', AuthorsController::class);
             Route::resource('translators', TranslatorsController::class);
+            Route::resource('categories', CategoriesController::class);
 
         });
     });

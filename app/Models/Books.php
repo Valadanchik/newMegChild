@@ -12,7 +12,7 @@ class Books extends Model
 
     const HOME_PAGE_BOOKS_COUNT = 4;
 
-    const BOOK_IMAGE_PATH = 'public/images/books';
+    const BOOK_IMAGE_PATH = 'images/books';
 
     protected $fillable = [
         'title_hy',

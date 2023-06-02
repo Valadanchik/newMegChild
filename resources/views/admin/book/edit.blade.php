@@ -229,7 +229,7 @@
                             <div class="card-header">Main Image</div>
 
                             <div class="card-body">
-                                <img width="100px" src="{{ URL::to('storage/images/books/' . $book->main_image) }}" alt="">
+                                <img width="100px" src="{{ URL::to('storage/' . $book->main_image) }}" alt="">
                             </div>
 
                             <div class="card-body">

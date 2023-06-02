@@ -9,6 +9,8 @@ use App\Http\Controllers\frontend\PaymentController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BooksController;
+use App\Http\Controllers\admin\AuthorsController;
+use App\Http\Controllers\admin\TranslatorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,22 +71,23 @@ Route::group(
 
 /*************************** ADMIN ROUTES **************************/
 
-Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'admin'], function () {
 
-    Route::get('login', [AuthController::class, 'loginView'])->name('loginView');
-    Route::post('login', [AuthController::class, 'login'])->name('login');
+        Route::get('login', [AuthController::class, 'loginView'])->name('loginView');
+        Route::post('login', [AuthController::class, 'login'])->name('login');
 
-    Route::group(['middleware' => ['auth:sanctum']], function () {
+        Route::group(['middleware' => ['auth:sanctum']], function () {
 
-        Route::get('/', function () {
-            return view('admin.dashboard.index');
-        });
+            Route::get('/', function () {
+                return view('admin.dashboard.index');
+            });
 
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
-        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+            Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-        Route::resource('books', BooksController::class);
-
+            Route::resource('books', BooksController::class);
+            Route::resource('authors', AuthorsController::class);
+            Route::resource('translators', TranslatorsController::class);
 
         });
     });

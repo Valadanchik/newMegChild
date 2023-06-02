@@ -16,11 +16,11 @@
                     <div class="nav-link-icon"><i data-feather="book"></i></div>
                     Books
                 </a>
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('authors.index') }}">
                     <div class="nav-link-icon"><i data-feather="users"></i></div>
                     Authors
                 </a>
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('translators.index') }}">
                     <div class="nav-link-icon"><i data-feather="user"></i></div>
                     Translators
                 </a>

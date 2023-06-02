@@ -37,25 +37,16 @@
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Author</th>
-                            <th>Price</th>
-                            <th>In Stock</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
+                            <tr>
+                                <th>Name</th>
+                                <th>Author</th>
+                                <th>Price</th>
+                                <th>In Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
                         </thead>
-                        <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Author</th>
-                            <th>Price</th>
-                            <th>In Stock</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                        </tfoot>
+
 
                         <tbody>
                             @foreach($books as $index => $book)

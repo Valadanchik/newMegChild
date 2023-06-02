@@ -21,8 +21,6 @@ class StoreBookRequest extends FormRequest
      */
     public function rules(): array
     {
-//        dd($this->request->all());
-
         return [
             'title_hy' => 'required|string|unique:books,title_hy|max:255',
             'title_en' => 'required|string|unique:books,title_en|max:255',

@@ -21,8 +21,6 @@ class UpdateBookRequest extends FormRequest
      */
     public function rules(): array
     {
-//        dd($this->request->all());
-//        dd($this->id);
         return [
             'title_hy' => 'required|string|max:255|unique:books,title_hy,' . $this->id,
             'title_en' => 'required|string|max:255|unique:books,title_en,' . $this->id,

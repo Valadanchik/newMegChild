@@ -33,6 +33,7 @@ return new class extends Migration
             $table->integer('in_stock');
             $table->string('published_date');
             $table->boolean('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

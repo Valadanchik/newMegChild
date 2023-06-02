@@ -16,7 +16,7 @@ trait GeneralTrait
     {
         try {
             $imageName = time() . '.' . $file->extension();
-            $file->storeAs($path, $imageName);
+            $file->storeAs('public/' . $path, $imageName);
             return $path . '/' . $imageName;
         } catch (\Exception $e) {
             return $e->getMessage();

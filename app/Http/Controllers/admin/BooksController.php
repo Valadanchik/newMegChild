@@ -10,7 +10,6 @@ use App\Models\Books;
 use App\Models\Categories;
 use App\Models\Translators;
 use App\Traits\GeneralTrait;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BooksController extends Controller

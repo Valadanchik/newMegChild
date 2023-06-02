@@ -1,3 +1,4 @@
+
 <footer>
     <div class="footer content">
         <div >
@@ -10,7 +11,7 @@
                 <a href="">Հոդվածներ</a>
             </div>
         </div>
-        <div>
+        <div class="footer-icon-input">
             <div class="footer-icons">
                 @include('components.social')
             </div>
@@ -27,7 +28,7 @@
                 </div>
             </form>
         </div>
-        <div>
+        <div class="footer-price">
             <div class="footer-money">
                 <div class="footer-money-visa"><img src="{{ URL::to('/images/visa.png') }}" alt="visa"></div>
                 <div class="footer-money-master"><img src="{{ URL::to('/images/master.png') }}" alt="master"></div>
@@ -45,3 +46,4 @@
         <p>Newmag © 2011-2023</p>
     </div>
 </footer>
+<div class="modal "></div>

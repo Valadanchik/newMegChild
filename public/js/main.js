@@ -42,7 +42,6 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
             // var count = data.cartProductsCount;
             window.location.href = checkoutRouterUrl;
         }
-
     };
 
     xhr.onerror = function () {
@@ -90,7 +89,6 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
 // }));
 
 
-
 // ___________________class row-reverse____________________
 
 let book_boxes = document.querySelectorAll('.book-box')
@@ -103,7 +101,6 @@ book_boxes.forEach((item, index)=>{
 // _______________/menu-acti_______________________
 
 let menu_link = document.querySelectorAll('.menu-link');
-
 
 menu_link.forEach((item)=>{
     item.addEventListener('click', activMenuItem);
@@ -125,7 +122,6 @@ function updateCartProductCount (quantity, productId){
     let totalPriceToPayElement = document.querySelector('.total-price-to-pay');
     // let totalPrice = parseInt(totalPriceElement.innerHTML);
 
-
     var xhr = new XMLHttpRequest();
         xhr.open('POST', document.getElementById('change-cart-product-count').value);
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -143,7 +139,6 @@ function updateCartProductCount (quantity, productId){
                 totalPriceElement.innerHTML = data.total_price;
                 totalPriceToPayElement.innerHTML = data.total_price;
             }
-
         };
 
         xhr.onerror = function () {
@@ -158,33 +153,34 @@ function updateCartProductCount (quantity, productId){
 }
 
 
-
 /////////////////count///////////////
 let min = document.querySelectorAll('.shopping-cart-products-count-item-min');
 let plus = document.querySelectorAll('.shopping-cart-products-count-item-plus');
 let deleteBtn = document.querySelectorAll('.shopping-cart-products-count-close-icon');
 
-
-
 min?.forEach((item) =>{
     item.addEventListener('click', (event)=>{
-        // let payPriceElement = document.querySelector('.all-result-payable-to span span');
-        // let totalPriceElement = document.querySelector('.all-result-total span span');
-        // let totalPrice = parseInt(totalPriceElement.innerHTML);
+        let payPriceElement = document.querySelector('.all-result-payable-to span span');
+        let totalPriceElement = document.querySelector('.all-result-total span span');
+        let totalPrice = parseInt(totalPriceElement.innerHTML);
         let dataItem = parseInt(event.currentTarget.dataset.item);
         let itemPrice = parseInt(event.currentTarget.dataset.price);
-        let productId = parseInt(event.currentTarget.dataset.product);
         let countElement = document.getElementById('count-shop-' + dataItem);
         let minBtn = document.querySelector(`.min-count-${dataItem} img`);
+        let productId = parseInt(event.currentTarget.dataset.product);
 
-        countElement.value = parseInt(countElement.value) - 1;
-        updateCartProductCount(countElement.value, productId);
-
+        console.log(minBtn);
         if(parseInt(countElement.value) > 2) {
-            // totalPriceElement.innerHTML = totalPrice - itemPrice;
+            countElement.value = parseInt(countElement.value) - 1;
+            updateCartProductCount(countElement.value, productId)
+
+            totalPriceElement.innerHTML = totalPrice - itemPrice;
             payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
         } else {
-            // totalPriceElement.innerHTML = totalPrice - itemPrice;
+            countElement.value = parseInt(countElement.value) - 1;
+            updateCartProductCount(countElement.value, productId)
+
+            totalPriceElement.innerHTML = totalPrice - itemPrice;
             payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
             event.currentTarget.classList.add('min-none');
             minBtn.src = "/images/svg/shopping-cart-min-img.svg";
@@ -195,21 +191,25 @@ min?.forEach((item) =>{
 
 plus?.forEach((item) =>{
     item.addEventListener('click', (event)=>{
-        // let totalPrice = parseInt(totalPriceElement.innerHTML);
+
+        let payPriceElement = document.querySelector('.all-result-payable-to span span');
+        let totalPriceElement = document.querySelector('.all-result-total span span');
+        let totalPrice = parseInt(totalPriceElement.innerHTML);
         let dataItem = parseInt(event.currentTarget.dataset.item);
         let itemPrice = parseInt(event.currentTarget.dataset.price);
-        let productId = parseInt(event.currentTarget.dataset.product);
         let maxCount = parseInt(event.currentTarget.dataset.max);
         let countElement = document.getElementById('count-shop-' + dataItem);
+        let productId = parseInt(event.currentTarget.dataset.product);
+
+
         let minBtn = document.querySelector(`.min-count-${dataItem}`);
 
-        countElement.value = parseInt(countElement.value) + 1;
-        updateCartProductCount(countElement.value, productId);
-
-        if(parseInt(countElement.value) < maxCount) {
-            // totalPriceElement.innerHTML = totalPrice +  itemPrice;
-            // payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) +  itemPrice;
-            minBtn.querySelector('img').src = "/images/svg/shopping-cart-plus-img.svg";
+            if(parseInt(countElement.value) < maxCount) {
+            countElement.value = parseInt(countElement.value) + 1;
+            updateCartProductCount(countElement.value, productId)
+            totalPriceElement.innerHTML = totalPrice +  itemPrice;
+            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) +  itemPrice;
+            minBtn.querySelector('img').src = "/images/svg/minus-circle.svg";
             minBtn.classList.remove('min-none');
         }
 
@@ -221,10 +221,8 @@ deleteBtn?.forEach((item) =>{
 
         let dataItem = parseInt(event.currentTarget.dataset.item);
         let itemPrice = parseInt(event.currentTarget.dataset.price);
-
         let rowItemElement = document.getElementById('shopping-cart-products-item-' + dataItem);
         let rowItemCountElement = document.getElementById('count-shop-' + dataItem);
-
         var xhr = new XMLHttpRequest();
         xhr.open('POST', document.getElementById('remove-from-cart-url').value);
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -238,24 +236,14 @@ deleteBtn?.forEach((item) =>{
                 console.log(xhr.responseText);
                 var data = JSON.parse(xhr.responseText);
                 // window.location.reload();
-
-
                 let payPriceElement = document.querySelector('.all-result-payable-to span span');
                 let totalPriceElement = document.querySelector('.all-result-total span span');
                 let totalPrice = parseInt(totalPriceElement.innerHTML);
                 let payPrice = parseInt(totalPriceElement.innerHTML);
-
-
                 totalPriceElement.innerHTML = totalPrice - parseInt(rowItemCountElement.value) * itemPrice;
                 payPriceElement.innerHTML = payPrice - parseInt(rowItemCountElement.value) * itemPrice;
-
-
-
                 rowItemElement.remove();
-
-            }
-
-        };
+            } };
 
         xhr.onerror = function () {
             // Handle error
@@ -264,46 +252,59 @@ deleteBtn?.forEach((item) =>{
         xhr.onloadend = function () {
             document.querySelector('.loader-container').style.display = 'none';
         };
-
         xhr.send(data);
-
-
-        console.log(bookId);
-
-
-
-
-
-
-    })
+     })
 });
 
 
+// ____________hamburger menu____________
+
+
+let nav = document.querySelector('.header-menu ')
+let nav_icon1 = document.querySelector('#nav-icon1');
+let modal = document.querySelector('.modal')
+let body = document.querySelector('.body')
+
+nav_icon1.addEventListener("click", menuOpen)
+
+function menuOpen(){
+
+    nav.classList.toggle('menu-show')
+    nav_icon1.classList.toggle('open')
+    modal.classList.toggle('modal-open')
+    body.classList.toggle('body-open')
+}
+
+modal?.addEventListener('click' , modalClose)
+
+function modalClose() {
+    modal.classList.remove('modal-open')
+    nav_icon1.classList.remove('open')
+    nav.classList.remove('menu-show')
+    body.classList.remove('body-open')
+
+}
 
 //////////////////////////shoping cart validacia//////////////////////////////
-/*
 
 let form_shopping_cart = document.querySelector('.form-shopping-cart')
-
 const firstName = document.getElementById('shopping-cart-firs-name');
 const lastName = document.getElementById('last-name');
 const home = document.getElementById('home');
-const apartment = document.getElementById('apartment');
+//const apartment = document.getElementById('apartment');
 const city = document.getElementById('city');
 const postCode = document.getElementById('post-code');
 const tell = document.getElementById('home-tell')
 const emailShop = document.getElementById('email-shop');
-const reviewSoppingCart = document.getElementById('review-sopping-cart');
-
-
+//const reviewSoppingCart = document.getElementById('review-sopping-cart');
 const accept2 = document.getElementById('accept-sopping-cart');
 let acceptContent2
+
 if(accept2){
     acceptContent2 = getComputedStyle(accept2, "::before");
 }
 
 const country = document.getElementById('country');
-
 
 form_shopping_cart?.addEventListener('submit', e => {
     e.preventDefault();
@@ -315,89 +316,79 @@ function checkInputsShoppingCart() {
     const firstNameValue = firstName.value.trim();
     const lastNameValue = lastName.value.trim();
     const homeValue = home.value.trim();
-    const apartmentValue = apartment.value.trim();
+    // const apartmentValue = apartment.value.trim();
     const cityValue = city.value.trim();
     const postCodeValue = postCode.value.trim();
     const tellValue = tell.value.trim();
     const emailShopValue = emailShop.value.trim();
-    const reviewSoppingCartValue = reviewSoppingCart?.value?.trim();
-
-
-
-
+    //const reviewSoppingCartValue = reviewSoppingCart?.value?.trim();
 
     if(firstNameValue ===''){
-        setErrorForShopping(firstName, 'Name cannot be blank');
+        setErrorForShopping(firstName, 'Գրեք Ձեր անունը');
     } else {
         setSuccessForShopping(firstName);
     }
 
     if(lastNameValue ===''){
-        setErrorForShopping(lastName, 'Name cannot be blank');
+        setErrorForShopping(lastName, 'Գրեք Ձեր ազգանունը');
     } else {
         setSuccessForShopping(lastName);
     }
 
     if(homeValue ===''){
-        setErrorForShopping(home, 'Name cannot be blank');
+        setErrorForShopping(home, 'Գրեք Ձեր փողոցը');
     } else {
         setSuccessForShopping(home);
     }
 
-    if(apartmentValue ===''){
-        setErrorForShopping(apartment, 'Name cannot be blank');
-    } else {
-        setSuccessForShopping(apartment);
-    }
+    // if(apartmentValue ===''){
+    //     setErrorForShopping(apartment, 'Name cannot be blank');
+    // } else {
+    //     setSuccessForShopping(apartment);
+    // }
 
     if(cityValue ===''){
-        setErrorForShopping(city, 'Name cannot be blank');
+        setErrorForShopping(city, 'Գրեք Ձեր քաղաքը');
     } else {
         setSuccessForShopping(city);
     }
 
     if(postCodeValue ===''){
-        setErrorForShopping(postCode, 'Name cannot be blank');
+        setErrorForShopping(postCode, 'Գրեք Ձեր փոստային կոդը');
     } else {
         setSuccessForShopping(postCode);
     }
 
     if(tellValue ===''){
-        setErrorForShopping(tell, 'Name cannot be blank');
+        setErrorForShopping(tell, 'Գրեք Ձեր հեռախոսահամարը');
     } else {
         setSuccessForShopping(tell);
     }
 
-
     if(emailShopValue === '') {
-        setErrorForShopping(emailShop, 'Email cannot be blank');
+        setErrorForShopping(emailShop, 'Գրեք Ձեր էլ.հասցեն');
     } else if (!isEmailShop(emailShopValue)) {
-        setErrorForShopping(emailShop, 'Not a valid email');
+        setErrorForShopping(emailShop, 'էլ․հասցեն ճիծտ չէ');
     } else {
         setSuccessForShopping(emailShop);
     }
 
-    if(reviewSoppingCartValue === '' || reviewSoppingCartValue.length < 10 ){
-        setErrorForShopping(reviewSoppingCart, 'Name cannot be blank');
-    }   else {
-        setSuccessForShopping(reviewSoppingCart);
-    }
+    // if(reviewSoppingCartValue === '' || reviewSoppingCartValue.length < 10 ){
+    //     setErrorForShopping(reviewSoppingCart, 'Դաշտը լրացված չէ');
+    // }   else {
+    //     setSuccessForShopping(reviewSoppingCart);
+    // }
 
-    if(acceptContent2.content == "none"){
-        setErrorForShopping(accept2, 'Cannot be checked');
+    if(acceptContent2.content === "none"){
+        setErrorForShopping(accept2, 'Կարդացեք և համաձայնվեք օգտագործման պայմանների հետ');
     }else {
-        console.log('sssss')
         setSuccessForShopping(accept2);
     }
-    if(country.value == 'Ընտրեք երկիրը *'){
-        setErrorForShopping(country, 'Name cannot be blank');
+    if(!country.value){
+        setErrorForShopping(country, 'Նշեք երկիրը');
     } else {
         setSuccessForShopping(country);
     }
-
-
-
-
 }
 
 function setErrorForShopping(input, message) {
@@ -418,12 +409,11 @@ function isEmailShop(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
-*/
 
 
-
-/*________________validacia_____________*/
-
+//
+// /*________________validacia_____________*/
+//
 // const form = document.querySelector('.forms');
 //
 // const name = document.getElementById('firs-name');
@@ -495,6 +485,25 @@ function isEmailShop(email) {
 // function isEmail(email) {
 //     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 // }
+//
 
+let searchBtn = document.querySelector('.search');
+let searchSection = document.querySelector(".search-section");
+let closePopup = document.querySelector('.close-popup-img')
+let closeModal = document.querySelector('.modal')
 
+searchBtn?.addEventListener('click', ()=>{
+    searchSection.classList.toggle("open")
+    body.classList.toggle('body-open')
+    modal.classList.toggle('modal-open')
+})
 
+closePopup?.addEventListener('click', ()=>{
+    searchSection.classList.remove("open")
+    modal.classList.remove('modal-open')
+    body.classList.remove('body-open')
+
+})
+closeModal?.addEventListener('click', ()=>{
+    searchSection.classList.remove("open")
+})

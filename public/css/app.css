@@ -1764,6 +1764,7 @@ h2.book-page-leave-review-title {
     border-radius: 4px;
     padding-left: 6px;
     padding-top: 6px;
+    background-color: #FFF;
 }
 
 .book-item-img-book {
@@ -1795,7 +1796,7 @@ h2.book-page-leave-review-title {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
-    margin-bottom: 120px;
+    padding-bottom: 120px;
 }
 .book-price p {
     font-family: 'Montserrat arm';
@@ -2503,18 +2504,15 @@ input[type=number] {
     padding: 0 0px 10px;
     border-bottom: 1px solid #000000;
     background-color: #ffffff;
-    width: 900px;
+    max-width: 900px;
+    width: 100%;
     margin: auto;
     display: flex;
     gap: 33px;
     transition: .2s;
 }
 
-
-
-
-
-input {
+.search-box input {
     font-family: Proxima Nova;
     letter-spacing: -0.2px;
     font-size: 20px;
@@ -2743,4 +2741,24 @@ section.contacts-page h2 {
 }
 .new-book-or-translation-desc ol li{
     margin-bottom: 24px;
+}
+
+/*///////////////////////add boooks page style////////////////////////*/
+.book-item-img-book {
+    width: 100%;
+    max-width: 256px;
+    height: 360px;
+}
+
+.book-item-img-book img {
+    width: 100%;
+    height: 100%;
+}
+.book-item-img-logo {
+    width: 100%;
+    max-width: 30px;
+}
+
+.book-item-img-logo img {
+    width: 100%;
 }

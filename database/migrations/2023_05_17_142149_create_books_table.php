@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('published_date');
             $table->boolean('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });

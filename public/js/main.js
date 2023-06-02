@@ -507,3 +507,22 @@ closePopup?.addEventListener('click', ()=>{
 closeModal?.addEventListener('click', ()=>{
     searchSection.classList.remove("open")
 })
+
+
+
+
+
+$('.single-item').slick({
+    dots: true,
+
+});
+
+
+
+const buttons = document.querySelectorAll(".accordion-toggle");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () =>
+        button.parentElement.classList.toggle("active")
+    );
+});

@@ -1188,6 +1188,17 @@ section.book-page-item-banner {
     gap: 48px;
 }
 
+.book-page-item-description-font-size span,
+.book-page-item-description-word-count span{
+    font-family: 'Montserrat arm';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #444444;
+}
+
 .book-page-item-banner-info {
     background-color: #fffbf8;
     padding: 16px 24px;
@@ -1367,13 +1378,25 @@ section.book-page-item-banner {
 .additional-information-list-item p {
     width: 100%;
     max-width: fit-content;
+    font-family: 'Montserrat arm';
+    font-style: normal;
     font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #000000;
     flex-shrink: 0;
 }
 .additional-information-list-item span {
     width: fit-content;
     max-width: 175px;
     flex-shrink: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* or 131% */
+    letter-spacing: 0.01em;
+    color: #000000;
 }
 
 .additional-information-list-item-img{
@@ -2761,4 +2784,33 @@ section.contacts-page h2 {
 
 .book-item-img-logo img {
     width: 100%;
+}
+
+
+
+/*////////////////slick slider//////////////////*/
+
+
+.slick-prev {
+    left: 8px;
+    z-index: 9;
+}
+
+.slick-next {
+    right: 8px;
+    z-index: 9;
+}
+.slick-dots li button:before {
+    font-size: 12px;
+}
+
+/*.slick-slide,.slick-current ,.slick-active{*/
+/*    width: 400px !important;*/
+/*}*/
+
+
+.slick-prev:before, .slick-next:before {
+
+    color: black;
+
 }

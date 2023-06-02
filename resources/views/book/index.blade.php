@@ -3,8 +3,11 @@
 @section('content')
     <main class="news-articles">
         <section class="book-page-item-banner content">
-            <div class="book-page-item-banner-img">
+            <div class="book-page-item-banner-img single-item">
                 <img src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
+                @foreach($book->images as $img)
+                <img src="{{ URL::to('storage/'.$img->image) }}" alt="">
+                @endforeach
             </div>
             <div class="book-page-item-banner-info">
                 <h2>{{ $book['title_' . app()->getLocale()]  }}</h2>
@@ -79,10 +82,10 @@
             </div>
         </section>
 
-        <section class="book-page-item-full-information content">
-            <div class="book-page-item-additional-information">
-                <h2>Լրացուցիչ տեղեկություն</h2>
-                <div class="book-page-item-additional-information-list">
+        <section class="book-page-item-full-information content  accordion-container">
+            <div class="book-page-item-additional-information  accordion">
+                <h2 class=" accordion-title">Լրացուցիչ տեղեկություն</h2>
+                <div class="book-page-item-additional-information-list  accordion-text" >
                     <div class="additional-information-list-item">
                         <p>Օրիգինալ անուն</p>
                         <div class="additional-information-list-item-img">
@@ -126,6 +129,10 @@
                         <span>{{ $book['book_size_' . app()->getLocale()]  }}</span>
                     </div>
                 </div>
+
+                <button class=" accordion-toggle">
+                    h
+                </button>
             </div>
 
             <svg width="1" class="svg-additional-information" height="516" viewBox="0 0 1 516" fill="none"
@@ -133,16 +140,24 @@
                 <line x1="0.5" x2="0.5" y2="516" stroke="#F36F21"/>
             </svg>
 
-            <div class="book-page-item-after">
-                <h2>Հեղինակներ</h2>
+            <div class="book-page-item-after  accordion">
+                <h2  class="faq-title">Հեղինակներ</h2>
                 @foreach($book->authors as $key => $author)
-                    <div>
+                    <div class=" accordion-text">
                         <div class="book-page-item-after-img">
                             <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
                         </div>
                         <p>{{ $author['about_' . app()->getLocale()] }}</p>
                     </div>
                 @endforeach
+                <button class="accordion-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#F36F21" stroke="#F36F21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 8V16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 12H16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
+                </button>
             </div>
 
             <svg width="1" class="svg-additional-information" height="516" viewBox="0 0 1 516" fill="none"
@@ -150,13 +165,16 @@
                 <line x1="0.5" x2="0.5" y2="516" stroke="#F36F21"/>
             </svg>
 
-            <div class="book-page-item-book-trailer">
-                <h2>Գրքի թրեյլեր</h2>
-                <div class="book-page-item-book-trailer-video">
+            <div class="book-page-item-book-trailer  accordion">
+                <h2 class=" accordion-title">Գրքի թրեյլեր</h2>
+                <div class="book-page-item-book-trailer-video  accordion-text">
                     <iframe src="https://www.youtube.com/embed/cGmLS5KL7yw" title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen></iframe>
                 </div>
+                <button class=" accordion-toggle">
+                    v
+                </button>
             </div>
         </section>
     </main>

@@ -256,9 +256,7 @@ deleteBtn?.forEach((item) =>{
      })
 });
 
-
 // ____________hamburger menu____________
-
 
 let nav = document.querySelector('.header-menu ')
 let nav_icon1 = document.querySelector('#nav-icon1');
@@ -312,16 +310,13 @@ form_shopping_cart?.addEventListener('submit', e => {
 });
 
 function checkInputsShoppingCart() {
-    // trim to remove the whitespaces
     const firstNameValue = firstName.value.trim();
     const lastNameValue = lastName.value.trim();
     const homeValue = home.value.trim();
-    // const apartmentValue = apartment.value.trim();
     const cityValue = city.value.trim();
     const postCodeValue = postCode.value.trim();
     const tellValue = tell.value.trim();
     const emailShopValue = emailShop.value.trim();
-    //const reviewSoppingCartValue = reviewSoppingCart?.value?.trim();
 
     if(firstNameValue ===''){
         setErrorForShopping(firstName, 'Գրեք Ձեր անունը');
@@ -340,12 +335,6 @@ function checkInputsShoppingCart() {
     } else {
         setSuccessForShopping(home);
     }
-
-    // if(apartmentValue ===''){
-    //     setErrorForShopping(apartment, 'Name cannot be blank');
-    // } else {
-    //     setSuccessForShopping(apartment);
-    // }
 
     if(cityValue ===''){
         setErrorForShopping(city, 'Գրեք Ձեր քաղաքը');
@@ -372,12 +361,6 @@ function checkInputsShoppingCart() {
     } else {
         setSuccessForShopping(emailShop);
     }
-
-    // if(reviewSoppingCartValue === '' || reviewSoppingCartValue.length < 10 ){
-    //     setErrorForShopping(reviewSoppingCart, 'Դաշտը լրացված չէ');
-    // }   else {
-    //     setSuccessForShopping(reviewSoppingCart);
-    // }
 
     if(acceptContent2.content === "none"){
         setErrorForShopping(accept2, 'Կարդացեք և համաձայնվեք օգտագործման պայմանների հետ');
@@ -422,9 +405,6 @@ function isEmailShop(email) {
 // const acceptContent = getComputedStyle(accept, "::before");
 // const review = document.getElementById('review')
 //
-//
-//
-//
 // form?.addEventListener('submit', e => {
 //     e.preventDefault();
 //     checkInputs();
@@ -464,9 +444,7 @@ function isEmailShop(email) {
 //     }   else {
 //         setSuccessFor(review);
 //     }
-//
 // }
-//
 //
 // function setErrorFor(input, message) {
 //     const formControl = input.parentElement;
@@ -509,15 +487,27 @@ closeModal?.addEventListener('click', ()=>{
 })
 
 
+/*/////////////////////////Learn more///////////////////////////*/
+
+const learn_more_btn = document.querySelector('.learn-more-btn');
+
+const learn_more_div = document.querySelector('.learn-more');
+
+const text = document.querySelector('.book-item-desc p')
+console.log(text)
 
 
+console.log(learn_more_btn)
 
-$('.single-item').slick({
-    dots: true,
+learn_more_btn.addEventListener('click', () => {
+    learn_more_div.className = 'learn-more-none'
+    text.style.overflow = "inherit"
+    text.style.display = "inherit"
 
-});
+})
 
 
+/*////////////////////Accordion//////////////////////*/
 
 const buttons = document.querySelectorAll(".accordion-toggle");
 
@@ -526,3 +516,5 @@ buttons.forEach((button) => {
         button.parentElement.classList.toggle("active")
     );
 });
+
+

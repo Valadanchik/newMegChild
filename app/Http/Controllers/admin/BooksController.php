@@ -118,13 +118,7 @@ class BooksController extends Controller
     public function destroy(Books $books, $id): \Illuminate\Http\RedirectResponse
     {
         $model = $books::findOrFail($id);
-
-        if (!$model) {
-            return redirect()->back()->with('error', 'Model not found.');
-        }
-
         $model->delete();
-
         return redirect()->back()->with('success', 'Model deleted successfully.');
     }
 }

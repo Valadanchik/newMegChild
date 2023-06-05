@@ -35,6 +35,10 @@
                     <div class="nav-link-icon"><i data-feather="edit"></i></div>
                     Posts
                 </a>
+                <a class="nav-link" href="{{ route('medias.index') }}">
+                    <div class="nav-link-icon"><i data-feather="edit"></i></div>
+                    Medias
+                </a>
 
                 <div class="sidenav-menu-heading">Finance</div>
                 <!-- Sidenav Link (Charts)-->

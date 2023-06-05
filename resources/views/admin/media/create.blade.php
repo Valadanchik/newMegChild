@@ -9,13 +9,13 @@
                         <div class="col-auto mb-3">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="file-plus"></i></div>
-                                Create Category
+                                Create Media
                             </h1>
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
-                            <a class="btn btn-sm btn-light text-primary" href="{{ route('categories.index') }}">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ route('medias.index') }}">
                                 <i class="me-1" data-feather="arrow-left"></i>
-                                Back to All Categories
+                                Back to All Medias
                             </a>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('medias.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="row gx-4">
@@ -42,32 +42,44 @@
                         <div class="card mb-4">
                             <div class="card-header">Name (Hy)</div>
                             <div class="card-body">
-                                <input type="text" class="form-control" id="name_hy" name="name_hy" value="{{ old('name_hy') }}">
+                                <input type="text" class="form-control" id="title_hy" name="title_hy" value="{{ old('title_hy') }}">
                             </div>
-                            @error('name_hy')
+                            @error('title_hy')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">Name (En)</div>
                             <div class="card-body">
-                                <input type="text" class="form-control" id="name_en" name="name_en" value="{{ old('name_en') }}">
+                                <input type="text" class="form-control" id="title_en" name="title_en" value="{{ old('title_en') }}">
                             </div>
-                            @error('name_en')
+                            @error('title_en')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
                         <div class="card mb-4">
-                            <div class="card-header">Age (Hy)</div>
+                            <div class="card-header">Slug</div>
                             <div class="card-body">
-                                <input type="text" class="form-control" id="age" name="age" value="{{ old('age') }}">
+                                <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}">
                             </div>
-                            @error('about_hy')
+                            @error('slug')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">Media Image</div>
+                            <div class="card-body">
+                                <input type="file" class="form-control" id="file" name="file">
+                            </div>
+                            @error('file')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="d-grid">
-                            <button class="fw-500 btn btn-primary">Create</button>
+                            <button class="fw-500 btn btn-primary">Update</button>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ class Post extends Model
 
     const OTHERS_POSTS_LIMIT = 4;
 
-    const POST_IMAGE_PATH = 'image/posts';
+    const POST_IMAGE_PATH = 'images/posts';
 
     /**
      * @var string[] $fillable

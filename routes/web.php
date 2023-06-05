@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\AuthorsController;
 use App\Http\Controllers\admin\TranslatorsController;
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\PostsController;
+use App\Http\Controllers\admin\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,7 @@ Route::group(
             Route::resource('translators', TranslatorsController::class);
             Route::resource('categories', CategoriesController::class);
             Route::resource('posts', PostsController::class);
+            Route::resource('medias', MediaController::class);
 
         });
     });
@@ -99,7 +101,7 @@ Route::group(
 });
 
 
-Route::post('image-upload', [ImageUploadController::class, 'storeImage'])->name('image.upload');
+//Route::post('image-upload', [ImageUploadController::class, 'storeImage'])->name('image.upload');
 
 
 

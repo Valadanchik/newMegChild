@@ -35,15 +35,13 @@
                                         <div class="choose-media-section">
                                             <h3>Ընտրել մեդիան</h3>
                                             <div class="media-scrol-bar scrollbar" id="style-4">
-
                                                 <div class="scroll-bar-all scrol-bar-item">
                                                     <p>Բոլորը</p>
                                                 </div>
-
                                                 @foreach($postCategories as $postCategory)
                                                     <div class="scrol-bar-item">
                                                         <div class="scrol-bar-item-img">
-                                                            <img src="{{ URL::to($postCategory['image']) }}" alt="">
+                                                            <img src="{{ URL::to('storage/' . $postCategory['image']) }}" alt="">
                                                         </div>
                                                         <a href="{{ LaravelLocalization::localizeUrl('/media/' . $postCategory['id']) }}">
                                                             <p>{{ $postCategory['title_' . app()->getLocale()] }}</p>

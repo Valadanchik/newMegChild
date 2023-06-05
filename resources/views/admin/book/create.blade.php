@@ -133,8 +133,6 @@
                             @enderror
                         </div>
 
-
-
                         <div class="card mb-4">
                             <div class="card-header">Slug</div>
                             <div class="card-body">

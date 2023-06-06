@@ -305,8 +305,10 @@ if(accept2){
 const country = document.getElementById('country');
 
 form_shopping_cart?.addEventListener('submit', e => {
-    e.preventDefault();
-    checkInputsShoppingCart();
+
+    if(!checkInputsShoppingCart()){
+        return e.preventDefault();
+    }
 });
 
 function checkInputsShoppingCart() {
@@ -317,44 +319,52 @@ function checkInputsShoppingCart() {
     const postCodeValue = postCode.value.trim();
     const tellValue = tell.value.trim();
     const emailShopValue = emailShop.value.trim();
+    const errors = {}
 
     if(firstNameValue ===''){
+        errors['firstName'] = true
         setErrorForShopping(firstName, 'Գրեք Ձեր անունը');
     } else {
         setSuccessForShopping(firstName);
     }
 
     if(lastNameValue ===''){
+        errors['lastName'] = true
         setErrorForShopping(lastName, 'Գրեք Ձեր ազգանունը');
     } else {
         setSuccessForShopping(lastName);
     }
 
     if(homeValue ===''){
+        errors['home'] = true
         setErrorForShopping(home, 'Գրեք Ձեր փողոցը');
     } else {
         setSuccessForShopping(home);
     }
 
     if(cityValue ===''){
+        errors['city'] = true
         setErrorForShopping(city, 'Գրեք Ձեր քաղաքը');
     } else {
         setSuccessForShopping(city);
     }
 
     if(postCodeValue ===''){
+        errors['postCode'] = true
         setErrorForShopping(postCode, 'Գրեք Ձեր փոստային կոդը');
     } else {
         setSuccessForShopping(postCode);
     }
 
     if(tellValue ===''){
+        errors['tell'] = true
         setErrorForShopping(tell, 'Գրեք Ձեր հեռախոսահամարը');
     } else {
         setSuccessForShopping(tell);
     }
 
     if(emailShopValue === '') {
+        errors['emailShop'] = true
         setErrorForShopping(emailShop, 'Գրեք Ձեր էլ.հասցեն');
     } else if (!isEmailShop(emailShopValue)) {
         setErrorForShopping(emailShop, 'էլ․հասցեն ճիծտ չէ');
@@ -363,15 +373,18 @@ function checkInputsShoppingCart() {
     }
 
     if(acceptContent2.content === "none"){
+        errors['accept2'] = true
         setErrorForShopping(accept2, 'Կարդացեք և համաձայնվեք օգտագործման պայմանների հետ');
     }else {
         setSuccessForShopping(accept2);
     }
     if(!country.value){
+        errors['country'] = true
         setErrorForShopping(country, 'Նշեք երկիրը');
     } else {
         setSuccessForShopping(country);
     }
+    return !Object.keys(errors).length
 }
 
 function setErrorForShopping(input, message) {
@@ -391,7 +404,6 @@ function setSuccessForShopping(input) {
 function isEmailShop(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
-
 
 
 //
@@ -499,7 +511,7 @@ console.log(text)
 
 console.log(learn_more_btn)
 
-learn_more_btn.addEventListener('click', () => {
+learn_more_btn?.addEventListener('click', () => {
     learn_more_div.className = 'learn-more-none'
     text.style.overflow = "inherit"
     text.style.display = "inherit"
@@ -518,3 +530,32 @@ buttons.forEach((button) => {
 });
 
 
+/*//////////////filter///////////////*/
+
+const media_filter_icon = document.querySelector('.media-filter-icon svg')
+const choose_media_section = document.querySelector('.choose-media-section')
+let modal_filter = document.querySelector('.modal')
+let filter_body = document.querySelector('.filter-body')
+
+
+
+media_filter_icon.addEventListener("click", filterOpen)
+
+function filterOpen(){
+    console.log('dddg')
+
+    choose_media_section.classList.toggle('filter-show')
+    media_filter_icon.classList.toggle('open')
+    modal_filter.classList.toggle('filter-modal-open')
+    filter_body.classList.toggle('body-open')
+}
+
+modal?.addEventListener('click' , filterModalClose)
+
+function filterModalClose() {
+    modal_filter.classList.remove('filter-modal-open')
+    media_filter_icon.classList.remove('open')
+    choose_media_section.classList.remove('filter-show')
+    filter_body.classList.remove('body-open')
+
+}

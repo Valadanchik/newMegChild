@@ -1,14 +1,14 @@
 @media (max-width: 1900px) {
 
-    /*////////////////// home-page///////////////////*/
+    /*///////////////// home-page//////////////////   */
     header {
+
         background-size: unset;
     }
 
     footer {
         background-size: unset;
     }
-
 }
 
 @media (max-width: 1600px) {
@@ -17,13 +17,19 @@
         justify-content: space-around;
         gap: 400px;
     }
-
-
-    .book-page-item-additional-information, .book-page-item-after, .book-page-item-book-trailer {
+    .book-page-item-additional-information,
+    .book-page-item-after,
+    .book-page-item-book-trailer {
         width: 100%;
         max-width: 420px;
     }
 
+
+    /*//////////////////media-page///////////////////////*/
+
+    .media-list-item {
+        width: 320px;
+    }
 }
 
 @media (max-width: 1400px) {
@@ -223,11 +229,7 @@
         max-width: 170px;
     }
 
-    .book-page-item-after p {
-        font-size: 14px;
-        border-left: none;
-        border-right: none;
-    }
+
 
     .additional-information-list-item p {
         font-size: 14px;
@@ -253,8 +255,25 @@
         margin: 25px 0;
     }
 
-}
+    /*///////////////////articles-page/////////////////////*/
+    .articles-list {
+        grid-template-columns: repeat(3, 342px);
+        gap: 24px;
+        justify-content: center;
+    }
 
+    /*////////////////media-page////////////////*/
+    .choose-media-section {
+        min-width: 310px;
+    }
+    .media-list-item {
+        width: 284px;
+    }
+    .media-list-section {
+        gap: 18px;
+        grid-template-columns: repeat(3, 284px);
+    }
+}
 
 @media (max-width: 1200px) {
 
@@ -426,6 +445,35 @@
         max-width: 300px;
     }
 
+    .book-page-item-after p {
+        font-size: 14px;
+        border-left: none;
+        border-right: none;
+    }
+
+    /*///////////////////articles-page/////////////////////*/
+    .articles-list {
+        grid-template-columns: repeat(3, 310px);
+        gap: 18px;
+    }
+
+    /*/////////////////media-page///////////////*/
+
+    .data.section-media-info {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .media-list-item {
+        width: 300px;
+    }
+    .media-list-section {
+        gap: 24px;
+        width: 100%;
+        max-width: 630px;
+        grid-template-columns: repeat(2, 300px);
+    }
+
+
 }
 
 @media (max-width: 1100px) {
@@ -480,7 +528,6 @@
     }
 }
 
-
 @media (max-width: 992px) {
 
     /*//////////////////////////////////header//////////////////////////////////////*/
@@ -506,6 +553,17 @@
         height: 100vh;
         display: flex;
         max-width: 735px;
+    }
+
+
+    .filter-show{
+        right: 0;
+        z-index: 0;
+        top: 0;
+        padding-top: 120px;
+        width: 100%;
+        height: 100vh;
+        max-width: 800px;
     }
 
     ul.header-menu-list {
@@ -712,6 +770,28 @@
         left: -40px;
     }
 
+    /*///////////////////articles-page/////////////////////*/
+    .articles-list {
+        grid-template-columns: repeat(2, 330px);
+    }
+
+
+
+    /*/////////////////media-page//////////////////*/
+    .media-filter-icon {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+    .choose-media-section {
+        min-width: 330px;
+        position: fixed;
+        right: -360px;
+        z-index: 99;
+        background: #fff;
+        /*width: unset;*/
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -840,6 +920,7 @@
         max-width: 70%;
     }
 
+
     .footer-newmag p {
         font-size: 14px;
     }
@@ -915,9 +996,13 @@
         padding-top: 80px;
     }
 
+    /*///////////////////articles-page/////////////////////*/
+    .articles-list {
+        grid-template-columns: repeat(2, 257px);
+    }
+
 
 }
-
 
 @media (max-width: 576px) {
     .book-section {
@@ -1000,6 +1085,17 @@
         gap: 15px;
     }
 
+    /*///////////////////articles-page/////////////////////*/
+    .articles-list {
+        grid-template-columns: repeat(2, 194px);
+    }
+    .articles-list-item {
+        max-width: 194px;
+    }
+
+    .articles-list-item p {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 400px) {

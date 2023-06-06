@@ -42,7 +42,7 @@
 
                 <div class="sidenav-menu-heading">Finance</div>
                 <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('orders.index') }}">
                     <div class="nav-link-icon"><i data-feather="shopping-cart"></i></div>
                     Orders
                 </a>

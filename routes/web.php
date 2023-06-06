@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\frontend\PaymentController;
-
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BooksController;
@@ -14,6 +13,7 @@ use App\Http\Controllers\admin\TranslatorsController;
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\PostsController;
 use App\Http\Controllers\admin\MediaController;
+use App\Http\Controllers\admin\OrderController as AdminOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +94,7 @@ Route::group(
             Route::resource('categories', CategoriesController::class);
             Route::resource('posts', PostsController::class);
             Route::resource('medias', MediaController::class);
+            Route::resource('orders', AdminOrderController::class);
 
         });
     });

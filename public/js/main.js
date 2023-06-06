@@ -263,7 +263,7 @@ let nav_icon1 = document.querySelector('#nav-icon1');
 let modal = document.querySelector('.modal')
 let body = document.querySelector('.body')
 
-nav_icon1.addEventListener("click", menuOpen)
+nav_icon1?.addEventListener("click", menuOpen)
 
 function menuOpen(){
 
@@ -282,7 +282,6 @@ function modalClose() {
     body.classList.remove('body-open')
 
 }
-
 //////////////////////////shoping cart validacia//////////////////////////////
 
 let form_shopping_cart = document.querySelector('.form-shopping-cart')
@@ -305,8 +304,10 @@ if(accept2){
 const country = document.getElementById('country');
 
 form_shopping_cart?.addEventListener('submit', e => {
-    e.preventDefault();
-    checkInputsShoppingCart();
+
+    if(!checkInputsShoppingCart()){
+        return e.preventDefault();
+    }
 });
 
 function checkInputsShoppingCart() {
@@ -317,44 +318,52 @@ function checkInputsShoppingCart() {
     const postCodeValue = postCode.value.trim();
     const tellValue = tell.value.trim();
     const emailShopValue = emailShop.value.trim();
+    const errors = {}
 
     if(firstNameValue ===''){
+        errors['firstName'] = true
         setErrorForShopping(firstName, 'Գրեք Ձեր անունը');
     } else {
         setSuccessForShopping(firstName);
     }
 
     if(lastNameValue ===''){
+        errors['lastName'] = true
         setErrorForShopping(lastName, 'Գրեք Ձեր ազգանունը');
     } else {
         setSuccessForShopping(lastName);
     }
 
     if(homeValue ===''){
+        errors['home'] = true
         setErrorForShopping(home, 'Գրեք Ձեր փողոցը');
     } else {
         setSuccessForShopping(home);
     }
 
     if(cityValue ===''){
+        errors['city'] = true
         setErrorForShopping(city, 'Գրեք Ձեր քաղաքը');
     } else {
         setSuccessForShopping(city);
     }
 
     if(postCodeValue ===''){
+        errors['postCode'] = true
         setErrorForShopping(postCode, 'Գրեք Ձեր փոստային կոդը');
     } else {
         setSuccessForShopping(postCode);
     }
 
     if(tellValue ===''){
+        errors['tell'] = true
         setErrorForShopping(tell, 'Գրեք Ձեր հեռախոսահամարը');
     } else {
         setSuccessForShopping(tell);
     }
 
     if(emailShopValue === '') {
+        errors['emailShop'] = true
         setErrorForShopping(emailShop, 'Գրեք Ձեր էլ.հասցեն');
     } else if (!isEmailShop(emailShopValue)) {
         setErrorForShopping(emailShop, 'էլ․հասցեն ճիծտ չէ');
@@ -363,15 +372,18 @@ function checkInputsShoppingCart() {
     }
 
     if(acceptContent2.content === "none"){
+        errors['accept2'] = true
         setErrorForShopping(accept2, 'Կարդացեք և համաձայնվեք օգտագործման պայմանների հետ');
     }else {
         setSuccessForShopping(accept2);
     }
     if(!country.value){
+        errors['country'] = true
         setErrorForShopping(country, 'Նշեք երկիրը');
     } else {
         setSuccessForShopping(country);
     }
+    return !Object.keys(errors).length
 }
 
 function setErrorForShopping(input, message) {
@@ -391,8 +403,6 @@ function setSuccessForShopping(input) {
 function isEmailShop(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
-
-
 
 //
 // /*________________validacia_____________*/
@@ -499,7 +509,7 @@ console.log(text)
 
 console.log(learn_more_btn)
 
-learn_more_btn.addEventListener('click', () => {
+learn_more_btn?.addEventListener('click', () => {
     learn_more_div.className = 'learn-more-none'
     text.style.overflow = "inherit"
     text.style.display = "inherit"

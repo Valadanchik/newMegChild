@@ -7,7 +7,6 @@
                 <h2>Զամբյուղ</h2>
             </div>
 
-{{--            {{ dd(session()->get('cart')) }}--}}
             @if(count($cardBooks))
                 <form action="{{route('order.create')}}" method="POST" class="shopping-cart form-shopping-cart">
                     @csrf

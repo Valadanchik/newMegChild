@@ -60,7 +60,7 @@ class MediaController extends Controller
      */
     public function edit(PostCategory $medias, $id): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $media = $medias::find($id);
+        $media = $medias::findOrFail($id);
         return view('admin.media.edit', compact('media'));
     }
 
@@ -74,7 +74,7 @@ class MediaController extends Controller
                 $imageName = self::imageUpload($request->file, PostCategory::MEDIA_IMAGE_PATH);
                 $request->merge(['image' => $imageName,]);
             }
-            $media = $medias::find($request->id);
+            $media = $medias::findOrFail($request->id);
             $media->update($request->all());
             return redirect()->route('medias.edit', $media->id)->with('success', 'Medias updated successfully');
         } catch (\Exception $e) {

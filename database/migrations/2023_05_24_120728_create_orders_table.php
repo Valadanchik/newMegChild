@@ -30,6 +30,7 @@ return new class extends Migration
             $table->unsignedInteger('total_price_with_discount')->nullable();
             $table->unsignedInteger('payment_method');
             $table->longText('payment_callback')->nullable();
+            $table->integer('payment_status')->default(1);
             $table->integer('status');
             $table->timestamps();
 

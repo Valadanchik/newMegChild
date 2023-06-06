@@ -27,11 +27,19 @@
                 </div>
             </div>
         </section>
-
+        <br>
         <section class="article-itm-page-info-and-video content">
-            {!! $post['text_' . app()->getLocale()] !!}
+            <div class="article-info-and-video-description">
+                <div class="article-info-and-video-desc-article">
+                    <svg width="6" height="92" viewBox="0 0 6 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 6C0 2.68629 2.68629 0 6 0V92C2.68629 92 0 89.3137 0 86V6Z" fill="#8F52A1"/>
+                    </svg>
+                    <span>{!! $post['description_' . app()->getLocale()] !!}</span>
+                </div>
+                {!! $post['text_' . app()->getLocale()] !!}
+            </div>
         </section>
-
+        <br><br>
         <section class="articles">
             <div class="article-section content">
                 <div class="other-article-section-title">

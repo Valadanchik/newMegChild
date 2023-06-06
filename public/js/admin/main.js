@@ -25,3 +25,13 @@ document.querySelectorAll('.dropdown-menu a').forEach(function(item) {
         return false;
     });
 });
+
+
+$(document).ready(function() {
+    $('.summernote').summernote({
+        tabsize: 2,
+        height: 320,
+    });
+});
+
+

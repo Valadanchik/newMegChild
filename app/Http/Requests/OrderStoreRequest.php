@@ -23,7 +23,7 @@ class OrderStoreRequest extends FormRequest
 //            'region_id' => 'required|integer|exists:regions,id',
             'region' => 'required|string',
             'street' => 'required|string',
-            'house' => 'required|string',
+            'house' => 'string',
             'postal_code' => 'required|string',
             'order_text' => 'nullable|string',
             'terms' => 'required',

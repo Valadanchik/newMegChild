@@ -71,9 +71,7 @@
                         <div class="card mb-4">
                             <div class="card-header">Description (Hy)</div>
                             <div class="card-body">
-{{--                                <textarea class="ckeditor form-control" name="description"></textarea>--}}
-
-                                <textarea class="ckeditor form-control" id="description_hy"
+                                <textarea class="form-control"
                                           name="description_hy">{{ old('description_hy') }}</textarea>
                             </div>
                             @error('description_hy')
@@ -95,7 +93,7 @@
                         <div class="card mb-4">
                             <div class="card-header">Text (Hy)</div>
                             <div class="card-body">
-                                <textarea class="form-control" id="text_hy"
+                                <textarea id="summernote" class="form-control summernote" id="text_hy"
                                           name="text_hy">{{ old('text_hy') }}</textarea>
                             </div>
                             @error('text_hy')
@@ -106,7 +104,7 @@
                         <div class="card mb-4">
                             <div class="card-header">Text (En)</div>
                             <div class="card-body">
-                                <textarea class="form-control" id="text_en"
+                                <textarea class="form-control summernote" id="text_en"
                                           name="text_en">{{ old('text_en') }}</textarea>
                             </div>
                             @error('text_en')

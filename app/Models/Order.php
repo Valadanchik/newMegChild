@@ -25,14 +25,13 @@ class Order extends Model
     const STATUS_PROCESSING = 2;
     const STATUS_COMPLETED = 3;
     const STATUS_FAILED = 4;
-    const STATUS_DELIVERED = 5;
-    const STATUS_RETURNED = 6;
+    const STATUS_RETURNED = 5;
+
     const STATUSES = [
         self::STATUS_NEW,
         self::STATUS_PROCESSING,
         self::STATUS_COMPLETED,
         self::STATUS_FAILED,
-        self::STATUS_DELIVERED,
         self::STATUS_RETURNED,
     ];
 
@@ -59,7 +58,7 @@ class Order extends Model
     ];
 
     //on create
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 
@@ -69,21 +68,20 @@ class Order extends Model
         });
     }
 
-    public function country()
+    public function country(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Country::class);
     }
 
-    public function region()
+    public function region(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Region::class);
     }
 
-    public function books()
+    public function books(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Books::class,'order_book_pivote', 'order_id', 'book_id')
             ->withPivot('id', 'quantity', 'price', 'status')
             ->withTimestamps();
     }
-
 }

@@ -11,7 +11,7 @@
                     @foreach($translators as $translator)
                         <div>
                             <div>
-                                <a href="#">
+                                <a href="{{ LaravelLocalization::localizeUrl('/translator/' . $translator['slug']) }}">
                                     <img src="{{ URL::to('storage/' . $translator['image']) }}" alt="">
                                 </a>
                             </div>

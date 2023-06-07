@@ -4,7 +4,6 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Authors;
-use Illuminate\Http\Request;
 
 class AuthorsController extends Controller
 {
@@ -18,10 +17,13 @@ class AuthorsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @param $slug
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function view()
+    public function view($slug): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        //
+        $author = Authors::with('books')->where('slug', $slug)->firstOrFail();
+        return view('author/index', compact('author'));
     }
+
 }

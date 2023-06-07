@@ -26,7 +26,7 @@ class Translators extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function Translators(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function books(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Books::class, 'book_translators_pivot', 'translator_id', 'book_id')->withTimestamps();
     }

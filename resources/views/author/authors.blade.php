@@ -11,7 +11,7 @@
                     @foreach($authors as $author)
                         <div>
                             <div>
-                                <a href="#">
+                                <a href="{{ LaravelLocalization::localizeUrl('/author/' . $author['slug']) }}">
                                     <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
                                 </a>
                             </div>

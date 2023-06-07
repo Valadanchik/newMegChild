@@ -8,12 +8,10 @@
                     <div class="book-item">
                         <div class="book-item-images">
                             <div class="book-item-img-logo">
-                                <a href="#">
-                                    <img src="{{ URL::to('images/reade-more-img-logo-green.png') }}" alt="">
-                                </a>
+                                <img src="{{ URL::to('images/reade-more-img-logo-green.png') }}" alt="">
                             </div>
                             <div class="book-item-img-book">
-                                <a href="#">
+                                <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
                                     <img width="270px" src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
                                 </a>
                             </div>

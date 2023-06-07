@@ -10,7 +10,6 @@ use App\Traits\GeneralTrait;
 
 class AuthorsController extends Controller
 {
-
     use GeneralTrait;
 
     /**
@@ -46,14 +45,6 @@ class AuthorsController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('authors.create')->with('error', 'Something went wrong');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Authors $authors)
-    {
-        //
     }
 
     /**

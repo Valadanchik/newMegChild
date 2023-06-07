@@ -88,6 +88,7 @@ Route::group(
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
             Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+//            Route::delete('/books/remove-book-image/{id}', [BooksController::class, 'removeBookImage'])->name('books.removeBookImage');
             Route::resource('books', BooksController::class);
             Route::resource('authors', AuthorsController::class);
             Route::resource('translators', TranslatorsController::class);

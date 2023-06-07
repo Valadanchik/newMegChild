@@ -21,6 +21,7 @@ class StoreBookRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'title_hy' => 'required|string|unique:books,title_hy|max:255',
             'title_en' => 'required|string|unique:books,title_en|max:255',
@@ -42,6 +43,7 @@ class StoreBookRequest extends FormRequest
             'authors' => 'required|array',
             'translators' => 'required|array',
             'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'files.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

@@ -8,10 +8,14 @@
                     <div class="book-item">
                         <div class="book-item-images">
                             <div class="book-item-img-logo">
-                                <img src="{{ URL::to('images/reade-more-img-logo-green.png') }}" alt="">
+                                <a href="#">
+                                    <img src="{{ URL::to('images/reade-more-img-logo-green.png') }}" alt="">
+                                </a>
                             </div>
                             <div class="book-item-img-book">
-                                <img width="270px" src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
+                                <a href="#">
+                                    <img width="270px" src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
+                                </a>
                             </div>
                         </div>
                         <h3>{{ $book['title_' . app()->getLocale()]  }}</h3>

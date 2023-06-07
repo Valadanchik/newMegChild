@@ -4,14 +4,16 @@
     <main class="news-articles">
         <section class="authors-page">
             <div class="authors-section content">
-                <div class="authors-section-title">
-                    <h2>Հեղինակներ</h2>
+                <div class="translators-section-title">
+                    <h2>Թարգմանիչներ</h2>
                 </div>
                 <div class="authors-boxes">
                     @foreach($translators as $translator)
                         <div>
                             <div>
-                                <img src="{{ URL::to('storage/' . $translator['image']) }}" alt="">
+                                <a href="#">
+                                    <img src="{{ URL::to('storage/' . $translator['image']) }}" alt="">
+                                </a>
                             </div>
                             <span> {{ $translator['name_' . app()->getLocale()] }}</span>
                         </div>

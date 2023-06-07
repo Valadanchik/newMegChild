@@ -11,7 +11,9 @@
                     @foreach($authors as $author)
                         <div>
                             <div>
-                                <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
+                                <a href="#">
+                                    <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
+                                </a>
                             </div>
                             <span> {{ $author['name_' . app()->getLocale()] }}</span>
                         </div>

@@ -22,8 +22,8 @@
                                                 <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
                                             </a>
                                         </div>
-                                        <p>{{ $post['title_' . app()->getLocale()] }}</p>
-                                        <span>{{ $post['created_at'] }}</span>
+                                            <p>{{ $post['title_' . app()->getLocale()] }}</p>
+                                            <span>{{ $post['created_at'] }}</span>
                                     </div>
                                 @endforeach
                             </div>

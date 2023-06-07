@@ -45,7 +45,6 @@ body {
     background-size: 340px;
     background-position: left 50%;
     background-attachment: fixed;
-    /*margin-top: 23px;*/
 }
 
 .content {
@@ -120,6 +119,7 @@ ul.header-menu-list li a {
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
+    cursor: pointer;
     line-height: 20px;
     letter-spacing: 0.01em;
     color: #000000;
@@ -134,6 +134,7 @@ ul.header-menu-list li a {
 .header-icon-serch svg,
 .header-icon-shop svg {
     width: 100%;
+    cursor: pointer;
 }
 
 .header-icon-shop {
@@ -180,7 +181,7 @@ ul.header-menu-list li a {
     font-weight: 500;
     font-size: 16px;
     cursor: pointer;
-    line-height: 20px;
+    line-height: 23px;
     letter-spacing: 0.01em;
     color: #000000;
     transition-duration: .3s;
@@ -336,9 +337,7 @@ main {
 }
 
 .color-info-description-btn {
-
     width: 100%;
-
     max-width: 220px;
     margin-top: 42px;
 
@@ -390,14 +389,12 @@ main {
     color: #6c6d73;
 }
 
-
 .orange-info-img:hover,
 .green-info-img:hover,
 .purple-info-img:hover,
 .yellow-info-img:hover {
     transform: rotate(0deg);
 }
-
 
 .yellow {
     background-color: rgb(253 184 19 / 92%);
@@ -470,6 +467,7 @@ main {
 .article-box-item-img {
     width: 100%;
     max-width: 342px;
+    cursor: pointer;
 }
 
 .article-box-item-img img {
@@ -512,7 +510,6 @@ main {
     align-items: center;
     justify-content: center;
 }
-
 
 .parent {
     background-color: rgb(109 110 114 / 92%);
@@ -603,6 +600,7 @@ main {
 
 .parent-section-img img {
     width: 100%;
+    cursor: pointer;
 }
 
 /*-------------------------Outhers---------------------*/
@@ -680,6 +678,24 @@ main {
     color: #000000;
 }
 
+/*///////////////////translators//////////////////*/
+.translators-section-title {
+    background-image: url('../images/aothers-title.bg.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    max-width: max-content;
+    padding: 62px 32px 60px;
+    margin: auto;
+}
+
+.translators-section-title h2 {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 49px;
+    letter-spacing: 0.01em;
+    color: #000000;
+}
+
 
 /*----------------------footer-----------------------*/
 
@@ -692,7 +708,6 @@ footer {
 .footer {
     padding-top: 92px;
     padding-bottom: 43px;
-    background-color: #fff;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -886,16 +901,45 @@ a.footer-address:hover {
 }
 
 
-.wrapper .tabs_wrap {
-}
-
-.wrapper .tabs_wrap ul li:hover,
-.wrapper .tabs_wrap ul li.active {
-}
-
-
 /*///////////////////media/////////////*/
+.media-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
 
+.filter-media-title h1 {
+    font-family: 'Montserrat arm';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0.01em;
+    color: #000000;
+}
+.filter-img{
+    width: 100%;
+    max-width: 24px;
+}
+.filter-img img{
+    width: 100%;
+}
+
+.media-filter-icon {
+    display: none;
+}
+
+.media-filter-icon h3 {
+    display: flex;
+    font-family: 'Montserrat arm';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 17px;
+    align-items: center;
+    color: #8F52A1;
+    gap: 8px;
+}
 
 .media-scrol-bar {
     direction: rtl;
@@ -907,25 +951,25 @@ a.footer-address:hover {
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    /* identical to box height */
     letter-spacing: 0.01em;
-
-    /* 6-9 */
     cursor: pointer;
     color: #000;
 }
 
+.media-list-item-img {
+    width: 100%;
+    max-width: 342px;
+}
 
-/* other styling */
+.media-list-item-img a img {
+    width: 100%;
+}
+
 .media-scrol-bar {
     border-left: solid 1px #D0D2D8;
     border-radius: 5px;
     max-height: 564px;
     width: 100%;
-}
-
-
-#style-4::-webkit-scrollbar-track {
 }
 
 #style-4::-webkit-scrollbar {
@@ -935,9 +979,7 @@ a.footer-address:hover {
 #style-4::-webkit-scrollbar-thumb {
     background-color: #8D8D8D;
     border-radius: 10px;
-    /* border: 3px solid #306d10; */
 }
-
 
 .scrol-bar-item {
     direction: ltr;
@@ -955,20 +997,22 @@ a.footer-address:hover {
 .data.section-media-info {
     display: flex;
     gap: 24px;
+    width: 100%;
 }
 
-
 .media-list-section {
-    display: flex;
-    gap: 30px;
+    display: grid;
+    gap: 24px;
     flex: 1;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .media-list-item {
     width: 342px;
-    height: fit-content;
     box-shadow: 0px 4px 20px rgba(176, 176, 176, 0.25);
     border-radius: 4px;
+    background-color: #fff;
 }
 
 .media-list-item p {
@@ -977,7 +1021,6 @@ a.footer-address:hover {
     font-weight: 600;
     font-size: 16px;
     line-height: 26px;
-    /* or 162% */
     margin: 16px 16px 8px;
     letter-spacing: 0.01em;
     color: #000000;
@@ -1032,9 +1075,9 @@ a.footer-address:hover {
 .articles-list {
     display: grid;
     grid-template-columns:repeat(4, 1fr);
-    gap: 30px;
+    gap: 24px;
     margin-top: 50px;
-    margin-bottom: 224px;
+    margin-bottom: 120px;
     width: 100%;
 }
 
@@ -1065,6 +1108,8 @@ a.footer-address:hover {
     background: #FFFFFF;
     box-shadow: 0px 4px 20px rgba(176, 176, 176, 0.25);
     border-radius: 4px;
+    width: 100%;
+    max-width: 342px;
 }
 
 .articles-list-item p {
@@ -1073,7 +1118,6 @@ a.footer-address:hover {
     font-weight: 600;
     font-size: 16px;
     line-height: 26px;
-    /* or 162% */
     letter-spacing: 0.01em;
     color: #000000;
     padding: 16px 16px 8px;
@@ -1086,12 +1130,19 @@ a.footer-address:hover {
     font-size: 12px;
     display: inherit;
     line-height: 15px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     color: #646464;
     padding: 0 16px 24px;
 }
 
+.articles-list-item-img {
+    width: 100%;
+    max-width: 342px;
+}
+
+.articles-list-item-img a img {
+    width: 100%;
+}
 
 /*//////////////////////////////article-itm-page//////////////////////*/
 .article-item-page-back-btn {
@@ -1162,7 +1213,6 @@ a.footer-address:hover {
     font-weight: 300;
     font-size: 16px;
     line-height: 20px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     color: #1C1C1C;
 }
@@ -1170,7 +1220,6 @@ a.footer-address:hover {
 .article-itm-page-banner-desc-icon {
     display: flex;
     gap: 15px;
-    /* align-items: center; */
 }
 
 .article-info-and-video-desc-article {
@@ -1230,7 +1279,6 @@ iframe.video-articlei-ifrem {
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     color: #000000;
 }
@@ -1358,7 +1406,6 @@ section.book-page-item-banner {
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     margin-bottom: 8px;
     color: #000000;
@@ -1503,7 +1550,6 @@ section.book-page-item-banner {
     font-weight: 400;
     font-size: 16px;
     line-height: 21px;
-    /* or 131% */
     letter-spacing: 0.01em;
     color: #000000;
 }
@@ -1576,7 +1622,6 @@ section.book-page-reviews.content h2 {
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     color: #000000;
     text-align: center;
@@ -1595,7 +1640,6 @@ section.book-page-reviews.content h2 {
     color: #82170C;
     display: none;
 }
-
 
 .form-control small {
     color: #c5101f;
@@ -1630,12 +1674,10 @@ h2.book-page-leave-review-title {
     font-size: 40px;
     margin-bottom: 32px;
     line-height: 49px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     color: #FFFFFF;
     padding-top: 70px;
 }
-
 
 .accept {
     display: flex;
@@ -1690,7 +1732,6 @@ h2.book-page-leave-review-title {
 .accept > input:active {
     border: 1px solid #34495E;
 }
-
 
 .form-control.review textarea {
     background: #fff0;
@@ -1813,7 +1854,6 @@ h2.book-page-leave-review-title {
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    /* identical to box height */
     letter-spacing: 0.01em;
 }
 
@@ -1838,7 +1878,6 @@ h2.book-page-leave-review-title {
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     color: #000000;
     padding: 15px 90px;
@@ -1855,7 +1894,6 @@ h2.book-page-leave-review-title {
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     color: #000000;
 }
@@ -2153,7 +2191,6 @@ section.books {
     line-height: 30px;
     color: #000000;
 }
-
 
 .shopping-cart-payment-details {
     background-color: white;
@@ -2456,7 +2493,6 @@ section.books {
     padding-bottom: 30px;
 }
 
-
 .shopping-cart-block-title h2 {
     font-weight: 600;
     font-size: 30px;
@@ -2511,14 +2547,12 @@ input.count-shop {
     font-family: 'Montserrat arm';
 }
 
-/* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-/* Firefox */
 input[type=number] {
     -moz-appearance: textfield;
 }
@@ -2616,6 +2650,19 @@ input[type=number] {
     top: 0;
     right: 0;
 }
+
+.filter-modal-open {
+    display: inline-table;
+    background-color: #04040478;
+    width: 100%;
+    height: 100vh;
+    cursor: pointer;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+
 
 /* Icon 1 */
 
@@ -2729,7 +2776,6 @@ input:focus {
     font-weight: 600;
     font-size: 36px;
     line-height: 44px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     color: #000000;
 }
@@ -2738,7 +2784,6 @@ input:focus {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    /* or 150% */
     letter-spacing: 0.01em;
     color: #444444;
     margin-top: 32px;
@@ -2915,6 +2960,7 @@ section.contacts-page h2 {
     width: 100%;
     max-width: 256px;
     height: 360px;
+    cursor: pointer;
 }
 
 .book-item-img-book img {
@@ -2930,7 +2976,6 @@ section.contacts-page h2 {
 .book-item-img-logo img {
     width: 100%;
 }
-
 
 /*////////////////slick slider//////////////////*/
 
@@ -2992,4 +3037,22 @@ section.contacts-page h2 {
     display: none;
 }
 
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #c7c6c6;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f26f21;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f26f21;
+}
 

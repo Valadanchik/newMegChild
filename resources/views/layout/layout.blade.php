@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="{{ asset('/css/media.css') }}">
 
 </head>
-<body class="body">
+<body class="body filter-body">
 
 @include('layout.header')
 

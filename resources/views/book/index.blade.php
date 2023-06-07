@@ -71,7 +71,7 @@
 
         <section class="book-page-item-full-information content  accordion-container">
             <div class="book-page-item-additional-information  accordion">
-                <h2 class=" accordion-title">Լրացուցիչ տեղեկություն</h2>
+                <h2 class="accordion-title">Լրացուցիչ տեղեկություն</h2>
                 <div class="book-page-item-additional-information-list  accordion-text" >
                     <div class="additional-information-list-item">
                         <p>Օրիգինալ անուն</p>
@@ -117,7 +117,7 @@
                     </div>
                 </div>
 
-                <button class=" accordion-toggle">
+                <button class="accordion-toggle">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#F36F21" stroke="#F36F21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M8 10L12 14L16 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -133,7 +133,7 @@
             <div class="book-page-item-after  accordion">
                 <h2  class="faq-title">Հեղինակներ</h2>
                 @foreach($book->authors as $key => $author)
-                    <div class=" accordion-text">
+                    <div class="accordion-text">
                         <div class="book-page-item-after-img">
                             <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
                         </div>
@@ -154,13 +154,13 @@
             </svg>
 
             <div class="book-page-item-book-trailer  accordion">
-                <h2 class=" accordion-title">Գրքի թրեյլեր</h2>
+                <h2 class="accordion-title">Գրքի թրեյլեր</h2>
                 <div class="book-page-item-book-trailer-video  accordion-text">
                     <iframe src="https://www.youtube.com/embed/cGmLS5KL7yw" title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen></iframe>
                 </div>
-                <button class=" accordion-toggle">
+                <button class="accordion-toggle">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#F36F21" stroke="#F36F21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M8 10L12 14L16 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

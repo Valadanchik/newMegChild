@@ -2,20 +2,17 @@
 
 @section('content')
     <main>
-
-
         <section class="banner">
             <div class="banner-info content">
                 @foreach($data['categories'] as $category)
                     <div class="banner-img">
                         <a href="{{ LaravelLocalization::localizeUrl('/category/' . $category['name_en']) }}">
-                            <img src="{{ URL::to('/images/' . $category['name_en'] . '.png') }}" alt="">
+                            <img src="{{ URL::to('/images/' . $category['name_en'] . '.png') }}" alt="logo filter">
                         </a>
                     </div>
                 @endforeach
             </div>
         </section>
-
         @foreach($data['books'] as $index => $book)
             <section class="{{ $book->category->name_en }}-color">
                 <div style="{{ $index % 2 === 1 ? "flex-direction: row-reverse;" : "flex-direction: row;" }}"
@@ -23,7 +20,7 @@
                     <div class="color-info ">
                         <div class="orange-info-img">
                             <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
-                                <img src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
+                                <img src="{{ URL::to('storage/' . $book['main_image']) }}" alt="image book">
                             </a>
                         </div>
                     </div>
@@ -77,7 +74,9 @@
                     @foreach($data['posts'] as $post)
                         <div class="article-box-item">
                             <div class="article-box-item-img">
-                                <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
+                                <a href="#">
+                                    <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
+                                </a>
                             </div>
                             <div class="article-box-item-desc">
                                 <h3>{{ $post['title_' . app()->getLocale()] }}</h3>
@@ -86,7 +85,6 @@
                         </div>
                     @endforeach
                 </div>
-
                 <div class="article-btn">
                     <a href="{{ LaravelLocalization::localizeUrl('/articles/') }}"> Տեսնել բոլորը
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +101,9 @@
         <section class="parent">
             <div class="parent-section content">
                 <div class="parent-section-img">
-                    <img src="{{ URL::to('storage/' . $data['lastParentBook']['main_image']) }}" alt="">
+                    <a href="#">
+                        <img src="{{ URL::to('storage/' . $data['lastParentBook']['main_image']) }}" alt="">
+                    </a>
                 </div>
                 <div class="color-info-description">
                     <h2>{{ $data['lastParentBook']['title_' . app()->getLocale()]  }}</h2>
@@ -152,8 +152,10 @@
                 <div class="authors-boxes">
                     @foreach($data['authors'] as $author)
                         <div>
-                            <div>
-                                <img src="{{ URL::to('storage/'. $author['image']) }}" alt="Jeff Qinni">
+                            <div class="authors-boxes-img">
+                                <a href="#">
+                                    <img src="{{ URL::to('storage/'. $author['image']) }}" alt="Jeff Qinni">
+                                </a>
                             </div>
                             <span>{{ $author['name_' . app()->getLocale()] }} </span>
                         </div>
@@ -170,8 +172,5 @@
                 </div>
             </div>
         </section>
-
-
-
     </main>
 @endsection

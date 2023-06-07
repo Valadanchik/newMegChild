@@ -500,14 +500,8 @@ closeModal?.addEventListener('click', ()=>{
 /*/////////////////////////Learn more///////////////////////////*/
 
 const learn_more_btn = document.querySelector('.learn-more-btn');
-
 const learn_more_div = document.querySelector('.learn-more');
-
 const text = document.querySelector('.book-item-desc p')
-console.log(text)
-
-
-console.log(learn_more_btn)
 
 learn_more_btn?.addEventListener('click', () => {
     learn_more_div.className = 'learn-more-none'
@@ -528,3 +522,26 @@ buttons.forEach((button) => {
 });
 
 
+/*//////////////filter///////////////*/
+
+const media_filter_icon = document.querySelector('.media-filter-icon svg')
+const choose_media_section = document.querySelector('.choose-media-section')
+let modal_filter = document.querySelector('.modal')
+let filter_body = document.querySelector('.filter-body')
+
+media_filter_icon.addEventListener("click", filterOpen)
+function filterOpen(){
+    choose_media_section.classList.toggle('filter-show')
+    media_filter_icon.classList.toggle('open')
+    modal_filter.classList.toggle('filter-modal-open')
+    filter_body.classList.toggle('body-open')
+}
+
+modal?.addEventListener('click' , filterModalClose)
+function filterModalClose() {
+    modal_filter.classList.remove('filter-modal-open')
+    media_filter_icon.classList.remove('open')
+    choose_media_section.classList.remove('filter-show')
+    filter_body.classList.remove('body-open')
+
+}

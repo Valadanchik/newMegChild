@@ -917,6 +917,13 @@ a.footer-address:hover {
     letter-spacing: 0.01em;
     color: #000000;
 }
+.filter-img{
+    width: 100%;
+    max-width: 24px;
+}
+.filter-img img{
+    width: 100%;
+}
 
 .media-filter-icon {
     display: none;

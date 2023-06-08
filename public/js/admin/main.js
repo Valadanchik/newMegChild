@@ -25,3 +25,35 @@ document.querySelectorAll('.dropdown-menu a').forEach(function(item) {
         return false;
     });
 });
+
+
+$("#bookFiles").fileinput({
+    showRemove: true,
+    showCancel: true,
+    browseLabel: "<i class='fa fa-folder-open'></i>",
+    initialPreviewAsData: true,
+    fileActionSettings :{
+        showUpload: false,
+        showZoom: false,
+        removeIcon: "<i class='fa fa-times'></i>",
+    },
+    allowedFileExtensions: ['jpg', 'png', 'gif'],
+    maxFileSize:2000,
+    maxFilesNum: 10,
+});
+
+$(document).ready(function() {
+    $('.summernote').summernote({
+        tabsize: 2,
+        height: 320,
+    });
+
+    var allids = [];
+    $('.remove-image').click(function() {
+        allids.push($(this).attr('data-img-id'));
+        $("input[name=deleted_images_id]").val(allids.join(','));
+        $(this).parent().remove();
+    });
+});
+
+

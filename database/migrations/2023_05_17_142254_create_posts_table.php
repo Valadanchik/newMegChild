@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('title_en')->unique();
             $table->string('description_hy')->nullable();
             $table->string('description_en')->nullable();
-            $table->text('text_hy');
-            $table->text('text_en');
+            $table->longText('text_hy');
+            $table->longText('text_en');
             $table->text('image');
             $table->softDeletes();
             $table->timestamps();

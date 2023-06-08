@@ -11,6 +11,7 @@ class Images extends Model
 
     protected $fillable = [
         'name',
+        'image',
         'path',
         'book_id',
     ];

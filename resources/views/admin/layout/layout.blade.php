@@ -7,23 +7,18 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - Eraz newmag</title>
+    <link rel="icon" type="image/x-icon" href="{{ URL::to('images/svg/favicon.svg') }}">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('/css/admin.css') }}" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="{{ asset('/admin/img/favicon.png') }}" />
     <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
-    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-
-    <script type="text/javascript">
-
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     var elements = document.querySelectorAll('.ckeditor');
-        //     elements.forEach(function(element) {
-        //         ClassicEditor.create(element);
-        //     });
-        // });
-
-    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/themes/fa/theme.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
 <body class="nav-fixed">
 
@@ -41,14 +36,12 @@
 
     </div>
 </div>
-<script src="{{ asset('/js/main.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="{{ asset('/js/admin/scripts.js') }}"></script>
-
 <!--Page Scripts-->
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+<!-- include summernote css/js -->
 <script src="{{ asset('/js/admin/datatables/datatables-simple-demo.js') }}"></script>
 <script src="{{ asset('/js/admin/main.js') }}"></script>
 </body>
 </html>
-

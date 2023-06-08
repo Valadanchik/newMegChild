@@ -19624,3 +19624,33 @@ pre[class*=language-] {
 .token.variable {
     color: #ff6666;
 }
+
+.order_books .datatable-top, .datatable-info
+{
+    display: none;
+}
+
+.modal-backdrop {
+    z-index: 0;
+}
+
+.main-section {
+    margin:0 auto;
+    padding: 20px;
+    margin-top: 100px;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px #c1c1c1;
+}
+.fileinput-remove,
+.fileinput-upload {
+    display: none;
+}
+
+.old-images img {
+    width: 213px;
+    /*height: 160px;*/
+}
+
+
+
+

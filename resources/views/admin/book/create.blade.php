@@ -233,6 +233,18 @@
                         </div>
 
                         <div class="card mb-4">
+                            <div class="card-header">Book Images</div>
+                            <div class="form-group">
+                                <div class="card-body">
+                                    <input id="bookFiles" type="file" name="images[]" multiple class="images" data-overwrite-initial="false" >
+                                </div>
+                            </div>
+                            @error('files')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="card mb-4">
                             <div class="card-header">Video URL</div>
                             <div class="card-body">
                                 <input type="text" class="form-control" id="video_url" name="video_url"

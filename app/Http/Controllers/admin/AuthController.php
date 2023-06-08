@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * @return \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
-     */
-    public function loginView(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+
+    public function loginView()
     {
-        return view('admin.login.index');
+        if (auth()->user()) {
+            return redirect()->route('admin.index');
+        } else {
+            return view('admin.login.index');
+        }
     }
 
     /**
@@ -32,7 +34,7 @@ class AuthController extends Controller
             $user->createToken('MyApp')->plainTextToken;
             return redirect()->route('admin.index');
         } else {
-            return redirect()->route('loginView');
+            return redirect()->route('admin.loginView');
         }
     }
 

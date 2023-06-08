@@ -16,7 +16,7 @@
                 @include('components.social')
             </div>
             <a href="https://www.google.com/maps/search/%D4%B1%D6%80%D5%B7%D5%A1%D5%AF%D5%B8%D6%82%D5%B6%D5%B5%D5%A1%D5%B6%D5%AE+4,+%D4%B5%D6%80%D6%87%D5%A1%D5%B6+0023/@40.170156,44.5078003,16.25z" target="_blank" class="footer-address">Արշակունյանծ 4, Երևան 0023, ՀՀ</a>
-            <form action="" class="footer-form">
+            {{--<form action="" class="footer-form">
                 <div class="footer-form-box">
                     <input type="email" placeholder="Բաժանորդագրվել">
                     <button>
@@ -26,7 +26,7 @@
                         </svg>
                     </button>
                 </div>
-            </form>
+            </form>--}}
         </div>
         <div class="footer-price">
             <div class="footer-money">

@@ -44,7 +44,6 @@
                 <div class="row gx-4">
 
                     <div class="col-lg-6">
-
                         <input type="hidden" name="id" value="{{ $book->id }}">
                         <div class="card mb-4">
                             <div class="card-header">Title (Hy)</div>
@@ -133,8 +132,6 @@
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
-
 
                         <div class="card mb-4">
                             <div class="card-header">Slug</div>
@@ -238,6 +235,31 @@
                             @error('file')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card mb-4">
+                                <div class="card-header">Book Images</div>
+                                <div class="form-group">
+                                    <div class="card-body">
+                                        <label>Old Images:</label>
+                                        <input type="hidden" name="deleted_images_id" value="">
+                                        <div class="row old-images" >
+                                            @foreach($book->images as $item)
+                                                <div class="col-md-4">
+                                                    <img width="100px" class="img-thumbnail" alt="Selected Image" src="{{ URL::to('storage/'.$item->image) }}" alt="">
+                                                    <button type="button" class="btn btn-sm btn-danger mt-2 remove-image" data-img-id="{{ $item->id }}">Remove</button>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <input id="bookFiles" type="file" name="images[]" multiple class="images" data-overwrite-initial="false" >
+                                    </div>
+                                </div>
+                                @error('files')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="card mb-4">

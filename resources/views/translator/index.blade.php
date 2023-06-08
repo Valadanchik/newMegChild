@@ -1,20 +1,27 @@
 @extends('layout.layout')
-@section('title', 'books')
+@section('title', $translator['name_' . app()->getLocale()])
 @section('content')
     <main class="news-articles">
-        <section class="books content">
-            <div class="filtering-book-page">
-                <ul class="filtering-book-page-list">
-                    <li class="is-checked mm" >Ամբողջը</li>
-                    <li>Այբ</li>
-                    <li>Բեն</li>
-                    <li>Գիմ</li>
-                    <li>Դա</li>
-                    <li>Ծնողներ</li>
-                </ul>
+        <section class="author-single-page content">
+            <div class="author-single-page-back-btn">
+                <span>Հեղինակներ / </span>
+                <span class="au-sing-active"><a href="#">{{ $translator['name_' . app()->getLocale()] }}</a></span>
             </div>
+            <div class="author-single-page-info">
+                <div class="author-single-page-info-img">
+                    <img src="{{ URL::to('storage/' . $translator['image']) }}" alt="author images">
+                </div>
+                <div class="author-single-page-info-desc">
+                    <h2>{{ $translator['name_' . app()->getLocale()] }}</h2>
+                    <p>{{ $translator['about_' . app()->getLocale()] }}</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content author-single-page-books-section">
+            <h2>Գրքեր</h2>
             <div class="books-info-item">
-                @foreach($books as $index => $book)
+                @foreach($translator->books as $book)
                     <div class="book-item">
                         <div class="book-item-images">
                             <div class="book-item-img-logo">
@@ -28,8 +35,8 @@
                         </div>
                         <h3>{{ $book['title_' . app()->getLocale()]  }}</h3>
                         <p>
-                            @foreach($book->authors as $key => $author)
-                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}
+                            @foreach($book->authors as $key => $translator)
+                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}
                             @endforeach
                         </p>
                         <div class="book-price">

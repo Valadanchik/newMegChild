@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title', 'checkout')
 @section('content')
     <main class="news-articles content">
         <section class="shopping-cart-block">
@@ -7,7 +7,6 @@
                 <h2>Զամբյուղ</h2>
             </div>
 
-{{--            {{ dd(session()->get('cart')) }}--}}
             @if(count($cardBooks))
                 <form action="{{route('order.create')}}" method="POST" class="shopping-cart form-shopping-cart">
                     @csrf

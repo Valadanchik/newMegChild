@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title', $book['title_' . app()->getLocale()])
 @section('content')
     <main class="news-articles">
         <section class="book-page-item-banner content">

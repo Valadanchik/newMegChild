@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title', 'books')
 @section('content')
     <main class="news-articles">
         <section class="books content">

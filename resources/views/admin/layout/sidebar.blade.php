@@ -5,7 +5,7 @@
                 <!-- Sidenav Heading (Addons)-->
                 <div class="sidenav-menu-heading">Dashboard</div>
                 <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('admin.index') }}">
                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
                     Dashboard
                 </a>
@@ -39,7 +39,6 @@
                     <div class="nav-link-icon"><i data-feather="edit"></i></div>
                     Medias
                 </a>
-
                 <div class="sidenav-menu-heading">Finance</div>
                 <!-- Sidenav Link (Charts)-->
                 <a class="nav-link" href="{{ route('orders.index') }}">
@@ -49,15 +48,14 @@
 
                 <div class="sidenav-menu-heading">Settings</div>
                 <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="/">
-                    <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                    Settings
-                </a>
-                <a class="nav-link" href="/">
+{{--                <a class="nav-link" href="">--}}
+{{--                    <div class="nav-link-icon"><i data-feather="settings"></i></div>--}}
+{{--                    Settings--}}
+{{--                </a>--}}
+                <a class="nav-link" href="{{ route('logout') }}">
                     <div class="nav-link-icon"><i data-feather="log-out"></i></div>
                     Logout
                 </a>
-
             </div>
         </div>
     </nav>

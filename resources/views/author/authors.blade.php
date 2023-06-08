@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title', 'authors')
 @section('content')
     <main class="news-articles">
         <section class="authors-page">

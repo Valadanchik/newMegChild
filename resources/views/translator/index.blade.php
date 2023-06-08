@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title', $translator['name_' . app()->getLocale()])
 @section('content')
     <main class="news-articles">
         <section class="author-single-page content">
@@ -20,7 +20,6 @@
 
         <section class="content author-single-page-books-section">
             <h2>Գրքեր</h2>
-
             <div class="books-info-item">
                 @foreach($translator->books as $book)
                     <div class="book-item">

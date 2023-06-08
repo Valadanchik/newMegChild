@@ -17,7 +17,7 @@
                     <li class="menu-about-us {{ isRouteActive('about') ? 'active-menu-underline' : '' }}">Մեր մասին
                         <ul class="menu-drop-down">
                             <li><a href="{{ LaravelLocalization::localizeUrl('/about') }}" class="{{ isRouteActive('about') ? 'active-menu-underline' : '' }}">Մատենաշարի մասին</a></li>
-                            <li><a href="#">Կապ</a></li>
+                            <li><a href="{{ LaravelLocalization::localizeUrl('/contact-us') }}">Կապ</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ LaravelLocalization::localizeUrl('/books') }}" class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">Գրքեր...</a></li>

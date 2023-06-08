@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title', 'checkout')
 @section('content')
     <main class="news-articles content">
         <section class="shopping-cart-block">

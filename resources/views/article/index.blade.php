@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title', $post['title_' . app()->getLocale()])
 @section('content')
     <main class="news-articles">
         <section class="article-itm-page-banner content">

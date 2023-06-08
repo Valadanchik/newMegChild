@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title', $author['name_' . app()->getLocale()])
 @section('content')
     <main class="news-articles">
         <section class="author-single-page content">

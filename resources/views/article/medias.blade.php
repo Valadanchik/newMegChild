@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title', 'media')
 @section('content')
     <main class="news-articles">
         <div class="section-tab">

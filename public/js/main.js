@@ -548,7 +548,6 @@ filter_book_list?.forEach((item) =>{
     })
 })
 
-
 /*/////////////////////////Learn more///////////////////////////*/
 const l_more = document.querySelector('.l_more')
 const height_text = document.querySelector('.book-item-desc p').offsetHeight

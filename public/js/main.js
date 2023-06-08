@@ -1,3 +1,5 @@
+/*////////////articles-filter cloud effect//////////////*/
+
 let tabs = document.querySelectorAll(".tabs_wrap ul li");
 let articleWrapper = document.querySelector(".articles-wrapper");
 let mediaWrapper = document.querySelector(".media-wrapper");
@@ -98,16 +100,16 @@ book_boxes.forEach((item, index)=>{
         item.classList.add('revers')
     }
 })
-// _______________/menu-acti_______________________
+// _______________/menu-active_______________________
 
-let menu_link = document.querySelectorAll('.menu-link');
+let menu_link = document?.querySelectorAll('.menu-link');
 
 menu_link.forEach((item)=>{
-    item.addEventListener('click', activMenuItem);
+    item.addEventListener('click', activeMenuItem);
 })
 
-function activMenuItem (e){
-    menu_link.forEach(el => {
+function activeMenuItem (e){
+    menu_link?.forEach(el => {
         el.classList.remove('active-menu-underline')
     })
     e.target.classList.add('active-menu-underline')
@@ -169,7 +171,6 @@ min?.forEach((item) =>{
         let minBtn = document.querySelector(`.min-count-${dataItem} img`);
         let productId = parseInt(event.currentTarget.dataset.product);
 
-        console.log(minBtn);
         if(parseInt(countElement.value) > 2) {
             countElement.value = parseInt(countElement.value) - 1;
             updateCartProductCount(countElement.value, productId)
@@ -190,7 +191,7 @@ min?.forEach((item) =>{
 });
 
 plus?.forEach((item) =>{
-    item.addEventListener('click', (event)=>{
+    item?.addEventListener('click', (event)=>{
 
         let payPriceElement = document.querySelector('.all-result-payable-to span span');
         let totalPriceElement = document.querySelector('.all-result-total span span');
@@ -200,8 +201,6 @@ plus?.forEach((item) =>{
         let maxCount = parseInt(event.currentTarget.dataset.max);
         let countElement = document.getElementById('count-shop-' + dataItem);
         let productId = parseInt(event.currentTarget.dataset.product);
-
-
         let minBtn = document.querySelector(`.min-count-${dataItem}`);
 
             if(parseInt(countElement.value) < maxCount) {
@@ -212,7 +211,6 @@ plus?.forEach((item) =>{
             minBtn.querySelector('img').src = "/images/svg/minus-circle.svg";
             minBtn.classList.remove('min-none');
         }
-
     })
 });
 
@@ -497,20 +495,6 @@ closeModal?.addEventListener('click', ()=>{
 })
 
 
-/*/////////////////////////Learn more///////////////////////////*/
-
-const learn_more_btn = document.querySelector('.learn-more-btn');
-const learn_more_div = document.querySelector('.learn-more');
-const text = document.querySelector('.book-item-desc p')
-
-learn_more_btn?.addEventListener('click', () => {
-    learn_more_div.className = 'learn-more-none'
-    text.style.overflow = "inherit"
-    text.style.display = "inherit"
-
-})
-
-
 /*////////////////////Accordion//////////////////////*/
 
 const buttons = document.querySelectorAll(".accordion-toggle");
@@ -529,7 +513,7 @@ const choose_media_section = document.querySelector('.choose-media-section')
 let modal_filter = document.querySelector('.modal')
 let filter_body = document.querySelector('.filter-body')
 
-media_filter_icon.addEventListener("click", filterOpen)
+media_filter_icon?.addEventListener("click", filterOpen)
 function filterOpen(){
     choose_media_section.classList.toggle('filter-show')
     media_filter_icon.classList.toggle('open')
@@ -545,3 +529,43 @@ function filterModalClose() {
     filter_body.classList.remove('body-open')
 
 }
+
+
+/*////////////////filter-book-page/////////////*/
+
+const filter_book_list = document.querySelectorAll('.filtering-book-page-list li')
+
+filter_book_list?.forEach((item) =>{
+    item.addEventListener('click', (e)=>{
+        let is_checked  = document.querySelectorAll('.is-checked')
+        is_checked .forEach((item) =>{
+            item.classList.remove('is-checked')
+        })
+        item.classList.add('is-checked')
+    })
+})
+
+
+/*/////////////////////////Learn more///////////////////////////*/
+const l_more = document.querySelector('.l_more')
+const height_text = document.querySelector('.book-item-desc p').offsetHeight
+const l_more_button = document.querySelector('.learn-more-btn')
+
+
+if(height_text >= 216){
+    l_more.classList.add('learn-more')
+}else {
+    l_more_button.style.display = 'none';
+}
+
+const learn_more_btn = document.querySelector('.learn-more-btn');
+const learn_more_div = document.querySelector('.learn-more');
+const text = document.querySelector('.book-item-desc p')
+
+learn_more_btn?.addEventListener('click', () => {
+    learn_more_div.className = 'learn-more-none'
+    text.style.overflow = "inherit"
+    text.style.display = "inherit"
+
+})
+

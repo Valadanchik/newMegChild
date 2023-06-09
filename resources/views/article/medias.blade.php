@@ -14,6 +14,18 @@
                 </ul>
             </div>
             <div class="tab-items-article">
+                <div class="media-title">
+{{--                    <div class="filter-media-title">--}}
+{{--                        <h1>Մեդիա</h1>--}}
+{{--                    </div>--}}
+                    <div class="media-filter-icon">
+                        <div class="filter-img">
+                            <img src="{{ URL::to('images/svg/mi_filter.svg') }}" alt="">
+                        </div>
+                        <h3>Ֆիլտրել</h3>
+                    </div>
+
+                </div>
                 <div class="item">
                     <div class="item_left">
                         <div class="data section-media-info">

@@ -847,11 +847,18 @@
     }
 
     .choose-media-section {
-        min-width: 330px;
+        /*min-width: 330px;*/
         position: fixed;
         right: -360px;
         z-index: 99;
         background: #fff;
+    }
+    .choose-media-section.filter-show{
+        top: 0;
+        padding-top: 120px;
+        width: 100%;
+        height: 100vh;
+        min-width: 800px;
     }
 
     .media-list-section {
@@ -1099,9 +1106,19 @@
         max-width: 350px;
     }
 
+    .tabs_wrap ul li {
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .tabs_wrap ul .media-li ,
+    .tabs_wrap ul .article-li{
+    background-size: contain;
+    }
+
     .footer {
         padding-top: 80px;
     }
+
 
     /*///////////////////articles-page/////////////////////*/
     .articles-list {
@@ -1147,8 +1164,6 @@
     .authors-boxes div span {
         margin-top: 14px;
     }
-
->>>>>>> a12a62af6043cf83d83669c85bfae983397afa27
 }
 
 @media (max-width: 576px) {
@@ -1231,6 +1246,9 @@
     .book-page-item-description-param {
         gap: 15px;
     }
+    .tabs_wrap ul li {
+        font-size: 18px;
+    }
 
     /*///////////////////articles-page/////////////////////*/
     .articles-list {
@@ -1244,7 +1262,9 @@
     .articles-list-item p {
         font-size: 14px;
     }
-
+    .choose-media-section.filter-show {
+        min-width: 680px;
+    }
 
     /*    //////////////////media-page////////////////////////////////////*/
     .media-list-section {
@@ -1281,6 +1301,7 @@
         margin: 50px auto;
         display: inherit;
         gap: unset;
+        text-align: center;
         overflow-x: auto;
         max-width: 100%;
         white-space: nowrap;
@@ -1288,7 +1309,7 @@
     }
     .authors-boxes div {
         max-width: 140px;
-        display: inline-grid;
+        display: inline-flex;
         margin-right: 20px;
     }
     ::-webkit-scrollbar:horizontal{
@@ -1416,6 +1437,16 @@
 
     .media-list-section {
         grid-template-columns: repeat(1, 300px);
+    }
+
+    .tabs_wrap ul li {
+        padding: 30px 30px 30px 10px;
+    }
+    .tabs_wrap ul li.media-li {
+        padding: 30px 36px 30px 25px;
+    }
+    .choose-media-section.filter-show {
+        min-width: 570px;
     }
 
     /* //////////////////about-us/////////////////*/

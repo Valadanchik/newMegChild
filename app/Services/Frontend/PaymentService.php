@@ -21,27 +21,14 @@ class PaymentService
 
     public function makePayment(Order $order)
     {
-        $amount = $order->total_price_with_discount;
+        $amount = $order->total_price;
         $payment_method = $order->payment_method;
 
-        return match ((int) $payment_method) {
+        return match ((int)$payment_method) {
             Order::PAYMENT_METHOD_IDRAM => $this->idramPayment($amount, $order->order_payment_id),
             Order::PAYMENT_METHOD_TELCELL => $this->telcellPayment($amount, $order->order_payment_id),
             Order::PAYMENT_METHOD_BANK => $this->arcaPayment($amount, $order->order_payment_id)
         };
-
-//        if ($payment_method == Order::PAYMENT_METHOD_IDRAM) {
-//
-//            return $this->idramPayment($amount, $order->order_payment_id);
-//
-//        } elseif ($payment_method == Order::PAYMENT_METHOD_TELCELL) {
-//
-//            return $this->telcellPayment($amount, $order->order_payment_id);
-//
-//        } elseif ($payment_method == Order::PAYMENT_METHOD_BANK) {
-//
-//            return $this->arcaPayment($amount, $order->order_payment_id);
-//        }
     }
 
 
@@ -60,48 +47,49 @@ class PaymentService
 
     public function idramCallback(Request $request)
     {
+        if ($request->has(['EDP_PRECHECK', 'EDP_BILL_NO', 'EDP_REC_ACCOUNT', 'EDP_AMOUNT']) &&
+            $request->EDP_PRECHECK == "YES" &&
+            $request->EDP_REC_ACCOUNT == env('IDRAM_EDP_REC_ACCOUNT') &&
+            Order::where('order_payment_id', $request->EDP_BILL_NO)->exists()) {
 
-        define("SECRET_KEY", env('IDRAM_SECRET_KEY'));
-        define("EDP_REC_ACCOUNT", env('IDRAM_EDP_REC_ACCOUNT'));
-
-        if (isset($request['EDP_PRECHECK']) && isset($request['EDP_BILL_NO']) &&
-            isset($request['EDP_REC_ACCOUNT']) && isset($request['EDP_AMOUNT'])) {
-            if ($request['EDP_PRECHECK'] == "YES") {
-                if ($request['EDP_REC_ACCOUNT'] == EDP_REC_ACCOUNT) {
-                    $bill_no = $request['EDP_BILL_NO'];
-                    if (Order::where('order_payment_id', $bill_no)->exists()) {
-                        echo "OK";
-                    }
-                }
-            }
+            echo "OK";
         }
 
-        if (isset($request['EDP_PAYER_ACCOUNT']) && isset($request['EDP_BILL_NO']) &&
-            isset($request['EDP_REC_ACCOUNT']) && isset($request['EDP_AMOUNT'])
-            && isset($request['EDP_TRANS_ID']) && isset($request['EDP_CHECKSUM'])) {
-            $order = Order::where('order_payment_id', $request['EDP_BILL_NO'])->first();
-            if ($order) {
-                $txtToHash =
-                    EDP_REC_ACCOUNT . ":" .
-                    $request['EDP_AMOUNT'] . ":" .
-                    SECRET_KEY . ":" .
-                    $request['EDP_BILL_NO'] . ":" .
-                    $request['EDP_PAYER_ACCOUNT'] . ":" .
-                    $request['EDP_TRANS_ID'] . ":" .
-                    $request['EDP_TRANS_DATE'];
-                $order->payment_callback = json_encode($request->all());
-                if (strtoupper($request['EDP_CHECKSUM']) != strtoupper(md5($txtToHash))) {
-//                    self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
-                    event(New OrderPayment(false,$order,Order::STATUS_FAILED));
+        if ($request->has(['EDP_PAYER_ACCOUNT', 'EDP_BILL_NO', 'EDP_REC_ACCOUNT', 'EDP_AMOUNT', 'EDP_TRANS_ID', 'EDP_CHECKSUM'])) {
 
-                } else {
-//                    self::updateOrderBooksPivotStatus($order, Order::STATUS_COMPLETED);
-//                    self::dispatchEmailJobs($order);
-                    event(New OrderPayment(true,$order,Order::STATUS_COMPLETED));
-                    echo "OK";
-                }
+            $checksum = $this->getIdramChecksum(
+                $request->EDP_AMOUNT,
+                $request->EDP_BILL_NO,
+                $request->EDP_PAYER_ACCOUNT,
+                $request->EDP_TRANS_ID,
+                $request->EDP_TRANS_DATE);
+
+            $order = Order::where('id', $request->EDP_BILL_NO)->firstOrFail();
+
+            $order->payment_callback = json_encode($request->all());
+
+            if (strtoupper($request->EDP_CHECKSUM) == strtoupper($checksum) &&
+                $order->total_price == $request->EDP_AMOUNT) {
+
+                event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
+                echo "OK";
+            } else {
+                event(new OrderPayment(false, $order, Order::STATUS_FAILED));
             }
         }
+    }
+
+    protected function getIdramChecksum($endAmount, $endBillNo, $endPayerAccount, $endTransId, $endTransDate)
+    {
+        $txtToHash =
+            env('IDRAM_EDP_REC_ACCOUNT') . ":" .
+            $endAmount . ":" .
+            env('IDRAM_SECRET_KEY') . ":" .
+            $endBillNo . ":" .
+            $endPayerAccount . ":" .
+            $endTransId . ":" .
+            $endTransDate;
+        return md5($txtToHash);
     }
 
     protected function telcellPayment($amount, $order_id)
@@ -126,47 +114,43 @@ class PaymentService
             $data_telcell['issuer_id'],
             $data_telcell['valid_days']
         );
+
         return view('payments.telcell_redirection', compact('data_telcell'));
     }
 
     public function telcellCallback(Request $request)
     {
-        if (!(
-            $request->has('issuer_id') &&
-            $request->has('checksum') &&
-            $request->has('invoice') &&
-            $request->has('issuer_id') &&
-            $request->has('payment_id') &&
-            $request->has('currency') &&
-            $request->has('sum') &&
-            $request->has('time') &&
-            $request->has('status'))) {
-
+        if (!$request->has(['buyer', 'checksum', 'invoice', 'issuer_id', 'payment_id', 'currency', 'sum', 'time', 'status'])) {
             abort(404);
         }
-        $order = Order::where('order_payment_id', $request->issuer_id)->first();
 
-        if (!$order)
-            abort(404);
+        $order = Order::where('order_payment_id', $request->issuer_id)->firstOrFail();
 
-        $new_checksum = hash('md5', env('TELCELL_KEY') . $request->invoice . $request->issuer_id . $request->payment_id . $request->currency . $request->sum . $request->time . $request->status);
-        if ($request->checksum != $new_checksum) {
+        $checksum = $this->getTelcellChecksum(
+            $request->invoice,
+            $request->issuer_id,
+            $request->payment_id,
+            $request->currency,
+            $request->sum,
+            $request->time,
+            $request->status
+        );
+
+        if ($request->checksum != $checksum) {
             $order->payment_callback = 'telcell checksum failed';
-//            self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
-            event(New OrderPayment(false,$order,Order::STATUS_FAILED));
+            event(new OrderPayment(false, $order, Order::STATUS_FAILED));
 
             abort(404);
         }
 
         $order->payment_callback = json_encode($request->all());
-        if ($request->status == 'PAID') {
-//            self::updateOrderBooksPivotStatus($order, Order::STATUS_COMPLETED);
-//            self::dispatchEmailJobs($order);
-            event(New OrderPayment(true,$order,Order::STATUS_COMPLETED));
-        } else {
-//            self::updateOrderBooksPivotStatus($order, Order::STATUS_FAILED);
-            event(New OrderPayment(false,$order,Order::STATUS_FAILED));
 
+        if ($request->status == 'PAID') {
+
+            event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
+        } else {
+
+            event(new OrderPayment(false, $order, Order::STATUS_FAILED));
         }
     }
 
@@ -175,17 +159,30 @@ class PaymentService
         if (!$request->has('order')) {
             abort(404);
         }
-//        $order = Order::find($request->order);
-        $order = Order::where('order_payment_id', $request->order)->first();
 
-        if (!$order)
-            abort(404);
+        $order = Order::where('order_payment_id', $request->order)->firstOrFail();
 
         if ($order->status == Order::STATUS_COMPLETED) {
+
             return redirect()->route('payment.success');
         } else {
+
             return redirect()->route('payment.fail');
         }
+    }
+
+    protected function getTelcellChecksum($invoice, $issuerId, $paymentId, $currency, $sum, $time, $status)
+    {
+        return hash('md5',
+            env('TELCELL_KEY') .
+            $invoice .
+            $issuerId .
+            $paymentId .
+            $currency .
+            $sum .
+            $time .
+            $status
+        );
     }
 
     protected function getTelcellSecurityCode($shop_key, $issuer, $currency, $price, $product, $issuer_id, $valid_days): string

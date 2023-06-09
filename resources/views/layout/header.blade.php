@@ -27,7 +27,7 @@
                         <a href="#" > Հոդվածներ </a>
                         <ul class="drop-down-articles">
                             <li><a href="{{ LaravelLocalization::localizeUrl('/articles') }}" class="{{ isRouteActive('articles') ? 'active-menu-underline' : '' }}">Լուրեր</a></li>
-                            <li><a href="#">Մեդիա</a></li>
+                            <li><a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">Մեդիա</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -48,6 +48,7 @@
             </div>
 
             <div class="header-icon-shop">
+                <sub>0</sub>
                 <svg  viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.84164 8.84C1.88186 8.33881 2.10939 7.87115 2.47891 7.53017C2.84843 7.18918 3.33283 6.9999 3.83564 7H15.8936C16.3964 6.9999 16.8808 7.18918 17.2504 7.53017C17.6199 7.87115 17.8474 8.33881 17.8876 8.84L18.6906 18.84C18.7127 19.1152 18.6776 19.392 18.5875 19.6529C18.4973 19.9139 18.3542 20.1533 18.1669 20.3562C17.9797 20.5592 17.7525 20.7211 17.4997 20.8319C17.2468 20.9427 16.9737 20.9999 16.6976 21H3.03164C2.75556 20.9999 2.48249 20.9427 2.22962 20.8319C1.97674 20.7211 1.74955 20.5592 1.56233 20.3562C1.37512 20.1533 1.23194 19.9139 1.14181 19.6529C1.05168 19.392 1.01655 19.1152 1.03864 18.84L1.84164 8.84Z"
                           stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -61,8 +62,6 @@
             <div class="header-icon-leng">
                 <p>EN</p>
             </div>
-
-
         </div>
         @include('components.search')
     </div>

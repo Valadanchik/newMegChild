@@ -38,12 +38,14 @@ Route::group(
     /* Home Route */
     Route::get('/', '\App\Http\Controllers\frontend\HomeController@index')->name('index');
     /* Books Routers */
+    Route::get('category/{slug}', 'App\Http\Controllers\frontend\BooksController@booksByCategory')->name('category.books');
     Route::get('books', 'App\Http\Controllers\frontend\BooksController@books')->name('books');
     Route::get('book/{slug}', 'App\Http\Controllers\frontend\BooksController@view')->name('book.view');
     /* Posts Routers */
     Route::get('articles', 'App\Http\Controllers\frontend\PostsController@articles')->name('articles');
     Route::get('article/{slug}', 'App\Http\Controllers\frontend\PostsController@view')->name('article.view');
     Route::get('medias/{slug}', 'App\Http\Controllers\frontend\PostsController@medias')->name('medias');
+    Route::get('media-articles', 'App\Http\Controllers\frontend\PostsController@mediaArticles')->name('media.articles');
     /* Posts Routers */
     Route::get('authors', 'App\Http\Controllers\frontend\AuthorsController@authors')->name('authors');
     Route::get('author/{slug}', 'App\Http\Controllers\frontend\AuthorsController@view')->name('author.view');
@@ -87,9 +89,4 @@ Route::group(
             Route::resource('orders', AdminOrderController::class);
         });
     });
-
 });
-
-
-
-

@@ -94,6 +94,9 @@ ul.header-menu-list {
 .header-logo img {
     width: 100%;
 }
+.header-icon-shop sub {
+    color: #f26f21;
+}
 
 .header-icon-serch svg {
     cursor: pointer;
@@ -139,8 +142,10 @@ ul.header-menu-list li a {
 
 .header-icon-shop {
     width: 100%;
-    max-width: 20px;
-    height: 22px
+    max-width: 30px;
+    display: flex;
+    height: 22px;
+    flex-direction: row-reverse;
 }
 
 .menu-drop-down {
@@ -302,12 +307,15 @@ main {
 .description-param-group-img {
     width: 100%;
     max-width: 96px;
+    transition-duration: .3s;
 }
 
 .description-param-group-img img {
     width: 100%;
 }
-
+.description-param-group-img:hover {
+    transform: scale(1.1);
+}
 .color-info-description-param {
     display: flex;
     margin-top: 46px;
@@ -632,6 +640,8 @@ main {
     margin: 50px auto;
     display: flex;
     gap: 32px;
+    flex-wrap: wrap;
+
 }
 
 .authors-boxes div {
@@ -644,6 +654,8 @@ main {
 
 .authors-boxes div img {
     width: 100%;
+    border: 4px solid #4DB848;
+    border-radius: 100%;
 }
 
 .authors-boxes div span {
@@ -890,6 +902,19 @@ a.footer-address:hover {
 /*_______________________TAB____________________________*/
 .tabs_wrap ul {
     display: flex;
+/*    max-width: fit-content;*/
+/*    gap: 0;*/
+/*    transition-duration: 1.5s;*/
+/*    align-items: center;*/
+/*    margin-bottom: 50px;*/
+/*    background-image: url(../images/cloud-article.png);*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: left;*/
+}
+
+
+.tabs_wrap ul .article-li {
+    display: flex;
     max-width: fit-content;
     gap: 0;
     transition-duration: 1.5s;
@@ -899,6 +924,19 @@ a.footer-address:hover {
     background-repeat: no-repeat;
     background-position: left;
 }
+
+.tabs_wrap ul .media-li {
+    display: flex;
+    max-width: fit-content;
+    gap: 0;
+    transition-duration: 1.5s;
+    align-items: center;
+    margin-bottom: 50px;
+    background-image: url(../images/cloud-article.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
 
 
 /*///////////////////media/////////////*/
@@ -1984,6 +2022,7 @@ h2.book-page-leave-review-title {
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
     padding-bottom: 120px;
+    margin-top: 24px;
 }
 
 .book-price p {
@@ -2037,6 +2076,9 @@ h2.book-page-leave-review-title {
 
 .book-item {
     margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 section.books {
@@ -2536,7 +2578,6 @@ section.about-us {
     display: flex;
     position: relative;
 }
-
 
 .shopping-cart-products-count-item-plus {
     cursor: pointer;
@@ -3047,12 +3088,15 @@ section.contacts-page h2 {
     line-height: 20px;
     letter-spacing: 0.01em;
     color: #000000;
+    transition-duration: .3s;
 }
 
 .learn-more-none {
     display: none;
 }
-
+button.learn-more-btn:hover {
+    color: #f26f21;
+}
 
 ::-webkit-scrollbar {
     width: 5px;
@@ -3072,3 +3116,36 @@ section.contacts-page h2 {
     background: #f26f21;
 }
 
+.filtering-book-page ul {
+    display: flex;
+    gap: 48px;
+    list-style: none;
+    border-bottom: 1px solid #646464;
+    margin: 30px 15px
+}
+
+.filtering-book-page ul li {
+    text-align: center;
+    padding-bottom: 7px;
+    cursor: pointer;
+    position: relative;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+    letter-spacing: 0.01em;
+    color: #000;
+    transition: 0.3s;
+}
+
+.filtering-book-page ul li:hover {
+    color: #F36F21;
+}
+
+.filtering-book-page ul li.is-checked {
+    border-bottom: 4px solid #F36F21;
+}
+
+.filtering-book-page ul li:last-child {
+    margin-right: 0;
+}

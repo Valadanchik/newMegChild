@@ -24,8 +24,7 @@ class PostsController extends Controller
     public function view(Post $post, $slug): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $otherPosts = self::otherPosts($slug);
-        $post = $post::where('slug', $slug)
-            ->firstOrFail();
+        $post = $post::where('slug', $slug)->firstOrFail();
 
         return view('article/index', compact('post'), compact('otherPosts'));
     }
@@ -37,19 +36,29 @@ class PostsController extends Controller
     public function medias($slug): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $postCategoryID = self::getPostCategoryId($slug);
+        $postCategories = self::getPostCategories();
         $mediaPosts = Post::where('post_category_id', $postCategoryID)->get();
 
-        dd($mediaPosts);
-//        return view('article/medias', compact('mediaPosts'));
+        return view('article/medias', compact('mediaPosts', 'postCategories'));
     }
 
+    /**
+     * @return \Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+     */
+    public function mediaArticles(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+        $postCategories = self::getPostCategories();
+        $mediaPosts = Post::where('post_category_id', '!=', NULL)->get();
+
+        return view('article/medias', compact('mediaPosts', 'postCategories'));
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Collection|array
      */
     public static function getPostCategories(): \Illuminate\Database\Eloquent\Collection|array
     {
-        return PostCategory::with('post')->get();
+        return PostCategory::has('post')->get();
     }
 
     /**
@@ -58,7 +67,7 @@ class PostsController extends Controller
      */
     public static function getPostCategoryId($slug): int
     {
-        return PostCategory::where('slug', $slug)->firstOrFail()->id;
+        return PostCategory::has('post')->where('slug', $slug)->firstOrFail()->id;
     }
 
     /**

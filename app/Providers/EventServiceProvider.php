@@ -21,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        OrderPayment::class=>[
+        OrderPayment::class => [
             UpdateOrderStatus::class,
             SendEmail::class,
         ]

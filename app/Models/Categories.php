@@ -43,6 +43,18 @@ class Categories extends Model
         'age',
     ];
 
+    /**
+     * @param $slug
+     * @return int
+     */
+    public static function bookCategoryId($slug): int
+    {
+        return Categories::where('name_en', $slug)->firstOrFail()->id;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function books(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Books::class);

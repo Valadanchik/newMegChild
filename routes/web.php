@@ -38,6 +38,7 @@ Route::group(
     /* Home Route */
     Route::get('/', '\App\Http\Controllers\frontend\HomeController@index')->name('index');
     /* Books Routers */
+    Route::get('category/{slug}', 'App\Http\Controllers\frontend\BooksController@booksByCategory')->name('category.books');
     Route::get('books', 'App\Http\Controllers\frontend\BooksController@books')->name('books');
     Route::get('book/{slug}', 'App\Http\Controllers\frontend\BooksController@view')->name('book.view');
     /* Posts Routers */
@@ -88,9 +89,4 @@ Route::group(
             Route::resource('orders', AdminOrderController::class);
         });
     });
-
 });
-
-
-
-

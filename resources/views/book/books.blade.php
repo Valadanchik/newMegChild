@@ -5,12 +5,12 @@
         <section class="books content">
             <div class="filtering-book-page">
                 <ul class="filtering-book-page-list">
-                    <li class="is-checked mm" >Ամբողջը</li>
-                    <li>Այբ</li>
-                    <li>Բեն</li>
-                    <li>Գիմ</li>
-                    <li>Դա</li>
-                    <li>Ծնողներ</li>
+                    <li class="{{ $slug === null ? 'is-checked' : '' }}"><a href="{{ LaravelLocalization::localizeUrl('/books') }}">Ամբողջը</a></li>
+                    @foreach($categories as $category)
+                        <li class="{{ $slug == $category['name_en'] ? 'is-checked' : '' }}">
+                            <a href="{{ LaravelLocalization::localizeUrl('/category/' . $category['name_en']) }}">{{ $category['name_' . app()->getLocale()] }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="books-info-item">

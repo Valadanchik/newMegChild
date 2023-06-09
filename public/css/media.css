@@ -231,7 +231,6 @@
         max-width: 170px;
     }
 
-
     .additional-information-list-item p {
         font-size: 14px;
     }
@@ -279,6 +278,16 @@
 
     .articles-list-item p {
         line-height: 22px;
+    }
+
+    /*    //////////////about-us//////////////*/
+    .about-us h2 {
+        font-size: 36px;
+    }
+
+    section.about-us {
+        margin-top: 80px;
+        margin-bottom: 100px;
     }
 
     /*//////////////translators-page///////////////*/
@@ -489,6 +498,16 @@
         grid-template-columns: repeat(2, 300px);
     }
 
+    /*//////////////about-us////////////////*/
+    .about-us h2 {
+        font-size: 30px;
+    }
+
+    section.about-us {
+        margin-top: 70px;
+        margin-bottom: 90px;
+    }
+
     /*//////////////translators-page///////////////*/
     .authors-boxes div {
         max-width: 190px;
@@ -500,7 +519,6 @@
     .authors-page {
         padding-bottom: 80px;
     }
-
 }
 
 @media (max-width: 1100px) {
@@ -861,9 +879,26 @@
         font-size: 26px;
         line-height: 40px;
     }
+
+    /*//////////////about-us////////////////*/
+    .about-us h2 {
+        font-size: 25px;
+        margin-bottom: 35px;
+    }
+
+    section.about-us {
+        margin-top: 50px;
+        margin-bottom: 60px;
+    }
+
+    .about-us p {
+        font-size: 14px;
+    }
+
     .authors-boxes div {
         max-width: 180px;
     }
+
     .authors-page {
         padding-bottom: 60px;
     }
@@ -1084,6 +1119,17 @@
         width: 240px;
     }
 
+    /*//////////////about-us////////////////*/
+    .about-us h2 {
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+
+    section.about-us {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
     /*////////////////translators-page////////////*/
     .translators-section-title {
         padding: 41px 23px 32px;
@@ -1102,6 +1148,7 @@
         margin-top: 14px;
     }
 
+>>>>>>> a12a62af6043cf83d83669c85bfae983397afa27
 }
 
 @media (max-width: 576px) {
@@ -1211,6 +1258,22 @@
 
     .media-list-item-img {
         max-width: 360px;
+    }
+
+    /*//////////////about-us////////////////*/
+    .about-us p {
+        margin-bottom: 10px;
+        word-wrap: break-word;
+    }
+
+    section.about-us {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .about-us h2 {
+        margin-bottom: 20px;
+        line-height: 30px;
     }
 
     /*////////////////translators-page////////////*/
@@ -1353,6 +1416,12 @@
 
     .media-list-section {
         grid-template-columns: repeat(1, 300px);
+    }
+
+    /* //////////////////about-us/////////////////*/
+    .about-us h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
     }
 
     /*////////////////translators-page////////////*/

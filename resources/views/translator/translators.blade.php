@@ -18,29 +18,6 @@
                             <span> {{ $translator['name_' . app()->getLocale()] }}</span>
                         </div>
                     @endforeach
-
-
-
-
-                        @foreach($translators as $translator)
-                            <div>
-                                <div>
-                                    <a href="{{ LaravelLocalization::localizeUrl('/translator/' . $translator['slug']) }}">
-                                        <img src="{{ URL::to('storage/' . $translator['image']) }}" alt="">
-                                    </a>
-                                </div>
-                                <span> {{ $translator['name_' . app()->getLocale()] }}</span>
-                            </div>
-                        @endforeach   @foreach($translators as $translator)
-                            <div>
-                                <div>
-                                    <a href="{{ LaravelLocalization::localizeUrl('/translator/' . $translator['slug']) }}">
-                                        <img src="{{ URL::to('storage/' . $translator['image']) }}" alt="">
-                                    </a>
-                                </div>
-                                <span> {{ $translator['name_' . app()->getLocale()] }}</span>
-                            </div>
-                        @endforeach
                 </div>
             </div>
         </section>

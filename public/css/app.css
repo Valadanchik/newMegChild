@@ -900,6 +900,19 @@ a.footer-address:hover {
 /*_______________________TAB____________________________*/
 .tabs_wrap ul {
     display: flex;
+/*    max-width: fit-content;*/
+/*    gap: 0;*/
+/*    transition-duration: 1.5s;*/
+/*    align-items: center;*/
+/*    margin-bottom: 50px;*/
+/*    background-image: url(../images/cloud-article.png);*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: left;*/
+}
+
+
+.tabs_wrap ul .article-li {
+    display: flex;
     max-width: fit-content;
     gap: 0;
     transition-duration: 1.5s;
@@ -909,6 +922,19 @@ a.footer-address:hover {
     background-repeat: no-repeat;
     background-position: left;
 }
+
+.tabs_wrap ul .media-li {
+    display: flex;
+    max-width: fit-content;
+    gap: 0;
+    transition-duration: 1.5s;
+    align-items: center;
+    margin-bottom: 50px;
+    background-image: url(../images/cloud-article.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
 
 
 /*///////////////////media/////////////*/

@@ -27,7 +27,7 @@
                         <a href="#" > Հոդվածներ </a>
                         <ul class="drop-down-articles">
                             <li><a href="{{ LaravelLocalization::localizeUrl('/articles') }}" class="{{ isRouteActive('articles') ? 'active-menu-underline' : '' }}">Լուրեր</a></li>
-                            <li><a href="#">Մեդիա</a></li>
+                            <li><a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">Մեդիա</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -62,8 +62,6 @@
             <div class="header-icon-leng">
                 <p>EN</p>
             </div>
-
-
         </div>
         @include('components.search')
     </div>

@@ -44,6 +44,7 @@ Route::group(
     Route::get('articles', 'App\Http\Controllers\frontend\PostsController@articles')->name('articles');
     Route::get('article/{slug}', 'App\Http\Controllers\frontend\PostsController@view')->name('article.view');
     Route::get('medias/{slug}', 'App\Http\Controllers\frontend\PostsController@medias')->name('medias');
+    Route::get('media-articles', 'App\Http\Controllers\frontend\PostsController@mediaArticles')->name('media.articles');
     /* Posts Routers */
     Route::get('authors', 'App\Http\Controllers\frontend\AuthorsController@authors')->name('authors');
     Route::get('author/{slug}', 'App\Http\Controllers\frontend\AuthorsController@view')->name('author.view');

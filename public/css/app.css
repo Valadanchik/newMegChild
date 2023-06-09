@@ -2823,7 +2823,9 @@ input:focus {
 }
 
 /*////////////////////authors-single-page//////////////////////////////////*/
-
+section.author-single-page {
+    padding-top: 38px;
+}
 .author-single-page-info {
     display: flex;
     gap: 30px;
@@ -2856,6 +2858,8 @@ input:focus {
 
 .author-single-page-info-img img {
     width: 100%;
+    border-radius: 100%;
+    border: 6px solid #4DB848;
 }
 
 .author-single-page-back-btn span {
@@ -2928,7 +2932,7 @@ input:focus {
 }
 
 .content.author-single-page-books-section {
-    margin-bottom: 110px;
+    padding-bottom: 110px;
 }
 
 /*////////////////////////contact page/////////////////////////*/
@@ -3152,3 +3156,9 @@ button.learn-more-btn:hover {
 .filtering-book-page ul li:last-child {
     margin-right: 0;
 }
+
+
+/*.author-single-page-info-desc p::-webkit-scrollbar-thumb {*/
+/*    background: #4db848;*/
+/*    border-radius: 10px;*/
+/*}*/

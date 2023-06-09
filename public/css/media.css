@@ -29,6 +29,11 @@
     .media-list-item {
         width: 320px;
     }
+    /*//////////////translators-page///////////////*/
+    .authors-page {
+        padding-top: 40px;
+        padding-bottom: 132px;
+    }
 }
 
 @media (max-width: 1400px) {
@@ -275,6 +280,15 @@
     .articles-list-item p {
         line-height: 22px;
     }
+
+    /*//////////////translators-page///////////////*/
+    .translators-section-title h2 {
+        font-size: 30px;
+        line-height: 35px;
+    }
+    .translators-section-title {
+        background-size: contain;
+    }
 }
 
 @media (max-width: 1200px) {
@@ -473,6 +487,18 @@
         width: 100%;
         max-width: 630px;
         grid-template-columns: repeat(2, 300px);
+    }
+
+    /*//////////////translators-page///////////////*/
+    .authors-boxes div {
+        max-width: 190px;
+    }
+    .translators-section-title h2 {
+        font-size: 28px;
+        line-height: 30px;
+    }
+    .authors-page {
+        padding-bottom: 80px;
     }
 
 }
@@ -829,14 +855,18 @@
 
     /*////////////////translators-page////////////*/
     .translators-section-title {
-        padding: 52px 20px 50px;
+        padding: 46px 16px;
     }
-
     .translators-section-title h2 {
-        font-size: 28px;
+        font-size: 26px;
         line-height: 40px;
     }
-
+    .authors-boxes div {
+        max-width: 180px;
+    }
+    .authors-page {
+        padding-bottom: 60px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -844,15 +874,12 @@
         padding-top: 30px;
         padding-bottom: 50px;
     }
-
     .banner-img {
         max-width: 85px;
     }
-
     .banner-info {
         gap: 60px;
     }
-
     .color-info-description-after,
     .color-info-description-translate,
     .color-info-description-age span,
@@ -860,7 +887,6 @@
     .color-info-description-font-size span {
         font-size: 14px;
     }
-
     .description-param-group-img {
         max-width: 55px;
     }
@@ -1058,6 +1084,24 @@
         width: 240px;
     }
 
+    /*////////////////translators-page////////////*/
+    .translators-section-title {
+        padding: 41px 23px 32px;
+    }
+    .translators-section-title h2 {
+        font-size: 20px;
+        line-height: 35px;
+    }
+    .authors-boxes div {
+        max-width: 140px;
+    }
+    .authors-boxes {
+        margin: 26px auto;
+    }
+    .authors-boxes div span {
+        margin-top: 14px;
+    }
+
 }
 
 @media (max-width: 576px) {
@@ -1167,6 +1211,32 @@
 
     .media-list-item-img {
         max-width: 360px;
+    }
+
+    /*////////////////translators-page////////////*/
+    .authors-boxes {
+        margin: 50px auto;
+        display: inherit;
+        gap: unset;
+        overflow-x: auto;
+        max-width: 100%;
+        white-space: nowrap;
+        flex-wrap: unset;
+    }
+    .authors-boxes div {
+        max-width: 140px;
+        display: inline-grid;
+        margin-right: 20px;
+    }
+    ::-webkit-scrollbar:horizontal{
+        height: 6px;
+        border-radius: 20px;
+    }
+    .authors-boxes div span {
+        margin-bottom: 15px;
+    }
+    .authors-page {
+        padding-bottom: 30px;
     }
 }
 
@@ -1285,5 +1355,12 @@
         grid-template-columns: repeat(1, 300px);
     }
 
+    /*////////////////translators-page////////////*/
+    .translators-section-title {
+        padding: 35px 19px 25px;
+    }
+    .translators-section-title h2 {
+        font-size: 18px;
+    }
 }
 

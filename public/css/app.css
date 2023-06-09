@@ -640,6 +640,8 @@ main {
     margin: 50px auto;
     display: flex;
     gap: 32px;
+    flex-wrap: wrap;
+
 }
 
 .authors-boxes div {

@@ -1105,6 +1105,9 @@ a.footer-address:hover {
     letter-spacing: 0.01em;
     text-decoration: none;
 }
+.tabs_wrap ul li a{
+    color: #000;
+}
 
 .tabs_wrap ul.right {
     background-position: right;

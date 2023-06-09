@@ -508,7 +508,7 @@ buttons.forEach((button) => {
 
 /*//////////////filter///////////////*/
 
-const media_filter_icon = document.querySelector('.media-filter-icon svg')
+const media_filter_icon = document.querySelector('.media-filter-icon img')
 const choose_media_section = document.querySelector('.choose-media-section')
 let modal_filter = document.querySelector('.modal')
 let filter_body = document.querySelector('.filter-body')

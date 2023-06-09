@@ -226,7 +226,6 @@
         max-width: 170px;
     }
 
-
     .additional-information-list-item p {
         font-size: 14px;
     }
@@ -276,11 +275,11 @@
         line-height: 22px;
     }
 
-
-/*    //////////////about-us//////////////*/
+    /*    //////////////about-us//////////////*/
     .about-us h2 {
         font-size: 36px;
     }
+
     section.about-us {
         margin-top: 80px;
         margin-bottom: 100px;
@@ -486,16 +485,14 @@
     }
 
     /*//////////////about-us////////////////*/
-
     .about-us h2 {
         font-size: 30px;
     }
+
     section.about-us {
         margin-top: 70px;
         margin-bottom: 90px;
     }
-
-
 }
 
 @media (max-width: 1100px) {
@@ -861,16 +858,17 @@
     /*//////////////about-us////////////////*/
     .about-us h2 {
         font-size: 25px;
-        margin-bottom:35px;
+        margin-bottom: 35px;
     }
+
     section.about-us {
         margin-top: 50px;
         margin-bottom: 60px;
     }
+
     .about-us p {
         font-size: 14px;
     }
-
 }
 
 @media (max-width: 768px) {
@@ -1097,11 +1095,11 @@
         font-size: 20px;
         margin-bottom: 25px;
     }
+
     section.about-us {
         margin-top: 30px;
         margin-bottom: 30px;
     }
-
 }
 
 @media (max-width: 576px) {
@@ -1218,10 +1216,12 @@
         margin-bottom: 10px;
         word-wrap: break-word;
     }
+
     section.about-us {
         margin-top: 20px;
         margin-bottom: 20px;
     }
+
     .about-us h2 {
         margin-bottom: 20px;
         line-height: 30px;
@@ -1343,8 +1343,7 @@
         grid-template-columns: repeat(1, 300px);
     }
 
-
-/* //////////////////about-us/////////////////*/
+    /* //////////////////about-us/////////////////*/
     .about-us h2 {
         font-size: 18px;
         margin-bottom: 15px;

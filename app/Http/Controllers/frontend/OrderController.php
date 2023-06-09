@@ -63,9 +63,8 @@ class OrderController extends Controller
         $order = $this->orderService->create($request);
         $this->orderService->createOrderBook($order);
 
-//        dd('end');
-//        $payment_service = new PaymentService();
-//        return $payment_service->makePayment($order);
+        $payment_service = new PaymentService();
+        return $payment_service->makePayment($order);
     }
 
     /**

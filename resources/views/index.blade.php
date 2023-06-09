@@ -40,7 +40,7 @@
                             <div class="description-param-group">
                                 <p>Խումբ</p>
                                 <div class="description-param-group-img">
-                                    <img src="{{ URL::to('/images/white-category.png') }}" alt="">
+                                    <a href="#"> <img src="{{ URL::to('/images/white-category.png') }}" alt=""></a>
                                 </div>
                             </div>
                             <div class="color-info-description-age">

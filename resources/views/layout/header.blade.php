@@ -61,11 +61,16 @@
                 <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">
             </div>
             <div class="header-icon-leng">
-                <p>EN</p>
+                <p>
+                    @if(LaravelLocalization::getCurrentLocale() == 'en')
+                        <a rel="alternate" hreflang="hy" href="{{ LaravelLocalization::getLocalizedURL('hy', null, [], true) }}">HY</a>
+                    @else
+                        <a rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">EN</a>
+                    @endif
+                </p>
             </div>
         </div>
         @include('components.search')
     </div>
-
 </header>
 @include('components.loader')

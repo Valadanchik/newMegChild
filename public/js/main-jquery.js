@@ -46,14 +46,14 @@ $(document).ready(function () {
     });
 });
 
-function htmlFilter(data) {
+function htmlFilter(books) {
     let bookUrl = $("#book-url").val();
     let bookImageUrl = $("#book-image-url").val();
     let locale = $("#locale").val();
     let bookItemLogo = $("#book-item-logo").val();
     let booksInfoItem = $('<div class="books-info-item"></div>');
 
-    data.books.forEach((book, index) => {
+    books.forEach((book, index) => {
         let searchData = '';
         searchData +=
             `<div class="book-item">

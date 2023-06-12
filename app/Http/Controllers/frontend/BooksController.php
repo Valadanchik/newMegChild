@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SearchFilterResource;
 use App\Models\Books;
 use App\Models\Categories;
 use Illuminate\Http\Request;
@@ -45,9 +46,9 @@ class BooksController extends Controller
                 ->get();
         }
 
-        return response()->json([
-            'books' => $books
-        ]);
+        $data = SearchFilterResource::collection($books);
+
+        return response()->json($data);
     }
 
     /**

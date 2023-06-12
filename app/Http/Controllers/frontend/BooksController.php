@@ -7,6 +7,7 @@ use App\Http\Resources\SearchFilterResource;
 use App\Models\Books;
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class BooksController extends Controller
 {
@@ -56,11 +57,13 @@ class BooksController extends Controller
      */
     public function view(Books $books, $slug): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
+
         $book = $books::with(['authors', 'category', 'images'])
             ->where('slug', $slug)
             ->firstOrFail();
+        $shareUrl = LaravelLocalization::localizeUrl('/book/'. $book['title_' . app()->getLocale()]);
 
-        return view('book/index', compact('book'));
+        return view('book/index', compact('book', 'shareUrl' ));
     }
 
     /**

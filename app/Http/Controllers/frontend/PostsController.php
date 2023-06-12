@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\PostCategory;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class PostsController extends Controller
 {
@@ -25,8 +26,9 @@ class PostsController extends Controller
     {
         $otherPosts = self::otherPosts($slug);
         $post = $post::where('slug', $slug)->firstOrFail();
+        $shareUrl = LaravelLocalization::localizeUrl('/article/'. $post['title_' . app()->getLocale()]);
 
-        return view('article/index', compact('post'), compact('otherPosts'));
+        return view('article/index', compact('post'), compact('otherPosts', 'shareUrl'));
     }
 
     /**

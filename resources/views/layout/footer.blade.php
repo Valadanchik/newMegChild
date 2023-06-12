@@ -13,7 +13,21 @@
         </div>
         <div class="footer-icon-input">
             <div class="footer-icons">
-                @include('components.social')
+                <div class="faccebook-logo" style="width:28px ; height:28px" >
+                    <a href='https://www.facebook.com' >
+                        <img src="{{ URL::to('images/svg/facebook-logo.svg') }}" alt="facebook logo" style="width:100%">
+                    </a>
+                </div>
+                <div class="twitter-logo" style="width:28px ; height:28px" >
+                    <a href="https://twitter.com/>
+                        <img src="{{ URL::to('images/svg/twitter-logo.svg') }}" alt="twitter logo" style="width:100%">
+                    </a>
+                </div>
+                <div class="linkedin-logo" style="width:28px ; height:28px" >
+                    <a href="https://www.linkedin.com/">
+                        <img src="{{ URL::to('images/svg/linkedin-logo.svg') }}" alt="linkedin logo" style="width:100%">
+                    </a>
+                </div>
             </div>
             <a href="https://www.google.com/maps/search/%D4%B1%D6%80%D5%B7%D5%A1%D5%AF%D5%B8%D6%82%D5%B6%D5%B5%D5%A1%D5%B6%D5%AE+4,+%D4%B5%D6%80%D6%87%D5%A1%D5%B6+0023/@40.170156,44.5078003,16.25z" target="_blank" class="footer-address">Արշակունյանծ 4, Երևան 0023, ՀՀ</a>
             {{--<form action="" class="footer-form">

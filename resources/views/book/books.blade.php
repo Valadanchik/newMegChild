@@ -53,8 +53,6 @@
                     <p>Այս բաժնում դեռևս գրքեր չկան</p>
                 </div>
             @endif
-
-
         </section>
     </main>
 @endsection

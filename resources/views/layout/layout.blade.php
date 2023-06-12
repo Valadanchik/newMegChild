@@ -35,7 +35,6 @@
 
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/media.css') }}">
-
 </head>
 <body class="body filter-body">
 

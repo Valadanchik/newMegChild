@@ -94,6 +94,7 @@ ul.header-menu-list {
 .header-logo img {
     width: 100%;
 }
+
 .header-icon-shop sub {
     color: #f26f21;
 }
@@ -313,9 +314,11 @@ main {
 .description-param-group-img img {
     width: 100%;
 }
+
 .description-param-group-img:hover {
     transform: scale(1.1);
 }
+
 .color-info-description-param {
     display: flex;
     margin-top: 46px;
@@ -902,14 +905,14 @@ a.footer-address:hover {
 /*_______________________TAB____________________________*/
 .tabs_wrap ul {
     display: flex;
-/*    max-width: fit-content;*/
-/*    gap: 0;*/
-/*    transition-duration: 1.5s;*/
-/*    align-items: center;*/
-/*    margin-bottom: 50px;*/
-/*    background-image: url(../images/cloud-article.png);*/
-/*    background-repeat: no-repeat;*/
-/*    background-position: left;*/
+    /*    max-width: fit-content;*/
+    /*    gap: 0;*/
+    /*    transition-duration: 1.5s;*/
+    /*    align-items: center;*/
+    /*    margin-bottom: 50px;*/
+    /*    background-image: url(../images/cloud-article.png);*/
+    /*    background-repeat: no-repeat;*/
+    /*    background-position: left;*/
 }
 
 
@@ -938,7 +941,6 @@ a.footer-address:hover {
 }
 
 
-
 /*///////////////////media/////////////*/
 .media-title {
     display: flex;
@@ -955,11 +957,13 @@ a.footer-address:hover {
     letter-spacing: 0.01em;
     color: #000000;
 }
-.filter-img{
+
+.filter-img {
     width: 100%;
     max-width: 24px;
 }
-.filter-img img{
+
+.filter-img img {
     width: 100%;
 }
 
@@ -1105,7 +1109,8 @@ a.footer-address:hover {
     letter-spacing: 0.01em;
     text-decoration: none;
 }
-.tabs_wrap ul li a{
+
+.tabs_wrap ul li a {
     color: #000;
 }
 
@@ -2102,10 +2107,12 @@ section.books {
     margin-bottom: 50px;
     text-align: center;
 }
+
 section.about-us {
     margin-top: 92px;
     margin-bottom: 120px;
 }
+
 .about-us p {
     font-weight: 400;
     font-size: 16px;
@@ -2826,6 +2833,7 @@ input:focus {
 section.author-single-page {
     padding-top: 38px;
 }
+
 .author-single-page-info {
     display: flex;
     gap: 30px;
@@ -3101,6 +3109,7 @@ section.contacts-page h2 {
 .learn-more-none {
     display: none;
 }
+
 button.learn-more-btn:hover {
     color: #f26f21;
 }
@@ -3158,26 +3167,23 @@ button.learn-more-btn:hover {
     margin-right: 0;
 }
 
-
-/*.author-single-page-info-desc p::-webkit-scrollbar-thumb {*/
-/*    background: #4db848;*/
-/*    border-radius: 10px;*/
-/*}*/
-.not-found{
+.not-found {
     margin: 90px auto 0;
     text-align: center;
     padding-bottom: 120px;
 }
 
-.not-found-img{
+.not-found-img {
     width: 100%;
     max-width: 193px;
     margin: auto;
 }
-.not-found-img img{
+
+.not-found-img img {
     width: 100%;
 }
-.not-found p{
+
+.not-found p {
     margin-top: 20px;
     font-weight: 500;
     font-size: 24px;

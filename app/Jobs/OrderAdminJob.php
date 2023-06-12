@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Interfaces\OrderMailingInterface;
 use App\Mail\OrderAdminMail;
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
@@ -16,10 +15,6 @@ class OrderAdminJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * @param Order $order
-     * @param OrderMailingInterface $mailer
-     */
     public function __construct(protected Order $order)
     {
 

@@ -528,11 +528,6 @@
     .authors-page {
         padding-bottom: 80px;
     }
-    /*.author-single-page-info-desc p {*/
-    /*    height: 290px;*/
-    /*    overflow-y: auto;*/
-    /*}*/
-
     .author-single-page-info-img {
         width: 100%;
         display: inline-block;
@@ -547,6 +542,11 @@
     .author-single-page-info {
         gap: unset;
         display: inherit;
+    }
+
+    .not-found {
+        margin: 80px auto 0;
+        padding-bottom: 80px;
     }
 }
 
@@ -863,6 +863,21 @@
         left: -40px;
     }
 
+    section.books {
+        padding-top: 50px;
+    }
+    .not-found {
+        margin: 70px auto 0;
+        text-align: center;
+        padding-bottom: 70px;
+    }
+    .not-found p {
+        font-size: 20px;
+    }
+    .not-found-img {
+        max-width: 170px;
+    }
+
     /*///////////////////articles-page/////////////////////*/
     .articles-list {
         grid-template-columns: repeat(2, 330px);
@@ -945,6 +960,7 @@
     .author-single-page-info-img {
         max-width: 280px;
     }
+
 
 }
 
@@ -1149,7 +1165,7 @@
     }
     .tabs_wrap ul .media-li ,
     .tabs_wrap ul .article-li{
-    background-size: contain;
+        background-size: contain;
     }
 
     .footer {
@@ -1230,6 +1246,19 @@
     .book-item p {
         font-size: 14px;
     }
+    .books {
+        padding-top: 30px;
+    }
+    .not-found {
+        margin: 40px auto 0;
+        padding-bottom: 30px;
+    }
+    section.books {
+        padding-top: 40px;
+    }
+    .not-found p {
+         font-size: 18px;
+     }
 }
 
 @media (max-width: 576px) {
@@ -1314,6 +1343,9 @@
     }
     .tabs_wrap ul li {
         font-size: 18px;
+    }
+    .not-found-img {
+        max-width: 130px;
     }
 
     /*///////////////////articles-page/////////////////////*/
@@ -1490,6 +1522,19 @@
     .book-page-item-btn a {
         padding: 15px 0;
         max-width: 100%;
+    }
+    .not-found p {
+        font-size: 16px;
+    }
+    section.books {
+        padding-top: 20px;
+    }
+    .not-found {
+        margin: 24px auto 0;
+        padding-bottom: 20px;
+    }
+    .not-found-img {
+        max-width: 110px;
     }
 
     /*///////////////////articles-page/////////////////////*/

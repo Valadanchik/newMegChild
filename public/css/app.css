@@ -3135,6 +3135,7 @@ button.learn-more-btn:hover {
     text-align: center;
     padding-bottom: 7px;
     cursor: pointer;
+    text-transform: capitalize;
     position: relative;
     font-weight: 500;
     font-size: 16px;
@@ -3162,3 +3163,25 @@ button.learn-more-btn:hover {
 /*    background: #4db848;*/
 /*    border-radius: 10px;*/
 /*}*/
+.not-found{
+    margin: 90px auto 0;
+    text-align: center;
+    padding-bottom: 120px;
+}
+
+.not-found-img{
+    width: 100%;
+    max-width: 193px;
+    margin: auto;
+}
+.not-found-img img{
+    width: 100%;
+}
+.not-found p{
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0.01em;
+    color: #000000;
+}

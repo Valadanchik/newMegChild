@@ -19,7 +19,7 @@
                     </a>
                 </div>
                 <div class="twitter-logo" style="width:28px ; height:28px" >
-                    <a href="https://twitter.com/>
+                    <a href="https://twitter.com/">
                         <img src="{{ URL::to('images/svg/twitter-logo.svg') }}" alt="twitter logo" style="width:100%">
                     </a>
                 </div>

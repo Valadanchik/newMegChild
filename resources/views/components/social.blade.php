@@ -1,5 +1,5 @@
 <div class="faccebook-logo" style="width:28px ; height:28px" >
-    <a href='https://www.facebook.com/sharer/sharer.php?u={{ $shareUrl }}' >
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ $shareUrl }}" >
         <img src="{{ URL::to('images/svg/facebook-logo.svg') }}" alt="facebook logo" style="width:100%">
     </a>
 </div>

@@ -26,7 +26,7 @@ class PostsController extends Controller
     {
         $otherPosts = self::otherPosts($slug);
         $post = $post::where('slug', $slug)->firstOrFail();
-        $shareUrl = LaravelLocalization::localizeUrl('/article/'. $post['title_' . app()->getLocale()]);
+        $shareUrl = LaravelLocalization::localizeUrl('/article/'. $post['slug']);
 
         return view('article/index', compact('post'), compact('otherPosts', 'shareUrl'));
     }

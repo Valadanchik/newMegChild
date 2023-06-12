@@ -61,7 +61,7 @@ class BooksController extends Controller
         $book = $books::with(['authors', 'category', 'images'])
             ->where('slug', $slug)
             ->firstOrFail();
-        $shareUrl = LaravelLocalization::localizeUrl('/book/'. $book['title_' . app()->getLocale()]);
+        $shareUrl = LaravelLocalization::localizeUrl('/book/'. $book['slug']);
 
         return view('book/index', compact('book', 'shareUrl' ));
     }

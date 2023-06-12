@@ -48,7 +48,7 @@
             @else
                 <div class="not-found">
                     <div class="not-found-img">
-                        <img src="{{ URL::to('/') }}/images/girl.png" alt="girl images">
+                        <img src="{{ URL::to('/images/girl.png') }}" alt="girl images">
                     </div>
                     <p>Այս բաժնում դեռևս գրքեր չկան</p>
                 </div>

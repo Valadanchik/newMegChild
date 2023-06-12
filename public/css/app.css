@@ -905,14 +905,6 @@ a.footer-address:hover {
 /*_______________________TAB____________________________*/
 .tabs_wrap ul {
     display: flex;
-    /*    max-width: fit-content;*/
-    /*    gap: 0;*/
-    /*    transition-duration: 1.5s;*/
-    /*    align-items: center;*/
-    /*    margin-bottom: 50px;*/
-    /*    background-image: url(../images/cloud-article.png);*/
-    /*    background-repeat: no-repeat;*/
-    /*    background-position: left;*/
 }
 
 
@@ -1880,7 +1872,6 @@ h2.book-page-leave-review-title {
     border: 1px solid #000;
     border-radius: 4px;
 }
-
 
 /*__________________________reade-more_____________________________*/
 .reade-more-info-item {

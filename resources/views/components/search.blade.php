@@ -1,10 +1,11 @@
 <div class="search-section ">
 
-    <div class="popup-search-input content">
-        <div class="close-popup-img">
-            <img src="{{ URL::to('/images/svg/close-popup.svg') }}" alt="close">
+    <div class="popup-search-input">
+        <div class="content">
+            <div class="close-popup-img ">
+                <img src="{{ URL::to('/images/svg/close-popup.svg') }}" alt="close">
+            </div>
         </div>
-
         <div>
             <form class="search-box">
                 <button style="background: none; border: none; padding: 0">
@@ -25,7 +26,7 @@
                 <input type="hidden" id="locale" value="{{ app()->getLocale() }}">
                 <input type="hidden" id="book-item-logo" value="{{ URL::to('images/reade-more-img-logo-green.png') }}">
             </form>
-            <div id="booksContainer"></div>
+            <div id="booksContainer" ></div>
         </div>
     </div>
 </div>

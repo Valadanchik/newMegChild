@@ -75,7 +75,7 @@
                         @foreach($data['posts'] as $post)
                             <div class="article-box-item">
                                 <div class="article-box-item-img">
-                                    <a href="#">
+                                    <a href="{{ LaravelLocalization::localizeUrl('/article/' . $post['slug']) }}">
                                         <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
                                     </a>
                                 </div>

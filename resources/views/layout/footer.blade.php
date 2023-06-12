@@ -4,11 +4,11 @@
         <div >
             <div class="footer-logo"><img src="{{ URL::to('/') }}/images/svg/footer-logo.svg" alt="logo"></div>
             <div class="footer-menu">
-                <a href="">Մեր մասին</a>
-                <a href="">Հեղինակներ</a>
-                <a href="">Գրքեր...</a>
-                <a href="">Թարգմանիչներ</a>
-                <a href="">Հոդվածներ</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/about') }}">Մեր մասին</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/authors') }}">Հեղինակներ</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/books') }}">Գրքեր...</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/translators') }}">Թարգմանիչներ</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/articles') }}">Հոդվածներ</a>
             </div>
         </div>
         <div class="footer-icon-input">
@@ -52,7 +52,7 @@
             <div class="footer-book">
                 <a href="">Գիրք պատվիրելու պայմանները</a>
                 <a href="">Գովազդ և ծառայություններ</a>
-                <a href="">Կայքը` Future Systems</a>
+                <a href="https://future-systems.am/">Կայքը` Future Systems</a>
             </div>
         </div>
     </div>

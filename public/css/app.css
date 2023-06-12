@@ -97,10 +97,14 @@ ul.header-menu-list {
 
 .header-icon-shop sub {
     color: #f26f21;
+    position: absolute;
+    top: -8px;
+    left: 20px;
 }
 
-.header-icon-serch svg {
+.header-icon-serch img {
     cursor: pointer;
+    width: 100%;
 }
 
 ul.header-menu-list li a {
@@ -145,8 +149,8 @@ ul.header-menu-list li a {
     width: 100%;
     max-width: 30px;
     display: flex;
-    height: 22px;
     flex-direction: row-reverse;
+    position: relative;
 }
 
 .menu-drop-down {
@@ -2771,6 +2775,7 @@ input[type=number] {
     left: 0;
 }
 
+
 .search-box {
     font-size: 30px;
     padding: 0 0px 10px;
@@ -3128,10 +3133,10 @@ button.learn-more-btn:hover {
     gap: 48px;
     list-style: none;
     border-bottom: 1px solid #646464;
-    margin: 30px 15px
+    margin: 20px 15px 30px;
 }
 
-.filtering-book-page ul li {
+.filtering-book-page ul li a{
     text-align: center;
     padding-bottom: 7px;
     cursor: pointer;
@@ -3139,10 +3144,11 @@ button.learn-more-btn:hover {
     position: relative;
     font-weight: 500;
     font-size: 16px;
-    line-height: 20px;
+    line-height: 30px;
     /* identical to box height */
     letter-spacing: 0.01em;
     color: #000;
+    transition-duration: .3s;
     transition: 0.3s;
 }
 
@@ -3181,4 +3187,24 @@ button.learn-more-btn:hover {
     line-height: 29px;
     letter-spacing: 0.01em;
     color: #000000;
+}
+.header-icon-shop a{
+    width: 100%;
+    max-width: 24px;
+
+}
+.header-icon-shop a img{
+    width: 100%;
+}
+#booksContainer {
+    background: #fff;
+    /*overflow-y: auto;*/
+    /*height: 100vh;*/
+}
+.ov-auto{
+    overflow: auto;
+    height: 100vh;
+}
+.d-none{
+    display: none;
 }

@@ -63,7 +63,13 @@
     .header-icon {
         gap: 15px;
     }
-
+    /*.header-icon-shop sub {*/
+    /*    left: 15px;*/
+    /*}*/
+    .header-icon-shop a {
+        width: 100%;
+        max-width: 22px;
+    }
     ul.header-menu-list {
         gap: 50px;
     }

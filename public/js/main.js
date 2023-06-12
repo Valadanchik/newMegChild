@@ -477,17 +477,25 @@ let searchBtn = document.querySelector('.search');
 let searchSection = document.querySelector(".search-section");
 let closePopup = document.querySelector('.close-popup-img')
 let closeModal = document.querySelector('.modal')
+let book_info = document.querySelector('#booksContainer')
+// let search_input = document.querySelector('#search-input').value;
+// console.log(search_input)
+
 
 searchBtn?.addEventListener('click', ()=>{
     searchSection.classList.toggle("open")
     body.classList.toggle('body-open')
     modal.classList.toggle('modal-open')
+    book_info.classList.remove('d-none')
 })
 
 closePopup?.addEventListener('click', ()=>{
     searchSection.classList.remove("open")
     modal.classList.remove('modal-open')
     body.classList.remove('body-open')
+    book_info.classList.add('d-none')
+    book_info.innerHTML = ''
+
 
 })
 closeModal?.addEventListener('click', ()=>{
@@ -533,7 +541,7 @@ function filterModalClose() {
 
 /*////////////////filter-book-page/////////////*/
 
-const filter_book_list = document.querySelectorAll('.filtering-book-page-list li')
+const filter_book_list = document.querySelectorAll('.filtering-book-page-list li a')
 
 filter_book_list?.forEach((item) =>{
     item.addEventListener('click', (e)=>{

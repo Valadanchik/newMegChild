@@ -320,64 +320,64 @@ function checkInputsShoppingCart() {
 
     if(firstNameValue ===''){
         errors['firstName'] = true
-        setErrorForShopping(firstName, 'Գրեք Ձեր անունը');
+        setErrorForShopping(firstName, document.getElementById('required_name').value);
     } else {
         setSuccessForShopping(firstName);
     }
 
     if(lastNameValue ===''){
         errors['lastName'] = true
-        setErrorForShopping(lastName, 'Գրեք Ձեր ազգանունը');
+        setErrorForShopping(lastName, document.getElementById('required_last_name').value);
     } else {
         setSuccessForShopping(lastName);
     }
 
     if(homeValue ===''){
         errors['home'] = true
-        setErrorForShopping(home, 'Գրեք Ձեր փողոցը');
+        setErrorForShopping(home, document.getElementById('required_street').value);
     } else {
         setSuccessForShopping(home);
     }
 
     if(cityValue ===''){
         errors['city'] = true
-        setErrorForShopping(city, 'Գրեք Ձեր քաղաքը');
+        setErrorForShopping(city, document.getElementById('required_city').value);
     } else {
         setSuccessForShopping(city);
     }
 
     if(postCodeValue ===''){
         errors['postCode'] = true
-        setErrorForShopping(postCode, 'Գրեք Ձեր փոստային կոդը');
+        setErrorForShopping(postCode, document.getElementById('required_post_code').value);
     } else {
         setSuccessForShopping(postCode);
     }
 
     if(tellValue ===''){
         errors['tell'] = true
-        setErrorForShopping(tell, 'Գրեք Ձեր հեռախոսահամարը');
+        setErrorForShopping(tell, document.getElementById('required_phone').value);
     } else {
         setSuccessForShopping(tell);
     }
 
     if(emailShopValue === '') {
         errors['emailShop'] = true
-        setErrorForShopping(emailShop, 'Գրեք Ձեր էլ.հասցեն');
+        setErrorForShopping(emailShop, document.getElementById('required_email').value);
     } else if (!isEmailShop(emailShopValue)) {
-        setErrorForShopping(emailShop, 'էլ․հասցեն ճիծտ չէ');
+        setErrorForShopping(emailShop, document.getElementById('required_email_wrong').value);
     } else {
         setSuccessForShopping(emailShop);
     }
 
     if(acceptContent2.content === "none"){
         errors['accept2'] = true
-        setErrorForShopping(accept2, 'Կարդացեք և համաձայնվեք օգտագործման պայմանների հետ');
+        setErrorForShopping(accept2, document.getElementById('required_terms').value);
     }else {
         setSuccessForShopping(accept2);
     }
     if(!country.value){
         errors['country'] = true
-        setErrorForShopping(country, 'Նշեք երկիրը');
+        setErrorForShopping(country, document.getElementById('required_country').value);
     } else {
         setSuccessForShopping(country);
     }

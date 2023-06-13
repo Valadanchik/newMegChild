@@ -6,23 +6,23 @@
             <div class="tabs_wrap">
                 <ul>
                     <li data-tabs="article">
-                        <a href="{{ LaravelLocalization::localizeUrl('/articles') }}">Հոդվածներ</a>
+                        <a href="{{ LaravelLocalization::localizeUrl('/articles') }}">{{ __('messages.articles') }}</a>
                     </li>
                     <li data-tabs="media" class="media-li">
-                        <a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">Մեդիա</a>
+                        <a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">{{ __('messages.media') }}</a>
                     </li>
                 </ul>
             </div>
             <div class="tab-items-article">
                 <div class="media-title">
 {{--                    <div class="filter-media-title">--}}
-{{--                        <h1>Մեդիա</h1>--}}
+{{--                        <h1>{{ __('messages.media') }}</h1>--}}
 {{--                    </div>--}}
                     <div class="media-filter-icon">
                         <div class="filter-img">
                             <img src="{{ URL::to('images/svg/mi_filter.svg') }}" alt="">
                         </div>
-                        <h3>Ֆիլտրել</h3>
+                        <h3>{{ __('messages.filter') }}</h3>
                     </div>
 
                 </div>
@@ -30,10 +30,10 @@
                     <div class="item_left">
                         <div class="data section-media-info">
                             <div class="choose-media-section">
-                                <h3>Ընտրել մեդիան</h3>
+                                <h3>{{ __('messages.filter') }}</h3>
                                 <div class="media-scrol-bar scrollbar" id="style-4">
                                     <div class="scroll-bar-all scrol-bar-item">
-                                        <p><a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">Բոլորը</a></p>
+                                        <p><a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">{{ __('messages.all') }}</a></p>
                                     </div>
                                     @foreach($postCategories as $postCategory)
                                         <div class="scrol-bar-item">

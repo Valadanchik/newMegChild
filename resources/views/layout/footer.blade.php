@@ -1,14 +1,15 @@
-
 <footer>
     <div class="footer content">
         <div >
-            <div class="footer-logo"><img src="{{ URL::to('/') }}/images/svg/footer-logo.svg" alt="logo"></div>
+            <div class="footer-logo">
+                <img src="{{ URL::to('/images/svg/footer-logo.svg') }}" alt="logo">
+            </div>
             <div class="footer-menu">
-                <a href="{{ LaravelLocalization::localizeUrl('/about') }}">Մեր մասին</a>
-                <a href="{{ LaravelLocalization::localizeUrl('/authors') }}">Հեղինակներ</a>
-                <a href="{{ LaravelLocalization::localizeUrl('/books') }}">Գրքեր...</a>
-                <a href="{{ LaravelLocalization::localizeUrl('/translators') }}">Թարգմանիչներ</a>
-                <a href="{{ LaravelLocalization::localizeUrl('/articles') }}">Հոդվածներ</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/about') }}">{{ __('header.about_us') }}</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/authors') }}">{{ __('header.authors') }}</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/books') }}">{{ __('header.books') }}...</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/translators') }}">{{ __('header.translators') }}</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/articles') }}">{{ __('header.articles') }}</a>
             </div>
         </div>
         <div class="footer-icon-input">
@@ -29,10 +30,10 @@
                     </a>
                 </div>
             </div>
-            <a href="https://www.google.com/maps/search/%D4%B1%D6%80%D5%B7%D5%A1%D5%AF%D5%B8%D6%82%D5%B6%D5%B5%D5%A1%D5%B6%D5%AE+4,+%D4%B5%D6%80%D6%87%D5%A1%D5%B6+0023/@40.170156,44.5078003,16.25z" target="_blank" class="footer-address">Արշակունյանծ 4, Երևան 0023, ՀՀ</a>
+            <a href="https://www.google.com/maps/search/%D4%B1%D6%80%D5%B7%D5%A1%D5%AF%D5%B8%D6%82%D5%B6%D5%B5%D5%A1%D5%B6%D5%AE+4,+%D4%B5%D6%80%D6%87%D5%A1%D5%B6+0023/@40.170156,44.5078003,16.25z" target="_blank" class="footer-address">{{ __('header.site_address') }}</a>
             {{--<form action="" class="footer-form">
                 <div class="footer-form-box">
-                    <input type="email" placeholder="Բաժանորդագրվել">
+                    <input type="email" placeholder="{{ __('header.subscribe') }}">
                     <button>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -50,9 +51,9 @@
                 <div class="footer-money-idram"><img src="{{ URL::to('/images/idram.png') }}" alt="idram"></div>
             </div>
             <div class="footer-book">
-                <a href="">Գիրք պատվիրելու պայմանները</a>
-                <a href="">Գովազդ և ծառայություններ</a>
-                <a href="https://future-systems.am/">Կայքը` Future Systems</a>
+                <a href="">{{ __('header.book_ordering_conditions') }}</a>
+                <a href="">{{ __('header.advertising_and_services') }}</a>
+                <a href="https://future-systems.am/">{{ __('header.site') }}` Future Systems</a>
             </div>
         </div>
     </div>

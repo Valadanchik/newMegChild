@@ -3,41 +3,41 @@
 @section('content')
 <main class="news-articles">
     <section class="contacts-page content">
-        <h2>Հետադարձ կապ</h2>
+        <h2>{{ __('contact.feedback') }}</h2>
         <div class="contacts-page-info">
             <div class="contacts-page-info-decsription">
-                <p> <span>Երազ</span>  մատենաշարաը բաց է գործակցության համար։ Լավագույն տարբերակը՝ էլեկտրոնային հաղորդակցությունն է։</p>
+                <p> <span>{{ __('contact.dream') }}</span> {{ __('contact.dream_description') }}</p>
             </div>
             <div class="new-book-or-translation-desc">
-                <h3>Նոր գիրք կամ թարգմանություն</h3>
-                <p>Եթե հեղինակ եք կամ թարգմանիչ, եթե ունեք արդեն պատրաստի գիրք կամ թարգմանություն, ապա այդ դեպքում կարող եք նամակ ուղարկել՝ <span>gohar.manukyan@newmag.am</span> էլհասցեին: Նամակի subject բաժնում նշելով՝ «Գործակցության առաջարկ»: Նամակին կից պարդատիր է ուղարկել
+                <h3>{{ __('contact.new_book_or_translate') }}</h3>
+                <p>{!! __('contact.new_book_or_translate_text') !!}
                 </p>
                 <ol>
-                    <li>Ձեր առաջարկած գրքի ամբողջական անունը և կարճ նկարագրությունը:</li>
-                    <li>Մանրամասներ գրքի մասին՝ արդեն թարգմանե՞լ եք, թե՞ նոր ցանկանում եք թարգմանել:</li>
+                    <li>{{ __('contact.your_offer_book_name') }}</li>
+                    <li>{{ __('contact.about_books') }}</li>
                 </ol>
             </div>
             <div class="contact-page-sale-desc">
-                <h3>Վաճառք</h3>
-                <p>Եթե հեղինակ եք կամ թարգմանիչ, եթե ունեք արդեն պատրաստի գիրք կամ թարգմանություն, ապա այդ դեպքում կարող եք նամակ ուղարկել՝ <pan>gohar.manukyan@newmag.am</pan>  էլհասցեին: Նամակի subject բաժնում նշելով՝ «Գործակցության առաջարկ»: Նամակին կից պարդատիր է ուղարկել</p>
+                <h3>{{ __('contact.sale') }}</h3>
+                <p>{!! __('contact.sale_text') !!}</p>
             </div>
 
             <div class="contact-page-work-desc">
-                <h3>Աշխատանք</h3>
-                <p>Newmag հրատարակչության հետ, որպես թարգմանիչ, խմբագիր, սրբագրիչ գործակցելու համար կարող եք ձերCV-ին ուղարկել՝ <span> gohar.manukyan@newmag.am</span>  էլհասցեին: Նամակի subject բաժնում նշելով՝ «CV»:</p>
+                <h3>{{ __('contact.work') }}</h3>
+                <p>{!! __('contact.work_text') !!}</p>
             </div>
 
             <div class="contact-page-partnership-desc">
-                <h3>Գործընկերություն</h3>
+                <h3>{{ __('contact.partnership') }}</h3>
                 <p>
-                    Newmag հրատարակչության հետ, որպես թարգմանիչ, խմբագիր, սրբագրիչ գործակցելու համար կարող եք ձերCV-ին ուղարկել՝<span> gohar.manukyan@newmag.am</span>  էլհասցեին: Նամակի subject բաժնում նշելով՝ «CV»:
+                    {!! __('contact.partnership_text') !!}
                 </p>
             </div>
 
             <div class="contact-page-sponsorship-desc">
-                <h3>Հովանավորություն</h3>
+                <h3>{{ __('contact.sponsorship') }}</h3>
                 <p>
-                    Newmag հրատարակչության հետ կոմերցիոն գործակցության կամ հովանավորության առաջարկների համարկարող եք նամակ ուղարկել՝ <span>gohar.manukyan@newmag.am</span> էլհասցեին: Նամակի subject բաժնում նշելով՝ «Կոմերցիոն առաջարկ»:
+                    {!! __('contact.sponsorship_text') !!}
                 </p>
             </div>
         </div>

@@ -4,7 +4,7 @@
     <main class="news-articles content">
         <section class="shopping-cart-block">
             <div class="shopping-cart-block-title">
-                <h2>Զամբյուղ</h2>
+                <h2>{{ __('checkout.cart') }}</h2>
             </div>
 
             @if(count($cardBooks))
@@ -41,7 +41,7 @@
                                                      alt="plus img">
                                             </div>
                                         </div>
-                                        <span>Հասանելի է {{ $card['in_stock'] }} հատ</span>
+                                        <span>{{ __('checkout.in_stock') }} {{ $card['in_stock'] }} {{ __('checkout.pcs') }}</span>
                                     </div>
 
 
@@ -96,10 +96,11 @@
                                             <input class="accept-input"
                                                    type="text"
                                                    id="shopping-cart-firs-name"
-                                                   placeholder="Անուն*"
+                                                   placeholder="{{ __('checkout.first_name') }} *"
                                                    name="name"
                                                    value="{{old('name')}}">
                                             <small></small>
+                                            <input id="required_name" type="hidden" value="{{ __('validation.required_name') }}">
                                             @error('name')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
@@ -107,9 +108,10 @@
 
                                         <div class=" form-control form-shopping-cart-last-name">
                                             <input class="accept-input" type="text" id="last-name"
-                                                   placeholder="Ազգանուն*"
+                                                   placeholder="{{ __('checkout.last_name') }}*"
                                                    name="lastname"
                                                    value="{{old('lastname')}}">
+                                            <input id="required_last_name" type="hidden" value="{{ __('validation.required_last_name') }}">
                                             <small></small>
                                             @error('lastname')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -119,7 +121,7 @@
 
                                     <div class=" form-control form-shopping-cart-company">
                                         <input class="accept-input" type="text" id="company"
-                                               placeholder="Ընկերության անվանումը (ըստ ընտրության) "
+                                               placeholder="{{ __('checkout.company_name') }} "
                                                name="company"
                                                value="{{old('company')}}">
                                         <small></small>
@@ -130,7 +132,7 @@
 
                                     <div class="form-control form-shopping-cart-count">
                                         <select name="country_id" id="country">
-                                            <option value="" hidden>Ընտրեք երկիրը *</option>
+                                            <option value="" hidden>{{ __('checkout.select_country') }}*</option>
                                             @foreach($countries as $country)
                                                 <option
                                                     value="{{$country->id}}"
@@ -139,6 +141,7 @@
                                                 </option>
                                             @endforeach
                                         </select>
+                                        <input id="required_country" type="hidden" value="{{ __('validation.required_country') }}">
                                         <small></small>
                                         @error('country_id')
                                         <div style="color: red" class="required--error">{{ $message }}</div>
@@ -161,7 +164,9 @@
                                                                    </div>--}}
                                     <div class="form-home-address-oll">
                                         <div class=" form-control form-shopping-cart-home">
-                                            <input name="street" value="{{old('street')}}" type="text" id="home" placeholder="Տան համար և փողոց *">
+                                            <input name="street" value="{{old('street')}}" type="text" id="home" placeholder="{{ __('checkout.house_and_street') }} *">
+                                            <input id="required_street" type="hidden" value="{{ __('validation.required_street') }}">
+
                                             <small></small>
                                             @error('street')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -169,7 +174,7 @@
                                         </div>
 
                                         <div class=" form-control form-shopping-cart-apartment">
-                                            <input name="house" value="{{old('house')}}" type="text" id="apartment" placeholder="Բնակարան, կացարան և ալն․․․">
+                                            <input name="house" value="{{old('house')}}" type="text" id="apartment" placeholder="{{ __('checkout.apartment') }}․․․">
                                             <small></small>
                                             @error('house')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -177,7 +182,8 @@
                                         </div>
 
                                         <div class=" form-control form-shopping-cart-city">
-                                            <input name="region" value="{{old('region')}}" type="text" id="city" placeholder="Քաղաք/Վարչական շրջան *">
+                                            <input name="region" value="{{old('region')}}" type="text" id="city" placeholder="{{ __('checkout.city') }} *">
+                                            <input id="required_city" type="hidden" value="{{ __('validation.required_city') }}">
                                             <small></small>
                                             @error('region')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -185,7 +191,8 @@
                                         </div>
 
                                         <div class=" form-control form-post-code">
-                                            <input type="text" value="{{old('postal_code')}}" name="postal_code" id="post-code" placeholder="Փոստային կոդ *">
+                                            <input type="text" value="{{old('postal_code')}}" name="postal_code" id="post-code" placeholder="{{ __('checkout.city') }} *">
+                                            <input id="required_post_code" type="hidden" value="{{ __('validation.required_post_code') }}">
                                             <small></small>
                                             @error('postal_code')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -193,7 +200,8 @@
                                         </div>
 
                                         <div class=" form-control form-shopping-cart-home-tell">
-                                            <input type="text" value="{{old('phone')}}" name="phone" id="home-tell" placeholder="Հեռախոս *">
+                                            <input type="text" value="{{old('phone')}}" name="phone" id="home-tell" placeholder="{{ __('checkout.phone') }} *">
+                                            <input id="required_phone" type="hidden" value="{{ __('validation.required_phone') }}">
                                             <small></small>
                                             @error('phone')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -201,7 +209,8 @@
                                         </div>
 
                                         <div class="form-control form-shopping-cart-email">
-                                            <input name="email" value="{{old('email')}}" type="text" id="email-shop" placeholder="Էլեկտրոնային հասցե*">
+                                            <input name="email" value="{{old('email')}}" type="text" id="email-shop" placeholder="{{ __('checkout.email') }} *">
+                                            <input id="required_email" type="hidden" value="{{ __('validation.required_email') }}">
                                             <small></small>
                                             @error('email')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -211,7 +220,7 @@
 
                                     <div class=" form-control form-shopping-cart-review " >
                                         <textarea name="order_text" value="{{old('order_text')}}" class="accept-input" id="review-sopping-cart"
-                                                  placeholder="Ձեր պատվերի մասին նշումներ, օրինակ, հատուկ նշումներ առաքման համար *"
+                                                  placeholder="{{ __('checkout.shipping_info') }}"
                                                   type="checkbox"></textarea>
                                         <small></small>
                                         @error('order_text')
@@ -219,16 +228,13 @@
                                         @enderror
                                     </div>
                                     <div class="form-text-info">
-                                        <p>Ձեր անձնական տվյալները կօգտագորշվեն ձեր պատվերը մշակոլու համար և այլ
-                                            նպատակներով,
-                                            որոնք նկարագրված են մեր
-                                            <span>Գիրք պատվիրելու պայմանները</span>-ում։
-                                        </p>
+                                        <p>{!! __('checkout.checkout_text') !!}</p>
                                     </div>
 
                                     <div class="form-control accept">
                                         <input name="terms" class="accept-input" type="checkbox" value=" value="{{old('terms')}}"">
-                                        <span id="accept-sopping-cart">Կարդացել և համաձայնվում եմ ոգտագործման պայմանների հետ</span>
+                                        <span id="accept-sopping-cart">{{ __('checkout.agree') }}</span>
+                                        <input id="required_terms" type="hidden" value="{{ __('validation.required_terms') }}">
                                         <small></small>
                                         @error('terms')
                                         <div style="color: red" class="required--error">{{ $message }}</div>
@@ -264,9 +270,9 @@
                                                         </div>--}}
                             <div class="your-order">
                                 <div class="your-order-title">
-                                    <h2>Ձեր պատվերը</h2>
+                                    <h2>{{ __('checkout.your_order') }}</h2>
                                 </div>
-                                <p>Վճարման եղանակ</p>
+                                <p>{{ __('checkout.payment_method') }}</p>
                                 <div class="your-order-radio">
 
                                     {{--<div class="packaging-none">
@@ -300,7 +306,7 @@
                             </div>
                             <div class="all-result">
                                 <div class="all-result-total">
-                                    <p>Ընդամենը՝</p>
+                                    <p>{{ __('checkout.total') }}՝</p>
                                     <span><span class="total-price">{{$cardProductsTotalPrice}}</span> ֏</span>
                                 </div>
                                 {{--                                <div class="all-result-premium-packaging">
@@ -308,22 +314,22 @@
                                                                     <span>1000 ֏</span>
                                                                 </div>--}}
                                 <div class="all-result-shipment">
-                                    <p>Առաքում՝</p>
-                                    <span>Անվճար</span>
+                                    <p>{{ __('checkout.shipping') }} ՝</p>
+                                    <span>{{ __('checkout.free') }}</span>
                                 </div>
                                 <div class="all-result-payable-to">
-                                    <p>Վճարման ենթակա՝</p>
+                                    <p>{{ __('checkout.payable') }}՝</p>
                                     <span><span class="total-price-to-pay">{{$cardProductsTotalPrice}}</span> ֏</span>
                                 </div>
                             </div>
                             <div class="payment-cart-btn">
-                                <button>Անցնել վճարման</button>
+                                <button>{{ __('checkout.go_to_checkout') }}</button>
                             </div>
                         </div>
                     </div>
                 </form>
             @else
-                <p>cart empty</p>
+                <p>{{ __('checkout.empty_cart') }}</p>
             @endif
         </section>
     </main>

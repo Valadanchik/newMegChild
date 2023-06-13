@@ -6,7 +6,7 @@
             <div class="filtering-book-page">
                 <ul class="filtering-book-page-list">
                     <li class="{{ $slug === null ? 'is-checked' : '' }}"><a
-                            href="{{ LaravelLocalization::localizeUrl('/books') }}">Ամբողջը</a></li>
+                            href="{{ LaravelLocalization::localizeUrl('/books') }}">{{ __('messages.all') }}</a></li>
                     @foreach($categories as $category)
                         <li class="{{ $slug == $category['name_en'] ? 'is-checked' : '' }}">
                             <a href="{{ LaravelLocalization::localizeUrl('/category/' . $category['name_en']) }}">{{ $category['name_' . app()->getLocale()] }}</a>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="book-btn">
                                 <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
-                                    Գնել
+                                    {{ __('messages.by') }}
                                 </a>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                     <div class="not-found-img">
                         <img src="{{ URL::to('/images/girl.png') }}" alt="girl images">
                     </div>
-                    <p>Այս բաժնում դեռևս գրքեր չկան</p>
+                    <p>{{ __('messages.empty_book') }}</p>
                 </div>
             @endif
         </section>

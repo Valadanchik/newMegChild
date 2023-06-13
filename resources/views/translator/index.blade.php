@@ -4,7 +4,7 @@
     <main class="news-articles">
         <section class="author-single-page content">
             <div class="author-single-page-back-btn">
-                <span>Հեղինակներ / </span>
+                <span>{{ __('messages.translators') }} / </span>
                 <span class="au-sing-active"><a href="#">{{ $translator['name_' . app()->getLocale()] }}</a></span>
             </div>
             <div class="author-single-page-info">
@@ -19,7 +19,7 @@
         </section>
 
         <section class="content author-single-page-books-section">
-            <h2>Գրքեր</h2>
+            <h2>{{ __('messages.books') }}</h2>
             <div class="books-info-item">
                 @foreach($translator->books as $book)
                     <div class="book-item">
@@ -44,7 +44,7 @@
                         </div>
                         <div class="book-btn">
                             <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
-                                Գնել
+                                {{ __('messages.buy') }}
                             </a>
                         </div>
                     </div>

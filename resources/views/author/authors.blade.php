@@ -5,7 +5,7 @@
         <section class="authors-page">
             <div class="authors-section content">
                 <div class="authors-section-title">
-                    <h2>Հեղինակներ</h2>
+                    <h2>{{ __('messages.authors') }}</h2>
                 </div>
                 <div class="authors-boxes">
                     @foreach($authors as $author)

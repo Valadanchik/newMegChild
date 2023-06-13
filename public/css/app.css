@@ -101,6 +101,9 @@ ul.header-menu-list {
     top: -8px;
     left: 20px;
 }
+.header-icon-leng a {
+    color: #000;
+}
 
 .header-icon-serch img {
     cursor: pointer;
@@ -2172,6 +2175,7 @@ section.about-us {
     font-size: 16px;
     line-height: 22px;
     color: #4C4C4C;
+    margin-top: 10px;
 }
 
 .shopping-cart-products-item-count span {
@@ -2186,6 +2190,8 @@ section.about-us {
     display: flex;
     gap: 0;
     align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 .shopping-cart-products-item-count-img p {
@@ -2262,6 +2268,10 @@ section.about-us {
     margin-bottom: 100px;
     max-width: 800px;
     filter: drop-shadow(0px 1px 14px rgba(83, 83, 83, 0.12));
+}
+.shopping-cart-products-item-desc {
+    width: 100%;
+    max-width: 360px;
 }
 
 .form-shopping-cart-name-lastName {
@@ -2812,9 +2822,11 @@ input:focus {
 
 .close-popup-img {
     text-align: right;
-    cursor: pointer;
 }
+.close-popup-img img{
+    cursor: pointer;
 
+}
 .search-box input::placeholder {
     font-family: 'Montserrat arm';
     font-style: normal;
@@ -2958,7 +2970,8 @@ section.contacts-page h2 {
 .new-book-or-translation-desc p,
 .contact-page-sale-desc p,
 .contact-page-work-desc p,
-.contact-page-sponsorship-desc p {
+.contact-page-sponsorship-desc p,
+.contact-page-partnership-desc p{
     font-weight: 400;
     font-size: 16px;
     line-height: 25px;
@@ -3208,3 +3221,4 @@ button.learn-more-btn:hover {
 .d-none{
     display: none;
 }
+

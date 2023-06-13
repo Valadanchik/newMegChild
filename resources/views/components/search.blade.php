@@ -26,7 +26,7 @@
                 <input type="hidden" id="locale" value="{{ app()->getLocale() }}">
                 <input type="hidden" id="book-item-logo" value="{{ URL::to('images/reade-more-img-logo-green.png') }}">
             </form>
-            <div id="booksContainer" ></div>
+            <div id="booksContainer"  class="content"></div>
         </div>
     </div>
 </div>

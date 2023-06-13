@@ -1,3 +1,5 @@
+
+
 @extends('layout.layout')
 @section('title', 'checkout')
 @section('content')
@@ -37,7 +39,7 @@
                                             </div>
                                             <input type="number" class="count-shop" id="count-shop-{{$card_key}}" value="{{ session()->get('cart')[$card['id']] }}">
                                             <div data-product="{{ $card['id'] }}" data-max="{{ $card['in_stock'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-plus">
-                                                <img src="{{ URL::to('/images/svg/shopping-cart-plus-img.svg') }}"
+                                                <img src="{{ URL::to('/images/svg/plus-circle.svg') }}"
                                                      alt="plus img">
                                             </div>
                                         </div>
@@ -59,11 +61,11 @@
 
                             @endforeach
 
-                                <input id="remove-from-cart-url" type="hidden" value="{{ route('removeFromCart') }}">
-                                <input id="change-cart-product-count" type="hidden" value="{{ route('updateCart') }}">
+                            <input id="remove-from-cart-url" type="hidden" value="{{ route('removeFromCart') }}">
+                            <input id="change-cart-product-count" type="hidden" value="{{ route('updateCart') }}">
 
 
-{{--                                {{ dd(session()->get('cart')) }}--}}
+                            {{--                                {{ dd(session()->get('cart')) }}--}}
 
                             {{--                            <div class="shopping-cart-buttons">
                                                             <div class="shopping-cart-code-input">
@@ -75,7 +77,6 @@
                                                         </div>--}}
 
                         </div>
-
 
                         <div class="">
                             @if(session('product_is_not_in_stock'))
@@ -160,8 +161,15 @@
                                                                        @enderror
                                                                    </div>--}}
                                     <div class="form-home-address-oll">
+                                        <div class=" form-control form-shopping-cart-city">
+                                            <input name="region" value="{{old('region')}}" type="text" id="city" placeholder="Քաղաք /Վարչական շրջան *">
+                                            <small></small>
+                                            @error('region')
+                                            <div style="color: red" class="required--error">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                         <div class=" form-control form-shopping-cart-home">
-                                            <input name="street" value="{{old('street')}}" type="text" id="home" placeholder="Տան համար և փողոց *">
+                                            <input name="street" value="{{old('street')}}" type="text" id="home" placeholder="Փողոց *">
                                             <small></small>
                                             @error('street')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -169,20 +177,14 @@
                                         </div>
 
                                         <div class=" form-control form-shopping-cart-apartment">
-                                            <input name="house" value="{{old('house')}}" type="text" id="apartment" placeholder="Բնակարան, կացարան և ալն․․․">
+                                            <input name="house" value="{{old('house')}}" type="text" id="apartment" placeholder="Տուն, բնակարան․․․">
                                             <small></small>
                                             @error('house')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
-                                        <div class=" form-control form-shopping-cart-city">
-                                            <input name="region" value="{{old('region')}}" type="text" id="city" placeholder="Քաղաք/Վարչական շրջան *">
-                                            <small></small>
-                                            @error('region')
-                                            <div style="color: red" class="required--error">{{ $message }}</div>
-                                            @enderror
-                                        </div>
+
 
                                         <div class=" form-control form-post-code">
                                             <input type="text" value="{{old('postal_code')}}" name="postal_code" id="post-code" placeholder="Փոստային կոդ *">
@@ -269,16 +271,6 @@
                                 <p>Վճարման եղանակ</p>
                                 <div class="your-order-radio">
 
-                                    {{--<div class="packaging-none">
-                                        <input type="radio" id="arca" class="my-radio" name="payment_method"
-                                               value="{{\App\Models\Order::PAYMENT_METHOD_BANK}}"
-                                               @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_BANK) checked @endif
-                                        >
-                                        <label for="arca">
-                                            <img src="{{ URL::to('images/svg/arca.svg') }}" alt="arca logo">
-                                        </label>
-                                    </div>
---}}
                                     <div class="packaging-standart">
                                         <input type="radio" id="idram" name="payment_method"  class="my-radio"
                                                value="{{\App\Models\Order::PAYMENT_METHOD_IDRAM}}"
@@ -328,5 +320,3 @@
         </section>
     </main>
 @endsection
-
-

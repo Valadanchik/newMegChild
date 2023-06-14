@@ -64,9 +64,6 @@
                             <input id="remove-from-cart-url" type="hidden" value="{{ route('removeFromCart') }}">
                             <input id="change-cart-product-count" type="hidden" value="{{ route('updateCart') }}">
 
-
-                            {{--                                {{ dd(session()->get('cart')) }}--}}
-
                             {{--                            <div class="shopping-cart-buttons">
                                                             <div class="shopping-cart-code-input">
                                                                 <input type="text" placeholder="Կոդը" value="code"/>

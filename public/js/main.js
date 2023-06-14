@@ -125,33 +125,33 @@ function updateCartProductCount (quantity, productId){
     // let totalPrice = parseInt(totalPriceElement.innerHTML);
 
     var xhr = new XMLHttpRequest();
-        xhr.open('POST', document.getElementById('change-cart-product-count').value);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
+    xhr.open('POST', document.getElementById('change-cart-product-count').value);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
 
-        var product = document.getElementById('product-id').value;
-        var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        var data = JSON.stringify({ _token: csrfToken, quantity: quantity, book_id: productId });
+    var product = document.getElementById('product-id').value;
+    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    var data = JSON.stringify({ _token: csrfToken, quantity: quantity, book_id: productId });
 
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                console.log(xhr.responseText);
-                var data = JSON.parse(xhr.responseText);
-                console.log(data);
-                totalPriceElement.innerHTML = data.total_price;
-                totalPriceToPayElement.innerHTML = data.total_price;
-            }
-        };
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText);
+            var data = JSON.parse(xhr.responseText);
+            console.log(data);
+            totalPriceElement.innerHTML = data.total_price;
+            totalPriceToPayElement.innerHTML = data.total_price;
+        }
+    };
 
-        xhr.onerror = function () {
-            // Handle error
-        };
+    xhr.onerror = function () {
+        // Handle error
+    };
 
-        xhr.onloadend = function () {
-            document.querySelector('.loader-container').style.display = 'none';
-        };
+    xhr.onloadend = function () {
+        document.querySelector('.loader-container').style.display = 'none';
+    };
 
-        xhr.send(data);
+    xhr.send(data);
 }
 
 
@@ -203,7 +203,7 @@ plus?.forEach((item) =>{
         let productId = parseInt(event.currentTarget.dataset.product);
         let minBtn = document.querySelector(`.min-count-${dataItem}`);
 
-            if(parseInt(countElement.value) < maxCount) {
+        if(parseInt(countElement.value) < maxCount) {
             countElement.value = parseInt(countElement.value) + 1;
             updateCartProductCount(countElement.value, productId)
             totalPriceElement.innerHTML = totalPrice +  itemPrice;
@@ -251,7 +251,7 @@ deleteBtn?.forEach((item) =>{
             document.querySelector('.loader-container').style.display = 'none';
         };
         xhr.send(data);
-     })
+    })
 });
 
 // ____________hamburger menu____________
@@ -475,7 +475,7 @@ function isEmailShop(email) {
 
 let searchBtn = document.querySelector('.search');
 let searchSection = document.querySelector(".search-section");
-let closePopup = document.querySelector('.close-popup-img')
+let closePopup = document.querySelector('.close-popup-img img')
 let closeModal = document.querySelector('.modal')
 let book_info = document.querySelector('#booksContainer')
 // let search_input = document.querySelector('#search-input').value;
@@ -556,13 +556,12 @@ filter_book_list?.forEach((item) =>{
 
 /*/////////////////////////Learn more///////////////////////////*/
 const l_more = document.querySelector('.l_more')
-const height_text = document.querySelector('.book-item-desc p').offsetHeight
+const height_text = document.querySelector('.book-item-desc p')?.offsetHeight
 const l_more_button = document.querySelector('.learn-more-btn')
 
-
 if(height_text >= 216){
-    l_more.classList.add('learn-more')
-}else {
+    l_more?.classList.add('learn-more')
+}else if(l_more_button){
     l_more_button.style.display = 'none';
 }
 
@@ -576,4 +575,3 @@ learn_more_btn?.addEventListener('click', () => {
     text.style.display = "inherit"
 
 })
-

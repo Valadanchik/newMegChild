@@ -51,13 +51,17 @@ function htmlFilter(books) {
     let bookImageUrl = $("#book-image-url").val();
     let locale = $("#locale").val();
     let bookItemLogo = $("#book-item-logo").val();
-    let inputVal =  $("#search-input").val();
-
-    console.log(inputVal)
-
     let booksInfoItem = $('<div class="books-info-item"></div>').addClass('ov-auto');
 
+
+    if (books.length === 0){
+        let searchNotFound = ''
+        searchNotFound += `<div>jhh</div>`
+        booksInfoItem.append(searchNotFound);
+    }
+
     books.forEach((book, index) => {
+
         let searchData = '';
         searchData +=
             `<div class="book-item">
@@ -87,6 +91,8 @@ function htmlFilter(books) {
                 </div>
             </div>`;
         booksInfoItem.append(searchData);
+
+
     })
     $("#booksContainer").html(booksInfoItem);
     inputVal = ''

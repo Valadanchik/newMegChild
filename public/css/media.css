@@ -314,6 +314,29 @@
         display: inline-block;
     }
 
+    /*////////////////////checkout-page///////////////////////*/
+    .payment-cart {
+        max-width: 400px;
+    }
+    .shopping-cart-products-buy-items {
+        max-width: 750px;
+    }
+    .shopping-cart-products-item {
+        max-width: 750px;
+    }
+    .shopping-cart-payment-details {
+        max-width: 750px;
+    }
+    .shopping-cart-products-item-desc {
+        width: 100%;
+        max-width: 345px;
+    }
+    .shopping-cart-products-item {
+        gap: 10px;
+    }
+
+
+
 
 }
 
@@ -561,6 +584,26 @@
         margin: 80px auto 0;
         padding-bottom: 80px;
     }
+    /*////////////////////checkout-page///////////////////////*/
+    .shopping-cart-products-item-desc {
+        max-width: 260px;
+    }
+    .shopping-cart-products-buy-items,
+    .shopping-cart-payment-details{
+        max-width: 700px;
+    }
+    .shopping-cart-products-item-desc h3 {
+        font-size: 18px;
+    }
+    .payment-cart {
+        max-width: 380px;
+    }
+    input.count-shop {
+        font-size: 18px;
+    }
+    .shopping-cart-products-item-price p {
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 1100px) {
@@ -611,6 +654,33 @@
 
     .book-price p {
         margin: 16px 0;
+    }
+    /*////////////////////checkout-page///////////////////////*/
+    .shopping-cart-products-item-desc {
+        max-width: 200px;
+    }
+    .shopping-cart-products-item {
+        padding: 30px 20px;
+    }
+    .shopping-cart-payment-details-title {
+        padding: 20px 20px;
+    }
+    .shopping-cart-forms {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 30px;
+    }
+    .shopping-cart-payment-details-title {
+        margin: 50px 0;
+    }
+    .shopping-cart-block-title h2 {
+        margin: 40px 0;
+    }
+    .shopping-cart-payment-details {
+        margin-bottom: 60px;
+    }
+    .shopping-cart-block-title h2 {
+        font-size: 25px;
     }
 }
 
@@ -980,7 +1050,46 @@
     .author-single-page-info-img {
         max-width: 280px;
     }
-
+    /*////////////////////checkout-page///////////////////////*/
+    .shopping-cart {
+        flex-direction: column;
+    }
+    .shopping-cart-products-item {
+        max-width: 100%;
+    }
+    .shopping-cart-products-buy-items,
+    .shopping-cart-payment-details {
+        max-width: 100%;
+    }
+    .payment-cart {
+        max-width: 100%;
+    }
+    .other-services p {
+        margin-top: 10px;
+    }
+    .shopping-cart h2,
+    .your-order-title h2{
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .your-order-title {
+        margin-bottom: 40px;
+    }
+    .payment-cart-btn {
+        margin: 10px 0 0;
+    }
+    .shopping-cart-products-item {
+        padding: 20px;
+    }
+    .other-services {
+        margin-bottom: 60px;
+    }
+    .all-result-total span, .all-result-premium-packaging span, .all-result-shipment span, .all-result-payable-to span {
+        font-weight: 500;
+    }
+    .payment-cart-btn button {
+        padding: 14px 60px;
+    }
 
 }
 
@@ -1301,6 +1410,68 @@
     .not-found p {
         font-size: 18px;
     }
+
+    /*////////////////////checkout-page///////////////////////*/
+    .shopping-cart-block-title h2 {
+        margin: 30px 0;
+    }
+    .shopping-cart-block-title h2 {
+        font-size: 20px;
+    }
+    .form-shopping-cart-home input::placeholder,
+    .form-shopping-cart-apartment input::placeholder,
+    .form-shopping-cart-city input::placeholder,
+    .form-post-code input::placeholder,
+    .form-shopping-cart-home-tell input::placeholder,
+    .form-shopping-cart-email input::placeholder,
+    .form-shopping-cart-review textarea::placeholder,
+    .form-control.form-shopping-cart-first-name input::placeholder,
+    .form-control.form-shopping-cart-last-name input::placeholder,
+    .form-shopping-cart-company input::placeholder {
+        font-size: 12px;
+    }
+    .form-home-address-oll {
+        gap: 10px;
+        row-gap: 20px;
+    }
+    .all-result-total span,
+    .all-result-premium-packaging span,
+    .all-result-shipment span,
+    .all-result-payable-to span {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        text-align: right;
+        color: #000000;
+    }
+    .all-result-total p,
+    .all-result-premium-packaging p,
+    .all-result-shipment p,
+    .all-result-payable-to p {
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 25px;
+        color: #000000;
+    }
+    .shopping-cart-products-item-desc h3 {
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .shopping-cart-products-item-desc p {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    .shopping-cart-products-item-price p,
+    input.count-shop{
+        font-size: 16px;
+    }
+    input.count-shop {
+        width: 35px;
+    }
+    .shopping-cart-products-item-desc {
+        max-width: 176px;
+    }
+
 }
 
 @media (max-width: 576px) {
@@ -1472,6 +1643,28 @@
 
     .author-single-page-books-section .books-info-item {
         padding-bottom: 0;
+    }
+    /*////////////////////checkout-page///////////////////////*/
+    .shopping-cart-products-item{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .shopping-cart-products-item-count-img {
+        justify-content: start;
+    }
+    .shopping-cart-products-count-close-icon {
+        grid-column-start: 3;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        width: 100%;
+        grid-row-end: 1;
+        text-align: end;
+    }
+    .shopping-cart-products-item-count {
+        margin-top: 20px;
+    }
+    .shopping-cart-products-item {
+         gap: 0px;
     }
 }
 

@@ -124,8 +124,8 @@
         gap: 145px;
     }
 
-    .article-section-title h2,
-    .authors-section-title h2 {
+    .article-section-title-hy h2,
+    .authors-section-title-hy h2 {
         font-size: 36px;
         line-height: 30px;
     }
@@ -298,13 +298,19 @@
     }
 
     /*//////////////translators-page///////////////*/
-    .translators-section-title h2 {
+    .translators-section-title-hy h2 {
         font-size: 30px;
         line-height: 35px;
     }
 
-    .translators-section-title {
+    .translators-section-title-hy {
         background-size: contain;
+    }
+
+     .authors-section-title-en h2 {
+        font-size: 36px;
+        line-height: 30px;
+
     }
 
     /*//////////////translators-single--page///////////////*/
@@ -553,7 +559,7 @@
         max-width: 190px;
     }
 
-    .translators-section-title h2 {
+    .translators-section-title-hy h2 {
         font-size: 28px;
         line-height: 30px;
     }
@@ -579,10 +585,25 @@
         gap: unset;
         display: inherit;
     }
+    .authors-section-title-en {
+        padding: 38px 32px 29px;
+    }
+    .translators-section-title-en {
+        padding: 40px 32px 32px;
+    }
+    .translators-section-title-en h2 {
+        font-size: 30px;
+        line-height: 41px;
+    }
 
     .not-found {
         margin: 80px auto 0;
         padding-bottom: 80px;
+    }
+    /*//////////////authors-page///////////////*/
+    .authors-section-title-en h2 {
+        font-size: 30px;
+        line-height: 22px;
     }
     /*////////////////////checkout-page///////////////////////*/
     .shopping-cart-products-item-desc {
@@ -894,7 +915,7 @@
         margin-top: 25px;
     }
 
-    .article-section-title h2, .authors-section-title h2 {
+    .article-section-title h2, .authors-section-title-hy h2 {
         font-size: 30px;
         line-height: 22px;
     }
@@ -1010,11 +1031,11 @@
     }
 
     /*////////////////translators-page////////////*/
-    .translators-section-title {
+    .translators-section-title-hy {
         padding: 46px 16px;
     }
 
-    .translators-section-title h2 {
+    .translators-section-title-hy h2 {
         font-size: 26px;
         line-height: 40px;
     }
@@ -1155,7 +1176,7 @@
         margin-top: 15px;
     }
 
-    .article-section-title h2, .authors-section-title h2 {
+    .article-section-title h2, .authors-section-title-hy h2 {
         font-size: 20px;
         line-height: 0;
     }
@@ -1196,7 +1217,7 @@
         margin: 30px auto;
     }
 
-    .authors-section-title {
+    .authors-section-title-hy {
         padding: 50px 32px 50px;
     }
 
@@ -1335,11 +1356,11 @@
     }
 
     /*////////////////translators-page////////////*/
-    .translators-section-title {
+    .translators-section-title-hy {
         padding: 41px 23px 32px;
     }
 
-    .translators-section-title h2 {
+    .translators-section-title-hy h2 {
         font-size: 20px;
         line-height: 35px;
     }
@@ -1354,6 +1375,16 @@
 
     .authors-boxes div span {
         margin-top: 14px;
+    }
+
+    /*////////////////authors-page////////////*/
+    .authors-section-title-en h2 {
+        font-weight: 500;
+    }
+    .translators-section-title-en h2 {
+        font-weight: 500;
+        font-size: 25px;
+        line-height: 25px;
     }
 
     /*////////////////translators-single-page////////////*/
@@ -1471,6 +1502,12 @@
     .shopping-cart-products-item-desc {
         max-width: 176px;
     }
+    .form-text-info p {
+        font-weight: 300;
+        font-size: 12px;
+        color: #646464;
+    }
+
 
 }
 
@@ -1513,7 +1550,7 @@
 
     .footer-menu a, a.footer-address, .footer-book a {
         font-size: 13px;
-        word-wrap: break-word;
+        /*word-wrap: break-word;*/
     }
 
     .footer {
@@ -1647,7 +1684,7 @@
     /*////////////////////checkout-page///////////////////////*/
     .shopping-cart-products-item{
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
     .shopping-cart-products-item-count-img {
         justify-content: start;
@@ -1664,8 +1701,61 @@
         margin-top: 20px;
     }
     .shopping-cart-products-item {
-         gap: 0px;
+         gap: 20px;
     }
+
+    .shopping-cart-products-item-img {
+        width: 100%;
+        grid-column-start: 0;
+        grid-column-end: 1;
+        grid-row-start: 4;
+        width: 100%;
+        grid-row-end: 1;
+        text-align: end;
+        max-width: 100px;
+    }
+    .shopping-cart-products-item-desc {
+        max-width: 176px;
+        grid-column-start: 2;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        width: 100%;
+        grid-row-end: 3;
+         text-align: start;
+    }
+    .shopping-cart-products-item-count {
+        margin-top: 40px;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        width: 100%;
+        grid-row-end: 1;
+         text-align: start;
+    }
+    .shopping-cart-products-item-price p, input.count-shop {
+        font-size: 20px;
+    }
+    .form-shopping-cart-home,
+    .form-shopping-cart-apartment,
+    .form-shopping-cart-city,
+    .form-post-code,
+    .form-shopping-cart-home-tell,
+    .form-shopping-cart-email {
+        width: 100%;
+        max-width: 100%;
+    }
+    .form-home-address-oll {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .accept {
+        flex-wrap: unset;
+        align-items: center;
+    }
+    .accept > span {
+        max-width: 235px;
+
+    }
+
 }
 
 @media (max-width: 400px) {
@@ -1819,12 +1909,26 @@
     }
 
     /*////////////////translators-page////////////*/
-    .translators-section-title {
+    .translators-section-title-hy {
         padding: 35px 19px 25px;
     }
 
-    .translators-section-title h2 {
+    .translators-section-title-hy h2 {
         font-size: 18px;
     }
+    .payment-cart-btn button {
+        padding: 9px 90px;
+    }
+    .payment-cart-btn {
+        margin: 10px auto;
+    }
 }
+@media (max-width: 330px) {
 
+    .shopping-cart-products-item-img {
+        max-width: 85px;
+    }
+    .shopping-cart-products-item {
+        padding: 15px;
+    }
+}

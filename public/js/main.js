@@ -573,5 +573,6 @@ learn_more_btn?.addEventListener('click', () => {
     learn_more_div.className = 'learn-more-none'
     text.style.overflow = "inherit"
     text.style.display = "inherit"
-
 })
+
+

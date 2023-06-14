@@ -41,7 +41,6 @@ $(document).ready(function () {
                 }
             });
         } else {
-            // $("#booksContainer").html('');
             $("#searchNotFound").html('');
         }
     });

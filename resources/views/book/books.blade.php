@@ -39,7 +39,7 @@
                             </div>
                             <div class="book-btn">
                                 <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
-                                    {{ __('messages.buy') }}
+                                    {{ __('messages.by') }}
                                 </a>
                             </div>
                         </div>

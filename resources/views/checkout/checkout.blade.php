@@ -121,7 +121,7 @@
 
                                     <div class=" form-control form-shopping-cart-company">
                                         <input class="accept-input" type="text" id="company"
-                                               placeholder="{{ __('checkout.company_name') }} "
+                                               placeholder="{{ __('checkout.company_name') }}"
                                                name="company"
                                                value="{{old('company')}}">
                                         <small></small>

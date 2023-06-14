@@ -8,8 +8,8 @@ return [
     'company_name' => 'Company name (optional)',
     'first_name' => 'First name',
     'select_country' => 'Select country',
-    'house_and_street' => 'House number and street',
-    'apartment' => 'Apartment, accommodation, etc',
+    'house_and_street' => 'Street',
+    'apartment' => 'Apartment, Home, etc',
     'city' => 'City / Administrative district',
     'post_code' => 'Post code',
     'phone' => 'Phone',
@@ -25,6 +25,7 @@ return [
     'payable' => 'Payable',
     'go_to_checkout' => 'Go to checkout',
     'empty_cart' => 'Your cart is empty',
+    'product_is_not_in_stock' => 'The product is no longer available.'
 
 
 

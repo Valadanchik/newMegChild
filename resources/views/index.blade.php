@@ -127,7 +127,7 @@
                             <div class="description-param-group">
                                 <p>{{ __('messages.group') }}</p>
                                 <div class="description-param-group-img">
-                                    <a href="{{ LaravelLocalization::localizeUrl('/category/' . $book->category->name_en) }}">
+                                    <a href="{{ LaravelLocalization::localizeUrl('/category/' . $data['lastParentBook']['category']['name_en']) }}">
                                         <img src="{{ URL::to('/images/svg/white-' . $data['lastParentBook']['category']['name_en'] . '.svg') }}" alt="{{ $data['lastParentBook']['category']['name_en'] }}">
                                     </a>
                                 </div>

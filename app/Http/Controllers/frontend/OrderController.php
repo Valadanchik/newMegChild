@@ -22,7 +22,7 @@ class OrderController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function index()
+    public function index(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $cardBooks = [];
         if (session()->get('cart')) {
@@ -54,10 +54,10 @@ class OrderController extends Controller
      * @param OrderStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function create(OrderStoreRequest $request)
+    public function create(OrderStoreRequest $request): \Illuminate\Http\RedirectResponse
     {
-       if(!$this->checkIsProductsAvailable()){
-           return redirect()->route('order')->with('product_is_not_in_stock', 'Ապրանքը արդեն առկա չէ');
+       if (!$this->checkIsProductsAvailable()) {
+           return redirect()->route('order')->with('product_is_not_in_stock', __('checkout.product_is_not_in_stock'));
        }
 
         $order = $this->orderService->create($request);

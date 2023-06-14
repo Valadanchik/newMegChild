@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Authors extends Model
 {
     use HasFactory;
-
     const AUTHOR_IMAGE_PATH = 'images/authors';
 
     /**

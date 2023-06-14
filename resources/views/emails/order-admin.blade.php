@@ -23,7 +23,7 @@
                 <tr>
                     <td align="center" style="padding:40px 0 30px 0;background:#70bbd9;">
                         <a href="{{ LaravelLocalization::localizeUrl('/') }}">
-                            <img width="300px" src="{{ URL::to('/images/svg/logo.svg') }}" alt="logo images">
+                            <img width="300px" src="{{ URL::to('/images/logo.png') }}" alt="logo images">
                         </a>
                     </td>
                 </tr>

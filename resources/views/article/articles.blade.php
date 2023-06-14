@@ -6,10 +6,10 @@
             <div class="tabs_wrap">
                 <ul>
                     <li data-tabs="article" class="article-li">
-                        <a href="{{ LaravelLocalization::localizeUrl('/articles') }}">Հոդվածներ</a>
+                        <a href="{{ LaravelLocalization::localizeUrl('/articles') }}">{{ __('messages.articles') }}</a>
                     </li>
                     <li data-tabs="media">
-                        <a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">Մեդիա</a>
+                        <a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">{{ __('messages.media') }}</a>
                     </li>
                 </ul>
             </div>

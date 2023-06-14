@@ -628,7 +628,7 @@ main {
     padding-bottom: 100px;
 }
 
-.authors-section-title {
+.authors-section-title-hy {
     background-image: url('../images/aothers-title.bg.png');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -636,8 +636,17 @@ main {
     padding: 62px 32px 60px;
     margin: auto;
 }
-
-.authors-section-title h2 {
+.authors-section-title-en{
+    background-image: url('../images/aothers-title.bg.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    max-width: max-content;
+    padding: 38px 32px 60px;
+    margin: auto;
+}
+.authors-section-title-hy h2,
+.authors-section-title-en h2
+{
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
@@ -701,7 +710,7 @@ main {
 }
 
 /*///////////////////translators//////////////////*/
-.translators-section-title {
+.translators-section-title-hy {
     background-image: url('../images/aothers-title.bg.png');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -709,8 +718,17 @@ main {
     padding: 62px 32px 60px;
     margin: auto;
 }
+.translators-section-title-en {
+    background-image: url('../images/aothers-title.bg.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    max-width: max-content;
+    padding: 40px 32px 60px;
+    margin: auto;
+}
 
-.translators-section-title h2 {
+.translators-section-title-hy h2,
+.translators-section-title-en h2{
     font-weight: 600;
     font-size: 32px;
     line-height: 49px;
@@ -937,6 +955,7 @@ a.footer-address:hover {
     background-image: url(../images/cloud-article.png);
     background-repeat: no-repeat;
     background-position: left;
+    background-size: contain;
 }
 
 
@@ -1107,6 +1126,7 @@ a.footer-address:hover {
     line-height: 29px;
     letter-spacing: 0.01em;
     text-decoration: none;
+    background-size: contain;
 }
 
 .tabs_wrap ul li a {
@@ -2612,6 +2632,7 @@ input.count-shop {
     font-weight: 600;
     font-size: 20px;
     color: #4C4C4C;
+    background-color: transparent;
     display: inline-block;
     border: none;
     width: 50px;
@@ -3222,3 +3243,33 @@ button.learn-more-btn:hover {
     display: none;
 }
 
+.search-not-found-img {
+    width: 100%;
+    max-width: 193px;
+    margin: auto;
+}
+
+.search-not-found-img img {
+    width: 100%;
+}
+.search-not-found-info {
+    padding-top: 93px;
+    text-align: center;
+}
+.search-not-found-info p{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0.01em;
+    color: #000000;
+    margin-top: 16px;
+    padding-bottom: 108px;
+}
+.p-68{
+    padding: 68px;
+}
+
+.d-block{
+    display: block;
+}

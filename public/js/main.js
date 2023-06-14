@@ -575,3 +575,5 @@ learn_more_btn?.addEventListener('click', () => {
     text.style.display = "inherit"
 
 })
+
+

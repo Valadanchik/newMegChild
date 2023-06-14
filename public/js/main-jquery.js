@@ -41,7 +41,8 @@ $(document).ready(function () {
                 }
             });
         } else {
-            $("#booksContainer").html('');
+            // $("#booksContainer").html('');
+            $("#searchNotFound").html('');
         }
     });
 });
@@ -51,20 +52,31 @@ function htmlFilter(books) {
     let bookImageUrl = $("#book-image-url").val();
     let locale = $("#locale").val();
     let bookItemLogo = $("#book-item-logo").val();
-    let booksInfoItem = $('<div class="books-info-item"></div>').addClass('ov-auto');
+    let booksInfoItem = ''
+    let bookNotFoundImage = $("#book-not-found-image").val();
+    let bookNotFoundItem = $('<div class="books-info-search"></div>');
 
 
-    if (books.length === 0){
+
+    if (books.length === 0) {
+         booksInfoItem = $('<div class="search-not-found-section"></div>');
         let searchNotFound = ''
-        searchNotFound += `<div>jhh</div>`
+        searchNotFound +=
+            `<div class="search-not-found-info">
+               <div class="search-not-found-img">
+                <img width="270px" src="${bookNotFoundImage}" alt="">
+               </div>
+               <p>Ձեր որոնման արդյունքնեերը չեն գտնվել</p>
+             </div>`
         booksInfoItem.append(searchNotFound);
-    }
+    } else {
 
-    books.forEach((book, index) => {
+        booksInfoItem = $('<div class="books-info-item ov-auto p-68"></div>');
+        books.forEach((book, index) => {
 
-        let searchData = '';
-        searchData +=
-            `<div class="book-item">
+            let searchData = '';
+            searchData +=
+                `<div class="book-item d-block">
                 <div class="book-item-images">
                     <div class="book-item-img-logo">
                         <img src="${bookItemLogo}" alt="">
@@ -90,11 +102,16 @@ function htmlFilter(books) {
                     </a>
                 </div>
             </div>`;
-        booksInfoItem.append(searchData);
 
 
-    })
+            booksInfoItem.append(searchData);
+        })
+    }
+
+
+
     $("#booksContainer").html(booksInfoItem);
     inputVal = ''
 }
+
 /*SEARCH FUNCTIONALITY*/

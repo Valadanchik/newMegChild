@@ -25,8 +25,10 @@
                 <input type="hidden" id="book-image-url" value="{{ URL::to('storage/') }}">
                 <input type="hidden" id="locale" value="{{ app()->getLocale() }}">
                 <input type="hidden" id="book-item-logo" value="{{ URL::to('images/reade-more-img-logo-green.png') }}">
+                <input type="hidden" id="book-not-found-image" value="{{ URL::to('images/crying-girl.png') }}">
             </form>
-            <div id="booksContainer"  class="content"></div>
+            <div id="booksContainer"  ></div>
+{{--            <div id="searchNotFound" ></div>--}}
         </div>
     </div>
 </div>

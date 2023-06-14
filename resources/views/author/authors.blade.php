@@ -4,7 +4,7 @@
     <main class="news-articles">
         <section class="authors-page">
             <div class="authors-section content">
-                <div class="authors-section-title">
+                <div class="{{"authors-section-title-".app()->getLocale()}}">
                     <h2>{{ __('messages.authors') }}</h2>
                 </div>
                 <div class="authors-boxes">

@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             RegionsTableSeeder::class,
             CountriesTableSeeder::class,
+            UserRoleSeeder::class,
             UserSeeder::class,
         ]);
 

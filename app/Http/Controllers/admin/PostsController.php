@@ -37,7 +37,7 @@ class PostsController extends Controller
      */
     public function store(StorePostRequest $request): \Illuminate\Http\RedirectResponse
     {
-//        try {
+        try {
             if ($request->file('file')) {
                 $imageName = self::imageUpload($request->file('file'), Post::POST_IMAGE_PATH);
                 $request->merge(['image' => $imageName]);
@@ -45,9 +45,9 @@ class PostsController extends Controller
 
             $post = Post::create($request->all());
             return redirect()->route('posts.edit', $post->id)->with('success', 'Post created successfully');
-//        } catch (\Exception $e) {
-//            return redirect()->route('posts.create')->with('error', 'Something went wrong');
-//        }
+        } catch (\Exception $e) {
+            return redirect()->route('posts.create')->with('error', 'Something went wrong');
+        }
     }
 
     /**
@@ -74,19 +74,18 @@ class PostsController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $posts): \Illuminate\Http\RedirectResponse
     {
-//        try {
+        try {
             $post = $posts::findOrFail($request->id);
             if ($request->file('file')) {
                 $imageName = self::imageUpload($request->file('file'), Post::POST_IMAGE_PATH);
                 $request->merge(['image' => $imageName]);
             }
-//            dd($request->all());
 
             $post->update($request->all());
             return redirect()->route('posts.edit', $request->id)->with('success', 'Post updated successfully');
-//        } catch (\Exception $th) {
-//            return redirect()->route('posts.edit', $request->id)->with('error', 'Something went wrong');
-//        }
+        } catch (\Exception $th) {
+            return redirect()->route('posts.edit', $request->id)->with('error', 'Something went wrong');
+        }
     }
 
     /**

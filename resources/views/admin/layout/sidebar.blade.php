@@ -10,24 +10,30 @@
                     Dashboard
                 </a>
 
-                <div class="sidenav-menu-heading">Books</div>
-                <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="{{ route('books.index') }}">
-                    <div class="nav-link-icon"><i data-feather="book"></i></div>
-                    Books
-                </a>
-                <a class="nav-link" href="{{ route('authors.index') }}">
-                    <div class="nav-link-icon"><i data-feather="users"></i></div>
-                    Authors
-                </a>
-                <a class="nav-link" href="{{ route('translators.index') }}">
-                    <div class="nav-link-icon"><i data-feather="user"></i></div>
-                    Translators
-                </a>
-                <a class="nav-link" href="{{ route('categories.index') }}">
-                    <div class="nav-link-icon"><i data-feather="list"></i></div>
-                    Categories
-                </a>
+                @can('isAdmin')
+                    <div class="sidenav-menu-heading">Books</div>
+                    <!-- Sidenav Link (Charts)-->
+                    <a class="nav-link" href="{{ route('books.index') }}">
+                        <div class="nav-link-icon"><i data-feather="book"></i></div>
+                        Books
+                    </a>
+                    <a class="nav-link" href="{{ route('authors.index') }}">
+                        <div class="nav-link-icon"><i data-feather="users"></i></div>
+                        Authors
+                    </a>
+                    <a class="nav-link" href="{{ route('translators.index') }}">
+                        <div class="nav-link-icon"><i data-feather="user"></i></div>
+                        Translators
+                    </a>
+                    <a class="nav-link" href="{{ route('categories.index') }}">
+                        <div class="nav-link-icon"><i data-feather="list"></i></div>
+                        Categories
+                    </a>
+                    <a class="nav-link" href="{{ route('users.index') }}">
+                        <div class="nav-link-icon"><i data-feather="users"></i></div>
+                        Users
+                    </a>
+                @endcan
 
                 <div class="sidenav-menu-heading">Posts</div>
                 <!-- Sidenav Link (Charts)-->
@@ -39,13 +45,15 @@
                     <div class="nav-link-icon"><i data-feather="edit"></i></div>
                     Medias
                 </a>
-                <div class="sidenav-menu-heading">Finance</div>
-                <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="{{ route('orders.index') }}">
-                    <div class="nav-link-icon"><i data-feather="shopping-cart"></i></div>
-                    Orders
-                </a>
 
+                @can('isAdmin')
+                    <div class="sidenav-menu-heading">Finance</div>
+                    <!-- Sidenav Link (Charts)-->
+                    <a class="nav-link" href="{{ route('orders.index') }}">
+                        <div class="nav-link-icon"><i data-feather="shopping-cart"></i></div>
+                        Orders
+                    </a>
+                @endcan
                 <div class="sidenav-menu-heading">Settings</div>
                 <!-- Sidenav Link (Charts)-->
 {{--                <a class="nav-link" href="">--}}

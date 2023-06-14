@@ -30,18 +30,18 @@
                                     <!-- Form Group (email address)-->
                                     <div class="mb-3">
                                         <label class="small mb-1" for="inputLoginAddress">Login</label>
-                                        <input class="form-control" name="email" id="inputLoginAddress" type="login" placeholder="Enter login" />
-                                        @if ($errors->has('email'))
+                                        <input class="form-control" name="email" id="inputLoginAddress" type="email" placeholder="Enter login" />
+                                        @error('email')
                                             <span class="text-danger text-left">{{ $errors->first('email') }}</span>
-                                        @endif
+                                        @enderror
                                     </div>
                                     <!-- Form Group (password)-->
                                     <div class="mb-3">
                                         <label class="small mb-1" for="inputPassword">Password</label>
                                         <input name="password" class="form-control" id="inputPassword" type="password" placeholder="Enter password" />
-                                        @if ($errors->has('password'))
+                                        @error('password')
                                             <span class="text-danger text-left">{{ $errors->first('password') }}</span>
-                                        @endif
+                                        @enderror
                                     </div>
                                     <!-- Form Group (remember password checkbox)-->
                                     <div class="mb-3">

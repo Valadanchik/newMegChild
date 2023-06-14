@@ -15,6 +15,7 @@ use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\PostsController;
 use App\Http\Controllers\admin\MediaController;
 use App\Http\Controllers\admin\OrderController as AdminOrderController;
+use \App\Http\Controllers\admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,15 +80,19 @@ Route::group(
             Route::get('/', function () {
                 return view('admin.dashboard.index');
             });
-            Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
-            Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-            Route::resource('books', BooksController::class);
-            Route::resource('authors', AuthorsController::class);
-            Route::resource('translators', TranslatorsController::class);
-            Route::resource('categories', CategoriesController::class);
-            Route::resource('posts', PostsController::class);
-            Route::resource('medias', MediaController::class);
-            Route::resource('orders', AdminOrderController::class);
+
+            Route::group(['middleware' => ['auth:sanctum']], function () {
+                Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+                Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+                Route::resource('books', BooksController::class)->middleware('can:isAdmin');
+                Route::resource('authors', AuthorsController::class)->middleware('can:isAdmin');
+                Route::resource('translators', TranslatorsController::class)->middleware('can:isAdmin');
+                Route::resource('categories', CategoriesController::class)->middleware('can:isAdmin');
+                Route::resource('orders', AdminOrderController::class)->middleware('can:isAdmin');
+                Route::resource('users', UserController::class)->middleware('can:isAdmin');
+                Route::resource('posts', PostsController::class);
+                Route::resource('medias', MediaController::class);
+            });
         });
     });
 });

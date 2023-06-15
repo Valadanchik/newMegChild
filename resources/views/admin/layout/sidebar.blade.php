@@ -5,7 +5,7 @@
                 <!-- Sidenav Heading (Addons)-->
                 <div class="sidenav-menu-heading">Dashboard</div>
                 <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin.index') }}">
+                <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/dashboard') }}">
                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
                     Dashboard
                 </a>

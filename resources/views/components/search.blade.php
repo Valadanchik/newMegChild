@@ -29,7 +29,6 @@
                 <input type="hidden" id="search_error_result" value="{{ __('messages.search_error_result') }}">
             </form>
             <div id="booksContainer"  ></div>
-{{--            <div id="searchNotFound" ></div>--}}
         </div>
     </div>
 </div>

@@ -11,9 +11,8 @@
                                 <div class="page-header-icon"><i data-feather="users"></i></div>
                                 Users
                             </h1>
-                            <div class="page-header-subtitle mt-4"><a href="{{ url('admin/users/create ') }}"
-                                                                      class="btn btn-outline-light" type="button">+ Add
-                                    new user</a></div>
+                            <div class="page-header-subtitle mt-4">
+                                <a href="{{ url('fs-admin/users/create ') }}" class="btn btn-outline-light" type="button">+ Add new user</a></div>
                         </div>
                     </div>
                 </div>
@@ -59,7 +58,7 @@
                                 <td>{{ $user['email']  }}</td>
                                 <td>{{ $user['role']['name'] }}</td>
                                 <td>
-                                    <a href="{{ url('admin/users/' . $user['id'] . '/edit' ) }}"
+                                    <a href="{{ url('fs-admin/users/' . $user['id'] . '/edit' ) }}"
                                        class="btn btn-datatable btn-icon btn-transparent-dark me-2">
                                         <i class="fa-regular fa-edit"></i>
                                     </a>

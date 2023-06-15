@@ -11,7 +11,7 @@
                                 <div class="page-header-icon"><i data-feather="users"></i></div>
                                 Authors
                             </h1>
-                            <div class="page-header-subtitle mt-4"><a href="{{ url('admin/authors/create ') }}" class="btn btn-outline-light" type="button">+ Add new author</a></div>
+                            <div class="page-header-subtitle mt-4"><a href="{{ url('fs-admin/authors/create ') }}" class="btn btn-outline-light" type="button">+ Add new author</a></div>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                             <tr>
                                 <td>{{ $author['name_' . app()->getLocale()]  }}</td>
                                 <td>
-                                    <a href="{{ url('admin/authors/' . $author['id'] . '/edit' ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                    <a href="{{ url('fs-admin/authors/' . $author['id'] . '/edit' ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">
                                         <i class="fa-regular fa-edit"></i>
                                     </a>
                                     <form style="display: inline-block" action="{{ route('authors.destroy', $author['id']) }}" method="POST">

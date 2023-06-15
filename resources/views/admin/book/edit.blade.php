@@ -49,7 +49,7 @@
                             <div class="card-header">Title (Hy)</div>
                             <div class="card-body">
                                 <input type="text" class="form-control" id="title_hy" name="title_hy"
-                                       value="{{ old('title_hy', $book->title_en) }}">
+                                       value="{{ old('title_hy', $book->title_hy) }}">
                             </div>
                             @error('title_hy')
                             <div class="text-danger">{{ $message }}</div>

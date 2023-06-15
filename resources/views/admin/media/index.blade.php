@@ -11,7 +11,7 @@
                                 <div class="page-header-icon"><i data-feather="users"></i></div>
                                 Media
                             </h1>
-                            <div class="page-header-subtitle mt-4"><a href="{{ url('admin/medias/create ') }}" class="btn btn-outline-light" type="button">+ Add new media</a></div>
+                            <div class="page-header-subtitle mt-4"><a href="{{ url('fs-admin/medias/create ') }}" class="btn btn-outline-light" type="button">+ Add new media</a></div>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                                 <td>{{ $media['title_hy']  }}</td>
                                 <td>{{ $media['title_en']  }}</td>
                                 <td>
-                                    <a href="{{ url('admin/medias/' . $media['id'] . '/edit' ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                    <a href="{{ url('fs-admin/medias/' . $media['id'] . '/edit' ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">
                                         <i class="fa-regular fa-edit"></i>
                                     </a>
                                     <form style="display: inline-block" action="{{ route('medias.destroy', $media['id']) }}" method="POST">

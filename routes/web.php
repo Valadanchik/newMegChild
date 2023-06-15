@@ -70,8 +70,12 @@ Route::group(
     Route::post('/remove-from-card', [ShopController::class, 'removeFromCart'])->name('removeFromCart');
     Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('updateCart');
 
+
     /*************************** ADMIN ROUTES **************************/
-    Route::group(['name' => 'admin.', 'prefix' => 'admin'], function () {
+    Route::group([
+        'name' => 'admin.',
+        'prefix' => 'fs-admin',
+    ], function () {
 
         Route::get('login', [AuthController::class, 'loginView'])->name('admin.loginView');
         Route::post('login', [AuthController::class, 'login'])->name('login');
@@ -81,18 +85,17 @@ Route::group(
                 return view('admin.dashboard.index');
             });
 
-            Route::group(['middleware' => ['auth:sanctum']], function () {
-                Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
-                Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-                Route::resource('books', BooksController::class)->middleware('can:isAdmin');
-                Route::resource('authors', AuthorsController::class)->middleware('can:isAdmin');
-                Route::resource('translators', TranslatorsController::class)->middleware('can:isAdmin');
-                Route::resource('categories', CategoriesController::class)->middleware('can:isAdmin');
-                Route::resource('orders', AdminOrderController::class)->middleware('can:isAdmin');
-                Route::resource('users', UserController::class)->middleware('can:isAdmin');
-                Route::resource('posts', PostsController::class);
-                Route::resource('medias', MediaController::class);
-            });
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+            Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+            Route::resource('books', BooksController::class)->middleware('can:isAdmin');
+            Route::resource('authors', AuthorsController::class)->middleware('can:isAdmin');
+            Route::resource('translators', TranslatorsController::class)->middleware('can:isAdmin');
+            Route::resource('categories', CategoriesController::class)->middleware('can:isAdmin');
+            Route::resource('orders', AdminOrderController::class)->middleware('can:isAdmin');
+            Route::resource('users', UserController::class)->middleware('can:isAdmin');
+            Route::resource('posts', PostsController::class);
+            Route::resource('medias', MediaController::class);
         });
     });
 });

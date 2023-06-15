@@ -5,7 +5,7 @@
                 <!-- Sidenav Heading (Addons)-->
                 <div class="sidenav-menu-heading">Dashboard</div>
                 <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="{{ route('admin.index') }}">
+                <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin.index') }}">
                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
                     Dashboard
                 </a>
@@ -13,23 +13,23 @@
                 @can('isAdmin')
                     <div class="sidenav-menu-heading">Books</div>
                     <!-- Sidenav Link (Charts)-->
-                    <a class="nav-link" href="{{ route('books.index') }}">
+                    <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/books') }}">
                         <div class="nav-link-icon"><i data-feather="book"></i></div>
                         Books
                     </a>
-                    <a class="nav-link" href="{{ route('authors.index') }}">
+                    <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/authors') }}">
                         <div class="nav-link-icon"><i data-feather="users"></i></div>
                         Authors
                     </a>
-                    <a class="nav-link" href="{{ route('translators.index') }}">
+                    <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/translators') }}">
                         <div class="nav-link-icon"><i data-feather="user"></i></div>
                         Translators
                     </a>
-                    <a class="nav-link" href="{{ route('categories.index') }}">
+                    <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/categories') }}">
                         <div class="nav-link-icon"><i data-feather="list"></i></div>
                         Categories
                     </a>
-                    <a class="nav-link" href="{{ route('users.index') }}">
+                    <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/users') }}">
                         <div class="nav-link-icon"><i data-feather="users"></i></div>
                         Users
                     </a>
@@ -37,11 +37,11 @@
 
                 <div class="sidenav-menu-heading">Posts</div>
                 <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="{{ route('posts.index') }}">
+                <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/posts') }}">
                     <div class="nav-link-icon"><i data-feather="edit"></i></div>
                     Posts
                 </a>
-                <a class="nav-link" href="{{ route('medias.index') }}">
+                <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/medias') }}">
                     <div class="nav-link-icon"><i data-feather="edit"></i></div>
                     Medias
                 </a>
@@ -49,7 +49,7 @@
                 @can('isAdmin')
                     <div class="sidenav-menu-heading">Finance</div>
                     <!-- Sidenav Link (Charts)-->
-                    <a class="nav-link" href="{{ route('orders.index') }}">
+                    <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/orders') }}">
                         <div class="nav-link-icon"><i data-feather="shopping-cart"></i></div>
                         Orders
                     </a>
@@ -60,7 +60,7 @@
 {{--                    <div class="nav-link-icon"><i data-feather="settings"></i></div>--}}
 {{--                    Settings--}}
 {{--                </a>--}}
-                <a class="nav-link" href="{{ route('logout') }}">
+                <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/logout') }}">
                     <div class="nav-link-icon"><i data-feather="log-out"></i></div>
                     Logout
                 </a>

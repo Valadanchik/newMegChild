@@ -42,9 +42,7 @@
                 @csrf
                 @method('POST')
                 <div class="row gx-4">
-
                     <div class="col-lg-6">
-
                         <div class="card mb-4">
                             <div class="card-header">Title (Hy)</div>
                             <div class="card-body">

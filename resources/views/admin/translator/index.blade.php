@@ -12,7 +12,7 @@
                                 Translators
                             </h1>
                             <div class="page-header-subtitle mt-4">
-                                <a href="{{ url('admin/translators/create ') }}" class="btn btn-outline-light" type="button">+ Add new translator</a>
+                                <a href="{{ url('fs-admin/translators/create ') }}" class="btn btn-outline-light" type="button">+ Add new translator</a>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>{{ $translator['name_' . app()->getLocale()]  }}</td>
                                     <td>
-                                        <a href="{{ url('admin/translators/' . $translator['id'] . '/edit' ) }}"
+                                        <a href="{{ url('fs-admin/translators/' . $translator['id'] . '/edit' ) }}"
                                            class="btn btn-datatable btn-icon btn-transparent-dark me-2">
                                             <i class="fa-regular fa-edit"></i>
                                         </a>

@@ -12,7 +12,7 @@
                                 Books
                             </h1>
                             <div class="page-header-subtitle mt-4">
-                                <a href="{{ url('admin/books/create ') }}" class="btn btn-outline-light" type="button">+ Add new book</a>
+                                <a href="{{ url('fs-admin/books/create ') }}" class="btn btn-outline-light" type="button">+ Add new book</a>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                     <td>{{ $book['in_stock'] }}</td>
                                     <td>{{ $book['status'] ? 'Public' : 'Private'}}</td>
                                     <td>
-                                        <a href="{{ url('admin/books/' . $book['id'] . '/edit' ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                        <a href="{{ url('fs-admin/books/' . $book['id'] . '/edit' ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">
                                             <i class="fa-regular fa-edit"></i>
                                         </a>
                                         <form style="display: inline-block" action="{{ route('books.destroy', $book['id']) }}" method="POST">

@@ -11,7 +11,7 @@
                                 <div class="page-header-icon"><i data-feather="users"></i></div>
                                 Posts
                             </h1>
-                            <div class="page-header-subtitle mt-4"><a href="{{ url('admin/posts/create ') }}" class="btn btn-outline-light" type="button">+ Add new post</a></div>
+                            <div class="page-header-subtitle mt-4"><a href="{{ url('fs-admin/posts/create ') }}" class="btn btn-outline-light" type="button">+ Add new post</a></div>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                                     <td>{{ $post['title_' . app()->getLocale()]  }}</td>
                                     <td>{{ $post->postCategory['title_' . app()->getLocale()] ?? ''  }}</td>
                                     <td>
-                                        <a href="{{ url('admin/posts/' . $post['id'] . '/edit' ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                        <a href="{{ url('fs-admin/posts/' . $post['id'] . '/edit' ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">
                                             <i class="fa-regular fa-edit"></i>
                                         </a>
                                         <form style="display: inline-block" action="{{ route('posts.destroy', $post['id']) }}" method="POST">

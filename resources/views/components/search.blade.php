@@ -26,6 +26,7 @@
                 <input type="hidden" id="locale" value="{{ app()->getLocale() }}">
                 <input type="hidden" id="book-item-logo" value="{{ URL::to('images/reade-more-img-logo-green.png') }}">
                 <input type="hidden" id="book-not-found-image" value="{{ URL::to('images/crying-girl.png') }}">
+                <input type="hidden" id="search_error_result" value="{{ __('messages.search_error_result') }}">
             </form>
             <div id="booksContainer"  ></div>
 {{--            <div id="searchNotFound" ></div>--}}

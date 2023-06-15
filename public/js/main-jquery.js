@@ -40,8 +40,8 @@ $(document).ready(function () {
                     $('.loader-container').hide();
                 }
             });
-        } else {
-            $("#searchNotFound").html('');
+        } else if(event.target.value.length <= 2){
+            $("#booksContainer").html('');
         }
     });
 });
@@ -53,9 +53,7 @@ function htmlFilter(books) {
     let bookItemLogo = $("#book-item-logo").val();
     let booksInfoItem = ''
     let bookNotFoundImage = $("#book-not-found-image").val();
-    let bookNotFoundItem = $('<div class="books-info-search"></div>');
-
-
+    let search_error_result = $("#search_error_result").val();
 
     if (books.length === 0) {
          booksInfoItem = $('<div class="search-not-found-section"></div>');
@@ -65,12 +63,11 @@ function htmlFilter(books) {
                <div class="search-not-found-img">
                 <img width="270px" src="${bookNotFoundImage}" alt="">
                </div>
-               <p>Ձեր որոնման արդյունքնեերը չեն գտնվել</p>
+               <p>${search_error_result}</p>
              </div>`
         booksInfoItem.append(searchNotFound);
     } else {
-
-        booksInfoItem = $('<div class="books-info-item ov-auto p-68"></div>');
+        booksInfoItem = $('<div class="books-info-item-search ov-auto p-68"></div>');
         books.forEach((book, index) => {
 
             let searchData = '';
@@ -102,13 +99,9 @@ function htmlFilter(books) {
                 </div>
             </div>`;
 
-
             booksInfoItem.append(searchData);
         })
     }
-
-
-
     $("#booksContainer").html(booksInfoItem);
     inputVal = ''
 }

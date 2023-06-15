@@ -3273,3 +3273,11 @@ button.learn-more-btn:hover {
 .d-block{
     display: block;
 }
+
+.books-info-item-search {
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-template-columns: repeat(4, 360px);
+    gap: 38px;
+}

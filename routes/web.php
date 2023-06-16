@@ -15,7 +15,8 @@ use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\PostsController;
 use App\Http\Controllers\admin\MediaController;
 use App\Http\Controllers\admin\OrderController as AdminOrderController;
-use \App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\frontend\BookCommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::group(
     Route::get('books', 'App\Http\Controllers\frontend\BooksController@books')->name('books');
     Route::get('book/{slug}', 'App\Http\Controllers\frontend\BooksController@view')->name('book.view');
     Route::post('books/search', 'App\Http\Controllers\frontend\BooksController@searchBooks')->name('books.search');
+    Route::post('book/comment', [BookCommentsController::class, 'store'])->name('book.comment');
     /* Posts Routers */
     Route::get('articles', 'App\Http\Controllers\frontend\PostsController@articles')->name('articles');
     Route::get('article/{slug}', 'App\Http\Controllers\frontend\PostsController@view')->name('article.view');
@@ -69,7 +71,6 @@ Route::group(
     Route::post('/add-to-cart', [ShopController::class, 'addToCart'])->name('addToCart');
     Route::post('/remove-from-card', [ShopController::class, 'removeFromCart'])->name('removeFromCart');
     Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('updateCart');
-
 
     /*************************** ADMIN ROUTES **************************/
     Route::group([

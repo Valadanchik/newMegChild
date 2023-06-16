@@ -29,7 +29,7 @@ class BooksController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function searchBooks(Request $request)
+    public function searchBooks(Request $request): \Illuminate\Http\JsonResponse
     {
         $books = [];
         if ($request->search != '') {
@@ -57,14 +57,36 @@ class BooksController extends Controller
      */
     public function view(Books $books, $slug): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-
         $book = $books::with(['authors', 'category', 'images'])
+            ->with(['comments' => function ($query) {
+                $query->orderBy('book_comments.created_at', 'desc')
+                    ->limit(4);
+            }])
             ->where('slug', $slug)
             ->firstOrFail();
-        $shareUrl = LaravelLocalization::localizeUrl('/book/'. $book['slug']);
+        $shareUrl = LaravelLocalization::localizeUrl('/book/' . $book['slug']);
 
-        return view('book/index', compact('book', 'shareUrl' ));
+        $otherBooks = $this->otherBooks($book->id, $book->category_id);
+
+        return view('book/index', compact('book', 'shareUrl', 'otherBooks',));
     }
+
+    /**
+     * @param $bookId
+     * @param $categoryId
+     * @return \Illuminate\Database\Eloquent\Collection|array
+     */
+    public function otherBooks($bookId, $categoryId): \Illuminate\Database\Eloquent\Collection|array
+    {
+        $otherBooks = Books::constructOtherBooksQuery($bookId)->where('category_id', '=', $categoryId)->get();
+
+        if (!count($otherBooks)) {
+            $otherBooks = Books::constructOtherBooksQuery($bookId)->where('category_id', '<>', $categoryId)->get();
+        }
+
+        return $otherBooks;
+    }
+
 
     /**
      * Display the specified resource.

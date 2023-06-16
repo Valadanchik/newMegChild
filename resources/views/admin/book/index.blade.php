@@ -47,7 +47,6 @@
                             </tr>
                         </thead>
 
-
                         <tbody>
                             @foreach($books as $index => $book)
                                 <tr>
@@ -72,7 +71,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>

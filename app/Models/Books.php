@@ -44,13 +44,13 @@ class Books extends Model
     public static function changeInStockAfterOrder(): void
     {
         $card = session()->get('cart');
-        if(count($card)) {
+        if (count($card)) {
             $sessionProductsId = array_keys($card);
             $books = Books::whereIn('id', $sessionProductsId)->get();
 
             foreach ($books as $book) {
                 $oldInStock = $book->in_stock;
-                $newInStock = (int) $card[$book->id];
+                $newInStock = (int)$card[$book->id];
                 $quantityToSubtract = $oldInStock - $newInStock;
                 $book->in_stock = $quantityToSubtract;
                 $book->save();
@@ -58,6 +58,34 @@ class Books extends Model
         }
         session()->forget('cart');
     }
+
+    /**
+     * @param $bookId
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function constructOtherBooksQuery($bookId): \Illuminate\Database\Eloquent\Builder
+    {
+        return Books::with(['authors' => function ($query) {
+            $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
+        }])->where('id', '!=', $bookId)
+            ->inRandomOrder()
+            ->limit(4);
+    }
+
+    /**
+     * @return string
+     */
+    public static function getBookIdByUrl(): string
+    {
+        try {
+            $getPostSlug = last(explode('/', url()->previous()));
+            return Books::where('slug', $getPostSlug)->firstOrFail()->id;
+        }
+        catch (\Exception $e) {
+             return $e->getMessage();
+        }
+    }
+
 
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -81,6 +109,11 @@ class Books extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class,'order_book_pivote', 'book_id', 'order_id')->withPivot('id', 'quantity', 'price', 'status');
+        return $this->belongsToMany(Order::class, 'order_book_pivote', 'book_id', 'order_id')->withPivot('id', 'quantity', 'price', 'status');
+    }
+
+    public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(BookComments::class, 'book_id', 'id');
     }
 }

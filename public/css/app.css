@@ -2974,7 +2974,7 @@ section.author-single-page {
 
 /*////////////////////////contact page/////////////////////////*/
 
-.contacts-page.content {
+.contacts-page {
     margin-bottom: 130px;
 }
 
@@ -2985,6 +2985,7 @@ section.contacts-page h2 {
     letter-spacing: 0.01em;
     color: #000000;
     text-align: center;
+    margin-top: 92px
 }
 
 .contacts-page-info-decsription p,
@@ -3051,6 +3052,7 @@ section.contacts-page h2 {
 
 .new-book-or-translation-desc ol {
     margin-top: 32px;
+    padding-left: 15px;
 }
 
 .new-book-or-translation-desc ol li {
@@ -3162,7 +3164,7 @@ button.learn-more-btn:hover {
     background: #f26f21;
 }
 
-.filtering-book-page ul {
+.filtering-book-page-list{
     display: flex;
     gap: 48px;
     list-style: none;
@@ -3274,10 +3276,18 @@ button.learn-more-btn:hover {
     display: block;
 }
 
-.books-info-item-search {
+.filter-show {
     display: grid;
     flex-wrap: wrap;
     justify-content: center;
     grid-template-columns: repeat(4, 360px);
     gap: 38px;
+}
+.books-filter {
+    display: none;
+}
+
+.filter-book_show{
+    position: absolute;
+    left:0
 }

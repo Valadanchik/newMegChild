@@ -13,6 +13,13 @@
                         </li>
                     @endforeach
                 </ul>
+
+                <div class="books-filter">
+                    <div class="books-filter-img">
+                        <img src="{{ URL::to('images/svg/mi_filter.svg') }}" alt="filter logo">
+                    </div>
+                    <p>Ֆիլտրել</p>
+                </div>
             </div>
             @if(count($books))
                 <div class="books-info-item">

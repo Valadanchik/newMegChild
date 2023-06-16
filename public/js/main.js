@@ -529,15 +529,16 @@ function filterOpen(){
     filter_body.classList.toggle('body-open')
 }
 
-modal?.addEventListener('click' , filterModalClose)
+modal_filter?.addEventListener('click' , filterModalClose)
 function filterModalClose() {
     modal_filter.classList.remove('filter-modal-open')
     media_filter_icon.classList.remove('open')
     choose_media_section.classList.remove('filter-show')
     filter_body.classList.remove('body-open')
 
-}
+    console.log('dsjhfdhjh')
 
+}
 
 /*////////////////filter-book-page/////////////*/
 
@@ -552,6 +553,30 @@ filter_book_list?.forEach((item) =>{
         item.classList.add('is-checked')
     })
 })
+
+const books_filter_icon = document.querySelector('.books-filter-img')
+const filtering_book_page_list = document.querySelector('.filtering-book-page-list')
+
+// books_filter_img.addEventListener('click', ()=>{
+//     console.log('haghagsh')
+// })
+
+books_filter_icon?.addEventListener("click", filterBookOpen)
+function filterBookOpen(){
+    filtering_book_page_list.classList.toggle('filter-book_show')
+    books_filter_icon.classList.toggle('open')
+    modal_filter.classList.toggle('filter-modal-open')
+    filter_body.classList.toggle('body-open')
+}
+
+modal?.addEventListener('click' , filterBookModalClose)
+function filterBookModalClose() {
+    modal_filter.classList.remove('filter-modal-open')
+    books_filter_icon.classList.remove('open')
+    filtering_book_page_list.classList.remove('filter-book_show')
+    filter_body.classList.remove('body-open')
+
+}
 
 
 /*/////////////////////////Learn more///////////////////////////*/

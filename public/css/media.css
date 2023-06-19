@@ -341,6 +341,27 @@
         gap: 10px;
     }
 
+    /*///////////////contact-us////////////*/
+
+    section.contacts-page h2 {
+        font-size: 36px;
+        margin-top: 70px;
+    }
+    .contacts-page-info-decsription {
+        margin: 30px 0;
+    }
+    .contact-page-sale-desc,
+    .contact-page-work-desc,
+    .contact-page-partnership-desc {
+        margin: 30px 0;
+    }
+    .contacts-page {
+        margin-bottom: 100px;
+    }
+    section.contacts-page h2 {
+        font-size: 30px;
+        margin-top: 70px;
+    }
 
 
 
@@ -734,6 +755,7 @@
 
     .filter-show {
         right: 0;
+        display: block;
         z-index: 0;
         top: 0;
         padding-top: 120px;
@@ -1110,6 +1132,23 @@
     }
     .payment-cart-btn button {
         padding: 14px 60px;
+    }
+
+/*    ////////////contact-us/////////////*/
+    section.contacts-page h2 {
+        font-size: 30px;
+        margin-top: 50px;
+    }
+    .contacts-page-info-decsription p, .new-book-or-translation-desc p, .contact-page-sale-desc p, .contact-page-work-desc p, .contact-page-sponsorship-desc p, .contact-page-partnership-desc p {
+        font-size: 14px;
+    }
+    .new-book-or-translation-desc ol li {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.01em;
+        list-style: circle;
+        color: #444444;
     }
 
 }
@@ -1507,6 +1546,30 @@
         font-size: 12px;
         color: #646464;
     }
+    .contacts-page {
+        margin-bottom: 50px;
+    }
+    section.contacts-page h2 {
+        font-size: 20px;
+        margin-top: 30px;
+    }
+    .new-book-or-translation-desc h3,
+    .contacts-page-info-decsription span,
+    .contact-page-sale-desc h3,
+    .contact-page-work-desc h3,
+    .contact-page-partnership-desc h3,
+    .contact-page-sponsorship-desc h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .new-book-or-translation-desc ol li {
+        margin-bottom: 12px;
+    }
+    .contact-page-sale-desc,
+    .contact-page-work-desc,
+    .contact-page-partnership-desc {
+        margin: 25px 0;
+    }
 
 
 }
@@ -1560,7 +1623,9 @@
     .footer-money {
         gap: 6px;
     }
-
+    .parent-section-img {
+        margin: auto;
+    }
     /*/////////////////////Books-page///////////////////////////////*/
     .books-info-item {
         grid-template-columns: repeat(1, 277px);
@@ -1663,6 +1728,7 @@
         max-width: 140px;
         display: inline-flex;
         margin-right: 20px;
+        margin-left: 10px;
     }
 
     ::-webkit-scrollbar:horizontal {
@@ -1755,6 +1821,39 @@
         max-width: 235px;
 
     }
+
+    .filtering-book-page-list {
+        position: absolute;
+        left: -560px;
+    }
+    .filtering-book-page-list.filter-book_show {
+        max-width: 70%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        z-index: 99;
+        background: #fff;
+        height: 100vh;
+        width: 100%;
+    }
+    .books-filter {
+        display: flex;
+        gap: 10px;
+    }
+    .filtering-book-page-list {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        list-style: none;
+        border-bottom: 1px solid #646464;
+        margin: 0px;
+        padding: 100px 15px;
+    }
+    ul.filtering-book-page-list.filter-book_show li {
+        width: 100%;
+        max-width: fit-content;
+    }
+
 
 }
 
@@ -1930,5 +2029,8 @@
     }
     .shopping-cart-products-item {
         padding: 15px;
+    }
+    .authors-boxes div {
+        margin-left: 26px;
     }
 }

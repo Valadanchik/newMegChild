@@ -66,4 +66,15 @@ trait GeneralTrait
         return [];
     }
 
+    /**
+     * @param $request
+     * @return \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+     */
+    public function deleteUrlParameters($params): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    {
+        $urlWithoutParams = url()->current().http_build_query(request()->except(array_keys($params)));
+
+        return redirect($urlWithoutParams);
+    }
+
 }

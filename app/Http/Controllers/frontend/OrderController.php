@@ -7,6 +7,8 @@ use App\Http\Requests\OrderStoreRequest;
 use App\Services\Frontend\OrderService;
 use App\Services\Frontend\PaymentService;
 use App\Services\Frontend\ShopService;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class OrderController extends Controller
 {
@@ -54,11 +56,15 @@ class OrderController extends Controller
      * @param OrderStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function create(OrderStoreRequest $request): \Illuminate\Http\RedirectResponse
+    public function create(OrderStoreRequest $request)
     {
-       if (!$this->checkIsProductsAvailable()) {
-           return redirect()->route('order')->with('product_is_not_in_stock', __('checkout.product_is_not_in_stock'));
-       }
+        try {
+            if (!$this->checkIsProductsAvailable()) {
+                return redirect()->route('order')->with('product_is_not_in_stock', __('checkout.product_is_not_in_stock'));
+            }
+        } catch (NotFoundExceptionInterface $e) {
+            return redirect()->route('order')->with('product_is_not_in_stock', __('checkout.product_is_not_in_stock'));
+        }
 
         $order = $this->orderService->create($request);
         $this->orderService->createOrderBook($order);

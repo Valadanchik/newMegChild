@@ -8,6 +8,7 @@ use App\Http\Controllers\frontend\PaymentController;
 use App\Http\Controllers\frontend\ContactUsController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AuthController;
+use App\Http\Controllers\admin\BookCommentsController as AdminBookCommentsController;
 use App\Http\Controllers\admin\BooksController;
 use App\Http\Controllers\admin\AuthorsController;
 use App\Http\Controllers\admin\TranslatorsController;
@@ -88,6 +89,12 @@ Route::group(
 
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.index');
             Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+            Route::get('comment/index', [AdminBookCommentsController::class, 'index'])->name('admin.bookComment.index')->middleware('can:isAdmin');
+            Route::get('comment/view/{id}/{name?}', [AdminBookCommentsController::class, 'view'])->name('admin.bookComment.view')->middleware('can:isAdmin');
+            Route::match(array('PUT', 'PATCH'),'comment/update/{id}', [AdminBookCommentsController::class, 'update'])->name('admin.bookComment.update')->middleware('can:isAdmin');
+            Route::delete('comment/destroy/{id}', [AdminBookCommentsController::class, 'destroy'])->name('admin.bookComment.destroy')->middleware('can:isAdmin');
 
             Route::resource('books', BooksController::class)->middleware('can:isAdmin');
             Route::resource('authors', AuthorsController::class)->middleware('can:isAdmin');

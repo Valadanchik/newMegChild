@@ -17,6 +17,10 @@
                         <div class="nav-link-icon"><i data-feather="book"></i></div>
                         Books
                     </a>
+                    <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/comment/index') }}">
+                        <div class="nav-link-icon"><i data-feather="book"></i></div>
+                        Book Comments
+                    </a>
                     <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/authors') }}">
                         <div class="nav-link-icon"><i data-feather="users"></i></div>
                         Authors

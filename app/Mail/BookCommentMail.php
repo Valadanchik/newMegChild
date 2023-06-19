@@ -25,7 +25,7 @@ class BookCommentMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject('BookCommentMail')
+        return $this->subject('Book comment')
             ->view('emails.comment-message')
             ->with('comment', $this->comment);
     }

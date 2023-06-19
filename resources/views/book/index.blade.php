@@ -164,7 +164,7 @@
 
 
         <section class="book-page-reviews content">
-            <h2>Կարծիքներ</h2>
+            <h2>{{ __('messages.comments') }}</h2>
             <div class="book-page-reviews-boxes">
                 @foreach($book->comments as $comment)
                     <div class="book-page-reviews-item">
@@ -178,32 +178,32 @@
             <div class="book-page-leave-review-form"></div>
         </section>
         <section id="message-sent-successfully" class="book-page-leave-review">
-            <h2 class="book-page-leave-review-title">Թողնել կարծիք</h2>
+            <h2 class="book-page-leave-review-title">{{ __('messages.add_comment') }}</h2>
             <div class="book-page-leave-review-form content">
                 <form action="{{ route('book.comment') }}" method="POST" class="forms review-form">
                     @csrf
                     <div class=" form-control form-first-name">
-                        <input type="text" id="firs-name" name="full_name" placeholder="Անուն Ազգանուն*" required>
+                        <input type="text" id="firs-name" name="full_name" placeholder="{{ __('messages.full_name') }} *" required>
                         <small></small>
                     </div>
 
                     <div class="form-control form-email">
-                        <input type="text" id="email" name="email" placeholder="Էլեկտրոնային հասցե*" required>
+                        <input type="text" id="email" name="email" placeholder="{{ __('messages.email') }} *" required>
                         <small></small>
                     </div>
 
                     <div class=" form-control review">
-                        <textarea class="accept-input" id="review" name="comment" placeholder="Կարծիք*" type="checkbox" required></textarea>
+                        <textarea class="accept-input" id="review" name="comment" placeholder="{{ __('messages.comment') }}*" type="checkbox" required></textarea>
                         <small></small>
                     </div>
 
                     <div class=" form-control accept">
                         <input class="accept-input" name="terms" type="checkbox" required>
-                        <span id="accept">Կարդացել և համաձայնվում եմ ոգտագործման պայմանների հետ</span>
+                        <span id="accept">{{ __('messages.terms') }}</span>
                         <small></small>
                     </div>
                     <div class="form-btn">
-                        <button>Ուղարկել</button>
+                        <button>{{ __('messages.send') }}</button>
 {{--                        <button>{{ __('checkout.Ուղարկել') }}</button>--}}
                     </div>
 
@@ -224,7 +224,7 @@
 
 
         <section class="reade-more content">
-            <h2>Կարդացեք նաև</h2>
+            <h2>{{ __('messages.red_also') }}</h2>
             <div class="reade-more-info-item">
                 @foreach($otherBooks as $index => $book)
                     <div class="reade-more-item">
@@ -257,7 +257,7 @@
             </div>
 
             <div class="reade-more-see-more">
-                <a href="{{ LaravelLocalization::localizeUrl('/books') }}">Տեսնել բոլորը</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/books') }}">{{ __('messages.see_more') }}</a>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13 17L18 12L13 7" stroke="black" stroke-width="2" stroke-linecap="round"
                           stroke-linejoin="round"/>

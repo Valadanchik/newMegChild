@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="x-apple-disable-message-reformatting">
     <title></title>
+    <style>
+        .checkButtonStyle {
+            padding: 10px 15px;
+            background: green;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            font-family: system-ui;
+            text-decoration: none;
+        }
+        .activeButtonStyle {
+            padding: 10px 15px;
+            background: #008bc3;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            font-family: system-ui;
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body style="margin:0;padding:0;">
 <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
@@ -27,19 +48,16 @@
                             <!-- BEGIN SECTION: Introduction -->
                             <tr id="section-1468267" class="section introduction">
                                 <th style="mso-line-height-rule: exactly; padding: 13px 52px;" bgcolor="#ffffff">
-                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 0 0 13px;"
-                                       align="center">
-                                        <span data-key="1468267_greeting_text"
-                                              style="text-align: center; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363;">
-                                          Hey Admin,
-                                        </span>
-                                    </p>
-                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center">{{ $comment->full_name }} create comment</p>
-                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center">You can contact with him</p>
-
-                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center">Email: {{ $comment->email }}</p>
-                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center">comment: {{ $comment->comment }}</p>
-
+                                    <h3 style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center"><strong>Մեկնաբանության տեղեկություն</strong></h3>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center"><strong>Մեկնաբանությունը ավելացրել է՝</strong>  {{ $comment->full_name }}</p>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center"><strong>Էլեկտրոնային հասցե` </strong> {{ $comment->email }}</p>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center"><strong>Մեկնաբանություն` </strong> {{ $comment->comment }}</p>
+                                    <br>
+                                    <br>
+                                    <div>
+                                        <a href="{{ url('http://newmag.test/fs-admin/comment/view/' . $comment['id'] ) }}" class="checkButtonStyle" >Տեսնել Կայքում</a>
+                                        <a href="{{ url('http://newmag.test/fs-admin/comment/view/' . $comment['id'] ) .'?immediately_activate=1' }} " class="activeButtonStyle">Անհապաղ ակտիվացնել</a>
+                                    </div>
                                 </th>
                             </tr>
                         </table>

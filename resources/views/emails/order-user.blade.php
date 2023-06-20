@@ -34,7 +34,8 @@
                             <!-- BEGIN SECTION: Introduction -->
                             <tr id="section-1468267" class="section introduction">
                                 <th style="mso-line-height-rule: exactly; padding: 13px 52px;" bgcolor="#ffffff">
-                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 0 0 13px;" align="center">
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 0 0 13px;"
+                                       align="center">
                                         <span data-key="1468267_greeting_text"
                                               style="text-align: center; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363;">
                                           Hey
@@ -61,7 +62,7 @@
                                     <h2 style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; color: #4b4b4b; font-size: 20px; line-height: 26px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0;"
                                         align="center">
                                                             <span
-                                                                data-key="1468270_order_number">Order No.</span> {{$order->id}}
+                                                                    data-key="1468270_order_number">Order No.</span> {{$order->id}}
                                     </h2>
                                     <p class="muted"
                                        style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 14px; line-height: 26px; font-weight: normal; color: #bdbdbd; margin: 0;"
@@ -176,8 +177,11 @@
                                                         <th class="table-text"
                                                             style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; width: 35%; padding: 6px 0;"
                                                             align="right" bgcolor="#ffffff"
-                                                            valign="middle">{{$order->total_price}}&nbsp
+                                                            valign="middle">{{$order->total_price}}&nbsp;
                                                         <td>AMD</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
                                             </th>
                                         </tr>
 
@@ -193,7 +197,7 @@
                                                     style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; width: 35%; padding: 6px 0;"
                                                     align="right" bgcolor="#ffffff"
                                                     valign="middle">
-                                                    {{$order->total_price_with_discount}}&nbsp
+                                                    {{$order->total_price_with_discount}}&nbsp;
                                                 <td>AMD</td>
                                                 </th>
                                             </tr>
@@ -216,7 +220,7 @@
                                                             <img width="40"
                                                                  style="width: 40px; vertical-align: middle; height: auto !important; font-weight: bold;"
                                                                  alt="Mastercard Icon"
-                                                                 src="{{asset('images/payment_methods/'.$order->payment_method.'.png')}}">
+                                                                 src="{{asset('images/payment_methods/'.$order->payment_method.'.png?v=0.2')}}">
                                                         </th>
                                                         <th style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; padding: 8px 0;"
                                                             align="left" bgcolor="#ffffff"
@@ -258,13 +262,14 @@
                             <tr>
                                 <td style="padding:0 0 0 10px;width:38px;">
                                     <a href="http://www.twitter.com/" style="color:#ffffff;"><img
-                                            src="https://assets.codepen.io/210284/tw_1.png" alt="Twitter" width="38"
-                                            style="height:auto;display:block;border:0;"/></a>
+                                                src="https://assets.codepen.io/210284/tw_1.png" alt="Twitter" width="38"
+                                                style="height:auto;display:block;border:0;"/></a>
                                 </td>
                                 <td style="padding:0 0 0 10px;width:38px;">
                                     <a href="http://www.facebook.com/" style="color:#ffffff;"><img
-                                            src="https://assets.codepen.io/210284/fb_1.png" alt="Facebook" width="38"
-                                            style="height:auto;display:block;border:0;"/></a>
+                                                src="https://assets.codepen.io/210284/fb_1.png" alt="Facebook"
+                                                width="38"
+                                                style="height:auto;display:block;border:0;"/></a>
                                 </td>
                             </tr>
                         </table>

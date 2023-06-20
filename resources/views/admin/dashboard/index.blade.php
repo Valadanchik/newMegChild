@@ -30,10 +30,6 @@
                                             publish new posts. Check orders and payments.</p>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-xxl-12 text-center">
-                                    <img class="img-fluid" src="{{ URL::to('/admin/img/illustrations/at-work.svg') }}"
-                                         style="max-width: 26rem"/>
-                                </div>
                             </div>
                         </div>
                     </div>

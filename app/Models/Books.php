@@ -44,7 +44,7 @@ class Books extends Model
     public static function changeInStockAfterOrder(): void
     {
         $card = session()->get('cart');
-        if (count($card)) {
+        if ($card && is_array($card) && count($card) > 0) {
             $sessionProductsId = array_keys($card);
             $books = Books::whereIn('id', $sessionProductsId)->get();
 

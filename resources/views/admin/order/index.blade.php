@@ -37,8 +37,8 @@
                             <th>Order ID</th>
                             <th>Name</th>
                             <th>Date</th>
-                            <th>Payment Methode</th>
-                            <th>Payment status</th>
+                            <th>Payment Method</th>
+                            <th>Shipping status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -47,8 +47,8 @@
                             <th>Order ID</th>
                             <th>Name</th>
                             <th>Date</th>
-                            <th>Payment Methode</th>
-                            <th>Payment status</th>
+                            <th>Payment Method</th>
+                            <th>Shipping status</th>
                             <th>Action</th>
                         </tr>
                         </tfoot>

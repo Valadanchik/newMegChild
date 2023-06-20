@@ -61,5 +61,6 @@ return [
                      For age groups 0 to 6, 6 to 9, 10 to 12, 12 and above. Classifications will be placed on books and will allow parents and children to easily choose books according to age.</p>
 
                  <p> The author's font called 'Hekiat' was developed specifically for children's books, which is easy to read.</p>
-                 <p> In addition to books, the series will also present stationery with characters from the 'Dream' books.</p>"
+                 <p> In addition to books, the series will also present stationery with characters from the 'Dream' books.</p>",
+    'thank_you' => 'Thank you',
 ];

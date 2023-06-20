@@ -61,7 +61,7 @@ class PaymentService
                 $request->EDP_TRANS_ID,
                 $request->EDP_TRANS_DATE);
 
-            $order = Order::where('id', $request->EDP_BILL_NO)->firstOrFail();
+            $order = Order::where('order_payment_id', $request->EDP_BILL_NO)->firstOrFail();
 
             $order->payment_callback = json_encode($request->all());
 

@@ -1664,13 +1664,12 @@ section.book-page-item-banner {
     background-repeat: no-repeat;
     background-size: contain;
     max-width: max-content;
-    padding: 95px 47px 59px 26px;
+    padding: 75px 47px 59px 26px;
     margin: auto;
     text-align: center;
 }
 
 .book-page-reviews-item p {
-    font-family: 'Montserrat arm';
     font-style: normal;
     font-weight: 400;
     width: 100%;
@@ -1679,6 +1678,8 @@ section.book-page-item-banner {
     margin-bottom: 16px;
     line-height: 17px;
     text-align: center;
+    max-height: 86px;
+    overflow: hidden;
     letter-spacing: 0.01em;
     color: #000000;
 }
@@ -1961,7 +1962,7 @@ h2.book-page-leave-review-title {
 }
 
 .reade-more h2 {
-    background-image: url('../images/cloud-reade-more.png');
+    background-image: url('../images/cloud-reader-more.png');
     background-repeat: no-repeat;
     background-size: 100%;
     max-width: max-content;
@@ -1981,7 +1982,13 @@ h2.book-page-leave-review-title {
     margin: 40px 0;
     height: 360px;
 }
-
+.reade-more-item {
+    width: 100%;
+    max-width: 342px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
 .reade-more-item-img-book img {
     height: 100%;
     width: 100%;
@@ -2856,6 +2863,16 @@ input:focus {
     line-height: 20px;
     letter-spacing: 0.01em;
     color: #B1B1B1;
+}
+.books-info-item-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.books-info-item-search .book-item {
+    width: 100%;
+    max-width: 342px;
 }
 
 /*////////////////////authors-single-page//////////////////////////////////*/

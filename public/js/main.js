@@ -402,76 +402,7 @@ function isEmailShop(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
-//
-// /*________________validacia_____________*/
-//
-// const form = document.querySelector('.forms');
-//
-// const name = document.getElementById('firs-name');
-// const email = document.getElementById('email');
-// const accept = document.getElementById('accept')
-// const acceptContent = getComputedStyle(accept, "::before");
-// const review = document.getElementById('review')
-//
-// form?.addEventListener('submit', e => {
-//     e.preventDefault();
-//     checkInputs();
-// });
-//
-//
-// function checkInputs() {
-//     // trim to remove the whitespaces
-//     const emailValue = email.value.trim();
-//     const nameValue = name.value.trim();
-//     const reviewValue = name.value.trim();
-//
-//
-//     if(emailValue === '') {
-//         setErrorFor(email, 'Email cannot be blank');
-//     } else if (!isEmail(emailValue)) {
-//         setErrorFor(email, 'Not a valid email');
-//     } else {
-//         setSuccessFor(email);
-//     }
-//
-//     if(nameValue ===''){
-//         setErrorFor(name, 'Name cannot be blank');
-//     } else {
-//         setSuccessFor(name);
-//     }
-//
-//
-//     if(acceptContent.content == "none"){
-//         setErrorFor(accept, 'Cannot be checked');
-//     }else {
-//         setSuccessFor(accept);
-//     }
-//
-//     if(reviewValue ==='' && reviewValue.length < 10 ){
-//         setErrorFor(review, 'Name cannot be blank');
-//     }   else {
-//         setSuccessFor(review);
-//     }
-// }
-//
-// function setErrorFor(input, message) {
-//     const formControl = input.parentElement;
-//     const small = formControl.querySelector('small');
-//     formControl.classList.add("error");
-//     formControl.classList.remove('success');
-//     small.innerText = message;
-// }
-//
-// function setSuccessFor(input) {
-//     const formControl = input.parentElement;
-//     formControl.classList.add('success');
-//     formControl.classList.remove("error")
-// }
-//
-// function isEmail(email) {
-//     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-// }
-//
+
 
 let searchBtn = document.querySelector('.search');
 let searchSection = document.querySelector(".search-section");
@@ -557,9 +488,6 @@ filter_book_list?.forEach((item) =>{
 const books_filter_icon = document.querySelector('.books-filter-img')
 const filtering_book_page_list = document.querySelector('.filtering-book-page-list')
 
-// books_filter_img.addEventListener('click', ()=>{
-//     console.log('haghagsh')
-// })
 
 books_filter_icon?.addEventListener("click", filterBookOpen)
 function filterBookOpen(){
@@ -601,4 +529,86 @@ learn_more_btn?.addEventListener('click', () => {
 })
 
 
+
+/*________________validacia_____________*/
+
+const form = document.querySelector('.forms');
+console.log(form)
+const name = document.getElementById('firs-name');
+const email = document.getElementById('email');
+const review = document.getElementById('review')
+const accept = document.getElementById('accept')
+let acceptContent
+if (accept){
+     acceptContent = getComputedStyle(accept, "::before");
+}
+
+
+
+form?.addEventListener('click', e => {
+    if(!checkInputs()){
+        return e.preventDefault();
+    }
+});
+
+
+function checkInputs() {
+    // trim to remove the whitespaces
+    const emailValue = email.value.trim();
+    const nameValue = name.value.trim();
+    const reviewValue = name.value.trim();
+    const errorsForm = {}
+
+
+    if(emailValue === '') {
+        console.log('jssjjsdata')
+        errorsForm['email'] = true
+        setErrorFor(email, 'Email cannot be blank');
+    } else if (!isEmail(emailValue)) {
+        setErrorFor(email, 'Not a valid email');
+    } else {
+        setSuccessFor(email);
+    }
+
+    if(nameValue ===''){
+        errorsForm['name'] = true
+        setErrorFor(name, 'Name cannot be blank');
+    } else {
+        setSuccessFor(name);
+    }
+
+
+    if(acceptContent.content == "none"){
+        errorsForm['accept'] = true
+        setErrorFor(accept, 'Cannot be checked');
+    }else {
+        setSuccessFor(accept);
+    }
+
+    if(reviewValue ==='' && reviewValue.length < 10 ){
+        errorsForm['review'] = true
+        setErrorFor(review, 'Name cannot be blank');
+    }   else {
+        setSuccessFor(review);
+    }
+    return !Object.keys(errorsForm).length
+}
+
+function setErrorFor(input, message) {
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    formControl.classList.add("error");
+    formControl.classList.remove('success');
+    small.innerText = message;
+}
+
+function setSuccessFor(input) {
+    const formControl = input.parentElement;
+    formControl.classList.add('success');
+    formControl.classList.remove("error")
+}
+
+function isEmail(email) {
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
 

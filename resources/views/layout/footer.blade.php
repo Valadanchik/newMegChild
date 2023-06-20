@@ -1,6 +1,6 @@
 <footer>
-    <div class="footer content">
-        <div >
+    <div id="footer" class="footer content">
+        <div>
             <div class="footer-logo">
                 <img src="{{ URL::to('/images/svg/footer-logo.svg') }}" alt="logo">
             </div>
@@ -14,34 +14,48 @@
         </div>
         <div class="footer-icon-input">
             <div class="footer-icons">
-                <div class="faccebook-logo" style="width:28px ; height:28px" >
-                    <a href='https://www.facebook.com' >
+                <div class="faccebook-logo" style="width:28px ; height:28px">
+                    <a href='https://www.facebook.com'>
                         <img src="{{ URL::to('images/svg/facebook-logo.svg') }}" alt="facebook logo" style="width:100%">
                     </a>
                 </div>
-                <div class="twitter-logo" style="width:28px ; height:28px" >
+                <div class="twitter-logo" style="width:28px ; height:28px">
                     <a href="https://twitter.com/">
                         <img src="{{ URL::to('images/svg/twitter-logo.svg') }}" alt="twitter logo" style="width:100%">
                     </a>
                 </div>
-                <div class="linkedin-logo" style="width:28px ; height:28px" >
+                <div class="linkedin-logo" style="width:28px ; height:28px">
                     <a href="https://www.linkedin.com/">
                         <img src="{{ URL::to('images/svg/linkedin-logo.svg') }}" alt="linkedin logo" style="width:100%">
                     </a>
                 </div>
             </div>
-            <a href="https://www.google.com/maps/search/%D4%B1%D6%80%D5%B7%D5%A1%D5%AF%D5%B8%D6%82%D5%B6%D5%B5%D5%A1%D5%B6%D5%AE+4,+%D4%B5%D6%80%D6%87%D5%A1%D5%B6+0023/@40.170156,44.5078003,16.25z" target="_blank" class="footer-address">{{ __('header.site_address') }}</a>
-            {{--<form action="" class="footer-form">
+            <a href="https://www.google.com/maps/search/%D4%B1%D6%80%D5%B7%D5%A1%D5%AF%D5%B8%D6%82%D5%B6%D5%B5%D5%A1%D5%B6%D5%AE+4,+%D4%B5%D6%80%D6%87%D5%A1%D5%B6+0023/@40.170156,44.5078003,16.25z"
+               target="_blank" class="footer-address">{{ __('header.site_address') }}</a>
+
+            <form action="{{ route('subscription.store') }}" method="POST" class="footer-form">
+                @csrf
                 <div class="footer-form-box">
-                    <input type="email" placeholder="{{ __('header.subscribe') }}">
+                    <input type="email" name="subscribe_email" placeholder="{{ __('header.subscribe') }}">
                     <button>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M22 6L12 13L2 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path
+                                d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+                                stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 6L12 13L2 6" stroke="black" stroke-width="2" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
                         </svg>
                     </button>
                 </div>
-            </form>--}}
+                @if(session('success_subscribe'))
+                    <div style="color: green">
+                        {{ session('success_subscribe') }}
+                    </div>
+                @endif
+                @error('subscribe_email')
+                <div style="color: red" class="required--error">{{ $message }}</div>
+                @enderror
+            </form>
         </div>
         <div class="footer-price">
             <div class="footer-money">
@@ -51,8 +65,8 @@
                 <div class="footer-money-idram"><img src="{{ URL::to('/images/idram.png') }}" alt="idram"></div>
             </div>
             <div class="footer-book">
-                <a href="">{{ __('header.book_ordering_conditions') }}</a>
-                <a href="">{{ __('header.advertising_and_services') }}</a>
+                <a href="https://newmag.am/terms" target="_blank">{{ __('header.book_ordering_conditions') }}</a>
+                <a href="https://newmag.am/advertising" target="_blank">{{ __('header.advertising_and_services') }}</a>
                 <a href="https://future-systems.am/">{{ __('header.site') }}` Future Systems</a>
             </div>
         </div>

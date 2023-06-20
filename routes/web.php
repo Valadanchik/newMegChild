@@ -6,6 +6,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\frontend\PaymentController;
 use App\Http\Controllers\frontend\ContactUsController;
+use App\Http\Controllers\frontend\BookCommentsController;
+use App\Http\Controllers\frontend\SubscriptionController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BookCommentsController as AdminBookCommentsController;
@@ -17,7 +19,6 @@ use App\Http\Controllers\admin\PostsController;
 use App\Http\Controllers\admin\MediaController;
 use App\Http\Controllers\admin\OrderController as AdminOrderController;
 use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\frontend\BookCommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,7 @@ Route::group(
     Route::post('/add-to-cart', [ShopController::class, 'addToCart'])->name('addToCart');
     Route::post('/remove-from-card', [ShopController::class, 'removeFromCart'])->name('removeFromCart');
     Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('updateCart');
+    Route::post('/subscription', [SubscriptionController::class, 'store'])->name('subscription.store');
 
     /*************************** ADMIN ROUTES **************************/
     Route::group([

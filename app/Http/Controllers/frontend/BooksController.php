@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SearchFilterResource;
+use App\Models\BookComments;
 use App\Models\Books;
 use App\Models\Categories;
 use Illuminate\Http\Request;
@@ -60,10 +61,12 @@ class BooksController extends Controller
         $book = $books::with(['authors', 'category', 'images'])
             ->with(['comments' => function ($query) {
                 $query->orderBy('book_comments.created_at', 'desc')
+                    ->where('book_comments.is_active', '=', BookComments::PUBLISHED)
                     ->limit(4);
             }])
             ->where('slug', $slug)
             ->firstOrFail();
+
         $shareUrl = LaravelLocalization::localizeUrl('/book/' . $book['slug']);
 
         $otherBooks = $this->otherBooks($book->id, $book->category_id);

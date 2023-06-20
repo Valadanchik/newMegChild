@@ -204,7 +204,6 @@
                     </div>
                     <div class="form-btn">
                         <button>{{ __('messages.send') }}</button>
-{{--                        <button>{{ __('checkout.Ուղարկել') }}</button>--}}
                     </div>
 
                     <div class=" form-control accept">

@@ -25,6 +25,10 @@
                         <div class="nav-link-icon"><i data-feather="users"></i></div>
                         Authors
                     </a>
+                    <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/subscriptions') }}">
+                        <div class="nav-link-icon"><i data-feather="users"></i></div>
+                        Subscriptions
+                    </a>
                     <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/translators') }}">
                         <div class="nav-link-icon"><i data-feather="user"></i></div>
                         Translators
@@ -60,10 +64,10 @@
                 @endcan
                 <div class="sidenav-menu-heading">Settings</div>
                 <!-- Sidenav Link (Charts)-->
-{{--                <a class="nav-link" href="">--}}
-{{--                    <div class="nav-link-icon"><i data-feather="settings"></i></div>--}}
-{{--                    Settings--}}
-{{--                </a>--}}
+                <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/settings') }}">
+                    <div class="nav-link-icon"><i data-feather="settings"></i></div>
+                    Settings
+                </a>
                 <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/logout') }}">
                     <div class="nav-link-icon"><i data-feather="log-out"></i></div>
                     Logout

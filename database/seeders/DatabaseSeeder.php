@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             CountriesTableSeeder::class,
             UserRoleSeeder::class,
             UserSeeder::class,
+            SettingsSeeder::class,
         ]);
 
 //        PostFactory::class;

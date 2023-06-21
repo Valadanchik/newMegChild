@@ -5,17 +5,16 @@ let articleWrapper = document.querySelector(".articles-wrapper");
 let mediaWrapper = document.querySelector(".media-wrapper");
 let tabsUl = document.querySelector(".tabs_wrap ul");
 
-tabs.forEach((tab)=>{
-    tab.addEventListener("click", ()=>{
+tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
 
         let tabval = tab.getAttribute("data-tabs");
 
-        if(tabval == "article"){
+        if (tabval == "article") {
             tabsUl.classList.remove('right');
             articleWrapper.classList.add('open');
             mediaWrapper.classList.remove('open');
-        }
-        else if(tabval == "media"){
+        } else if (tabval == "media") {
             tabsUl.classList.add('right');
             articleWrapper.classList.remove('open');
             mediaWrapper.classList.add('open');
@@ -35,7 +34,7 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
     var product = document.getElementById('product-id').value;
     var quantity = document.getElementById('quantity').value;
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var data = JSON.stringify({ _token: csrfToken, quantity: quantity, product: product });
+    var data = JSON.stringify({_token: csrfToken, quantity: quantity, product: product});
 
     xhr.onload = function () {
         if (xhr.status === 200) {
@@ -95,8 +94,8 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
 
 let book_boxes = document.querySelectorAll('.book-box')
 
-book_boxes.forEach((item, index)=>{
-    if(index % 2 === 1){
+book_boxes.forEach((item, index) => {
+    if (index % 2 === 1) {
         item.classList.add('revers')
     }
 })
@@ -104,11 +103,11 @@ book_boxes.forEach((item, index)=>{
 
 let menu_link = document?.querySelectorAll('.menu-link');
 
-menu_link.forEach((item)=>{
+menu_link.forEach((item) => {
     item.addEventListener('click', activeMenuItem);
 })
 
-function activeMenuItem (e){
+function activeMenuItem(e) {
     menu_link?.forEach(el => {
         el.classList.remove('active-menu-underline')
     })
@@ -116,7 +115,7 @@ function activeMenuItem (e){
 
 }
 
-function updateCartProductCount (quantity, productId){
+function updateCartProductCount(quantity, productId) {
 
     document.querySelector('.loader-container').style.display = 'flex';
 
@@ -131,7 +130,7 @@ function updateCartProductCount (quantity, productId){
 
     var product = document.getElementById('product-id').value;
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var data = JSON.stringify({ _token: csrfToken, quantity: quantity, book_id: productId });
+    var data = JSON.stringify({_token: csrfToken, quantity: quantity, book_id: productId});
 
     xhr.onload = function () {
         if (xhr.status === 200) {
@@ -160,8 +159,8 @@ let min = document.querySelectorAll('.shopping-cart-products-count-item-min');
 let plus = document.querySelectorAll('.shopping-cart-products-count-item-plus');
 let deleteBtn = document.querySelectorAll('.shopping-cart-products-count-close-icon');
 
-min?.forEach((item) =>{
-    item.addEventListener('click', (event)=>{
+min?.forEach((item) => {
+    item.addEventListener('click', (event) => {
         let payPriceElement = document.querySelector('.all-result-payable-to span span');
         let totalPriceElement = document.querySelector('.all-result-total span span');
         let totalPrice = parseInt(totalPriceElement.innerHTML);
@@ -171,7 +170,7 @@ min?.forEach((item) =>{
         let minBtn = document.querySelector(`.min-count-${dataItem} img`);
         let productId = parseInt(event.currentTarget.dataset.product);
 
-        if(parseInt(countElement.value) > 2) {
+        if (parseInt(countElement.value) > 2) {
             countElement.value = parseInt(countElement.value) - 1;
             updateCartProductCount(countElement.value, productId)
 
@@ -190,8 +189,8 @@ min?.forEach((item) =>{
     })
 });
 
-plus?.forEach((item) =>{
-    item?.addEventListener('click', (event)=>{
+plus?.forEach((item) => {
+    item?.addEventListener('click', (event) => {
 
         let payPriceElement = document.querySelector('.all-result-payable-to span span');
         let totalPriceElement = document.querySelector('.all-result-total span span');
@@ -203,19 +202,19 @@ plus?.forEach((item) =>{
         let productId = parseInt(event.currentTarget.dataset.product);
         let minBtn = document.querySelector(`.min-count-${dataItem}`);
 
-        if(parseInt(countElement.value) < maxCount) {
+        if (parseInt(countElement.value) < maxCount) {
             countElement.value = parseInt(countElement.value) + 1;
             updateCartProductCount(countElement.value, productId)
-            totalPriceElement.innerHTML = totalPrice +  itemPrice;
-            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) +  itemPrice;
+            totalPriceElement.innerHTML = totalPrice + itemPrice;
+            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) + itemPrice;
             minBtn.querySelector('img').src = "/images/svg/minus-circle.svg";
             minBtn.classList.remove('min-none');
         }
     })
 });
 
-deleteBtn?.forEach((item) =>{
-    item.addEventListener('click', (event)=>{
+deleteBtn?.forEach((item) => {
+    item.addEventListener('click', (event) => {
 
         let dataItem = parseInt(event.currentTarget.dataset.item);
         let itemPrice = parseInt(event.currentTarget.dataset.price);
@@ -227,7 +226,7 @@ deleteBtn?.forEach((item) =>{
         xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
         var bookId = event.target.getAttribute("data-book-id");
         var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        var data = JSON.stringify({ _token: csrfToken, book_id: bookId });
+        var data = JSON.stringify({_token: csrfToken, book_id: bookId});
 
         xhr.onload = function () {
             if (xhr.status === 200) {
@@ -241,7 +240,8 @@ deleteBtn?.forEach((item) =>{
                 totalPriceElement.innerHTML = totalPrice - parseInt(rowItemCountElement.value) * itemPrice;
                 payPriceElement.innerHTML = payPrice - parseInt(rowItemCountElement.value) * itemPrice;
                 rowItemElement.remove();
-            } };
+            }
+        };
 
         xhr.onerror = function () {
             // Handle error
@@ -263,7 +263,7 @@ let body = document.querySelector('.body')
 
 nav_icon1?.addEventListener("click", menuOpen)
 
-function menuOpen(){
+function menuOpen() {
 
     nav.classList.toggle('menu-show')
     nav_icon1.classList.toggle('open')
@@ -271,7 +271,7 @@ function menuOpen(){
     body.classList.toggle('body-open')
 }
 
-modal?.addEventListener('click' , modalClose)
+modal?.addEventListener('click', modalClose)
 
 function modalClose() {
     modal.classList.remove('modal-open')
@@ -280,6 +280,7 @@ function modalClose() {
     body.classList.remove('body-open')
 
 }
+
 //////////////////////////shoping cart validacia//////////////////////////////
 
 let form_shopping_cart = document.querySelector('.form-shopping-cart')
@@ -295,7 +296,7 @@ const emailShop = document.getElementById('email-shop');
 const accept2 = document.getElementById('accept-sopping-cart');
 let acceptContent2
 
-if(accept2){
+if (accept2) {
     acceptContent2 = getComputedStyle(accept2, "::before");
 }
 
@@ -303,7 +304,7 @@ const country = document.getElementById('country');
 
 form_shopping_cart?.addEventListener('submit', e => {
 
-    if(!checkInputsShoppingCart()){
+    if (!checkInputsShoppingCart()) {
         return e.preventDefault();
     }
 });
@@ -318,49 +319,49 @@ function checkInputsShoppingCart() {
     const emailShopValue = emailShop.value.trim();
     const errors = {}
 
-    if(firstNameValue ===''){
+    if (firstNameValue === '') {
         errors['firstName'] = true
         setErrorForShopping(firstName, document.getElementById('required_name').value);
     } else {
         setSuccessForShopping(firstName);
     }
 
-    if(lastNameValue ===''){
+    if (lastNameValue === '') {
         errors['lastName'] = true
         setErrorForShopping(lastName, document.getElementById('required_last_name').value);
     } else {
         setSuccessForShopping(lastName);
     }
 
-    if(homeValue ===''){
+    if (homeValue === '') {
         errors['home'] = true
         setErrorForShopping(home, document.getElementById('required_street').value);
     } else {
         setSuccessForShopping(home);
     }
 
-    if(cityValue ===''){
+    if (cityValue === '') {
         errors['city'] = true
         setErrorForShopping(city, document.getElementById('required_city').value);
     } else {
         setSuccessForShopping(city);
     }
 
-    if(postCodeValue ===''){
+    if (postCodeValue === '') {
         errors['postCode'] = true
         setErrorForShopping(postCode, document.getElementById('required_post_code').value);
     } else {
         setSuccessForShopping(postCode);
     }
 
-    if(tellValue ===''){
+    if (tellValue === '') {
         errors['tell'] = true
         setErrorForShopping(tell, document.getElementById('required_phone').value);
     } else {
         setSuccessForShopping(tell);
     }
 
-    if(emailShopValue === '') {
+    if (emailShopValue === '') {
         errors['emailShop'] = true
         setErrorForShopping(emailShop, document.getElementById('required_email').value);
     } else if (!isEmailShop(emailShopValue)) {
@@ -369,13 +370,13 @@ function checkInputsShoppingCart() {
         setSuccessForShopping(emailShop);
     }
 
-    if(acceptContent2.content === "none"){
+    if (acceptContent2.content === "none") {
         errors['accept2'] = true
         setErrorForShopping(accept2, document.getElementById('required_terms').value);
-    }else {
+    } else {
         setSuccessForShopping(accept2);
     }
-    if(!country.value){
+    if (!country.value) {
         errors['country'] = true
         setErrorForShopping(country, document.getElementById('required_country').value);
     } else {
@@ -403,7 +404,6 @@ function isEmailShop(email) {
 }
 
 
-
 let searchBtn = document.querySelector('.search');
 let searchSection = document.querySelector(".search-section");
 let closePopup = document.querySelector('.close-popup-img img')
@@ -413,14 +413,14 @@ let book_info = document.querySelector('#booksContainer')
 // console.log(search_input)
 
 
-searchBtn?.addEventListener('click', ()=>{
+searchBtn?.addEventListener('click', () => {
     searchSection.classList.toggle("open")
     body.classList.toggle('body-open')
     modal.classList.toggle('modal-open')
     book_info.classList.remove('d-none')
 })
 
-closePopup?.addEventListener('click', ()=>{
+closePopup?.addEventListener('click', () => {
     searchSection.classList.remove("open")
     modal.classList.remove('modal-open')
     body.classList.remove('body-open')
@@ -429,7 +429,7 @@ closePopup?.addEventListener('click', ()=>{
 
 
 })
-closeModal?.addEventListener('click', ()=>{
+closeModal?.addEventListener('click', () => {
     searchSection.classList.remove("open")
 })
 
@@ -453,14 +453,16 @@ let modal_filter = document.querySelector('.modal')
 let filter_body = document.querySelector('.filter-body')
 
 media_filter_icon?.addEventListener("click", filterOpen)
-function filterOpen(){
+
+function filterOpen() {
     choose_media_section.classList.toggle('filter-show')
     media_filter_icon.classList.toggle('open')
     modal_filter.classList.toggle('filter-modal-open')
     filter_body.classList.toggle('body-open')
 }
 
-modal_filter?.addEventListener('click' , filterModalClose)
+modal_filter?.addEventListener('click', filterModalClose)
+
 function filterModalClose() {
     modal_filter.classList.remove('filter-modal-open')
     media_filter_icon.classList.remove('open')
@@ -475,10 +477,10 @@ function filterModalClose() {
 
 const filter_book_list = document.querySelectorAll('.filtering-book-page-list li a')
 
-filter_book_list?.forEach((item) =>{
-    item.addEventListener('click', (e)=>{
-        let is_checked  = document.querySelectorAll('.is-checked')
-        is_checked .forEach((item) =>{
+filter_book_list?.forEach((item) => {
+    item.addEventListener('click', (e) => {
+        let is_checked = document.querySelectorAll('.is-checked')
+        is_checked.forEach((item) => {
             item.classList.remove('is-checked')
         })
         item.classList.add('is-checked')
@@ -490,14 +492,16 @@ const filtering_book_page_list = document.querySelector('.filtering-book-page-li
 
 
 books_filter_icon?.addEventListener("click", filterBookOpen)
-function filterBookOpen(){
+
+function filterBookOpen() {
     filtering_book_page_list.classList.toggle('filter-book_show')
     books_filter_icon.classList.toggle('open')
     modal_filter.classList.toggle('filter-modal-open')
     filter_body.classList.toggle('body-open')
 }
 
-modal?.addEventListener('click' , filterBookModalClose)
+modal?.addEventListener('click', filterBookModalClose)
+
 function filterBookModalClose() {
     modal_filter.classList.remove('filter-modal-open')
     books_filter_icon.classList.remove('open')
@@ -512,9 +516,9 @@ const l_more = document.querySelector('.l_more')
 const height_text = document.querySelector('.book-item-desc p')?.offsetHeight
 const l_more_button = document.querySelector('.learn-more-btn')
 
-if(height_text >= 216){
+if (height_text >= 216) {
     l_more?.classList.add('learn-more')
-}else if(l_more_button){
+} else if (l_more_button) {
     l_more_button.style.display = 'none';
 }
 
@@ -529,7 +533,6 @@ learn_more_btn?.addEventListener('click', () => {
 })
 
 
-
 /*________________validacia_____________*/
 
 const form = document.querySelector('.forms');
@@ -539,14 +542,13 @@ const email = document.getElementById('email');
 const review = document.getElementById('review')
 const accept = document.getElementById('accept')
 let acceptContent
-if (accept){
-     acceptContent = getComputedStyle(accept, "::before");
+if (accept) {
+    acceptContent = getComputedStyle(accept, "::before");
 }
 
 
-
 form?.addEventListener('click', e => {
-    if(!checkInputs()){
+    if (!checkInputs()) {
         return e.preventDefault();
     }
 });
@@ -560,8 +562,7 @@ function checkInputs() {
     const errorsForm = {}
 
 
-    if(emailValue === '') {
-        console.log('jssjjsdata')
+    if (emailValue === '') {
         errorsForm['email'] = true
         setErrorFor(email, 'Email cannot be blank');
     } else if (!isEmail(emailValue)) {
@@ -570,7 +571,7 @@ function checkInputs() {
         setSuccessFor(email);
     }
 
-    if(nameValue ===''){
+    if (nameValue === '') {
         errorsForm['name'] = true
         setErrorFor(name, 'Name cannot be blank');
     } else {
@@ -578,17 +579,17 @@ function checkInputs() {
     }
 
 
-    if(acceptContent.content == "none"){
+    if (acceptContent.content == "none") {
         errorsForm['accept'] = true
         setErrorFor(accept, 'Cannot be checked');
-    }else {
+    } else {
         setSuccessFor(accept);
     }
 
-    if(reviewValue ==='' && reviewValue.length < 10 ){
+    if (reviewValue === '' && reviewValue.length < 10) {
         errorsForm['review'] = true
         setErrorFor(review, 'Name cannot be blank');
-    }   else {
+    } else {
         setSuccessFor(review);
     }
     return !Object.keys(errorsForm).length
@@ -612,3 +613,32 @@ function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
+
+/*/////////////////// cloud popup ///////////////*/
+
+let cloud_modal = document.querySelector('.cloud-modal ');
+let cloud_modal_text = document.querySelector('.cloud-modal-text ');
+let modal_filter1 = document.querySelector('.modal')
+let filter_body1 = document.querySelector('.filter-body')
+let book_page_reviews_text = document.querySelectorAll('.book-page-reviews-item p ')
+
+book_page_reviews_text.forEach((item) =>{
+
+    if(item.offsetHeight >= 85){
+        console.log(item)
+            item.addEventListener('click', () => {
+                let text = item.innerHTML
+                console.log(text)
+                cloud_modal_text.innerHTML = text
+                cloud_modal.style.display = 'block'
+                cloud_modal.style.cursor = 'unset'
+                modal_filter1.classList.toggle('filter-modal-open')
+                filter_body1.classList.toggle('body-open')
+            })
+    }
+})
+
+modal_filter1.addEventListener('click', () => {
+    cloud_modal.style.display = 'none'
+
+})

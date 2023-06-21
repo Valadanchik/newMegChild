@@ -172,6 +172,10 @@
                         <span>{{ $comment->full_name }}</span>
                     </div>
                 @endforeach
+
+                <div class="cloud-modal">
+                    <p class="cloud-modal-text"></p>
+                </div>
             </div>
         </section>
         <section class="book-page-leave-review">
@@ -223,7 +227,7 @@
 
 
         <section class="reade-more content">
-            <h2>{{ __('messages.red_also') }}</h2>
+            <h2 class="{{"reade-more-title-".app()->getLocale()}}">{{ __('messages.red_also') }}</h2>
             <div class="reade-more-info-item">
                 @foreach($otherBooks as $index => $book)
                     <div class="reade-more-item">

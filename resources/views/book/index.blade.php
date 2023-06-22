@@ -31,14 +31,7 @@
                             <p>{{ __('messages.age') }}</p>
                             <span>{{ $book->category->age }}</span>
                         </div>
-                        <div class="book-page-item-description-word-count">
-                            <p>{{ __('messages.word_count') }}</p>
-                            <span>{{ $book['word_count'] }}</span>
-                        </div>
-                        <div class="book-page-item-description-font-size">
-                            <p>{{ __('messages.font_size') }}</p>
-                            <span>{{ $book['font_size'] }}</span>
-                        </div>
+
                     </div>
                     <div class="article-itm-page-banner-desc-icon">
                         <span>{{ __('messages.share') }}:</span>
@@ -83,7 +76,7 @@
                         <span>{{ $book['title_' . app()->getLocale()]  }}</span>
                     </div>
                     <div class="additional-information-list-item">
-                        <p></p>
+                        <p>{{ __('messages.category') }}</p>
                         <div class="additional-information-list-item-img">
                             <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
                         </div>
@@ -117,49 +110,72 @@
                         </div>
                         <span>{{ $book['book_size_' . app()->getLocale()]  }}</span>
                     </div>
-                </div>
 
-                <button class="accordion-toggle">
-                    <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
-                </button>
-            </div>
 
-            <svg width="1" class="svg-additional-information" height="516" viewBox="0 0 1 516" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-                <line x1="0.5" x2="0.5" y2="516" stroke="#F36F21"/>
-            </svg>
 
-            <div class="book-page-item-after  accordion">
-                <h2 class="faq-title">{{ __('messages.authors') }}</h2>
-                @foreach($book->authors as $key => $author)
-                    <div class="accordion-text">
-                        <div class="book-page-item-after-img">
-                            <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
+
+                    <div class="additional-information-list-item">
+                        <p>{{ __('messages.word_count') }}</p>
+                        <div class="additional-information-list-item-img">
+                            <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
                         </div>
-                        <p>{{ $author['about_' . app()->getLocale()] }}</p>
+                        <span>{{ $book['word_count'] }}</span>
                     </div>
-                @endforeach
-                <button class="accordion-toggle">
-                    <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
-                </button>
-            </div>
 
-            <svg width="1" class="svg-additional-information" height="516" viewBox="0 0 1 516" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-                <line x1="0.5" x2="0.5" y2="516" stroke="#F36F21"/>
-            </svg>
 
-            <div class="book-page-item-book-trailer  accordion">
-                <h2 class="accordion-title">{{ __('messages.book_trailer') }}</h2>
-                <div class="book-page-item-book-trailer-video  accordion-text">
-                    <iframe src="https://www.youtube.com/embed/cGmLS5KL7yw" title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
+                    <div class="additional-information-list-item">
+                        <p>{{ __('messages.font_size') }}</p>
+                        <div class="additional-information-list-item-img">
+                            <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                        </div>
+                        <span>{{ $book['font_size'] }}</span>
+                    </div>
+
+
                 </div>
+
                 <button class="accordion-toggle">
                     <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
                 </button>
             </div>
+
+
+            <div class="after-and-book-trailer">
+                <div class="book-page-item-after  accordion">
+                    <h2 class="faq-title">{{ __('messages.authors') }}</h2>
+                    @foreach($book->authors as $key => $author)
+                        <div class="accordion-text">
+                            <div class="accordion-text-info">
+                                <div class="book-page-item-after-img">
+                                    <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
+                                </div>
+                                <p>{{ $author['about_' . app()->getLocale()] }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                    <button class="accordion-toggle">
+                        <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
+                    </button>
+                </div>
+
+
+
+                <div class="book-page-item-book-trailer  accordion">
+                    <h2 class="accordion-title">{{ __('messages.book_trailer') }}</h2>
+                    <div class="book-page-item-book-trailer-video  accordion-text">
+                        <iframe src="https://www.youtube.com/embed/cGmLS5KL7yw" title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                    </div>
+                    <button class="accordion-toggle">
+                        <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
+                    </button>
+                </div>
+            </div>
+
+
+
+
         </section>
 
 
@@ -187,24 +203,40 @@
                 <form action="{{ route('book.comment') }}" method="POST" class="forms review-form">
                     @csrf
                     <div class=" form-control form-first-name">
-                        <input type="text" id="firs-name" name="full_name" placeholder="{{ __('messages.full_name') }} *" required>
+                        <input  type="text" id="firs-name" name="full_name" placeholder="{{ __('messages.full_name') }} *" >
                         <small></small>
+                        <input id="required_name" type="hidden" value="{{ __('validation.required_name') }}">
+                        @error('name')
+                        <div style="color: red" class="required--error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-control form-email">
-                        <input type="text" id="email" name="email" placeholder="{{ __('messages.email') }} *" required>
+                        <input type="text" id="email" name="email" placeholder="{{ __('messages.email') }} *" >
+                        <input id="required_email" type="hidden" value="{{ __('validation.required_email') }}">
                         <small></small>
+                        @error('email')
+                        <div style="color: red" class="required--error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class=" form-control review">
-                        <textarea class="accept-input" id="review" name="comment" placeholder="{{ __('messages.comment') }}*" type="checkbox" required></textarea>
+                        <textarea class="accept-input" id="review" name="comment" placeholder="{{ __('messages.comment') }}*" type="checkbox" ></textarea>
                         <small></small>
+                        <input id="required_review" type="hidden" value="{{ __('validation.required_review') }}">
+                        @error('name')
+                        <div style="color: red" class="required--error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class=" form-control accept">
-                        <input class="accept-input" name="terms" type="checkbox" required>
+                        <input class="accept-input" name="terms" type="checkbox" >
                         <span id="accept">{{ __('messages.terms') }}</span>
+                        <input id="required_terms" type="hidden" value="{{ __('validation.required_terms') }}">
                         <small></small>
+                        @error('terms')
+                        <div style="color: red" class="required--error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-btn">
                         <button>{{ __('messages.send') }}</button>

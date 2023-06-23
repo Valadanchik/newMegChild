@@ -23,6 +23,7 @@ return [
     'required_email_wrong' => 'The email field is wrong',
     'required_terms' => 'The agree field is required',
     'required_country' => 'The country field is required',
+    'required_review' => 'The field is not filled',
 
 
 

@@ -3366,14 +3366,15 @@ button.learn-more-btn:hover {
     margin: auto;
     text-align: center;
     left: 30%;
+    top: 30%;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     height: 500px;
     display: none;
     z-index: 99;
     /*background-color: #FEEFCD;*/
-
 }
+
 .cloud-modal-text{
     width: 100%;
     max-width: 425px;
@@ -3387,4 +3388,27 @@ button.learn-more-btn:hover {
     letter-spacing: 0.01em;
     color: #000000;
 }
+
+.message-success {
+    background: #ffffff;
+    padding: 15px;
+    margin-top: -30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.message-success div{
+    color: #000;
+}
+
+
+.book-page-reviews-boxes  .slick-prev,
+.book-page-reviews-boxes  .slick-next{
+    display: none !important;
+}
+
+.book-page-reviews-boxes .slick-slide{
+    text-align: center !important;
+}
+
 

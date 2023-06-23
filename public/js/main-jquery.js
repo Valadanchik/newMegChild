@@ -9,6 +9,50 @@ $(document).ready(function () {
             '<path d="M1 13L7 7L1 1" stroke="#8F52A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\n' +
             '</svg>'),
     });
+
+
+
+});
+
+
+$('.multiple-items').slick({
+    slidesToShow: 4,
+    dots: true,
+
+    slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 2000,
+    responsive: [
+        {
+            breakpoint: 1600,
+            settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '40px',
+                slidesToShow: 3
+            }
+        },
+        {
+            breakpoint: 1200,
+            settings: {
+                arrows: false,
+
+                centerMode: true,
+                // centerPadding: '40px',
+                slidesToShow: 2
+            }
+        },
+        {
+            breakpoint: 900,
+            settings: {
+                arrows: false,
+
+                centerMode: true,
+
+                slidesToShow: 1
+            }
+        }
+    ]
 });
 
 

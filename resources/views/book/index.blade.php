@@ -181,7 +181,7 @@
 
         <section class="book-page-reviews content">
             <h2>{{ __('messages.comments') }}</h2>
-            <div class="book-page-reviews-boxes">
+            <div class="book-page-reviews-boxes multiple-items" >
                 @foreach($book->comments as $comment)
                     <div class="book-page-reviews-item">
                         <p>{{ $comment->comment }}</p>
@@ -189,9 +189,9 @@
                     </div>
                 @endforeach
 
-                <div class="cloud-modal">
-                    <p class="cloud-modal-text"></p>
-                </div>
+            </div>
+            <div class="cloud-modal">
+                <p class="cloud-modal-text"></p>
             </div>
         </section>
         <section class="book-page-leave-review">
@@ -242,13 +242,13 @@
                         <button>{{ __('messages.send') }}</button>
                     </div>
 
-                    <div class=" form-control accept">
+                    <div class=" form-control accept  @if(session()->has('send_successfully_message') || session()->has('send_comment_wrong_message')) message-success @endif">
                         @if(session('send_successfully_message'))
-                            <div style="color: green" class="required--success"> {{ session('send_successfully_message') }}</div>
+                            <div  class="required--success"> {{ session('send_successfully_message') }}</div>
                         @endif
 
                         @if(session('send_comment_wrong_message'))
-                            <div style="color: red" class="required--error"> {{ session('send_comment_wrong_message') }}</div>
+                            <div  class="required--error"> {{ session('send_comment_wrong_message') }}</div>
                         @endif
                     </div>
                 </form>
@@ -256,7 +256,6 @@
             </div>
 
         </section>
-
 
         <section class="reade-more content">
             <h2 class="{{"reade-more-title-".app()->getLocale()}}">{{ __('messages.red_also') }}</h2>

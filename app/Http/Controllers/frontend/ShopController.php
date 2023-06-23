@@ -43,9 +43,15 @@ class ShopController extends Controller
         ]);
         $this->shopService->updateCart($request);
 
+//        if ($request->coupon) {
+//            return CouponController::checkCoupon($request);
+//        } else {
+            $getTotalPrice = ShopService::getCartTotalPrice() ;
+//        }
+
         return response()->json([
             'success' => true,
-            'total_price' => $this->shopService->getCartTotalPrice(),
+            'total_price' => $getTotalPrice,
         ]);
     }
 

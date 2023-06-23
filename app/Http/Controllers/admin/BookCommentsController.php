@@ -40,7 +40,7 @@ class BookCommentsController extends Controller
         $gerActivateMessage = Session::get('success_activate');
         Session::forget('success_activate');
 
-        $comment = BookComments::with('book')->find($id);
+        $comment = BookComments::with('book')->findOrFail($id);
         return view('admin.book-comments.show', compact('comment', 'gerActivateMessage'));
     }
 
@@ -66,7 +66,7 @@ class BookCommentsController extends Controller
     public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         try {
-            $getComment = BookComments::find($id);
+            $getComment = BookComments::findOrFail($id);
             $getComment->delete();
             return redirect()->back()->with('success', 'Մեկնաբանությունը հեռացվել է');
         } catch (\Exception $e) {

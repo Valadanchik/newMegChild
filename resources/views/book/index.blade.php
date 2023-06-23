@@ -210,7 +210,7 @@
                         <button>{{ __('messages.send') }}</button>
                     </div>
 
-                    <div class=" form-control accept">
+                    <div class=" form-control accept ">
                         @if(session('send_successfully_message'))
                             <div style="color: green" class="required--success"> {{ session('send_successfully_message') }}</div>
                         @endif

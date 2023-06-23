@@ -62,14 +62,17 @@
                             <input id="remove-from-cart-url" type="hidden" value="{{ route('removeFromCart') }}">
                             <input id="change-cart-product-count" type="hidden" value="{{ route('updateCart') }}">
 
-                            {{--                            <div class="shopping-cart-buttons">
-                                                            <div class="shopping-cart-code-input">
-                                                                <input type="text" placeholder="Կոդը" value="code"/>
-                                                            </div>
-                                                            <div class="shopping-cart-promo-code-btn">
-                                                                <a href="">Կիրառել արժեկտրոնը</a>
-                                                            </div>
-                                                        </div>--}}
+                            <div class="shopping-cart-buttons">
+                                <div class="shopping-cart-code-input">
+                                    <label>
+                                        <input id="couponName" type="text" placeholder="Կոդը" value=""/>
+                                        <input id="couponRouterName" type="hidden" value="{{ route('coupon.check') }}"/>
+                                    </label>
+                                </div>
+                                <div class="shopping-cart-promo-code-btn">
+                                    <button id="useCoupon">Կիրառել արժեկտրոնը</button>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -143,21 +146,21 @@
                                         <div style="color: red" class="required--error">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    {{--                               <div class="form-control form-shopping-cart-count">
-                                                                       <select name="region_id" id="region">
-                                                                           @foreach($regions as $region)
-                                                                               <option
-                                                                                   value="{{$region->id}}"
-                                                                                   @if(old('region_id') == $region->id) selected @endif>
-                                                                                   {{$region->{'name_'.app()->getLocale()} }}
-                                                                               </option>
-                                                                           @endforeach
-                                                                       </select>
-                                                                       <small></small>
-                                                                       @error('region_id')
-                                                                           <div style="color: red" class="required--error">{{ $message }}</div>
-                                                                       @enderror
-                                                                   </div>--}}
+                                      {{--<div class="form-control form-shopping-cart-count">
+                                           <select name="region_id" id="region">
+                                               @foreach($regions as $region)
+                                                   <option
+                                                       value="{{$region->id}}"
+                                                       @if(old('region_id') == $region->id) selected @endif>
+                                                       {{$region->{'name_'.app()->getLocale()} }}
+                                                   </option>
+                                               @endforeach
+                                           </select>
+                                           <small></small>
+                                           @error('region_id')
+                                               <div style="color: red" class="required--error">{{ $message }}</div>
+                                           @enderror
+                                       </div>--}}
                                     <div class="form-home-address-oll">
                                         <div class=" form-control form-shopping-cart-city">
                                             <input name="region" value="{{old('region')}}" type="text" id="city" placeholder="{{ __('checkout.city') }} *">
@@ -241,26 +244,27 @@
 
                     <div class="payment-cart">
                         <div class="other-services">
-                            {{--                            <div class="other-services-title">
-                                                            <h2>Այլ ծառայություններ</h2>
-                                                        </div>
-                                                        <p>Փաթեթավորում</p>
+                            {{--<div>
+                                <div class="other-services-title">
+                                    <h2>Այլ ծառայություններ</h2>
+                                </div>
+                                <p>Փաթեթավորում</p>
 
-                                                        <div class="ackaging">
-
-                                                            <div class="packaging-none">
-                                                                <input type="radio" id="no" class="my-radio" name="contact">
-                                                                <label for="no">Հարկավոր չէ</label>
-                                                            </div>
-                                                            <div class="packaging-standart">
-                                                                <input type="radio" id="st" class="my-radio" name="contact">
-                                                                <label for="st">Ստանդարտ</label>
-                                                            </div>
-                                                            <div class="packaging-premium">
-                                                                <input type="radio" id="pr" class="my-radio" name="contact">
-                                                                <label for="pr">Պրեմիում</label>
-                                                            </div>
-                                                        </div>--}}
+                                <div class="packaging">
+                                    <div class="packaging-none">
+                                        <input type="radio" id="no" class="my-radio" name="contact" checked>
+                                        <label for="no">Հարկավոր չէ</label>
+                                    </div>
+                                    <div class="packaging-standart">
+                                        <input type="radio" id="st" class="my-radio" name="contact">
+                                        <label for="st">Ստանդարտ</label>
+                                    </div>
+                                    <div class="packaging-premium">
+                                        <input type="radio" id="pr" class="my-radio" name="contact">
+                                        <label for="pr">Պրեմիում</label>
+                                    </div>
+                                </div>
+                            </div>--}}
                             <div class="your-order">
                                 <div class="your-order-title">
                                     <h2>{{ __('checkout.your_order') }}</h2>

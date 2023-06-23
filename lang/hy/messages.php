@@ -9,7 +9,7 @@ return [
     'font_size' => 'Տառաչափ',
     'learn_more' => 'Իմանալ ավելին',
     'authors' => 'Հեղինակներ',
-    'translators' => 'Թարգմանողներ',
+    'translators' => 'Թարգմանիչներ',
     'see_more' => 'Տեսնել բոլորը',
     'articles' => 'Հոդվածներ',
     'buy' => 'Գնել',

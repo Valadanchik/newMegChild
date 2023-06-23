@@ -128,9 +128,10 @@ function updateCartProductCount(quantity, productId) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
 
-    var product = document.getElementById('product-id').value;
+    // var product = document.getElementById('product-id').value;
+    var coupon_name = document.getElementById('couponName').value;
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var data = JSON.stringify({_token: csrfToken, quantity: quantity, book_id: productId});
+    var data = JSON.stringify({_token: csrfToken, quantity: quantity, book_id: productId, coupon: coupon_name});
 
     xhr.onload = function () {
         if (xhr.status === 200) {

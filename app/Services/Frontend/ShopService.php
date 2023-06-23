@@ -86,18 +86,26 @@ class ShopService
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function getCartTotalPrice(): float|int
+    public static function getCartTotalPrice($couponDiscount = false, $booksId = [], $total_price = 0): float|int
     {
         $cart = session()->get('cart');
-        $total_price = 0;
 
         if ($cart && is_array($cart)) {
-            $sessionProductsId = array_keys(session()->get('cart'));
-            $books = Books::whereIn('id', $sessionProductsId)->where('status', true)->get();
+
+            $sessionProductsId = array_keys($cart);
+            $cartBooksId = count($booksId) ? $booksId : $sessionProductsId;
+            $books = Books::whereIn('id', $cartBooksId)->where('status', true)->get();
+
             foreach ($books as $book) {
-                $total_price += $book->price * $cart[$book->id];
+                if ($couponDiscount) {
+                    $total_price += ($book->price - $couponDiscount) * $cart[$book->id];
+                } else {
+                    $total_price += $book->price * $cart[$book->id];
+                }
             }
         }
+
+        session()->put('total_price', $total_price);
 
         return $total_price;
     }

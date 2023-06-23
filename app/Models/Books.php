@@ -10,6 +10,9 @@ class Books extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const INACTIVE = 0;
+
+    const ACTIVE = 1;
     const HOME_PAGE_BOOKS_COUNT = 4;
 
     const BOOK_IMAGE_PATH = 'images/books';

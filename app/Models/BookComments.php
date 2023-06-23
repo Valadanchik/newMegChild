@@ -27,7 +27,7 @@ class BookComments extends Model
      */
     public static function updateStatus($status, $id): void
     {
-        $getComment = BookComments::find($id);
+        $getComment = BookComments::findOrFail($id);
         $getComment->is_active = $status;
         $getComment->save();
     }

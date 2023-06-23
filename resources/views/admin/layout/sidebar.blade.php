@@ -21,6 +21,10 @@
                         <div class="nav-link-icon"><i data-feather="book"></i></div>
                         Book Comments
                     </a>
+                    <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/coupons') }}">
+                        <div class="nav-link-icon"><i data-feather="gift"></i></div>
+                        Coupons
+                    </a>
                     <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/authors') }}">
                         <div class="nav-link-icon"><i data-feather="users"></i></div>
                         Authors

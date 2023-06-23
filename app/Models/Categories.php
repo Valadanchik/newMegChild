@@ -19,7 +19,7 @@ class Categories extends Model
     const BEN_AGE = '6-9';
     const GIM_AGE = '9-12';
     const DA_AGE = '12+';
-    const PARENT_AGE = '18+';
+    const PARENT_AGE = 'ծնող';
 
     const AGES = [
         self::AYB_AGE,

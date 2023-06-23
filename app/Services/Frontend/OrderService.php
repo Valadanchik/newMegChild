@@ -42,6 +42,12 @@ class OrderService
         return Order::create($request->except(['_token','terms']));
     }
 
+    /**
+     * @param Order $order
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function createOrderBook(Order $order)
     {
         $order->load('region');

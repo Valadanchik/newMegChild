@@ -9,13 +9,52 @@ $(document).ready(function () {
             '<path d="M1 13L7 7L1 1" stroke="#8F52A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\n' +
             '</svg>'),
     });
-});
+
+
+    $('#useCoupon').on('click', function (event) {
+
+        $('.loader-container').css('display', 'flex');
+        let couponName = $('#couponName').val();
+        let url = $('#couponRouterName').val();
+        let totalPriceElement = document.querySelector('.total-price');
+        let totalPriceToPayElement = document.querySelector('.total-price-to-pay');
+
+
+        console.log(url + couponName);
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: JSON.stringify({
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    coupon: couponName
+                }),
+                success: function (data) {
+                    console.log(data);
+
+                    totalPriceElement.innerHTML = data.total_price;
+                    totalPriceToPayElement.innerHTML = data.total_price;
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.error(errorThrown);
+                },
+                complete: function () {
+                    $('.loader-container').hide();
+                }
+            });
+    });
+
+
 
 
 /*/////////SLIDER//////////////*/
 
 /*SEARCH FUNCTIONALITY*/
-$(document).ready(function () {
     $('#search-input').on('keyup', function (event) {
         if (event.target.value.length > 2) {
             $('.loader-container').show();
@@ -46,6 +85,9 @@ $(document).ready(function () {
             $("#booksContainer").html('');
         }
     });
+
+
+
 });
 
 function htmlFilter(books) {

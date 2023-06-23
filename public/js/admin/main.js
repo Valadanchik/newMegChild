@@ -54,6 +54,16 @@ $(document).ready(function() {
         $("input[name=deleted_images_id]").val(allids.join(','));
         $(this).parent().remove();
     });
+
+    $('#all_books').click(function () {
+        $('.book_id').prop('checked', false);
+    })
+
+    $('.book_id').click(function () {
+        if($(this).is(':checked')){
+            $('#all_books').prop('checked', false);
+        }
+    })
 });
 
 

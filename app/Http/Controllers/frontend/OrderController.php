@@ -58,6 +58,7 @@ class OrderController extends Controller
      */
     public function create(OrderStoreRequest $request)
     {
+//        dd($request->all());
         try {
             if (!$this->checkIsProductsAvailable()) {
                 return redirect()->route('order')->with('product_is_not_in_stock', __('checkout.product_is_not_in_stock'));

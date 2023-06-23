@@ -11,4 +11,5 @@ return [
     'required_email_wrong' => 'էլ․հասցեն ճիշտ չէ',
     'required_terms' => 'Կարդացեք և համաձայնվեք օգտագործման պայմանների հետ',
     'required_country' => 'Նշեք երկիրը',
+    'required_review' => 'Դաշտը լրացված չէ',
 ];

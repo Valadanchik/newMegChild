@@ -537,7 +537,6 @@ learn_more_btn?.addEventListener('click', () => {
 /*________________validacia_____________*/
 
 const form = document.querySelector('.forms');
-console.log(form)
 const name = document.getElementById('firs-name');
 const email = document.getElementById('email');
 const review = document.getElementById('review')
@@ -548,8 +547,9 @@ if (accept) {
 }
 
 
-form?.addEventListener('click', e => {
+form?.addEventListener('submit', e => {
     if (!checkInputs()) {
+
         return e.preventDefault();
     }
 });
@@ -563,33 +563,34 @@ function checkInputs() {
     const errorsForm = {}
 
 
-    if (emailValue === '') {
-        errorsForm['email'] = true
-        setErrorFor(email, 'Email cannot be blank');
-    } else if (!isEmail(emailValue)) {
-        setErrorFor(email, 'Not a valid email');
-    } else {
-        setSuccessFor(email);
-    }
+
 
     if (nameValue === '') {
         errorsForm['name'] = true
-        setErrorFor(name, 'Name cannot be blank');
+        setErrorFor(name, document.getElementById('required_name').value);
     } else {
         setSuccessFor(name);
     }
 
+    if (emailValue === '') {
+        errorsForm['email'] = true
+        setErrorFor(email, document.getElementById('required_email').value);
+    } else if (!isEmail(emailValue)) {
+        setErrorFor(email, document.getElementById('required_email_wrong').value);
+    } else {
+        setSuccessFor(email);
+    }
 
     if (acceptContent.content == "none") {
         errorsForm['accept'] = true
-        setErrorFor(accept, 'Cannot be checked');
+        setErrorFor(accept,  document.getElementById('required_terms').value);
     } else {
         setSuccessFor(accept);
     }
 
     if (reviewValue === '' && reviewValue.length < 10) {
         errorsForm['review'] = true
-        setErrorFor(review, 'Name cannot be blank');
+        setErrorFor(review, document.getElementById('required_review').value);
     } else {
         setSuccessFor(review);
     }
@@ -621,15 +622,14 @@ let cloud_modal = document.querySelector('.cloud-modal ');
 let cloud_modal_text = document.querySelector('.cloud-modal-text ');
 let modal_filter1 = document.querySelector('.modal')
 let filter_body1 = document.querySelector('.filter-body')
-let book_page_reviews_text = document.querySelectorAll('.book-page-reviews-item p ')
+let book_page_reviews_info = document.querySelectorAll('.book-page-reviews-item p')
 
-book_page_reviews_text.forEach((item) =>{
+book_page_reviews_info.forEach((item) =>{
 
     if(item.offsetHeight >= 85){
         console.log(item)
             item.addEventListener('click', () => {
                 let text = item.innerHTML
-                console.log(text)
                 cloud_modal_text.innerHTML = text
                 cloud_modal.style.display = 'block'
                 cloud_modal.style.cursor = 'unset'
@@ -643,3 +643,8 @@ modal_filter1.addEventListener('click', () => {
     cloud_modal.style.display = 'none'
 
 })
+
+
+
+
+

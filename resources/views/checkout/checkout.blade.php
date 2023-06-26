@@ -1,8 +1,8 @@
 @extends('layout.layout')
 @section('title', 'checkout')
 @section('content')
-    <main class="news-articles content">
-        <section class="shopping-cart-block">
+    <main class="news-articles">
+        <section class="shopping-cart-block content">
             <div class="shopping-cart-block-title">
                 <h2>{{ __('checkout.cart') }}</h2>
             </div>

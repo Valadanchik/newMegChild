@@ -459,7 +459,7 @@ main {
     gap: 25px;
 }
 
-.article-section-title {
+.article-section-title-hy {
     background-image: url('../images/cloud.png');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -467,8 +467,16 @@ main {
     padding: 62px 32px 44px;
     margin: auto;
 }
-
-.article-section-title h2 {
+.article-section-title-en{
+    background-image: url('../images/cloud.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    max-width: max-content;
+    padding: 33px 32px 28px;
+    margin: auto;
+}
+.article-section-title-hy h2,
+.article-section-title-en h2{
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;

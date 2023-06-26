@@ -69,7 +69,7 @@
         @if(count($data['posts']))
             <section class="articles">
                 <div class="article-section content">
-                    <div class="article-section-title">
+                    <div  class="{{"article-section-title-".app()->getLocale()}}">
                         <h2>{{ __('messages.articles') }}</h2>
                     </div>
 

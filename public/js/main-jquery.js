@@ -15,10 +15,14 @@ $(document).ready(function () {
 });
 
 
-$('.multiple-items').slick({
+
+
+
+
+if($('.book-page-reviews-item').length >= 4){
+    $('.multiple-items').slick({
     slidesToShow: 4,
     dots: true,
-
     slidesToScroll: 1,
     autoplay: false,
     autoplaySpeed: 2000,
@@ -36,9 +40,7 @@ $('.multiple-items').slick({
             breakpoint: 1200,
             settings: {
                 arrows: false,
-
                 centerMode: true,
-                // centerPadding: '40px',
                 slidesToShow: 2
             }
         },
@@ -46,14 +48,14 @@ $('.multiple-items').slick({
             breakpoint: 900,
             settings: {
                 arrows: false,
-
                 centerMode: true,
-
                 slidesToShow: 1
             }
         }
     ]
 });
+
+}
 
 
 /*/////////SLIDER//////////////*/

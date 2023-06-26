@@ -468,9 +468,6 @@ function filterModalClose() {
     media_filter_icon.classList.remove('open')
     choose_media_section.classList.remove('filter-show')
     filter_body.classList.remove('body-open')
-
-    console.log('dsjhfdhjh')
-
 }
 
 /*////////////////filter-book-page/////////////*/
@@ -545,7 +542,6 @@ if (accept) {
     acceptContent = getComputedStyle(accept, "::before");
 }
 
-
 form?.addEventListener('submit', e => {
     if (!checkInputs()) {
 
@@ -560,9 +556,6 @@ function checkInputs() {
     const nameValue = name.value.trim();
     const reviewValue = name.value.trim();
     const errorsForm = {}
-
-
-
 
     if (nameValue === '') {
         errorsForm['name'] = true
@@ -626,7 +619,6 @@ let book_page_reviews_info = document.querySelectorAll('.book-page-reviews-item 
 book_page_reviews_info.forEach((item) =>{
 
     if(item.offsetHeight >= 85){
-        console.log(item)
             item.addEventListener('click', () => {
                 let text = item.innerHTML
                 cloud_modal_text.innerHTML = text
@@ -635,6 +627,8 @@ book_page_reviews_info.forEach((item) =>{
                 modal_filter1.classList.toggle('filter-modal-open')
                 filter_body1.classList.toggle('body-open')
             })
+    }else if(item.offsetHeight < 85){
+        item.style.cursor = 'unset'
     }
 })
 
@@ -642,8 +636,4 @@ modal_filter1.addEventListener('click', () => {
     cloud_modal.style.display = 'none'
 
 })
-
-
-
-
 

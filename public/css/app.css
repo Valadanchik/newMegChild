@@ -1566,6 +1566,7 @@ section.book-page-item-banner {
     font-style: normal;
     /* border-left: 1px solid rgba(243, 111, 33, 1); */
     padding-left: 24px;
+    padding-right: 24px;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -1680,7 +1681,6 @@ section.book-page-item-banner {
     padding: 75px 47px 59px 26px;
     margin: auto;
     text-align: center;
-    cursor: pointer;
     /*pointer-events: none;*/
 }
 
@@ -1702,6 +1702,8 @@ section.book-page-item-banner {
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-word;
+    cursor: pointer;
+
 }
 
 .book-page-reviews-item span {
@@ -1745,6 +1747,11 @@ section.book-page-reviews.content h2 {
     border-left: 1px solid rgba(243, 111, 33, 1);
     border-right: 1px solid rgba(243, 111, 33, 1);
     display: flow-root;
+}
+.info-authors{
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #f36f21;
 }
 
 /*validacia*/
@@ -2922,12 +2929,12 @@ input:focus {
 .books-info-item-search {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 24px;
 }
 
 .books-info-item-search .book-item {
     width: 100%;
-    max-width: 342px;
+    max-width: 278px;
 }
 
 /*////////////////////authors-single-page//////////////////////////////////*/

@@ -27,8 +27,6 @@ class OrderController extends Controller
      */
     public function index(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-//        dd(session()->get('coupon'));
-
         $cardBooks = [];
         if (session()->get('cart')) {
             $regions = $this->orderService->getRegions();

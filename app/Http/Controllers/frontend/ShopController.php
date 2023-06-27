@@ -47,8 +47,6 @@ class ShopController extends Controller
 
         $this->shopService->updateCart($request);
 
-//        dd('--', $request->all());
-
         if ($request->coupon && CouponController::checkCouponIsValid($request->coupon)) {
             $getTotalPrice = CouponController::checkCoupon($request, true);
         } else {

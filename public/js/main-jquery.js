@@ -20,13 +20,13 @@ if ($('.book-page-reviews-item').length >= 4) {
         dots: true,
         slidesToScroll: 1,
         autoplay: false,
-        autoplaySpeed: 2000,
+        // autoplaySpeed: 2000,
         responsive: [
             {
                 breakpoint: 1600,
                 settings: {
                     arrows: false,
-                    centerMode: true,
+                    // centerMode: true,
                     centerPadding: '40px',
                     slidesToShow: 3
                 }
@@ -35,7 +35,7 @@ if ($('.book-page-reviews-item').length >= 4) {
                 breakpoint: 1200,
                 settings: {
                     arrows: false,
-                    centerMode: true,
+                    // centerMode: true,
                     slidesToShow: 2
                 }
             },
@@ -43,7 +43,7 @@ if ($('.book-page-reviews-item').length >= 4) {
                 breakpoint: 900,
                 settings: {
                     arrows: false,
-                    centerMode: true,
+                    // centerMode: true,
                     slidesToShow: 1
                 }
             }

@@ -11,30 +11,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            AuthorSeeder::class,
-            TranslatorSeeder::class,
-            CategorySeeder::class,
-            BookSeeder::class,
-            ImageSeeder::class,
-            BookAuthorsSeeder::class,
-            BookTranslatorsSeeder::class,
-            PostCategoriesSeeder::class,
-            PostSeeder::class,
-            RegionsTableSeeder::class,
-            CountriesTableSeeder::class,
-            UserRoleSeeder::class,
-            UserSeeder::class,
-            SettingsSeeder::class,
-        ]);
+        if (config('app.env') === 'local') {
+            $seedData = [
+                AuthorSeeder::class,
+                TranslatorSeeder::class,
+                CategorySeeder::class,
+                BookSeeder::class,
+                ImageSeeder::class,
+                BookAuthorsSeeder::class,
+                BookTranslatorsSeeder::class,
+                PostCategoriesSeeder::class,
+                PostSeeder::class,
+                RegionsTableSeeder::class,
+                CountriesTableSeeder::class,
+                UserRoleSeeder::class,
+                UserSeeder::class,
+                SettingsSeeder::class,
+            ];
+        } else if (config('app.env') === 'production') {
+            $seedData = [
+                CategorySeeder::class,
+                RegionsTableSeeder::class,
+                CountriesTableSeeder::class,
+                UserRoleSeeder::class,
+                UserSeeder::class,
+                SettingsSeeder::class,
+            ];
+        }
 
-//        PostFactory::class;
-
-//         \App\Models\Posts::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        if (!empty($seedData))
+            $this->call($seedData);
     }
 }

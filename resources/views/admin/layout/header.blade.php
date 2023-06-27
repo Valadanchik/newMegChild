@@ -12,6 +12,15 @@
         <ul class="navbar-nav align-items-center ms-auto">
             <!-- Messages Dropdown-->
             <!-- User Dropdown-->
+            <div class="header-icon-leng p-3 mt-3">
+                <p>
+                    @if(LaravelLocalization::getCurrentLocale() == 'en')
+                        <a class="dropdown-item" rel="alternate" hreflang="hy" href="{{ LaravelLocalization::getLocalizedURL('hy', null, [], true) }}">HY</a>
+                    @else
+                        <a class="dropdown-item" rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">EN</a>
+                    @endif
+                </p>
+            </div>
             <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="img-fluid" src="{{ URL::to('/images/svg/logo.svg') }}" /></a>

@@ -18,7 +18,7 @@ class BookCommentsController extends Controller
      */
     public function index(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $comments = BookComments::with('book')->get();
+        $comments = BookComments::with('book')->orderBy('id', 'desc')->get();
         return view('admin.book-comments.index', compact('comments'));
     }
 

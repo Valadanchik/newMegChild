@@ -23,7 +23,7 @@ class SettingsSeeder extends Seeder
             [
                 'key' => 'Website URL',
                 'slug' => 'website_url',
-                'value' => 'https://eraz.newmag.am/',
+                'value' => 'https://yeraz.newmag.am/',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

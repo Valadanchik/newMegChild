@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Events\CouponQuantity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderStoreRequest;
 use App\Services\Frontend\OrderService;
 use App\Services\Frontend\PaymentService;
 use App\Services\Frontend\ShopService;
-use Psr\Container\ContainerExceptionInterface;
+
 use Psr\Container\NotFoundExceptionInterface;
 
 class OrderController extends Controller
 {
-//    protected OrderService $orderService;
-
+    /**
+     * @param OrderService $orderService
+     * @param ShopService $shopService
+     */
     public function __construct(protected OrderService $orderService, protected ShopService $shopService)
     {
-        $this->orderService = $orderService;
+
     }
 
     /**
@@ -74,7 +75,7 @@ class OrderController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function success(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {

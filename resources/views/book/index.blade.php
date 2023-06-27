@@ -139,7 +139,7 @@
                 <div class="book-page-item-after  accordion">
                     <h2 class="faq-title">{{ __('messages.authors') }}</h2>
                     @foreach($book->authors as $key => $author)
-                        <div class="accordion-text">
+                        <div class="accordion-text info-authors">
                             <div class="accordion-text-info">
                                 <div class="book-page-item-after-img">
                                     <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
@@ -169,10 +169,9 @@
             </div>
         </section>
 
-
         <section class="book-page-reviews content">
             <h2>{{ __('messages.comments') }}</h2>
-            <div class="book-page-reviews-boxes">
+            <div class="book-page-reviews-boxes multiple-items">
                 @foreach($book->comments as $comment)
                     <div class="book-page-reviews-item">
                         <p>{{ $comment->comment }}</p>
@@ -180,9 +179,9 @@
                     </div>
                 @endforeach
 
-                <div class="cloud-modal">
-                    <p class="cloud-modal-text"></p>
-                </div>
+            </div>
+            <div class="cloud-modal">
+                <p class="cloud-modal-text"></p>
             </div>
         </section>
         <section class="book-page-leave-review">
@@ -194,7 +193,8 @@
                 <form action="{{ route('book.comment') }}" method="POST" class="forms review-form">
                     @csrf
                     <div class=" form-control form-first-name">
-                        <input  type="text" id="firs-name" name="full_name" placeholder="{{ __('messages.full_name') }} *" >
+                        <input type="text" id="firs-name" name="full_name"
+                               placeholder="{{ __('messages.full_name') }} *">
                         <small></small>
                         <input id="required_name" type="hidden" value="{{ __('validation.required_name') }}">
                         @error('name')
@@ -203,7 +203,7 @@
                     </div>
 
                     <div class="form-control form-email">
-                        <input type="text" id="email" name="email" placeholder="{{ __('messages.email') }} *" >
+                        <input type="text" id="email" name="email" placeholder="{{ __('messages.email') }} *">
                         <input id="required_email" type="hidden" value="{{ __('validation.required_email') }}">
                         <small></small>
                         @error('email')
@@ -212,7 +212,8 @@
                     </div>
 
                     <div class=" form-control review">
-                        <textarea class="accept-input" id="review" name="comment" placeholder="{{ __('messages.comment') }}*" type="checkbox" ></textarea>
+                        <textarea class="accept-input" id="review" name="comment"
+                                  placeholder="{{ __('messages.comment') }}*" type="checkbox"></textarea>
                         <small></small>
                         <input id="required_review" type="hidden" value="{{ __('validation.required_review') }}">
                         @error('name')
@@ -221,7 +222,7 @@
                     </div>
 
                     <div class=" form-control accept">
-                        <input class="accept-input" name="terms" type="checkbox" >
+                        <input class="accept-input" name="terms" type="checkbox">
                         <span id="accept">{{ __('messages.terms') }}</span>
                         <input id="required_terms" type="hidden" value="{{ __('validation.required_terms') }}">
                         <small></small>
@@ -233,21 +234,20 @@
                         <button>{{ __('messages.send') }}</button>
                     </div>
 
-                    <div class=" form-control accept ">
+                    <div class="form-control accept @if(session()->has('send_successfully_message') || session()->has('send_comment_wrong_message')) message-success @endif">
+
                         @if(session('send_successfully_message'))
-                            <div style="color: green" class="required--success"> {{ session('send_successfully_message') }}</div>
+                            <div class="required--success"> {{ session('send_successfully_message') }}</div>
                         @endif
 
                         @if(session('send_comment_wrong_message'))
-                            <div style="color: red" class="required--error"> {{ session('send_comment_wrong_message') }}</div>
+                            <div class="required--error"> {{ session('send_comment_wrong_message') }}</div>
                         @endif
                     </div>
                 </form>
-
             </div>
 
         </section>
-
 
         <section class="reade-more content">
             <h2 class="{{"reade-more-title-".app()->getLocale()}}">{{ __('messages.red_also') }}</h2>

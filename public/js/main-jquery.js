@@ -10,20 +10,92 @@ $(document).ready(function () {
             '</svg>'),
     });
 
+});
 
-    $('#useCoupon').on('click', function (event) {
-        event.preventDefault();
-        let couponName = $('#couponName').val();
+/*/////////SLIDER//////////////*/
+if ($('.book-page-reviews-item').length >= 4) {
+    $('.multiple-items').slick({
+        slidesToShow: 4,
+        dots: true,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+                breakpoint: 1600,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 1200,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 900,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+}
+/*/////////SLIDER//////////////*/
 
-        if (!couponName.length) return
+$('#useCoupon').on('click', function (event) {
+    event.preventDefault();
+    let couponName = $('#couponName').val();
 
-        $('.loader-container').css('display', 'flex');
-        let url = $('#couponRouterName').val();
-        let totalPriceElement = document.querySelector('.total-price');
-        let totalPriceToPayElement = document.querySelector('.total-price-to-pay');
+    if (!couponName.length) return
+
+    $('.loader-container').css('display', 'flex');
+    let url = $('#couponRouterName').val();
+    let totalPriceElement = document.querySelector('.total-price');
+    let totalPriceToPayElement = document.querySelector('.total-price-to-pay');
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: JSON.stringify({
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            coupon: couponName
+        }),
+        success: function (data) {
+            totalPriceElement.innerHTML = data.total_price;
+            totalPriceToPayElement.innerHTML = data.total_price;
+            $('.couponCallBackMessage').html(data.message);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.error(errorThrown);
+        },
+        complete: function () {
+            $('.loader-container').hide();
+        }
+    });
+});
+
+
+/*SEARCH FUNCTIONALITY*/
+$('#search-input').on('keyup', function (event) {
+    if (event.target.value.length > 2) {
+        $('.loader-container').show();
 
         $.ajax({
-            url: url,
+            url: $('#search-route-name').val(),
             type: 'POST',
             dataType: 'json',
             headers: {
@@ -32,12 +104,10 @@ $(document).ready(function () {
             },
             data: JSON.stringify({
                 _token: $('meta[name="csrf-token"]').attr('content'),
-                coupon: couponName
+                search: event.target.value
             }),
             success: function (data) {
-                totalPriceElement.innerHTML = data.total_price;
-                totalPriceToPayElement.innerHTML = data.total_price;
-                $('.couponCallBackMessage').html(data.message);
+                htmlFilter(data);
             },
             error: function (xhr, textStatus, errorThrown) {
                 console.error(errorThrown);
@@ -46,45 +116,11 @@ $(document).ready(function () {
                 $('.loader-container').hide();
             }
         });
-    });
-
-
-    /*/////////SLIDER//////////////*/
-
-    /*SEARCH FUNCTIONALITY*/
-    $('#search-input').on('keyup', function (event) {
-        if (event.target.value.length > 2) {
-            $('.loader-container').show();
-
-            $.ajax({
-                url: $('#search-route-name').val(),
-                type: 'POST',
-                dataType: 'json',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: JSON.stringify({
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    search: event.target.value
-                }),
-                success: function (data) {
-                    htmlFilter(data);
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    console.error(errorThrown);
-                },
-                complete: function () {
-                    $('.loader-container').hide();
-                }
-            });
-        } else if (event.target.value.length <= 2) {
-            $("#booksContainer").html('');
-        }
-    });
-
-
+    } else if (event.target.value.length <= 2) {
+        $("#booksContainer").html('');
+    }
 });
+
 
 function htmlFilter(books) {
     let bookUrl = $("#book-url").val();

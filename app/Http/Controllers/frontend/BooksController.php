@@ -61,8 +61,8 @@ class BooksController extends Controller
         $book = $books::with(['authors', 'category', 'images'])
             ->with(['comments' => function ($query) {
                 $query->orderBy('book_comments.created_at', 'desc')
-                    ->where('book_comments.is_active', '=', BookComments::PUBLISHED)
-                    ->limit(4);
+                    ->where('book_comments.is_active', '=', BookComments::PUBLISHED);
+//                    ->limit(4);
             }])
             ->where('slug', $slug)
             ->firstOrFail();

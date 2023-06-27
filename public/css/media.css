@@ -127,9 +127,13 @@
     }
 
     .article-section-title-hy h2,
+    .article-section-title-en h2,
     .authors-section-title-hy h2 {
         font-size: 36px;
         line-height: 30px;
+    }
+    .article-section-title-en {
+        padding: 33px 32px 37px;
     }
 
     .parent-section {
@@ -386,7 +390,13 @@
         font-size: 30px;
         margin-top: 70px;
     }
-
+    /*.slick-slide.slick-active{*/
+    /*    width: 395px !important;*/
+    /*}*/
+    /*.slick-slide.slick-cloned{*/
+    /*    width: 395px !important;*/
+    /*    !*margin-left: 20px;*!*/
+    /*}*/
 
 }
 
@@ -413,7 +423,7 @@
         padding-bottom: 50px;
     }
 
-    .article-section-title {
+    .article-section-title-hy {
         padding: 53px 32px 63px;
     }
 
@@ -726,9 +736,9 @@
     .book-page-reviews-boxes {
         display: grid;
         gap: 30px;
-        grid-template-columns: repeat(3, 342px);
+        /*grid-template-columns: repeat(3, 342px);*/
         margin-top: 56px;
-        overflow-x: auto;
+        /*overflow-x: auto;*/
         width: 100%;
         max-width: 1115px;
     }
@@ -737,6 +747,13 @@
     .form-email input::placeholder,
     .review textarea::placeholder {
         font-size: 14px;
+    }
+    .accordion-text-info {
+        border-left:unset;
+        border-right: unset;
+    }
+    .cloud-modal {
+        left: 25%;
     }
 }
 
@@ -1042,10 +1059,12 @@
         margin-top: 25px;
     }
 
-    .article-section-title h2, .authors-section-title-hy h2 {
+    .article-section-title-hy h2, .authors-section-title-hy h2,
+    .article-section-title-en h2{
         font-size: 30px;
         line-height: 22px;
     }
+
 
     .authors-boxes div {
         max-width: 190px;
@@ -1111,7 +1130,9 @@
     .not-found-img {
         max-width: 170px;
     }
-
+    .cloud-modal {
+        left: 15%;
+    }
     /*///////////////////articles-page/////////////////////*/
     .articles-list {
         grid-template-columns: repeat(2, 330px);
@@ -1269,6 +1290,9 @@
         list-style: circle;
         color: #444444;
     }
+    .slick-slide.slick-cloned {
+        margin-left: 0;
+    }
 
 }
 
@@ -1334,12 +1358,12 @@
         margin-top: 15px;
     }
 
-    .article-section-title h2, .authors-section-title-hy h2 {
+    .article-section-title-hy h2, .authors-section-title-hy h2 {
         font-size: 20px;
         line-height: 0;
     }
 
-    .article-section-title {
+    .article-section-title-hy {
         padding: 48px 32px 48px;
     }
 
@@ -1507,6 +1531,23 @@
     .tabs_wrap ul .media-li,
     .tabs_wrap ul .article-li {
         background-size: contain;
+    }
+    .cloud-modal {
+         background-image: unset;
+         background-repeat: unset;
+         background-size: unset;
+        left: 0;
+        cursor: pointer;
+        padding: 70px 15px 0 15px;
+        max-width: 100%;
+        height: auto;
+        width: 100%;
+        background-color: #FEEFCD;
+    }
+    .cloud-modal-text {
+        width: 100%;
+        max-width: 100%;
+
     }
 
     .footer {
@@ -2037,6 +2078,26 @@
     .review-form .accept > span {
         max-width: 500px
     }
+    /*.book-page-reviews-boxes {*/
+    /*    display: grid;*/
+    /*    grid-template-columns: repeat(3, 342px);*/
+    /*    overflow-x: auto;*/
+    /*}*/
+    /*.book-page-reviews-boxes .slick-slide{*/
+    /*    text-align: center !important;*/
+    /*    width: 320px !important;*/
+    /*}*/
+    .slick-track{
+        /*width: 8000px !important;*/
+        /*transform: translate3d(-688px, 0px, 0px) !important;*/
+    }
+    .slick-list{
+        padding: 0px 0px !important;
+    }
+    .book-page-reviews-item p,
+    .book-page-reviews-item span{
+        font-size: 12px;
+    }
 
 }
 
@@ -2220,5 +2281,8 @@
 
     .authors-boxes div {
         margin-left: 26px;
+    }
+    .book-page-reviews-item {
+        padding: 55px 47px 42px 26px;
     }
 }

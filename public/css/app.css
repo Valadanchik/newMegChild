@@ -459,7 +459,7 @@ main {
     gap: 25px;
 }
 
-.article-section-title {
+.article-section-title-hy {
     background-image: url('../images/cloud.png');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -467,8 +467,16 @@ main {
     padding: 62px 32px 44px;
     margin: auto;
 }
-
-.article-section-title h2 {
+.article-section-title-en{
+    background-image: url('../images/cloud.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    max-width: max-content;
+    padding: 33px 32px 28px;
+    margin: auto;
+}
+.article-section-title-hy h2,
+.article-section-title-en h2{
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
@@ -1558,6 +1566,7 @@ section.book-page-item-banner {
     font-style: normal;
     /* border-left: 1px solid rgba(243, 111, 33, 1); */
     padding-left: 24px;
+    padding-right: 24px;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -1672,7 +1681,6 @@ section.book-page-item-banner {
     padding: 75px 47px 59px 26px;
     margin: auto;
     text-align: center;
-    cursor: pointer;
     /*pointer-events: none;*/
 }
 
@@ -1694,6 +1702,8 @@ section.book-page-item-banner {
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-word;
+    cursor: pointer;
+
 }
 
 .book-page-reviews-item span {
@@ -1737,6 +1747,11 @@ section.book-page-reviews.content h2 {
     border-left: 1px solid rgba(243, 111, 33, 1);
     border-right: 1px solid rgba(243, 111, 33, 1);
     display: flow-root;
+}
+.info-authors{
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #f36f21;
 }
 
 /*validacia*/
@@ -2915,12 +2930,12 @@ input:focus {
 .books-info-item-search {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 24px;
 }
 
 .books-info-item-search .book-item {
     width: 100%;
-    max-width: 342px;
+    max-width: 278px;
 }
 
 /*////////////////////authors-single-page//////////////////////////////////*/
@@ -3367,14 +3382,15 @@ button.learn-more-btn:hover {
     margin: auto;
     text-align: center;
     left: 30%;
+    top: 30%;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     height: 500px;
     display: none;
     z-index: 99;
     /*background-color: #FEEFCD;*/
-
 }
+
 .cloud-modal-text{
     width: 100%;
     max-width: 425px;
@@ -3387,6 +3403,28 @@ button.learn-more-btn:hover {
     text-align: center;
     letter-spacing: 0.01em;
     color: #000000;
+}
+
+.message-success {
+    background: #ffffff;
+    padding: 15px;
+    margin-top: -30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.message-success div{
+    color: #000;
+}
+
+
+.book-page-reviews-boxes  .slick-prev,
+.book-page-reviews-boxes  .slick-next{
+    display: none !important;
+}
+
+.book-page-reviews-boxes .slick-slide{
+    text-align: center !important;
 }
 
 .couponCallBackMessage {

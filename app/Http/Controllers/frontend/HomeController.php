@@ -68,6 +68,7 @@ class HomeController extends Controller
                     ->groupBy('category_id');
             })
             ->take(Books::HOME_PAGE_BOOKS_COUNT)
+            ->orderBy('category_id', 'ASC')
             ->get();
     }
 

@@ -15,6 +15,7 @@
             font-family: system-ui;
             text-decoration: none;
         }
+
         .activeButtonStyle {
             padding: 10px 15px;
             background: #008bc3;
@@ -24,7 +25,6 @@
             font-family: system-ui;
             text-decoration: none;
         }
-
     </style>
 </head>
 <body style="margin:0;padding:0;">
@@ -48,15 +48,22 @@
                             <!-- BEGIN SECTION: Introduction -->
                             <tr id="section-1468267" class="section introduction">
                                 <th style="mso-line-height-rule: exactly; padding: 13px 52px;" bgcolor="#ffffff">
-                                    <h3 style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center"><strong>Մեկնաբանության տեղեկություն</strong></h3>
-                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center"><strong>Մեկնաբանությունը ավելացրել է՝</strong>  {{ $comment->full_name }}</p>
-                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center"><strong>Էլեկտրոնային հասցե` </strong> {{ $comment->email }}</p>
-                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;" align="center"><strong>Մեկնաբանություն` </strong> {{ $comment->comment }}</p>
+                                    <h3 style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
+                                        align="center"><strong>Մեկնաբանության տեղեկություն</strong></h3>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
+                                       align="center"><strong>Մեկնաբանությունը ավելացրել
+                                            է՝</strong> {{ $comment->full_name }}</p>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
+                                       align="center"><strong>Էլեկտրոնային հասցե` </strong> {{ $comment->email }}</p>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
+                                       align="center"><strong>Մեկնաբանություն` </strong> {{ $comment->comment }}</p>
                                     <br>
                                     <br>
                                     <div>
-                                        <a href="{{ url('http://newmag.test/fs-admin/comment/view/' . $comment['id'] ) }}" class="checkButtonStyle" >Տեսնել Կայքում</a>
-                                        <a href="{{ url('http://newmag.test/fs-admin/comment/view/' . $comment['id'] ) .'?immediately_activate=1' }} " class="activeButtonStyle">Անհապաղ ակտիվացնել</a>
+                                        <a href="{{ url('http://newmag.test/fs-admin/comment/view/' . $comment['id'] ) }}"
+                                           class="checkButtonStyle">Տեսնել Կայքում</a>
+                                        <a href="{{ url('http://newmag.test/fs-admin/comment/view/' . $comment['id'] ) .'?immediately_activate=1' }} "
+                                           class="activeButtonStyle">Անհապաղ ակտիվացնել</a>
                                     </div>
                                 </th>
                             </tr>

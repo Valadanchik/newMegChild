@@ -6,7 +6,6 @@
             <div class="shopping-cart-block-title">
                 <h2>{{ __('checkout.cart') }}</h2>
             </div>
-
             @if(count($cardBooks))
                 <form action="{{route('order.create')}}" method="POST" class="shopping-cart form-shopping-cart">
                     @csrf
@@ -14,11 +13,9 @@
                         <div class="shopping-cart-products-buy-items">
                             @foreach($cardBooks as $card_key => $card)
                                 <div id="shopping-cart-products-item-{{$card_key}}" class="shopping-cart-products-item">
-
-                                    <div class="shopping-cart-products-item-img">
+                                   <div class="shopping-cart-products-item-img">
                                         <img src="{{ URL::to('storage/' . $card['main_image']) }}" alt="">
                                     </div>
-
                                     <div class="shopping-cart-products-item-desc">
                                         <h3 class="color-info-description-after">
                                             {{ $card['title_' . app()->getLocale()] }}
@@ -31,37 +28,41 @@
                                     </div>
                                     <div class="shopping-cart-products-item-count">
                                         <div class="shopping-cart-products-item-count-img">
-                                            <div data-product="{{ $card['id'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-min @if(session()->get('cart')[$card['id']] == 1) min-none @endif min-count-{{$card_key}}">
-                                                <img class="min" src="{{ URL::to('/images/svg/shopping-cart-min-img.svg') }}"
+                                            <div data-product="{{ $card['id'] }}" data-price="{{ $card['price'] }}"
+                                                 data-item="{{$card_key}}"
+                                                 class="shopping-cart-products-count-item-min @if(session()->get('cart')[$card['id']] == 1) min-none @endif min-count-{{$card_key}}">
+                                                <img class="min"
+                                                     src="{{ URL::to('/images/svg/shopping-cart-min-img.svg') }}"
                                                      alt="min img" data-id="min-1">
                                             </div>
-                                            <input type="number" class="count-shop" id="count-shop-{{$card_key}}" value="{{ session()->get('cart')[$card['id']] }}">
-                                            <div data-product="{{ $card['id'] }}" data-max="{{ $card['in_stock'] }}" data-price="{{ $card['price'] }}" data-item="{{$card_key}}" class="shopping-cart-products-count-item-plus">
+                                            <input type="number" class="count-shop" id="count-shop-{{$card_key}}"
+                                                   value="{{ session()->get('cart')[$card['id']] }}">
+                                            <div data-product="{{ $card['id'] }}" data-max="{{ $card['in_stock'] }}"
+                                                 data-price="{{ $card['price'] }}" data-item="{{$card_key}}"
+                                                 class="shopping-cart-products-count-item-plus">
                                                 <img src="{{ URL::to('/images/svg/plus-circle.svg') }}"
                                                      alt="plus img">
                                             </div>
                                         </div>
                                         <span>{{ __('checkout.in_stock') }} {{ $card['in_stock'] }} {{ __('checkout.pcs') }}</span>
                                     </div>
-
-
-
                                     <div class="shopping-cart-products-item-price">
                                         <p>{{ $card['price'] }} ֏</p>
                                     </div>
-
-                                    <div data-price="{{ $card['price'] }}" data-item="{{$card_key}}"  class="shopping-cart-products-count-close-icon">
-                                        <img src="{{ URL::to('/images/svg/close.svg') }}" class="remove-product-from-card" alt="close" data-book-id="{{ $card['id'] }}">
+                                    <div data-price="{{ $card['price'] }}" data-item="{{$card_key}}"
+                                         class="shopping-cart-products-count-close-icon">
+                                        <img src="{{ URL::to('/images/svg/close.svg') }}"
+                                             class="remove-product-from-card" alt="close"
+                                             data-book-id="{{ $card['id'] }}">
                                     </div>
                                 </div>
                                 <input id="product-id" type="hidden" value="{{ $card['id'] }}">
-                                <input id="quantity" type="hidden" value="{{ session()->get('cart')[$card['id']] }}" name="number">
-
+                                <input id="quantity" type="hidden" value="{{ session()->get('cart')[$card['id']] }}"
+                                       name="number">
                             @endforeach
 
                             <input id="remove-from-cart-url" type="hidden" value="{{ route('removeFromCart') }}">
                             <input id="change-cart-product-count" type="hidden" value="{{ route('updateCart') }}">
-
                             <div class="shopping-cart-buttons">
                                 <div>
                                     <span class="couponCallBackMessage"></span>
@@ -76,12 +77,11 @@
                                     <button id="useCoupon">Կիրառել արժեկտրոնը</button>
                                 </div>
                             </div>
-
                         </div>
-
-                        <div class="">
+                        <div>
                             @if(session('product_is_not_in_stock'))
-                                <div style="color: red" class="required--error"> {{ session('product_is_not_in_stock') }}</div>
+                                <div style="color: red"
+                                     class="required--error"> {{ session('product_is_not_in_stock') }}</div>
                             @endif
                         </div>
 
@@ -91,7 +91,6 @@
                             </div>
                             <div class="shopping-cart-payment-details-form">
                                 <div class="forms shopping-cart-forms">
-
                                     <div class="form-shopping-cart-name-lastName">
                                         <div class=" form-control form-shopping-cart-first-name">
                                             <label for="shopping-cart-firs-name"></label>
@@ -102,18 +101,19 @@
                                                    name="name"
                                                    value="{{old('name')}}">
                                             <small></small>
-                                            <input id="required_name" type="hidden" value="{{ __('validation.required_name') }}">
+                                            <input id="required_name" type="hidden"
+                                                   value="{{ __('validation.required_name') }}">
                                             @error('name')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
-
                                         <div class=" form-control form-shopping-cart-last-name">
                                             <input class="accept-input" type="text" id="last-name"
                                                    placeholder="{{ __('checkout.last_name') }}*"
                                                    name="lastname"
                                                    value="{{old('lastname')}}">
-                                            <input id="required_last_name" type="hidden" value="{{ __('validation.required_last_name') }}">
+                                            <input id="required_last_name" type="hidden"
+                                                   value="{{ __('validation.required_last_name') }}">
                                             <small></small>
                                             @error('lastname')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -143,39 +143,44 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <input id="required_country" type="hidden" value="{{ __('validation.required_country') }}">
+                                        <input id="required_country" type="hidden"
+                                               value="{{ __('validation.required_country') }}">
                                         <small></small>
                                         @error('country_id')
                                         <div style="color: red" class="required--error">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                      {{--<div class="form-control form-shopping-cart-count">
-                                           <select name="region_id" id="region">
-                                               @foreach($regions as $region)
-                                                   <option
-                                                       value="{{$region->id}}"
-                                                       @if(old('region_id') == $region->id) selected @endif>
-                                                       {{$region->{'name_'.app()->getLocale()} }}
-                                                   </option>
-                                               @endforeach
-                                           </select>
-                                           <small></small>
-                                           @error('region_id')
-                                               <div style="color: red" class="required--error">{{ $message }}</div>
-                                           @enderror
-                                       </div>--}}
+                                    {{--<div class="form-control form-shopping-cart-count">
+                                         <select name="region_id" id="region">
+                                             @foreach($regions as $region)
+                                                 <option
+                                                     value="{{$region->id}}"
+                                                     @if(old('region_id') == $region->id) selected @endif>
+                                                     {{$region->{'name_'.app()->getLocale()} }}
+                                                 </option>
+                                             @endforeach
+                                         </select>
+                                         <small></small>
+                                         @error('region_id')
+                                             <div style="color: red" class="required--error">{{ $message }}</div>
+                                         @enderror
+                                     </div>--}}
                                     <div class="form-home-address-oll">
                                         <div class=" form-control form-shopping-cart-city">
-                                            <input name="region" value="{{old('region')}}" type="text" id="city" placeholder="{{ __('checkout.city') }} *">
-                                            <input id="required_city" type="hidden" value="{{ __('validation.required_city') }}">
+                                            <input name="region" value="{{old('region')}}" type="text" id="city"
+                                                   placeholder="{{ __('checkout.city') }} *">
+                                            <input id="required_city" type="hidden"
+                                                   value="{{ __('validation.required_city') }}">
                                             <small></small>
                                             @error('region')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class=" form-control form-shopping-cart-home">
-                                            <input name="street" value="{{old('street')}}" type="text" id="home" placeholder="{{ __('checkout.house_and_street') }} *">
-                                            <input id="required_street" type="hidden" value="{{ __('validation.required_street') }}">
+                                            <input name="street" value="{{old('street')}}" type="text" id="home"
+                                                   placeholder="{{ __('checkout.house_and_street') }} *">
+                                            <input id="required_street" type="hidden"
+                                                   value="{{ __('validation.required_street') }}">
                                             <small></small>
                                             @error('street')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -183,15 +188,18 @@
                                         </div>
 
                                         <div class=" form-control form-shopping-cart-apartment">
-                                            <input name="house" value="{{old('house')}}" type="text" id="apartment" placeholder="{{ __('checkout.apartment') }}․․․">
+                                            <input name="house" value="{{old('house')}}" type="text" id="apartment"
+                                                   placeholder="{{ __('checkout.apartment') }}․․․">
                                             <small></small>
                                             @error('house')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class=" form-control form-post-code">
-                                            <input type="text" value="{{old('postal_code')}}" name="postal_code" id="post-code" placeholder="{{ __('checkout.post_code') }} *">
-                                            <input id="required_post_code" type="hidden" value="{{ __('validation.required_post_code') }}">
+                                            <input type="text" value="{{old('postal_code')}}" name="postal_code"
+                                                   id="post-code" placeholder="{{ __('checkout.post_code') }} *">
+                                            <input id="required_post_code" type="hidden"
+                                                   value="{{ __('validation.required_post_code') }}">
                                             <small></small>
                                             @error('postal_code')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -199,8 +207,10 @@
                                         </div>
 
                                         <div class=" form-control form-shopping-cart-home-tell">
-                                            <input type="text" value="{{old('phone')}}" name="phone" id="home-tell" placeholder="{{ __('checkout.phone') }} *">
-                                            <input id="required_phone" type="hidden" value="{{ __('validation.required_phone') }}">
+                                            <input type="text" value="{{old('phone')}}" name="phone" id="home-tell"
+                                                   placeholder="{{ __('checkout.phone') }} *">
+                                            <input id="required_phone" type="hidden"
+                                                   value="{{ __('validation.required_phone') }}">
                                             <small></small>
                                             @error('phone')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -208,8 +218,10 @@
                                         </div>
 
                                         <div class="form-control form-shopping-cart-email">
-                                            <input name="email" value="{{old('email')}}" type="text" id="email-shop" placeholder="{{ __('checkout.email') }} *">
-                                            <input id="required_email" type="hidden" value="{{ __('validation.required_email') }}">
+                                            <input name="email" value="{{old('email')}}" type="text" id="email-shop"
+                                                   placeholder="{{ __('checkout.email') }} *">
+                                            <input id="required_email" type="hidden"
+                                                   value="{{ __('validation.required_email') }}">
                                             <small></small>
                                             @error('email')
                                             <div style="color: red" class="required--error">{{ $message }}</div>
@@ -217,8 +229,9 @@
                                         </div>
                                     </div>
 
-                                    <div class=" form-control form-shopping-cart-review " >
-                                        <textarea name="order_text" value="{{old('order_text')}}" class="accept-input" id="review-sopping-cart"
+                                    <div class=" form-control form-shopping-cart-review ">
+                                        <textarea name="order_text" value="{{old('order_text')}}" class="accept-input"
+                                                  id="review-sopping-cart"
                                                   placeholder="{{ __('checkout.shipping_info') }}"
                                                   type="checkbox"></textarea>
                                         <small></small>
@@ -231,9 +244,11 @@
                                     </div>
 
                                     <div class="form-control accept">
-                                        <input name="terms" class="accept-input" type="checkbox" value=" value="{{old('terms')}}"">
+                                        <input name="terms" class="accept-input" type="checkbox"
+                                               value=" value="{{old('terms')}}"">
                                         <span id="accept-sopping-cart">{{ __('checkout.agree') }}</span>
-                                        <input id="required_terms" type="hidden" value="{{ __('validation.required_terms') }}">
+                                        <input id="required_terms" type="hidden"
+                                               value="{{ __('validation.required_terms') }}">
                                         <small></small>
                                         @error('terms')
                                         <div style="color: red" class="required--error">{{ $message }}</div>
@@ -243,7 +258,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <div class="payment-cart">
                         <div class="other-services">
@@ -276,7 +290,7 @@
                                 <div class="your-order-radio">
 
                                     <div class="packaging-standart">
-                                        <input type="radio" id="idram" name="payment_method"  class="my-radio"
+                                        <input type="radio" id="idram" name="payment_method" class="my-radio"
                                                value="{{\App\Models\Order::PAYMENT_METHOD_IDRAM}}"
                                                @if(!old('payment_method') || old('payment_method') == \App\Models\Order::PAYMENT_METHOD_IDRAM) checked @endif>
 

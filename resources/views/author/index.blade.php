@@ -19,10 +19,8 @@
                 </div>
             </div>
         </section>
-
         <section class="content author-single-page-books-section">
             <h2>{{ __('messages.books') }}</h2>
-
             <div class="books-info-item">
                 @foreach($author->books as $book)
                     <div class="book-item">

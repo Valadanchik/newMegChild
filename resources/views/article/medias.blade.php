@@ -15,16 +15,15 @@
             </div>
             <div class="tab-items-article">
                 <div class="media-title">
-{{--                    <div class="filter-media-title">--}}
-{{--                        <h1>{{ __('messages.media') }}</h1>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="filter-media-title">--}}
+                    {{--                        <h1>{{ __('messages.media') }}</h1>--}}
+                    {{--                    </div>--}}
                     <div class="media-filter-icon">
                         <div class="filter-img">
                             <img src="{{ URL::to('images/svg/mi_filter.svg') }}" alt="">
                         </div>
                         <h3>{{ __('messages.filter') }}</h3>
                     </div>
-
                 </div>
                 <div class="item">
                     <div class="item_left">
@@ -33,7 +32,9 @@
                                 <h3>{{ __('messages.filter') }}</h3>
                                 <div class="media-scrol-bar scrollbar" id="style-4">
                                     <div class="scroll-bar-all scrol-bar-item">
-                                        <p><a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">{{ __('messages.all') }}</a></p>
+                                        <p>
+                                            <a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">{{ __('messages.all') }}</a>
+                                        </p>
                                     </div>
                                     @foreach($postCategories as $postCategory)
                                         <div class="scrol-bar-item">

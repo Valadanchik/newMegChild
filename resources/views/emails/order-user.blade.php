@@ -62,7 +62,7 @@
                                     <h2 style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; color: #4b4b4b; font-size: 20px; line-height: 26px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0;"
                                         align="center">
                                                             <span
-                                                                    data-key="1468270_order_number">Order No.</span> {{$order->id}}
+                                                                data-key="1468270_order_number">Order No.</span> {{$order->id}}
                                     </h2>
                                     <p class="muted"
                                        style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 14px; line-height: 26px; font-weight: normal; color: #bdbdbd; margin: 0;"
@@ -262,14 +262,14 @@
                             <tr>
                                 <td style="padding:0 0 0 10px;width:38px;">
                                     <a href="http://www.twitter.com/" style="color:#ffffff;"><img
-                                                src="https://assets.codepen.io/210284/tw_1.png" alt="Twitter" width="38"
-                                                style="height:auto;display:block;border:0;"/></a>
+                                            src="https://assets.codepen.io/210284/tw_1.png" alt="Twitter" width="38"
+                                            style="height:auto;display:block;border:0;"/></a>
                                 </td>
                                 <td style="padding:0 0 0 10px;width:38px;">
                                     <a href="http://www.facebook.com/" style="color:#ffffff;"><img
-                                                src="https://assets.codepen.io/210284/fb_1.png" alt="Facebook"
-                                                width="38"
-                                                style="height:auto;display:block;border:0;"/></a>
+                                            src="https://assets.codepen.io/210284/fb_1.png" alt="Facebook"
+                                            width="38"
+                                            style="height:auto;display:block;border:0;"/></a>
                                 </td>
                             </tr>
                         </table>

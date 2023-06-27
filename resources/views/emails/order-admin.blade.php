@@ -34,7 +34,8 @@
                             <!-- BEGIN SECTION: Introduction -->
                             <tr id="section-1468267" class="section introduction">
                                 <th style="mso-line-height-rule: exactly; padding: 13px 52px;" bgcolor="#ffffff">
-                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 0 0 13px;" align="center">
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 0 0 13px;"
+                                       align="center">
                                         <span data-key="1468267_greeting_text"
                                               style="text-align: center; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363;">
                                           Hey Admin,
@@ -49,13 +50,10 @@
                                        align="center">{{ $order->name . ' ' . $order->lastname }} creates an order</p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
                                        align="center">You can contact with him</p>
-
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
                                        align="center">Email: {{ $order->email }}</p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
                                        align="center">Phone: {{ $order->phone }}</p>
-
-
                                 </th>
                             </tr>
                             <!-- END SECTION: Introduction -->
@@ -184,101 +182,104 @@
                                                             align="right" bgcolor="#ffffff"
                                                             valign="middle">{{$order->total_price}}&nbsp
                                                         <td>AMD</td>
-                                            </th>
-                                        </tr>
-
-                                        @if($order->total_price_with_discount)
-                                            <tr>
-                                                <th class="table-title"
-                                                    data-key="1468271_subtotal"
-                                                    style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; width: 65%; padding: 6px 0;"
-                                                    align="left" bgcolor="#ffffff" valign="top">
-                                                    Total Price With Discount
-                                                </th>
-                                                <th class="table-text"
-                                                    style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; width: 35%; padding: 6px 0;"
-                                                    align="right" bgcolor="#ffffff"
-                                                    valign="middle">
-                                                    {{$order->total_price_with_discount}}&nbsp
-                                                <td>AMD</td>
-                                                </th>
-                                            </tr>
-                                        @endif
-
-                                        <tr>
-                                            <th class="table-title"
-                                                style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; width: 65%; padding: 6px 0;"
-                                                align="left" bgcolor="#ffffff" valign="top">
-                                                <table cellspacing="0" cellpadding="0" border="0"
-                                                       width="100%"
-                                                       style="min-width: 100%; font-weight: bold;"
-                                                       role="presentation">
-                                                    <tbody>
-                                                    <tr style="font-weight: bold;">
-                                                        <th width="40"
-                                                            style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; padding: 8px 10px 8px 0;"
-                                                            align="left" bgcolor="#ffffff"
-                                                            valign="middle">
-                                                            <img width="40"
-                                                                 style="width: 40px; vertical-align: middle; height: auto !important; font-weight: bold;"
-                                                                 alt="Mastercard Icon"
-                                                                 src="{{asset('images/payment_methods/'.$order->payment_method.'.png')}}">
                                                         </th>
-                                                        <th style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; padding: 8px 0;"
-                                                            align="left" bgcolor="#ffffff"
-                                                            valign="middle">
-                                                            @if($order->payment_method === \App\Models\Order::PAYMENT_METHOD_BANK)
-                                                                <span>Bank Card</span>
-                                                            @elseif($order->payment_method === \App\Models\Order::PAYMENT_METHOD_IDRAM)
-                                                                <span>Idram</span>
-                                                            @elseif($order->payment_method === \App\Models\Order::PAYMENT_METHOD_TELCELL)
-                                                                <span>Telcell</span>
-                                                            @endif
+                                                    </tr>
+
+                                                    @if($order->total_price_with_discount)
+                                                        <tr>
+                                                            <th class="table-title"
+                                                                data-key="1468271_subtotal"
+                                                                style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; width: 65%; padding: 6px 0;"
+                                                                align="left" bgcolor="#ffffff" valign="top">
+                                                                Total Price With Discount
+                                                            </th>
+                                                            <th class="table-text"
+                                                                style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; width: 35%; padding: 6px 0;"
+                                                                align="right" bgcolor="#ffffff"
+                                                                valign="middle">
+                                                                {{$order->total_price_with_discount}}&nbsp
+                                                            <td>AMD</td>
+                                                            </th>
+                                                        </tr>
+                                                    @endif
+
+                                                    <tr>
+                                                        <th class="table-title"
+                                                            style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; width: 65%; padding: 6px 0;"
+                                                            align="left" bgcolor="#ffffff" valign="top">
+                                                            <table cellspacing="0" cellpadding="0" border="0"
+                                                                   width="100%"
+                                                                   style="min-width: 100%; font-weight: bold;"
+                                                                   role="presentation">
+                                                                <tbody>
+                                                                <tr style="font-weight: bold;">
+                                                                    <th width="40"
+                                                                        style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; padding: 8px 10px 8px 0;"
+                                                                        align="left" bgcolor="#ffffff"
+                                                                        valign="middle">
+                                                                        <img width="40"
+                                                                             style="width: 40px; vertical-align: middle; height: auto !important; font-weight: bold;"
+                                                                             alt="Mastercard Icon"
+                                                                             src="{{asset('images/payment_methods/'.$order->payment_method.'.png')}}">
+                                                                    </th>
+                                                                    <th style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; padding: 8px 0;"
+                                                                        align="left" bgcolor="#ffffff"
+                                                                        valign="middle">
+                                                                        @if($order->payment_method === \App\Models\Order::PAYMENT_METHOD_BANK)
+                                                                            <span>Bank Card</span>
+                                                                        @elseif($order->payment_method === \App\Models\Order::PAYMENT_METHOD_IDRAM)
+                                                                            <span>Idram</span>
+                                                                        @elseif($order->payment_method === \App\Models\Order::PAYMENT_METHOD_TELCELL)
+                                                                            <span>Telcell</span>
+                                                                        @endif
+                                                                    </th>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
                                                         </th>
                                                     </tr>
                                                     </tbody>
                                                 </table>
-                                            </th>
                                         </tr>
-                                        </tbody>
                                     </table>
+                                </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td style="padding:30px;background:#ee4c50;">
-            <table role="presentation"
-                   style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
                 <tr>
-                    <td style="padding:0;width:50%;" align="left">
-                        <p style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
-                            &reg; Newmag © 2011-2023
-                        </p>
-                    </td>
-                    <td style="padding:0;width:50%;" align="right">
-                        <table role="presentation" style="border-collapse:collapse;border:0;border-spacing:0;">
+                    <td style="padding:30px;background:#ee4c50;">
+                        <table role="presentation"
+                               style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
                             <tr>
-                                <td style="padding:0 0 0 10px;width:38px;">
-                                    <a href="http://www.twitter.com/" style="color:#ffffff;"><img
-                                            src="https://assets.codepen.io/210284/tw_1.png" alt="Twitter" width="38"
-                                            style="height:auto;display:block;border:0;"/></a>
+                                <td style="padding:0;width:50%;" align="left">
+                                    <p style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
+                                        &reg; Newmag © 2011-2023
+                                    </p>
                                 </td>
-                                <td style="padding:0 0 0 10px;width:38px;">
-                                    <a href="http://www.facebook.com/" style="color:#ffffff;"><img
-                                            src="https://assets.codepen.io/210284/fb_1.png" alt="Facebook" width="38"
-                                            style="height:auto;display:block;border:0;"/></a>
+                                <td style="padding:0;width:50%;" align="right">
+                                    <table role="presentation"
+                                           style="border-collapse:collapse;border:0;border-spacing:0;">
+                                        <tr>
+                                            <td style="padding:0 0 0 10px;width:38px;">
+                                                <a href="http://www.twitter.com/" style="color:#ffffff;"><img
+                                                        src="https://assets.codepen.io/210284/tw_1.png" alt="Twitter"
+                                                        width="38"
+                                                        style="height:auto;display:block;border:0;"/></a>
+                                            </td>
+                                            <td style="padding:0 0 0 10px;width:38px;">
+                                                <a href="http://www.facebook.com/" style="color:#ffffff;"><img
+                                                        src="https://assets.codepen.io/210284/fb_1.png" alt="Facebook"
+                                                        width="38"
+                                                        style="height:auto;display:block;border:0;"/></a>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
-        </td>
-    </tr>
-</table>
 </body>
 </html>

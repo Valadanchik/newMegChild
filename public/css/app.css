@@ -101,6 +101,7 @@ ul.header-menu-list {
     top: -8px;
     left: 20px;
 }
+
 .header-icon-leng a {
     color: #000;
 }
@@ -169,7 +170,6 @@ ul.header-menu-list li a {
     color: #000000;
     transition-duration: .3s;
 }
-
 
 .menu-about-us:hover .menu-drop-down {
     display: block;
@@ -243,7 +243,6 @@ main {
 .banner-img a img:hover {
     transform: scale(1.1);
 }
-
 
 .orange {
     background-color: rgb(243 111 33 / 92%);
@@ -342,7 +341,6 @@ main {
     color: #FFFFFF;
 }
 
-
 .color-info-description-word-count p,
 .color-info-description-font-size p,
 .color-info-description-age p {
@@ -374,13 +372,6 @@ main {
     color: #FFFFFF;
     transition-duration: .3s;
 }
-
-
-/*.ben-color .color-info-description-btn:hover,*/
-/*.gim-color .color-info-description-btn:hover,*/
-/*.da-color .color-info-description-btn:hover{*/
-/*    background: #ffffff;*/
-/*}*/
 
 .ben-color .color-info-description-btn a:hover {
     background: #ffffff;
@@ -438,7 +429,6 @@ main {
     width: 100%;
 }
 
-
 .purple {
     background-color: rgb(143 82 161 / 92%);
 }
@@ -467,7 +457,8 @@ main {
     padding: 62px 32px 44px;
     margin: auto;
 }
-.article-section-title-en{
+
+.article-section-title-en {
     background-image: url('../images/cloud.png');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -475,8 +466,9 @@ main {
     padding: 33px 32px 28px;
     margin: auto;
 }
+
 .article-section-title-hy h2,
-.article-section-title-en h2{
+.article-section-title-en h2 {
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
@@ -644,7 +636,8 @@ main {
     padding: 62px 32px 60px;
     margin: auto;
 }
-.authors-section-title-en{
+
+.authors-section-title-en {
     background-image: url('../images/aothers-title.bg.png');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -652,9 +645,9 @@ main {
     padding: 38px 32px 60px;
     margin: auto;
 }
-.authors-section-title-hy h2,
-.authors-section-title-en h2
-{
+
+.authors-section-title-hy h1,
+.authors-section-title-en h1 {
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
@@ -726,6 +719,7 @@ main {
     padding: 62px 32px 60px;
     margin: auto;
 }
+
 .translators-section-title-en {
     background-image: url('../images/aothers-title.bg.png');
     background-repeat: no-repeat;
@@ -735,15 +729,14 @@ main {
     margin: auto;
 }
 
-.translators-section-title-hy h2,
-.translators-section-title-en h2{
+.translators-section-title-hy h1,
+.translators-section-title-en h1 {
     font-weight: 600;
     font-size: 32px;
     line-height: 49px;
     letter-spacing: 0.01em;
     color: #000000;
 }
-
 
 /*----------------------footer-----------------------*/
 
@@ -797,7 +790,6 @@ footer {
     display: grid;
     grid-template-columns: repeat(5, 44px);
     column-gap: 32px;
-
 }
 
 .footer-icons div {
@@ -843,7 +835,6 @@ a.footer-address:hover {
     border-radius: 4px;
     padding: 12px;
     border: none;
-
 }
 
 .footer-form-box input::placeholder {
@@ -934,12 +925,10 @@ a.footer-address:hover {
     color: #414141
 }
 
-
 /*_______________________TAB____________________________*/
 .tabs_wrap ul {
     display: flex;
 }
-
 
 .tabs_wrap ul .article-li {
     display: flex;
@@ -965,7 +954,6 @@ a.footer-address:hover {
     background-position: left;
     background-size: contain;
 }
-
 
 /*///////////////////media/////////////*/
 .media-title {
@@ -1347,7 +1335,6 @@ a.footer-address:hover {
 iframe.video-articlei-ifrem {
     width: 100%;
     height: 100%;
-
 }
 
 .other-article-section-title {
@@ -1534,7 +1521,6 @@ section.book-page-item-banner {
     height: 100%;
 }
 
-
 .book-page-item-additional-information ul li {
     font-family: 'Montserrat arm';
     font-style: normal;
@@ -1564,7 +1550,6 @@ section.book-page-item-banner {
 .book-page-item-after p {
     font-family: 'Montserrat arm';
     font-style: normal;
-    /* border-left: 1px solid rgba(243, 111, 33, 1); */
     padding-left: 24px;
     padding-right: 24px;
     font-weight: 400;
@@ -1578,7 +1563,6 @@ section.book-page-item-banner {
 .book-page-item-full-information {
     display: flex;
     gap: 25px;
-    /*justify-content: space-between;*/
     width: 100%;
     margin-bottom: 135px;
 }
@@ -1587,11 +1571,10 @@ section.book-page-item-banner {
     width: 100%;
     max-width: 440px;
 }
-.book-page-item-book-trailer{
+
+.book-page-item-book-trailer {
     width: 100%;
     min-width: 440px;
-    /* padding-left: 24px; */
-    /* border-left: 1px solid rgba(243, 111, 33, 1); */
 }
 
 .book-page-item-book-trailer-video iframe {
@@ -1666,7 +1649,6 @@ section.book-page-item-banner {
     margin-left: 24px;
 }
 
-
 .book-page-item-after-img img {
     width: 100%;
     border-radius: 100%;
@@ -1681,7 +1663,6 @@ section.book-page-item-banner {
     padding: 75px 47px 59px 26px;
     margin: auto;
     text-align: center;
-    /*pointer-events: none;*/
 }
 
 .book-page-reviews-item p {
@@ -1703,7 +1684,6 @@ section.book-page-item-banner {
     text-overflow: ellipsis;
     word-break: break-word;
     cursor: pointer;
-
 }
 
 .book-page-reviews-item span {
@@ -1735,27 +1715,28 @@ section.book-page-reviews.content h2 {
 }
 
 .after-and-book-trailer {
-
     display: flex;
     gap: 24px;
-    width:100%;
+    width: 100%;
 }
+
 .book-page-item-after.accordion {
     min-width: 480px;
 }
+
 .accordion-text-info {
     border-left: 1px solid rgba(243, 111, 33, 1);
     border-right: 1px solid rgba(243, 111, 33, 1);
     display: flow-root;
 }
-.info-authors{
+
+.info-authors {
     margin-bottom: 30px;
     padding-bottom: 30px;
     border-bottom: 1px solid #f36f21;
 }
 
 /*validacia*/
-
 
 .small {
     color: #82170C;
@@ -1810,12 +1791,13 @@ h2.book-page-leave-review-title {
     position: relative;
 }
 
-.accept > span {
+.accept > label {
     font-family: 'Montserrat arm';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
+    cursor: pointer;
     letter-spacing: 0.01em;
     color: rgba(255, 255, 255, 0.8);
 }
@@ -1839,16 +1821,15 @@ h2.book-page-leave-review-title {
     background-color: #ffffff;
 }
 
-.accept > input:checked + span::before {
+.accept > input:checked + label::before {
     content: '\2713';
     display: block;
     text-align: center;
     color: #1e1e1e;
     position: absolute;
-    left: 6px;
+    left: 5px;
     top: 3px;
 }
-
 
 .accept > input:active {
     border: 1px solid #34495E;
@@ -1865,7 +1846,6 @@ h2.book-page-leave-review-title {
 .form-control.review {
     width: 100%;
     max-width: 708px;
-
 }
 
 .form-first-name input,
@@ -1906,11 +1886,13 @@ h2.book-page-leave-review-title {
     padding: 15px 68px;
     transition-duration: .3s;
 }
-.form-btn button:hover{
+
+.form-btn button:hover {
     color: #fff;
     border: 1px solid #FFF;
     background: #f37a32;
 }
+
 .book-page-leave-review-form {
     max-width: 708px;
     display: flex;
@@ -1938,8 +1920,7 @@ h2.book-page-leave-review-title {
     color: #F36F21 !important;
 }
 
-
-.forms.shopping-cart-forms .accept span {
+.forms.shopping-cart-forms .accept label {
     color: #000;
 }
 
@@ -2024,6 +2005,7 @@ h2.book-page-leave-review-title {
     letter-spacing: 0.01em;
     color: #000000;
 }
+
 .reade-more-title-en {
     background-image: url('../images/cloud-reader-more.png');
     background-repeat: no-repeat;
@@ -2044,6 +2026,7 @@ h2.book-page-leave-review-title {
     margin: 40px 0;
     height: 360px;
 }
+
 .reade-more-item {
     width: 100%;
     max-width: 342px;
@@ -2051,6 +2034,7 @@ h2.book-page-leave-review-title {
     justify-content: space-between;
     flex-direction: column;
 }
+
 .reade-more-item-img-book img {
     height: 100%;
     width: 100%;
@@ -2185,7 +2169,7 @@ section.books {
     padding-bottom: 132px;
 }
 
-.about-us h2 {
+.about-us h1 {
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
@@ -2358,6 +2342,7 @@ section.about-us {
     max-width: 800px;
     filter: drop-shadow(0px 1px 14px rgba(83, 83, 83, 0.12));
 }
+
 .shopping-cart-products-item-desc {
     width: 100%;
     max-width: 360px;
@@ -2826,7 +2811,6 @@ input[type=number] {
     right: 0;
 }
 
-
 /* Icon 1 */
 
 .payment-success {
@@ -2841,9 +2825,7 @@ input[type=number] {
     align-items: center;
 }
 
-
 /*/////////////////////search popup//////////////////////*/
-
 
 .search-section {
     position: absolute;
@@ -2875,7 +2857,6 @@ input[type=number] {
     width: 100%;
     left: 0;
 }
-
 
 .search-box {
     font-size: 30px;
@@ -2914,10 +2895,11 @@ input:focus {
 .close-popup-img {
     text-align: right;
 }
-.close-popup-img img{
-    cursor: pointer;
 
+.close-popup-img img {
+    cursor: pointer;
 }
+
 .search-box input::placeholder {
     font-family: 'Montserrat arm';
     font-style: normal;
@@ -2927,6 +2909,7 @@ input:focus {
     letter-spacing: 0.01em;
     color: #B1B1B1;
 }
+
 .books-info-item-search {
     display: flex;
     flex-wrap: wrap;
@@ -3058,7 +3041,7 @@ section.author-single-page {
     margin-bottom: 130px;
 }
 
-section.contacts-page h2 {
+section.contacts-page h1 {
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
@@ -3073,7 +3056,7 @@ section.contacts-page h2 {
 .contact-page-sale-desc p,
 .contact-page-work-desc p,
 .contact-page-sponsorship-desc p,
-.contact-page-partnership-desc p{
+.contact-page-partnership-desc p {
     font-weight: 400;
     font-size: 16px;
     line-height: 25px;
@@ -3086,7 +3069,7 @@ section.contacts-page h2 {
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.01em;
-    list-style: circle;
+    list-style: disc;
     color: #444444;
 }
 
@@ -3246,7 +3229,7 @@ button.learn-more-btn:hover {
 }
 
 
-.filtering-book-page-list{
+.filtering-book-page-list {
     display: flex;
     gap: 48px;
     list-style: none;
@@ -3254,7 +3237,7 @@ button.learn-more-btn:hover {
     margin: 20px 15px 30px;
 }
 
-.filtering-book-page ul li a{
+.filtering-book-page ul li a {
     text-align: center;
     padding-bottom: 7px;
     cursor: pointer;
@@ -3263,7 +3246,6 @@ button.learn-more-btn:hover {
     font-weight: 500;
     font-size: 16px;
     line-height: 30px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     color: #000;
     transition-duration: .3s;
@@ -3306,24 +3288,27 @@ button.learn-more-btn:hover {
     letter-spacing: 0.01em;
     color: #000000;
 }
-.header-icon-shop a{
+
+.header-icon-shop a {
     width: 100%;
     max-width: 24px;
 
 }
-.header-icon-shop a img{
+
+.header-icon-shop a img {
     width: 100%;
 }
+
 #booksContainer {
     background: #fff;
-    /*overflow-y: auto;*/
-    /*height: 100vh;*/
 }
-.ov-auto{
+
+.ov-auto {
     overflow: auto;
     height: 100vh;
 }
-.d-none{
+
+.d-none {
     display: none;
 }
 
@@ -3336,11 +3321,13 @@ button.learn-more-btn:hover {
 .search-not-found-img img {
     width: 100%;
 }
+
 .search-not-found-info {
     padding-top: 93px;
     text-align: center;
 }
-.search-not-found-info p{
+
+.search-not-found-info p {
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -3350,11 +3337,12 @@ button.learn-more-btn:hover {
     margin-top: 16px;
     padding-bottom: 108px;
 }
-.p-68{
+
+.p-68 {
     padding: 68px;
 }
 
-.d-block{
+.d-block {
     display: block;
 }
 
@@ -3365,13 +3353,14 @@ button.learn-more-btn:hover {
     grid-template-columns: repeat(4, 360px);
     gap: 38px;
 }
+
 .books-filter {
     display: none;
 }
 
-.filter-book_show{
+.filter-book_show {
     position: absolute;
-    left:0
+    left: 0
 }
 
 .cloud-modal {
@@ -3385,13 +3374,12 @@ button.learn-more-btn:hover {
     top: 30%;
     cursor: pointer;
     position: fixed;
-    height: 500px;
+    height: 410px;
     display: none;
     z-index: 99;
-    /*background-color: #FEEFCD;*/
 }
 
-.cloud-modal-text{
+.cloud-modal-text {
     width: 100%;
     max-width: 425px;
     padding-bottom: 16px;
@@ -3413,17 +3401,16 @@ button.learn-more-btn:hover {
     border-radius: 5px;
 }
 
-.message-success div{
+.message-success div {
     color: #000;
 }
 
-
-.book-page-reviews-boxes  .slick-prev,
-.book-page-reviews-boxes  .slick-next{
+.book-page-reviews-boxes .slick-prev,
+.book-page-reviews-boxes .slick-next {
     display: none !important;
 }
 
-.book-page-reviews-boxes .slick-slide{
+.book-page-reviews-boxes .slick-slide {
     text-align: center !important;
 }
 

@@ -1,5 +1,4 @@
 <div class="search-section ">
-
     <div class="popup-search-input">
         <div class="content">
             <div class="close-popup-img ">
@@ -28,7 +27,7 @@
                 <input type="hidden" id="book-not-found-image" value="{{ URL::to('images/crying-girl.png') }}">
                 <input type="hidden" id="search_error_result" value="{{ __('messages.search_error_result') }}">
             </form>
-            <div id="booksContainer"  ></div>
+            <div id="booksContainer"></div>
         </div>
     </div>
 </div>

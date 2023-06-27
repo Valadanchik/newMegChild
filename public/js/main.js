@@ -38,7 +38,6 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
 
     xhr.onload = function () {
         if (xhr.status === 200) {
-            console.log(xhr.responseText);
             var data = JSON.parse(xhr.responseText);
             // var count = data.cartProductsCount;
             window.location.href = checkoutRouterUrl;
@@ -68,7 +67,6 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
 //
 //     xhr.onload = function () {
 //         if (xhr.status === 200) {
-//             console.log(xhr.responseText);
 //             var data = JSON.parse(xhr.responseText);
 //             // window.location.reload();
 //         }
@@ -84,9 +82,6 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
 //     };
 //
 //     xhr.send(data);
-//
-//
-//     console.log(bookId);
 // }));
 
 
@@ -137,7 +132,7 @@ function updateCartProductCount(quantity, productId) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             var data = JSON.parse(xhr.responseText);
-            if(data.success) {
+            if (data.success) {
                 totalPriceElement.innerHTML = data.total_price;
                 totalPriceToPayElement.innerHTML = data.total_price;
                 couponCallBackMessage.innerHTML = data.message;
@@ -237,7 +232,6 @@ deleteBtn?.forEach((item) => {
 
         xhr.onload = function () {
             if (xhr.status === 200) {
-                console.log(xhr.responseText);
                 var data = JSON.parse(xhr.responseText);
                 // window.location.reload();
                 let payPriceElement = document.querySelector('.all-result-payable-to span span');
@@ -417,8 +411,6 @@ let closePopup = document.querySelector('.close-popup-img img')
 let closeModal = document.querySelector('.modal')
 let book_info = document.querySelector('#booksContainer')
 // let search_input = document.querySelector('#search-input').value;
-// console.log(search_input)
-
 
 searchBtn?.addEventListener('click', () => {
     searchSection.classList.toggle("open")
@@ -472,9 +464,9 @@ modal_filter?.addEventListener('click', filterModalClose)
 
 function filterModalClose() {
     modal_filter.classList.remove('filter-modal-open')
-    media_filter_icon.classList.remove('open')
-    choose_media_section.classList.remove('filter-show')
-    filter_body.classList.remove('body-open')
+    media_filter_icon?.classList.remove('open')
+    choose_media_section?.classList.remove('filter-show')
+    filter_body?.classList.remove('body-open')
 }
 
 /*////////////////filter-book-page/////////////*/
@@ -499,21 +491,20 @@ books_filter_icon?.addEventListener("click", filterBookOpen)
 
 function filterBookOpen() {
     filtering_book_page_list.classList.toggle('filter-book_show')
-    books_filter_icon.classList.toggle('open')
-    modal_filter.classList.toggle('filter-modal-open')
-    filter_body.classList.toggle('body-open')
+    books_filter_icon?.classList.toggle('open')
+    modal_filter?.classList.toggle('filter-modal-open')
+    filter_body?.classList.toggle('body-open')
 }
 
 modal?.addEventListener('click', filterBookModalClose)
 
 function filterBookModalClose() {
-    modal_filter.classList.remove('filter-modal-open')
-    books_filter_icon.classList.remove('open')
-    filtering_book_page_list.classList.remove('filter-book_show')
-    filter_body.classList.remove('body-open')
+    modal_filter?.classList.remove('filter-modal-open')
+    books_filter_icon?.classList.remove('open')
+    filtering_book_page_list?.classList.remove('filter-book_show')
+    filter_body?.classList.remove('body-open')
 
 }
-
 
 /*/////////////////////////Learn more///////////////////////////*/
 const l_more = document.querySelector('.l_more')
@@ -535,7 +526,6 @@ learn_more_btn?.addEventListener('click', () => {
     text.style.overflow = "inherit"
     text.style.display = "inherit"
 })
-
 
 /*________________validacia_____________*/
 
@@ -582,7 +572,7 @@ function checkInputs() {
 
     if (acceptContent.content == "none") {
         errorsForm['accept'] = true
-        setErrorFor(accept,  document.getElementById('required_terms').value);
+        setErrorFor(accept, document.getElementById('required_terms').value);
     } else {
         setSuccessFor(accept);
     }
@@ -623,18 +613,18 @@ let modal_filter1 = document.querySelector('.modal')
 let filter_body1 = document.querySelector('.filter-body')
 let book_page_reviews_info = document.querySelectorAll('.book-page-reviews-item p')
 
-book_page_reviews_info.forEach((item) =>{
+book_page_reviews_info.forEach((item) => {
 
-    if(item.offsetHeight >= 85){
-            item.addEventListener('click', () => {
-                let text = item.innerHTML
-                cloud_modal_text.innerHTML = text
-                cloud_modal.style.display = 'block'
-                cloud_modal.style.cursor = 'unset'
-                modal_filter1.classList.toggle('filter-modal-open')
-                filter_body1.classList.toggle('body-open')
-            })
-    }else if(item.offsetHeight < 85){
+    if (item.offsetHeight >= 85) {
+        item.addEventListener('click', () => {
+            let text = item.innerHTML
+            cloud_modal_text.innerHTML = text
+            cloud_modal.style.display = 'block'
+            cloud_modal.style.cursor = 'unset'
+            modal_filter1.classList.toggle('filter-modal-open')
+            filter_body1.classList.toggle('body-open')
+        })
+    } else if (item.offsetHeight < 85) {
         item.style.cursor = 'unset'
     }
 })

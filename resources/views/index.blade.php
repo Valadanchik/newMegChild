@@ -107,7 +107,7 @@
             <section class="parent">
                 <div class="parent-section content">
                     <div class="parent-section-img">
-                        <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
+                        <a href="{{ LaravelLocalization::localizeUrl('/book/' . $data['lastParentBook']['slug']) }}">
                             <img src="{{ URL::to('storage/' . $data['lastParentBook']['main_image']) }}" alt="">
                         </a>
                     </div>

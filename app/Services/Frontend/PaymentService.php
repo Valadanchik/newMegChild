@@ -2,6 +2,7 @@
 
 namespace App\Services\Frontend;
 
+use App\Events\CouponQuantity;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -16,8 +17,12 @@ class PaymentService
         $this->lang = app()->getLocale() === 'hy' ? 'am' : app()->getLocale();
     }
 
-    public function makePayment(Order $order)
-    {
+    /**
+     * @param Order $order
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|null
+     */
+     public function makePayment(Order $order): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application|null
+     {
         $amount = $order->total_price;
         $payment_method = $order->payment_method;
 
@@ -69,6 +74,11 @@ class PaymentService
                 $order->total_price == $request->EDP_AMOUNT) {
 
                 event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
+
+                if (session()->get('coupon')) {
+                    event(new CouponQuantity(session()->get('coupon')));
+                }
+
                 echo "OK";
             } else {
                 event(new OrderPayment(false, $order, Order::STATUS_FAILED));
@@ -145,6 +155,10 @@ class PaymentService
         if ($request->status == 'PAID') {
 
             event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
+
+            if (session()->get('coupon')) {
+                event(new CouponQuantity(session()->get('coupon')));
+            }
         } else {
 
             event(new OrderPayment(false, $order, Order::STATUS_FAILED));

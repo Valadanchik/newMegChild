@@ -59,8 +59,8 @@
                             <tr>
                                 <td>{{ $coupon['code']  }}</td>
                                 <td>{{ $coupon['price']  }}</td>
-                                <td>{{ $coupon['type']  }}</td>
                                 <td>{{ $coupon['quantity']  }}</td>
+                                <td>{{ $coupon['type'] }}</td>
                                 <td>{{ $coupon['book_id'] === \App\Models\Coupon::ALL_BOOKS ? 'All Books' :  implode(', ', json_decode($coupon['book_id']))  }}</td>
                                 <td>
                                     <a href="{{ url('fs-admin/coupons/' . $coupon['id'] . '/edit' ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">

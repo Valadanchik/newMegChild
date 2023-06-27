@@ -63,6 +63,9 @@
                             <input id="change-cart-product-count" type="hidden" value="{{ route('updateCart') }}">
 
                             <div class="shopping-cart-buttons">
+                                <div>
+                                    <span class="couponCallBackMessage"></span>
+                                </div>
                                 <div class="shopping-cart-code-input">
                                     <label>
                                         <input id="couponName" type="text" placeholder="Կոդը" value=""/>

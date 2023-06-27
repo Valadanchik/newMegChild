@@ -12,4 +12,7 @@ return [
     'required_terms' => 'Կարդացեք և համաձայնվեք օգտագործման պայմանների հետ',
     'required_country' => 'Նշեք երկիրը',
     'required_review' => 'Դաշտը լրացված չէ',
+    'coupon_not_found' => 'Սխալ կամ ավարտված արժեկտրոն',
+    'coupon_used_successfully' => 'Կտրոնը հաջողությամբ օգտագործվեց'
+
 ];

@@ -30,7 +30,7 @@ class UpdateBookRequest extends FormRequest
             'description_en' => 'required|string',
             'book_size_hy' => 'required|string',
             'book_size_en' => 'required|string',
-            'video_url' => 'string',
+            'video_url' => 'nullable|string',
             'slug' => 'required|string|max:255|unique:books,slug,' . $this->id,
             'price' => 'required|integer',
             'word_count' => 'required|integer',
@@ -40,7 +40,6 @@ class UpdateBookRequest extends FormRequest
             'in_stock' => 'required|integer',
             'published_date' => 'required|string',
             'authors' => 'required|array',
-            'translators' => 'required|array',
             'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }

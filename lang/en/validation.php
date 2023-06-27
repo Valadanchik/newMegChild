@@ -24,6 +24,8 @@ return [
     'required_terms' => 'The agree field is required',
     'required_country' => 'The country field is required',
     'required_review' => 'The field is not filled',
+    'coupon_not_found' => 'Wrong or expired coupon',
+    'coupon_used_successfully' => 'Coupon used successfully',
 
 
 

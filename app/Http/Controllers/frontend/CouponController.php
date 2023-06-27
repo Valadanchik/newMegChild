@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Books;
 use App\Models\Coupon;
 use App\Services\Frontend\ShopService;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
-
+    /**
+     * @param ShopService $shopService
+     */
     public function __construct(protected ShopService $shopService)
     {
 
@@ -17,45 +20,70 @@ class CouponController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param bool $includeCoupon
+     * @return \Closure|float|\Illuminate\Http\JsonResponse|int|mixed|object|null
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public static function checkCoupon(Request $request)
+    public static function checkCoupon(Request $request, bool $includeCoupon = false): mixed
     {
         $userCoupon = $request->coupon;
-        $coupon = Coupon::where('code', $userCoupon)->where('quantity', '>', 0)->first();
+        $coupon = self::checkCouponIsValid($userCoupon);
 
         if ($coupon) {
-
+            $total_price = 0;
             if ($coupon->type === Coupon::SINGLE_BOOK) {
                 $total_price = self::singleCouponFunction($coupon);
             } else if ($coupon->type === Coupon::EACH_BOOKS) {
-                $total_price = self::allBooksCouponFunction($coupon);
+                $total_price = self::eachBooksCouponFunction($coupon);
             }
 
-
-            return response()->json([
-                'success' => true,
-                'coupon' => $coupon,
-                'total_price' => $total_price,
-            ]);
+            if ($includeCoupon) {
+                return $total_price;
+            } else {
+                return ShopController::returnTotalPriceResponse($total_price, $coupon, true, __('validation.coupon_used_successfully'));
+            }
         }
-        return response()->json([
-            'success' => false,
-        ]);
+
+        return ShopController::returnTotalPriceResponse(ShopService::getCartTotalPrice(), null, false, __('validation.coupon_not_found'));
     }
 
     /**
+     * @param $userCoupon
+     * @return mixed
+     */
+    public static function checkCouponIsValid($userCoupon): mixed
+    {
+        $coupon = Coupon::where('code', $userCoupon)->where('quantity', '>', 0)->first();
+
+        if ($coupon === null) {
+            $couponCode = null;
+        } else {
+            $couponCode = $coupon->code;
+        }
+
+        session()->put('coupon', $couponCode);
+
+        return $coupon;
+    }
+
+    /**
+     *
      * @param $couponModel
-     * @return \Closure|mixed|object|null
+     * @return int|float
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public static function singleCouponFunction($couponModel)
+    public static function singleCouponFunction($couponModel): int|float
     {
-        $total_price = session()->get('total_price');
-        return $total_price - $couponModel->price;
+        $total_price = 0;
+        if ($couponModel->book_id === Coupon::ALL_BOOKS) {
+            $total_price = ShopService::getCartTotalPrice($couponModel->price, $couponModel->book_id, $total_price, Coupon::SINGLE_BOOK);
+        } else {
+            $total_price = self::filterCouponBookData($couponModel);
+        }
+
+        return $total_price;
     }
 
     /**
@@ -64,33 +92,46 @@ class CouponController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public static function allBooksCouponFunction($couponModel)
+    public static function eachBooksCouponFunction($couponModel): float|int
     {
         $total_price = 0;
         if ($couponModel->book_id === Coupon::ALL_BOOKS) {
-            $total_price = ShopService::getCartTotalPrice($couponModel->price);
+            $total_price = ShopService::getCartTotalPrice($couponModel->price, $couponModel->book_id, $total_price, Coupon::EACH_BOOKS);
         } else {
+            $total_price = self::filterCouponBookData($couponModel);
+        }
 
-            $sessionProductsId = array_keys(session()->get('cart'));
-            $couponProductsId = json_decode($couponModel->book_id);
+        return $total_price;
+    }
 
-            $checkProductsHasCouponIds = [];
-            $productsIdWithoutCouponIds = [];
-            foreach ($sessionProductsId as $value) {
-                if (in_array($value, $couponProductsId)) {
-                    $checkProductsHasCouponIds[] = $value;
-                } else {
-                    $productsIdWithoutCouponIds[] = $value;
-                }
+    /**
+     * @param $couponModel
+     * @return float|int
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public static function filterCouponBookData($couponModel): float|int
+    {
+        $total_price = 0;
+        $sessionProductsId = array_keys(session()->get('cart'));
+        $couponProductsId = json_decode($couponModel->book_id);
+        $checkProductsHasCouponIds = [];
+        $productsIdWithoutCouponIds = [];
+
+        foreach ($sessionProductsId as $value) {
+            if (in_array($value, $couponProductsId)) {
+                $checkProductsHasCouponIds[] = $value;
+            } else {
+                $productsIdWithoutCouponIds[] = $value;
             }
+        }
 
-            if (count($checkProductsHasCouponIds)) {
-                $total_price = ShopService::getCartTotalPrice($couponModel->price, $checkProductsHasCouponIds, $total_price);
-            }
+        if (count($checkProductsHasCouponIds)) {
+            $total_price = ShopService::getCartTotalPrice($couponModel->price, $checkProductsHasCouponIds, $total_price, $couponModel->type);
+        }
 
-            if (count($productsIdWithoutCouponIds)) {
-                $total_price = ShopService::getCartTotalPrice(false, $productsIdWithoutCouponIds, $total_price);
-            }
+        if (count($productsIdWithoutCouponIds)) {
+            $total_price = ShopService::getCartTotalPrice(false, $productsIdWithoutCouponIds, $total_price, $couponModel->type);
         }
 
         return $total_price;

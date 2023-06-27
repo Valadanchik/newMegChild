@@ -12,49 +12,46 @@ $(document).ready(function () {
 
 
     $('#useCoupon').on('click', function (event) {
+        event.preventDefault();
+        let couponName = $('#couponName').val();
+
+        if (!couponName.length) return
 
         $('.loader-container').css('display', 'flex');
-        let couponName = $('#couponName').val();
         let url = $('#couponRouterName').val();
         let totalPriceElement = document.querySelector('.total-price');
         let totalPriceToPayElement = document.querySelector('.total-price-to-pay');
 
-
-        console.log(url + couponName);
-
-            $.ajax({
-                url: url,
-                type: 'POST',
-                dataType: 'json',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: JSON.stringify({
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    coupon: couponName
-                }),
-                success: function (data) {
-                    console.log(data);
-
-                    totalPriceElement.innerHTML = data.total_price;
-                    totalPriceToPayElement.innerHTML = data.total_price;
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    console.error(errorThrown);
-                },
-                complete: function () {
-                    $('.loader-container').hide();
-                }
-            });
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: JSON.stringify({
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                coupon: couponName
+            }),
+            success: function (data) {
+                totalPriceElement.innerHTML = data.total_price;
+                totalPriceToPayElement.innerHTML = data.total_price;
+                $('.couponCallBackMessage').html(data.message);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.error(errorThrown);
+            },
+            complete: function () {
+                $('.loader-container').hide();
+            }
+        });
     });
 
 
+    /*/////////SLIDER//////////////*/
 
-
-/*/////////SLIDER//////////////*/
-
-/*SEARCH FUNCTIONALITY*/
+    /*SEARCH FUNCTIONALITY*/
     $('#search-input').on('keyup', function (event) {
         if (event.target.value.length > 2) {
             $('.loader-container').show();
@@ -81,11 +78,10 @@ $(document).ready(function () {
                     $('.loader-container').hide();
                 }
             });
-        } else if(event.target.value.length <= 2){
+        } else if (event.target.value.length <= 2) {
             $("#booksContainer").html('');
         }
     });
-
 
 
 });
@@ -100,7 +96,7 @@ function htmlFilter(books) {
     let search_error_result = $("#search_error_result").val();
 
     if (books.length === 0) {
-         booksInfoItem = $('<div class="search-not-found-section"></div>');
+        booksInfoItem = $('<div class="search-not-found-section"></div>');
         let searchNotFound = ''
         searchNotFound +=
             `<div class="search-not-found-info">

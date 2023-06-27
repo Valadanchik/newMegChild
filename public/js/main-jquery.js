@@ -13,6 +13,7 @@ $(document).ready(function () {
 });
 
 /*/////////SLIDER//////////////*/
+$(document).ready(function () {
 if ($('.book-page-reviews-item').length >= 4) {
     $('.multiple-items').slick({
         slidesToShow: 4,
@@ -49,6 +50,7 @@ if ($('.book-page-reviews-item').length >= 4) {
         ]
     });
 }
+});
 /*/////////SLIDER//////////////*/
 
 $('#useCoupon').on('click', function (event) {

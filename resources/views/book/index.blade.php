@@ -19,8 +19,6 @@
                         {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}
                     @endforeach
                 </p>
-
-
                 <div class="book-page-item-param-and-icon">
                     <div class="book-page-item-description-param">
                         <div class="book-page-item-description-param-group">
@@ -33,7 +31,6 @@
                             <p>{{ __('messages.age') }}</p>
                             <span>{{ $book->category->age }}</span>
                         </div>
-
                     </div>
                     <div class="article-itm-page-banner-desc-icon">
                         <span>{{ __('messages.share') }}:</span>
@@ -50,12 +47,10 @@
                     @else
                         <div style="color:red; margin: 20px">{{ __('messages.not_available') }}</div>
                     @endif
-
                     <input id="add-to-cart-url" type="hidden" value="{{ route('addToCart') }}">
                     <input id="checkout-router" type="hidden" value="{{ route('order') }}">
                     <input id="product-id" type="hidden" value="{{ $book['id'] }}">
                     <input id="quantity" type="hidden" value="1" name="number">
-
                 </div>
                 <div class="book-item-desc">
                     <h4>{{ __('messages.contents') }}</h4>
@@ -112,7 +107,6 @@
                         </div>
                         <span>{{ $book['book_size_' . app()->getLocale()]  }}</span>
                     </div>
-
                     <div class="additional-information-list-item">
                         <p>{{ __('messages.word_count') }}</p>
                         <div class="additional-information-list-item-img">
@@ -120,7 +114,6 @@
                         </div>
                         <span>{{ $book['word_count'] }}</span>
                     </div>
-
                     <div class="additional-information-list-item">
                         <p>{{ __('messages.font_size') }}</p>
                         <div class="additional-information-list-item-img">
@@ -133,8 +126,6 @@
                     <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
                 </button>
             </div>
-
-
             <div class="after-and-book-trailer">
                 <div class="book-page-item-after  accordion">
                     <h2 class="faq-title">{{ __('messages.authors') }}</h2>
@@ -234,7 +225,8 @@
                         <button>{{ __('messages.send') }}</button>
                     </div>
 
-                    <div class="form-control accept @if(session()->has('send_successfully_message') || session()->has('send_comment_wrong_message')) message-success @endif">
+                    <div
+                        class="form-control accept @if(session()->has('send_successfully_message') || session()->has('send_comment_wrong_message')) message-success @endif">
 
                         @if(session('send_successfully_message'))
                             <div class="required--success"> {{ session('send_successfully_message') }}</div>
@@ -246,7 +238,6 @@
                     </div>
                 </form>
             </div>
-
         </section>
 
         <section class="reade-more content">

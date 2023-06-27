@@ -26,22 +26,24 @@
                     </div>
                     <div class="color-info-description">
                         <h2>{{ $book['title_' . app()->getLocale()]  }}</h2>
-{{--                        <p class="color-info-description-after">{{ __('messages.author') }}`--}}
-{{--                            @foreach($book->authors as $key => $author)--}}
-{{--                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}--}}
-{{--                            @endforeach--}}
-{{--                        </p>--}}
-{{--                        <p class="color-info-description-translate">{{ __('messages.armenian_translation') }}`--}}
-{{--                            @foreach($book->translators as $key => $translator)--}}
-{{--                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->translators) - 1 ? ',' : '' }}--}}
-{{--                            @endforeach--}}
-{{--                        </p>--}}
+                        {{--                        <p class="color-info-description-after">{{ __('messages.author') }}`--}}
+                        {{--                            @foreach($book->authors as $key => $author)--}}
+                        {{--                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}--}}
+                        {{--                            @endforeach--}}
+                        {{--                        </p>--}}
+                        {{--                        <p class="color-info-description-translate">{{ __('messages.armenian_translation') }}`--}}
+                        {{--                            @foreach($book->translators as $key => $translator)--}}
+                        {{--                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->translators) - 1 ? ',' : '' }}--}}
+                        {{--                            @endforeach--}}
+                        {{--                        </p>--}}
                         <div class="color-info-description-param">
                             <div class="description-param-group">
                                 <p>{{ __('messages.group') }}</p>
                                 <div class="description-param-group-img">
                                     <a href="{{ LaravelLocalization::localizeUrl('/category/' . $book->category->name_en) }}">
-                                        <img src="{{ URL::to('/images/svg/white-' . $book->category->name_en . '.svg') }}" alt="{{ $book->category->name_en }}">
+                                        <img
+                                            src="{{ URL::to('/images/svg/white-' . $book->category->name_en . '.svg') }}"
+                                            alt="{{ $book->category->name_en }}">
                                     </a>
                                 </div>
                             </div>
@@ -49,14 +51,14 @@
                                 <p>{{ __('messages.age') }}</p>
                                 <span>{{ $book->category->age }}</span>
                             </div>
-{{--                            <div class="color-info-description-word-count">--}}
-{{--                                <p>{{ __('messages.word_count') }}</p>--}}
-{{--                                <span>{{ $book['word_count'] }}</span>--}}
-{{--                            </div>--}}
-{{--                            <div class="color-info-description-font-size">--}}
-{{--                                <p>{{ __('messages.font_size') }}</p>--}}
-{{--                                <span>{{ $book['font_size']  }}</span>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="color-info-description-word-count">--}}
+                            {{--                                <p>{{ __('messages.word_count') }}</p>--}}
+                            {{--                                <span>{{ $book['word_count'] }}</span>--}}
+                            {{--                            </div>--}}
+                            {{--                            <div class="color-info-description-font-size">--}}
+                            {{--                                <p>{{ __('messages.font_size') }}</p>--}}
+                            {{--                                <span>{{ $book['font_size']  }}</span>--}}
+                            {{--                            </div>--}}
                         </div>
                         <div class="color-info-description-btn">
                             <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">{{ __('messages.learn_more') }}</a>
@@ -69,7 +71,7 @@
         @if(count($data['posts']))
             <section class="articles">
                 <div class="article-section content">
-                    <div  class="{{"article-section-title-".app()->getLocale()}}">
+                    <div class="{{"article-section-title-".app()->getLocale()}}">
                         <h2>{{ __('messages.articles') }}</h2>
                     </div>
 
@@ -113,22 +115,24 @@
                     </div>
                     <div class="color-info-description">
                         <h2>{{ $data['lastParentBook']['title_' . app()->getLocale()]  }}</h2>
-{{--                        <p class="color-info-description-after">{{ __('messages.author') }}`--}}
-{{--                            @foreach($book->authors as $key => $author)--}}
-{{--                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}--}}
-{{--                            @endforeach--}}
-{{--                        </p>--}}
-{{--                        <p class="color-info-description-translate">{{ __('messages.armenian_translation') }}`--}}
-{{--                            @foreach($book->translators as $key => $translator)--}}
-{{--                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->translators) - 1 ? ',' : '' }}--}}
-{{--                            @endforeach--}}
-{{--                        </p>--}}
+                        {{--                        <p class="color-info-description-after">{{ __('messages.author') }}`--}}
+                        {{--                            @foreach($book->authors as $key => $author)--}}
+                        {{--                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}--}}
+                        {{--                            @endforeach--}}
+                        {{--                        </p>--}}
+                        {{--                        <p class="color-info-description-translate">{{ __('messages.armenian_translation') }}`--}}
+                        {{--                            @foreach($book->translators as $key => $translator)--}}
+                        {{--                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->translators) - 1 ? ',' : '' }}--}}
+                        {{--                            @endforeach--}}
+                        {{--                        </p>--}}
                         <div class="color-info-description-param">
                             <div class="description-param-group">
                                 <p>{{ __('messages.group') }}</p>
                                 <div class="description-param-group-img">
                                     <a href="{{ LaravelLocalization::localizeUrl('/category/' . $data['lastParentBook']['category']['name_en']) }}">
-                                        <img src="{{ URL::to('/images/svg/white-' . $data['lastParentBook']['category']['name_en'] . '.svg') }}" alt="{{ $data['lastParentBook']['category']['name_en'] }}">
+                                        <img
+                                            src="{{ URL::to('/images/svg/white-' . $data['lastParentBook']['category']['name_en'] . '.svg') }}"
+                                            alt="{{ $data['lastParentBook']['category']['name_en'] }}">
                                     </a>
                                 </div>
                             </div>
@@ -136,14 +140,14 @@
                                 <p>{{ __('messages.age') }}</p>
                                 <span>{{ $data['lastParentBook']['category']['age'] }}</span>
                             </div>
-{{--                            <div class="color-info-description-word-count">--}}
-{{--                                <p>{{ __('messages.word_count') }}</p>--}}
-{{--                                <span>{{ $data['lastParentBook']['word_count'] }}</span>--}}
-{{--                            </div>--}}
-{{--                            <div class="color-info-description-font-size">--}}
-{{--                                <p>{{ __('messages.font_size') }}</p>--}}
-{{--                                <span>{{ $data['lastParentBook']['font_size']  }}</span>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="color-info-description-word-count">--}}
+                            {{--                                <p>{{ __('messages.word_count') }}</p>--}}
+                            {{--                                <span>{{ $data['lastParentBook']['word_count'] }}</span>--}}
+                            {{--                            </div>--}}
+                            {{--                            <div class="color-info-description-font-size">--}}
+                            {{--                                <p>{{ __('messages.font_size') }}</p>--}}
+                            {{--                                <span>{{ $data['lastParentBook']['font_size']  }}</span>--}}
+                            {{--                            </div>--}}
                         </div>
                         <div class="color-info-description-btn">
                             <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">{{ __('messages.learn_more') }}</a>
@@ -164,7 +168,8 @@
                             <div>
                                 <div class="authors-boxes-img">
                                     <a href="{{ LaravelLocalization::localizeUrl('/author/' . $author['slug']) }}">
-                                        <img src="{{ URL::to('storage/'. $author['image']) }}" alt="{{ $author['name_' . app()->getLocale()] }}">
+                                        <img src="{{ URL::to('storage/'. $author['image']) }}"
+                                             alt="{{ $author['name_' . app()->getLocale()] }}">
                                     </a>
                                 </div>
                                 <span>{{ $author['name_' . app()->getLocale()] }} </span>

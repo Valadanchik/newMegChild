@@ -5,7 +5,7 @@
         <section class="authors-page">
             <div class="authors-section content">
                 <div class="{{"authors-section-title-".app()->getLocale()}}">
-                    <h2>{{ __('messages.authors') }}</h2>
+                    <h1>{{ __('messages.authors') }}</h1>
                 </div>
                 <div class="authors-boxes">
                     @foreach($authors as $author)

@@ -157,7 +157,7 @@
                         <div class="card mb-4">
                             <div class="card-header">Word Count</div>
                             <div class="card-body">
-                                <input type="number" class="form-control" id="word_count" name="word_count"
+                                <input type="text" class="form-control" id="word_count" name="word_count"
                                        value="{{ old('word_count') }}">
                             </div>
                             @error('word_count')

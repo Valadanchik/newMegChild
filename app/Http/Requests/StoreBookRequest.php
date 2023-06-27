@@ -34,7 +34,7 @@ class StoreBookRequest extends FormRequest
             'video_url' => 'nullable|string',
             'slug' => 'required|string|max:255|unique:books,slug',
             'price' => 'required|integer',
-            'word_count' => 'required|integer',
+            'word_count' => 'required|string',
             'page_count' => 'required|integer',
             'font_size' => 'required|string',
             'isbn' => 'required|string|max:255',

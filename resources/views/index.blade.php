@@ -150,7 +150,7 @@
                             {{--                            </div>--}}
                         </div>
                         <div class="color-info-description-btn">
-                            <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">{{ __('messages.learn_more') }}</a>
+                            <a href="{{ LaravelLocalization::localizeUrl('/book/' . $data['lastParentBook']['slug']) }}">{{ __('messages.learn_more') }}</a>
                         </div>
                     </div>
                 </div>

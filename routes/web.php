@@ -8,6 +8,7 @@ use App\Http\Controllers\frontend\PaymentController;
 use App\Http\Controllers\frontend\ContactUsController;
 use App\Http\Controllers\frontend\BookCommentsController;
 use App\Http\Controllers\frontend\SubscriptionController;
+use \App\Http\Controllers\frontend\CouponController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BookCommentsController as AdminBookCommentsController;
@@ -21,8 +22,8 @@ use App\Http\Controllers\admin\OrderController as AdminOrderController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\SubscriptionController as AdminSubscriptionController;
 use App\Http\Controllers\Admin\SettingsController;
-use \App\Http\Middleware\SetSettingDataServiceMiddleware;
-
+use App\Http\Middleware\SetSettingDataServiceMiddleware;
+use App\Http\Controllers\admin\CouponController as AdminCouponController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,6 +78,7 @@ Route::middleware([SetSettingDataServiceMiddleware::class])->group(function () {
         Route::post('/add-to-cart', [ShopController::class, 'addToCart'])->name('addToCart');
         Route::post('/remove-from-card', [ShopController::class, 'removeFromCart'])->name('removeFromCart');
         Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('updateCart');
+        Route::post('/coupon/check/', [CouponController::class, 'checkCoupon'])->name('coupon.check');
         Route::post('/subscription', [SubscriptionController::class, 'store'])->name('subscription.store');
 
         /*************************** ADMIN ROUTES **************************/
@@ -114,6 +116,7 @@ Route::middleware([SetSettingDataServiceMiddleware::class])->group(function () {
                 Route::resource('categories', CategoriesController::class)->middleware('can:isAdmin');
                 Route::resource('orders', AdminOrderController::class)->middleware('can:isAdmin');
                 Route::resource('users', UserController::class)->middleware('can:isAdmin');
+                Route::resource('coupons', AdminCouponController::class)->middleware('can:isAdmin');
                 Route::resource('posts', PostsController::class);
                 Route::resource('medias', MediaController::class);
             });

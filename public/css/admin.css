@@ -19652,5 +19652,17 @@ pre[class*=language-] {
 }
 
 
+#dropdownMenuButton {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background: transparent;
+    color: black;
+    border: 1px solid grey;
+}
+
+
 
 

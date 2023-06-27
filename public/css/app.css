@@ -2315,7 +2315,7 @@ section.about-us {
     border-radius: 10px;
 }
 
-.shopping-cart-promo-code-btn a {
+.shopping-cart-promo-code-btn button {
     width: 100%;
     max-width: 258px;
     padding: 12px 37px;
@@ -2510,11 +2510,12 @@ section.about-us {
     cursor: pointer;
 }
 
-.ackaging {
+.packaging {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
-    padding: 0 20px;
+    padding: 0px 10px 20px 20px;
+    flex-direction: column;
 }
 
 .my-radio {
@@ -3426,4 +3427,6 @@ button.learn-more-btn:hover {
     text-align: center !important;
 }
 
-
+.couponCallBackMessage {
+    color: #f36f21;
+}

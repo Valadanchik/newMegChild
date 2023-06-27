@@ -39,9 +39,16 @@ class OrderService
 
     public function create(Request $request)
     {
+        $request->request->add(['total_price' => session()->get('total_price')]);
         return Order::create($request->except(['_token','terms']));
     }
 
+    /**
+     * @param Order $order
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function createOrderBook(Order $order)
     {
         $order->load('region');

@@ -121,6 +121,7 @@ function updateCartProductCount(quantity, productId) {
 
     let totalPriceElement = document.querySelector('.total-price');
     let totalPriceToPayElement = document.querySelector('.total-price-to-pay');
+    let couponCallBackMessage = document.querySelector('.couponCallBackMessage');
     // let totalPrice = parseInt(totalPriceElement.innerHTML);
 
     var xhr = new XMLHttpRequest();
@@ -128,17 +129,23 @@ function updateCartProductCount(quantity, productId) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
 
-    var product = document.getElementById('product-id').value;
+    // var product = document.getElementById('product-id').value;
+    var coupon_name = document.getElementById('couponName').value;
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var data = JSON.stringify({_token: csrfToken, quantity: quantity, book_id: productId});
+    var data = JSON.stringify({_token: csrfToken, quantity: quantity, book_id: productId, coupon: coupon_name});
 
     xhr.onload = function () {
         if (xhr.status === 200) {
-            console.log(xhr.responseText);
             var data = JSON.parse(xhr.responseText);
-            console.log(data);
-            totalPriceElement.innerHTML = data.total_price;
-            totalPriceToPayElement.innerHTML = data.total_price;
+            if(data.success) {
+                totalPriceElement.innerHTML = data.total_price;
+                totalPriceToPayElement.innerHTML = data.total_price;
+                couponCallBackMessage.innerHTML = data.message;
+            } else {
+                couponCallBackMessage.innerHTML = data.message;
+            }
+
+
         }
     };
 
@@ -174,14 +181,14 @@ min?.forEach((item) => {
             countElement.value = parseInt(countElement.value) - 1;
             updateCartProductCount(countElement.value, productId)
 
-            totalPriceElement.innerHTML = totalPrice - itemPrice;
-            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
+            // totalPriceElement.innerHTML = totalPrice - itemPrice;
+            // payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
         } else {
             countElement.value = parseInt(countElement.value) - 1;
             updateCartProductCount(countElement.value, productId)
 
-            totalPriceElement.innerHTML = totalPrice - itemPrice;
-            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
+            // totalPriceElement.innerHTML = totalPrice - itemPrice;
+            // payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
             event.currentTarget.classList.add('min-none');
             minBtn.src = "/images/svg/shopping-cart-min-img.svg";
         }
@@ -205,8 +212,8 @@ plus?.forEach((item) => {
         if (parseInt(countElement.value) < maxCount) {
             countElement.value = parseInt(countElement.value) + 1;
             updateCartProductCount(countElement.value, productId)
-            totalPriceElement.innerHTML = totalPrice + itemPrice;
-            payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) + itemPrice;
+            // totalPriceElement.innerHTML = totalPrice + itemPrice;
+            // payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) + itemPrice;
             minBtn.querySelector('img').src = "/images/svg/minus-circle.svg";
             minBtn.classList.remove('min-none');
         }

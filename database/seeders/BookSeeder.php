@@ -15,8 +15,8 @@ class BookSeeder extends Seeder
     {
         $books = [
             [
-                'title_hy' => '«Մուշի անհավանական արկածները»',
-                'title_en' => 'The strange journey of Mush',
+                'title_hy' => '«Մուշի տարօրինակ ճամփորդությունը»',
+                'title_en' => 'The Strange Journey of Mush',
                 'category_id' => Categories::BEN,
                 'slug' => 'the-strange-journey-of-mush',
                 'text_hy' => 'Սարսափելի վթարից հետո փոքրիկ Մուշի մեջ վախ է մտել. նա վախենում է

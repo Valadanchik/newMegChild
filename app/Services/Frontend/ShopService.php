@@ -3,6 +3,7 @@
 namespace App\Services\Frontend;
 
 use App\Models\Books;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 
 class ShopService
@@ -86,18 +87,35 @@ class ShopService
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function getCartTotalPrice(): float|int
+    public static function getCartTotalPrice($couponDiscount = false, $booksId = [], $total_price = 0, $couponType = null): float|int
     {
         $cart = session()->get('cart');
-        $total_price = 0;
 
         if ($cart && is_array($cart)) {
-            $sessionProductsId = array_keys(session()->get('cart'));
-            $books = Books::whereIn('id', $sessionProductsId)->where('status', true)->get();
+
+            $sessionProductsId = array_keys($cart);
+
+            if ($booksId === Coupon::ALL_BOOKS) {
+                $booksId = $sessionProductsId;
+            }
+
+            $cartBooksId = count($booksId) ? $booksId : $sessionProductsId;
+            $books = Books::whereIn('id', $cartBooksId)->where('status', true)->get();
+
             foreach ($books as $book) {
-                $total_price += $book->price * $cart[$book->id];
+                if ($couponDiscount && $couponType === Coupon::EACH_BOOKS) {
+                    $total_price += ($book->price - $couponDiscount) * $cart[$book->id];
+                } else {
+                    $total_price += $book->price * $cart[$book->id];
+                }
+            }
+
+            if ($couponType === Coupon::SINGLE_BOOK && $couponDiscount) {
+                $total_price = $total_price - ($couponDiscount * count($booksId));
             }
         }
+
+        session()->put('total_price', $total_price);
 
         return $total_price;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Events\CouponQuantity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderStoreRequest;
 use App\Services\Frontend\OrderService;
@@ -26,6 +27,8 @@ class OrderController extends Controller
      */
     public function index(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
+//        dd(session()->get('coupon'));
+
         $cardBooks = [];
         if (session()->get('cart')) {
             $regions = $this->orderService->getRegions();
@@ -67,9 +70,8 @@ class OrderController extends Controller
         }
 
         $order = $this->orderService->create($request);
-        $this->orderService->createOrderBook($order);
-
         $payment_service = new PaymentService();
+
         return $payment_service->makePayment($order);
     }
 

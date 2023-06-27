@@ -26,16 +26,16 @@
                     </div>
                     <div class="color-info-description">
                         <h2>{{ $book['title_' . app()->getLocale()]  }}</h2>
-                        <p class="color-info-description-after">{{ __('messages.author') }}`
-                            @foreach($book->authors as $key => $author)
-                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}
-                            @endforeach
-                        </p>
-                        <p class="color-info-description-translate">{{ __('messages.armenian_translation') }}`
-                            @foreach($book->translators as $key => $translator)
-                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->translators) - 1 ? ',' : '' }}
-                            @endforeach
-                        </p>
+{{--                        <p class="color-info-description-after">{{ __('messages.author') }}`--}}
+{{--                            @foreach($book->authors as $key => $author)--}}
+{{--                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}--}}
+{{--                            @endforeach--}}
+{{--                        </p>--}}
+{{--                        <p class="color-info-description-translate">{{ __('messages.armenian_translation') }}`--}}
+{{--                            @foreach($book->translators as $key => $translator)--}}
+{{--                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->translators) - 1 ? ',' : '' }}--}}
+{{--                            @endforeach--}}
+{{--                        </p>--}}
                         <div class="color-info-description-param">
                             <div class="description-param-group">
                                 <p>{{ __('messages.group') }}</p>
@@ -49,14 +49,14 @@
                                 <p>{{ __('messages.age') }}</p>
                                 <span>{{ $book->category->age }}</span>
                             </div>
-                            <div class="color-info-description-word-count">
-                                <p>{{ __('messages.word_count') }}</p>
-                                <span>{{ $book['word_count'] }}</span>
-                            </div>
-                            <div class="color-info-description-font-size">
-                                <p>{{ __('messages.font_size') }}</p>
-                                <span>{{ $book['font_size']  }}</span>
-                            </div>
+{{--                            <div class="color-info-description-word-count">--}}
+{{--                                <p>{{ __('messages.word_count') }}</p>--}}
+{{--                                <span>{{ $book['word_count'] }}</span>--}}
+{{--                            </div>--}}
+{{--                            <div class="color-info-description-font-size">--}}
+{{--                                <p>{{ __('messages.font_size') }}</p>--}}
+{{--                                <span>{{ $book['font_size']  }}</span>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="color-info-description-btn">
                             <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">{{ __('messages.learn_more') }}</a>
@@ -107,22 +107,22 @@
             <section class="parent">
                 <div class="parent-section content">
                     <div class="parent-section-img">
-                        <a href="#">
+                        <a href="{{ LaravelLocalization::localizeUrl('/book/' . $data['lastParentBook']['slug']) }}">
                             <img src="{{ URL::to('storage/' . $data['lastParentBook']['main_image']) }}" alt="">
                         </a>
                     </div>
                     <div class="color-info-description">
                         <h2>{{ $data['lastParentBook']['title_' . app()->getLocale()]  }}</h2>
-                        <p class="color-info-description-after">{{ __('messages.author') }}`
-                            @foreach($book->authors as $key => $author)
-                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}
-                            @endforeach
-                        </p>
-                        <p class="color-info-description-translate">{{ __('messages.armenian_translation') }}`
-                            @foreach($book->translators as $key => $translator)
-                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->translators) - 1 ? ',' : '' }}
-                            @endforeach
-                        </p>
+{{--                        <p class="color-info-description-after">{{ __('messages.author') }}`--}}
+{{--                            @foreach($book->authors as $key => $author)--}}
+{{--                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}--}}
+{{--                            @endforeach--}}
+{{--                        </p>--}}
+{{--                        <p class="color-info-description-translate">{{ __('messages.armenian_translation') }}`--}}
+{{--                            @foreach($book->translators as $key => $translator)--}}
+{{--                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->translators) - 1 ? ',' : '' }}--}}
+{{--                            @endforeach--}}
+{{--                        </p>--}}
                         <div class="color-info-description-param">
                             <div class="description-param-group">
                                 <p>{{ __('messages.group') }}</p>
@@ -136,14 +136,14 @@
                                 <p>{{ __('messages.age') }}</p>
                                 <span>{{ $data['lastParentBook']['category']['age'] }}</span>
                             </div>
-                            <div class="color-info-description-word-count">
-                                <p>{{ __('messages.word_count') }}</p>
-                                <span>{{ $data['lastParentBook']['word_count'] }}</span>
-                            </div>
-                            <div class="color-info-description-font-size">
-                                <p>{{ __('messages.font_size') }}</p>
-                                <span>{{ $data['lastParentBook']['font_size']  }}</span>
-                            </div>
+{{--                            <div class="color-info-description-word-count">--}}
+{{--                                <p>{{ __('messages.word_count') }}</p>--}}
+{{--                                <span>{{ $data['lastParentBook']['word_count'] }}</span>--}}
+{{--                            </div>--}}
+{{--                            <div class="color-info-description-font-size">--}}
+{{--                                <p>{{ __('messages.font_size') }}</p>--}}
+{{--                                <span>{{ $data['lastParentBook']['font_size']  }}</span>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="color-info-description-btn">
                             <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">{{ __('messages.learn_more') }}</a>

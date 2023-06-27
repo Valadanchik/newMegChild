@@ -19,6 +19,8 @@
                         {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}
                     @endforeach
                 </p>
+
+
                 <div class="book-page-item-param-and-icon">
                     <div class="book-page-item-description-param">
                         <div class="book-page-item-description-param-group">
@@ -111,7 +113,6 @@
                         <span>{{ $book['book_size_' . app()->getLocale()]  }}</span>
                     </div>
 
-
                     <div class="additional-information-list-item">
                         <p>{{ __('messages.word_count') }}</p>
                         <div class="additional-information-list-item-img">
@@ -120,7 +121,6 @@
                         <span>{{ $book['word_count'] }}</span>
                     </div>
 
-
                     <div class="additional-information-list-item">
                         <p>{{ __('messages.font_size') }}</p>
                         <div class="additional-information-list-item-img">
@@ -128,10 +128,7 @@
                         </div>
                         <span>{{ $book['font_size'] }}</span>
                     </div>
-
-
                 </div>
-
                 <button class="accordion-toggle">
                     <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
                 </button>
@@ -155,20 +152,21 @@
                         <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
                     </button>
                 </div>
-                <div class="book-page-item-book-trailer  accordion">
-                    <h2 class="accordion-title">{{ __('messages.book_trailer') }}</h2>
-                    <div class="book-page-item-book-trailer-video  accordion-text">
-                        <iframe src="https://www.youtube.com/embed/cGmLS5KL7yw" title="YouTube video player"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                    </div>
-                    <button class="accordion-toggle">
-                        <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
-                    </button>
-                </div>
-            </div>
 
+                @if($book['video_url'])
+                    <div class="book-page-item-book-trailer  accordion">
+                        <h2 class="accordion-title">{{ __('messages.book_trailer') }}</h2>
+                        <div class="book-page-item-book-trailer-video  accordion-text">
+                            <iframe src="{{ $book['video_url'] }}" title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <button class="accordion-toggle">
+                            <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
+                        </button>
+                    </div>
+                @endif
+            </div>
         </section>
 
         <section class="book-page-reviews content">
@@ -236,8 +234,8 @@
                         <button>{{ __('messages.send') }}</button>
                     </div>
 
-                    <div
-                        class=" form-control accept  @if(session()->has('send_successfully_message') || session()->has('send_comment_wrong_message')) message-success @endif">
+                    <div class="form-control accept @if(session()->has('send_successfully_message') || session()->has('send_comment_wrong_message')) message-success @endif">
+
                         @if(session('send_successfully_message'))
                             <div class="required--success"> {{ session('send_successfully_message') }}</div>
                         @endif

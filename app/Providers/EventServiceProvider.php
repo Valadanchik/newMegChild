@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\CouponQuantity;
 use App\Events\OrderPayment;
 use App\Listeners\SendEmail;
+use App\Listeners\UpdateCouponQuantity;
 use App\Listeners\UpdateOrderStatus;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -24,7 +26,10 @@ class EventServiceProvider extends ServiceProvider
         OrderPayment::class => [
             UpdateOrderStatus::class,
             SendEmail::class,
-        ]
+        ],
+        CouponQuantity::class => [
+            UpdateCouponQuantity::class,
+        ],
     ];
 
     /**

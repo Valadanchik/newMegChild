@@ -612,10 +612,11 @@ let cloud_modal_text = document.querySelector('.cloud-modal-text ');
 let modal_filter1 = document.querySelector('.modal')
 let filter_body1 = document.querySelector('.filter-body')
 let book_page_reviews_info = document.querySelectorAll('.book-page-reviews-item p')
+console.log(book_page_reviews_info)
 
 book_page_reviews_info.forEach((item) => {
 
-    if (item.offsetHeight >= 85) {
+    if (item.offsetHeight > 84) {
         item.addEventListener('click', () => {
             let text = item.innerHTML
             cloud_modal_text.innerHTML = text

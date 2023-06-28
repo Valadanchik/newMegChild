@@ -130,8 +130,8 @@
                 <div class="book-page-item-after  accordion">
                     <h2 class="faq-title">{{ __('messages.authors') }}</h2>
                     @foreach($book->authors as $key => $author)
-                        <div class="accordion-text info-authors">
-                            <div class="accordion-text-info">
+                        <div class="accordion-text  @if(sizeof($book->authors) < 1)info-authors @endif">
+                            <div class="accordion-text-info"  >
                                 <div class="book-page-item-after-img">
                                     <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
                                 </div>
@@ -213,8 +213,8 @@
                     </div>
 
                     <div class=" form-control accept">
-                        <input class="accept-input" name="terms" type="checkbox">
-                        <span id="accept">{{ __('messages.terms') }}</span>
+                        <input class="accept-input" name="terms" type="checkbox" id="accept_id">
+                        <label id="accept" for="accept_id"> <?php echo e(__('messages.terms')); ?></label>
                         <input id="required_terms" type="hidden" value="{{ __('validation.required_terms') }}">
                         <small></small>
                         @error('terms')

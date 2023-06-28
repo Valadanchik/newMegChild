@@ -244,9 +244,9 @@
                                     </div>
 
                                     <div class="form-control accept">
-                                        <input name="terms" class="accept-input" type="checkbox"
+                                        <input name="terms" id="accept_label" class="accept-input"  type="checkbox"
                                                value=" value="{{old('terms')}}"">
-                                        <span id="accept-sopping-cart">{{ __('checkout.agree') }}</span>
+                                        <label id="accept-sopping-cart" for="accept_label">{{ __('checkout.agree') }}</label>
                                         <input id="required_terms" type="hidden"
                                                value="{{ __('validation.required_terms') }}">
                                         <small></small>

@@ -26,9 +26,9 @@ return new class extends Migration
             $table->text('video_url')->nullable();
             $table->string('slug', 255)->unique();
             $table->string('price');
-            $table->string('word_count');
+            $table->string('word_count')->nullable();
             $table->string('page_count');
-            $table->string('font_size');
+            $table->string('font_size')->nullable();
             $table->string('isbn');
             $table->integer('in_stock');
             $table->string('published_date');

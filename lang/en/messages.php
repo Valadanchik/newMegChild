@@ -10,6 +10,7 @@ return [
     'learn_more' => 'Learn more',
     'authors' => 'Authors',
     'translators' => 'Translators',
+    'translator' => 'Translator',
     'see_more' => 'See more',
     'articles' => 'Articles',
     'buy' => 'Buy',

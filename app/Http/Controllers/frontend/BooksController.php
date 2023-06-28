@@ -58,7 +58,7 @@ class BooksController extends Controller
      */
     public function view(Books $books, $slug): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $book = $books::with(['authors', 'category', 'images'])
+        $book = $books::with(['authors', 'translators', 'category', 'images'])
             ->with(['comments' => function ($query) {
                 $query->orderBy('book_comments.created_at', 'desc')
                     ->where('book_comments.is_active', '=', BookComments::PUBLISHED);

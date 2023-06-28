@@ -9,11 +9,10 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-//    protected $paymentService = null;
 
     public function __construct(protected PaymentService $paymentService)
     {
-//        $this->paymentService = $paymentService;
+
     }
 
     public function success()

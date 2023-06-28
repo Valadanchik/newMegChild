@@ -10,6 +10,7 @@ return [
     'learn_more' => 'Իմանալ ավելին',
     'authors' => 'Հեղինակներ',
     'translators' => 'Թարգմանիչներ',
+    'translator' => 'Թարգմանիչ',
     'see_more' => 'Տեսնել բոլորը',
     'articles' => 'Հոդվածներ',
     'buy' => 'Գնել',

@@ -24,7 +24,8 @@
                         <div class="book-page-item-description-param-group">
                             <p>{{ __('messages.group') }}</p>
                             <div class="book-page-item-group-desc-img">
-                                <img src="{{ URL::to('/images/' . $book->category->name_en . '.png') }}" alt="">
+
+                                <img src="{{ URL::to('/images/' . ($book->category->name_en === 'parent' ? 'parent-gray' : $book->category->name_en) . '.png') }}" alt="">
                             </div>
                         </div>
                         <div class="book-page-item-description-age">
@@ -77,7 +78,7 @@
                         <div class="additional-information-list-item-img">
                             <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
                         </div>
-                        <span>{{ $book->category->age }} {{ __('messages.years') }}</span>
+                        <span>{{ $book->category->age }}</span>
                     </div>
                     <div class="additional-information-list-item">
                         <p>ISBN</p>
@@ -107,20 +108,35 @@
                         </div>
                         <span>{{ $book['book_size_' . app()->getLocale()]  }}</span>
                     </div>
-                    <div class="additional-information-list-item">
-                        <p>{{ __('messages.word_count') }}</p>
-                        <div class="additional-information-list-item-img">
-                            <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                    @if($book['word_count'])
+                        <div class="additional-information-list-item">
+                            <p>{{ __('messages.word_count') }}</p>
+                            <div class="additional-information-list-item-img">
+                                <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                            </div>
+                            <span>{{ $book['word_count'] }}</span>
                         </div>
-                        <span>{{ $book['word_count'] }}</span>
-                    </div>
-                    <div class="additional-information-list-item">
-                        <p>{{ __('messages.font_size') }}</p>
-                        <div class="additional-information-list-item-img">
-                            <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                    @endif
+                    @if($book['font_size'])
+                        <div class="additional-information-list-item">
+                            <p>{{ __('messages.font_size') }}</p>
+                            <div class="additional-information-list-item-img">
+                                <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                            </div>
+                            <span>{{ $book['font_size'] }}</span>
                         </div>
-                        <span>{{ $book['font_size'] }}</span>
-                    </div>
+                    @endif
+                    @if(!empty($book->translators ))
+                        <div class="additional-information-list-item">
+                            <p>{{ __('messages.translator') }}</p>
+                            <div class="additional-information-list-item-img">
+                                <img src="{{ URL::to('/images/Line2.png') }}" alt="line">
+                            </div>
+                            @foreach($book->translators as $key => $translator)
+                                <span>{{ $translator['name_' . app()->getLocale()] }}</span>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
                 <button class="accordion-toggle">
                     <img src="{{ URL::to('/images/svg/arrow-down-circle.svg') }}" alt="arrow down">
@@ -169,7 +185,6 @@
                         <span>{{ $comment->full_name }}</span>
                     </div>
                 @endforeach
-
             </div>
             <div class="cloud-modal">
                 <p class="cloud-modal-text"></p>

@@ -12,16 +12,33 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
+     * HomeController constructor.
+     * @param Categories $categories
+     * @param Authors $authors
+     * @param Post $posts
+     * @param Books $books
+     */
+    public function __construct(
+        public Categories $categories,
+        public Authors    $authors,
+        public Post       $posts,
+        public Books      $books
+    )
+    {
+
+    }
+
+    /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function index(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $data = [
-            'categories' => self::getHomeCategories(),
-            'authors' => self::getHomeAuthors(),
-            'posts' => self::getHomePosts(),
-            'books' => self::getHomeBooks(),
-            'lastParentBook' => self::getHomeLastParentBook(),
+            'categories' => $this->getHomeCategories(),
+            'authors' => $this->getHomeAuthors(),
+            'posts' => $this->getHomePosts(),
+            'books' => $this->getHomeBooks(),
+            'lastParentBook' => $this->getHomeLastParentBook(),
         ];
 
         return view('index', compact('data'));
@@ -30,37 +47,38 @@ class HomeController extends Controller
     /**
      * @return mixed
      */
-    public static function getHomeCategories()
+    public function getHomeCategories(): mixed
     {
-        return Categories::whereIn('id', [Categories::AYB, Categories::BEN, Categories::GIM, Categories::DA])->get();
+        return $this->categories->whereIn('id', [Categories::AYB, Categories::BEN, Categories::GIM, Categories::DA])->get();
     }
 
     /**
      * @return mixed
      */
-    public static function getHomeAuthors()
+    public function getHomeAuthors(): mixed
     {
-        return Authors::orderBy('id', 'DESC')->limit(4)->get();
+        return $this->authors->orderBy('id', 'DESC')->limit(4)->get();
     }
 
     /**
      * @return mixed
      */
-    public static function getHomePosts()
+    public function getHomePosts(): mixed
     {
-        return Post::orderBy('id', 'DESC')->limit(4)->get();
+        return $this->posts->orderBy('id', 'DESC')->limit(4)->get();
     }
 
     /**
      * @return mixed
      */
-    public static function getHomeBooks(): \Illuminate\Database\Eloquent\Collection|array
+    public function getHomeBooks(): mixed
     {
-        return Books::with('category')->with(['authors' => function ($query) {
-            $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
-        }, 'translators' => function ($query) {
-            $query->select('translators.id', 'translators.name_hy', 'translators.name_en');
-        }])
+        return $this->books->with('category')
+//            ->with(['authors' => function ($query) {
+//            $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
+//        }, 'translators' => function ($query) {
+//            $query->select('translators.id', 'translators.name_hy', 'translators.name_en');
+//        }])
             ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('books')
@@ -75,9 +93,9 @@ class HomeController extends Controller
     /**
      * @return mixed
      */
-    public static function getHomeLastParentBook()
+    public function getHomeLastParentBook(): mixed
     {
-        return Books::with('category')->with(['authors' => function ($query) {
+        return $this->books->with('category')->with(['authors' => function ($query) {
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }, 'translators' => function ($query) {
             $query->select('translators.id', 'translators.name_hy', 'translators.name_en');

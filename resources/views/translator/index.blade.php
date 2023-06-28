@@ -18,38 +18,40 @@
             </div>
         </section>
 
-        <section class="content author-single-page-books-section">
-            <h2>{{ __('messages.books') }}</h2>
-            <div class="books-info-item">
-                @foreach($translator->books as $book)
-                    <div class="book-item">
-                        <div class="book-item-images">
-                            <div class="book-item-img-logo">
-                                <img src="{{ URL::to('images/reade-more-img-logo-green.png') }}" alt="">
+        @if(!empty($translator->books ))
+            <section class="content author-single-page-books-section">
+                <h2>{{ __('messages.books') }}</h2>
+                <div class="books-info-item">
+                    @foreach($translator->books as $book)
+                        <div class="book-item">
+                            <div class="book-item-images">
+                                <div class="book-item-img-logo">
+                                    <img src="{{ URL::to('images/reade-more-img-logo-green.png') }}" alt="">
+                                </div>
+                                <div class="book-item-img-book">
+                                    <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
+                                        <img width="270px" src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
+                                    </a>
+                                </div>
                             </div>
-                            <div class="book-item-img-book">
+                            <h3>{{ $book['title_' . app()->getLocale()]  }}</h3>
+                            <p>
+                                @foreach($book->authors as $key => $translator)
+                                    {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}
+                                @endforeach
+                            </p>
+                            <div class="book-price">
+                                <p class="book-pr">{{ $book['price']  }} ֏ </p>
+                            </div>
+                            <div class="book-btn">
                                 <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
-                                    <img width="270px" src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
+                                    {{ __('messages.buy') }}
                                 </a>
                             </div>
                         </div>
-                        <h3>{{ $book['title_' . app()->getLocale()]  }}</h3>
-                        <p>
-                            @foreach($book->authors as $key => $translator)
-                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}
-                            @endforeach
-                        </p>
-                        <div class="book-price">
-                            <p class="book-pr">{{ $book['price']  }} ֏ </p>
-                        </div>
-                        <div class="book-btn">
-                            <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
-                                {{ __('messages.buy') }}
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </section>
+                    @endforeach
+                </div>
+            </section>
+        @endif
     </main>
 @endsection

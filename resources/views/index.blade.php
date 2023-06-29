@@ -161,7 +161,7 @@
             <section class="authors">
                 <div class="authors-section content">
                     <div class="{{"authors-section-title-".app()->getLocale()}}">
-                        <h2>{{ __('messages.authors') }}</h2>
+                        <h2 class="title-authors">{{ __('messages.authors') }}</h2>
                     </div>
                     <div class="authors-boxes">
                         @foreach($data['authors'] as $author)

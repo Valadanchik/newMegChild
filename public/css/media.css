@@ -27,6 +27,11 @@
         padding-top: 40px;
         padding-bottom: 132px;
     }
+    .color-info-description {
+        max-width: 550px;
+    }
+
+
 }
 
 @media (max-width: 1400px) {
@@ -117,7 +122,7 @@
 
     .article-section-title-hy h2,
     .article-section-title-en h2,
-    .authors-section-title-hy h2 {
+    .title-authors {
         font-size: 36px;
         line-height: 30px;
     }
@@ -824,6 +829,9 @@
     .shopping-cart-block-title h2 {
         font-size: 25px;
     }
+    .color-info-description {
+        max-width: 500px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -1042,12 +1050,12 @@
         margin-top: 25px;
     }
 
-    .article-section-title-hy h2, .authors-section-title-hy h1,
-    .article-section-title-en h2 {
+    .article-section-title-hy h2,
+    .authors-section-title-hy h1,
+    .title-authors {
         font-size: 30px;
         line-height: 22px;
     }
-
 
     .authors-boxes div {
         max-width: 190px;
@@ -1348,7 +1356,7 @@
     }
 
     .article-section-title-hy {
-        padding: 48px 32px 48px;
+        padding: 48px 32px 55px;
     }
 
     .articles {
@@ -1759,6 +1767,10 @@
     .contact-page-partnership-desc {
         margin: 25px 0;
     }
+    .color-info-description {
+        max-width: 330px;
+    }
+
 
 }
 
@@ -2080,6 +2092,16 @@
         top: 7px;
     }
 
+    .article-section-title-hy h2,
+    .authors-section-title-hy h1,
+    .title-authors {
+        font-size: 20px;
+        line-height: 22px;
+    }
+    .article-section-title-hy {
+        padding: 35px 32px 42px;
+    }
+
 }
 
 @media (max-width: 400px) {
@@ -2234,11 +2256,20 @@
 
     /*////////////////translators-page////////////*/
     .translators-section-title-hy {
-        padding: 35px 19px 25px;
+        padding: 36px 19px 32px;
     }
 
     .translators-section-title-hy h1 {
-        font-size: 18px;
+        font-size: 20px;
+    }
+
+    .authors-section-title-hy {
+        padding: 42px 32px 36px;
+    }
+
+    .authors-section-title-hy h1 {
+        font-size: 20px;
+        line-height: 22px;
     }
 
     .payment-cart-btn button {

@@ -258,6 +258,8 @@ main {
 
 .color-info-description {
     padding-top: 57px;
+    width: 100%;
+    max-width: 750px;
 }
 
 .orange-info-img,
@@ -647,7 +649,8 @@ main {
 }
 
 .authors-section-title-hy h1,
-.authors-section-title-en h1 {
+.authors-section-title-en h1,
+.title-authors{
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
@@ -3156,7 +3159,7 @@ section.contacts-page h1 {
 }
 
 .slick-dots li button:before {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .slick-dots li.slick-active button:before {
@@ -3416,3 +3419,19 @@ button.learn-more-btn:hover {
 .couponCallBackMessage {
     color: #f36f21;
 }
+/*.slick-dots li.slick-active button:before {*/
+/*    opacity: 1;*/
+/*    color: rgba(143, 82, 161, 1);*/
+/*}*/
+/*.slick-dots li button:before {*/
+/*    color: #ffffff;*/
+/*    border: 1px solid rgba(143, 82, 161, 1);*/
+/*    border-radius: 100%;*/
+/*    font-size: 14px;*/
+/*    line-height: 14px;*/
+/*    width: 13px;*/
+/*    height: 12px;*/
+/*    opacity: 1;*/
+/*}*/
+
+

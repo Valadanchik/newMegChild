@@ -15,7 +15,7 @@
         </section>
         @foreach($data['books'] as $index => $book)
             <section class="{{ $book->category->name_en }}-color">
-                <div style="{{ $index % 2 === 1 ? "flex-direction: row-reverse;" : "flex-direction: row;" }}"
+                <div style="{{ ($book->category->id === \App\Models\Categories::AYB || $book->category->id === \App\Models\Categories::GIM) ? "flex-direction: row;" : "flex-direction: row-reverse;" }}"
                      class="book-section content">
                     <div class="color-info ">
                         <div class="orange-info-img">
@@ -26,16 +26,16 @@
                     </div>
                     <div class="color-info-description">
                         <h2>{{ $book['title_' . app()->getLocale()]  }}</h2>
-                        {{--                        <p class="color-info-description-after">{{ __('messages.author') }}`--}}
-                        {{--                            @foreach($book->authors as $key => $author)--}}
-                        {{--                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}--}}
-                        {{--                            @endforeach--}}
-                        {{--                        </p>--}}
-                        {{--                        <p class="color-info-description-translate">{{ __('messages.armenian_translation') }}`--}}
-                        {{--                            @foreach($book->translators as $key => $translator)--}}
-                        {{--                                {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->translators) - 1 ? ',' : '' }}--}}
-                        {{--                            @endforeach--}}
-                        {{--                        </p>--}}
+                        {{-- <p class="color-info-description-after">{{ __('messages.author') }}`--}}
+                        {{--     @foreach($book->authors as $key => $author)--}}
+                        {{--         {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}--}}
+                        {{--     @endforeach--}}
+                        {{-- </p>--}}
+                        {{-- <p class="color-info-description-translate">{{ __('messages.armenian_translation') }}`--}}
+                        {{--     @foreach($book->translators as $key => $translator)--}}
+                        {{--         {{ $translator['name_' . app()->getLocale()] }} {{ $key < count($book->translators) - 1 ? ',' : '' }}--}}
+                        {{--     @endforeach--}}
+                        {{-- </p>--}}
                         <div class="color-info-description-param">
                             <div class="description-param-group">
                                 <p>{{ __('messages.group') }}</p>

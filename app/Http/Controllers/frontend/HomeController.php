@@ -85,6 +85,7 @@ class HomeController extends Controller
                     ->whereIn('category_id', [Categories::AYB, Categories::BEN, Categories::GIM, Categories::DA])
                     ->groupBy('category_id');
             })
+            ->where('status', Books::ACTIVE)
             ->take(Books::HOME_PAGE_BOOKS_COUNT)
             ->orderBy('category_id', 'ASC')
             ->get();

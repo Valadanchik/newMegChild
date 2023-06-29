@@ -84,16 +84,6 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
 //     xhr.send(data);
 // }));
 
-
-// ___________________class row-reverse____________________
-
-let book_boxes = document.querySelectorAll('.book-box')
-
-book_boxes.forEach((item, index) => {
-    if (index % 2 === 1) {
-        item.classList.add('revers')
-    }
-})
 // _______________/menu-active_______________________
 
 let menu_link = document?.querySelectorAll('.menu-link');

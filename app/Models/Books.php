@@ -37,6 +37,7 @@ class Books extends Model
         'main_image',
         'category_id',
         'published_date',
+        'status',
     ];
 
     /**

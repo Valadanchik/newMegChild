@@ -331,11 +331,10 @@
                         <div class="card mb-4">
                             <div class="card-header">Active</div>
                             <div class="card-body">
-                                <div class="form-check form-switch form-check-input-red">
-                                    <input class="form-check-input" value="0" name="status" type="checkbox" id="flexSwitchCheckChecked"
-                                           @if(is_array(old('status')) && in_array(1, old('status'))) checked @endif>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">disable?</label>
-                                </div>
+                                <select class="form-select"  name="status">
+                                    <option value="1" @if(old('status') == $book->status || $book->status) selected @endif>Active</option>
+                                    <option value="0" @if(old('status') == $book->status || !$book->status) selected @endif>Inactive</option>
+                                </select>
                             </div>
                         </div>
 

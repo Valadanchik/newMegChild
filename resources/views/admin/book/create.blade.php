@@ -322,6 +322,17 @@
                             </div>
                         </div>
 
+                        <div class="card mb-4">
+                            <div class="card-header">Active</div>
+                            <div class="card-body">
+                                <select class="form-select"  name="status">
+                                    <option value="1" @if(old('status')) selected @endif>Active</option>
+                                    <option value="0" @if(old('status')) selected @endif>Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+
+
                         <div class="d-grid"><button class="fw-500 btn btn-primary">Create</button></div>
                     </div>
                 </div>

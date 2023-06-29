@@ -24,7 +24,6 @@
                         <div class="book-page-item-description-param-group">
                             <p>{{ __('messages.group') }}</p>
                             <div class="book-page-item-group-desc-img">
-
                                 <img src="{{ URL::to('/images/' . ($book->category->name_en === 'parent' ? 'parent-gray' : $book->category->name_en) . '.png') }}" alt="">
                             </div>
                         </div>

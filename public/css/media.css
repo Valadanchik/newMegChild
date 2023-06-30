@@ -385,6 +385,9 @@
         font-size: 30px;
         margin-top: 70px;
     }
+    .books-info-item-search .book-item {
+        max-width: 290px;
+    }
 
 }
 
@@ -1812,9 +1815,11 @@
     #nav-icon1 span:nth-child(3) {
         top: 19px;
     }
-
+    #nav-icon1 span:nth-child(1) {
+        top: 2px;
+    }
     #nav-icon1 span:nth-child(2) {
-        top: 9px;
+        top: 10px;
     }
 
     .footer-menu a, a.footer-address, .footer-book a {
@@ -2110,6 +2115,13 @@
     .color-info-description {
         max-width: 100%;
     }
+    .books-info-item-search .book-item {
+        max-width: 100%;
+    }
+    .book-item-images {
+        gap: 10px;
+        width: 275px;
+    }
 
 }
 
@@ -2291,7 +2303,10 @@
 
     .book-page-item-book-trailer,
     .book-page-item-after.accordion{
-        min-width: 288px;
+        min-width: 100%;
+    }
+    .p-68 {
+        padding: 68px 15px;
     }
 
 }

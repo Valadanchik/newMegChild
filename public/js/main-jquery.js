@@ -2,12 +2,44 @@
 $(document).ready(function () {
     $('.single-item').slick({
         dots: true,
-        prevArrow: ('<svg class="slick-prev" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">\n' +
-            '<path d="M7 13L1 7L7 1" stroke="#8F52A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\n' +
-            '</svg>'),
-        nextArrow: ('<svg class="slick-next" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">\n' +
-            '<path d="M1 13L7 7L1 1" stroke="#8F52A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\n' +
-            '</svg>'),
+        prevArrow: ('<svg  class="slick-prev"  viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">\n' +
+            '<g clip-path="url(#clip0_720_14)">\n' +
+            '<g filter="url(#filter0_b_720_14)">\n' +
+            '<path d="M0 18C0 8.05887 8.05887 0 18 0C27.9411 0 36 8.05887 36 18C36 27.9411 27.9411 36 18 36C8.05887 36 0 27.9411 0 18Z" fill="white" fill-opacity="0.4"/>\n' +
+            '</g>\n' +
+            '<path d="M21 24L15 18L21 12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\n' +
+            '</g>\n' +
+            '<defs>\n' +
+            '<filter id="filter0_b_720_14" x="-5.91667" y="-5.91667" width="47.8333" height="47.8333" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">\n' +
+            '<feFlood flood-opacity="0" result="BackgroundImageFix"/>\n' +
+            '<feGaussianBlur in="BackgroundImageFix" stdDeviation="2.95833"/>\n' +
+            '<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_720_14"/>\n' +
+            '<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_720_14" result="shape"/>\n' +
+            '</filter>\n' +
+            '<clipPath id="clip0_720_14">\n' +
+            '<rect width="36" height="36" fill="white" transform="matrix(0 -1 -1 0 36 36)"/>\n' +
+            '</clipPath>\n' +
+            '</defs>\n' +
+            '</svg>\n'),
+        nextArrow: ( '<svg  class="slick-next"  viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">\n' +
+            '<g clip-path="url(#clip0_720_9)">\n' +
+            '<g filter="url(#filter0_b_720_9)">\n' +
+            '<path d="M36 18C36 8.05887 27.9411 0 18 0C8.05887 0 0 8.05887 0 18C0 27.9411 8.05887 36 18 36C27.9411 36 36 27.9411 36 18Z" fill="white" fill-opacity="0.4"/>\n' +
+            '</g>\n' +
+            '<path d="M15 24L21 18L15 12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\n' +
+            '</g>\n' +
+            '<defs>\n' +
+            '<filter id="filter0_b_720_9" x="-5.91667" y="-5.91667" width="47.8333" height="47.8333" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">\n' +
+            '<feFlood flood-opacity="0" result="BackgroundImageFix"/>\n' +
+            '<feGaussianBlur in="BackgroundImageFix" stdDeviation="2.95833"/>\n' +
+            '<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_720_9"/>\n' +
+            '<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_720_9" result="shape"/>\n' +
+            '</filter>\n' +
+            '<clipPath id="clip0_720_9">\n' +
+            '<rect width="36" height="36" fill="white" transform="matrix(0 -1 1 0 0 36)"/>\n' +
+            '</clipPath>\n' +
+            '</defs>\n' +
+            '</svg>\n'),
     });
 
 });

@@ -1,10 +1,5 @@
 <header>
     <div class="header content">
-        <div id="nav-icon1">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
         <div class="header-logo">
             <a href="{{ LaravelLocalization::localizeUrl('/') }}">
                 <img src="{{ URL::to('/images/svg/logo.svg') }}" alt="logo images">
@@ -46,35 +41,44 @@
                 </ul>
             </nav>
         </div>
-        <div class="header-icon">
-            <div class="header-icon-serch search">
-                <img src="{{ URL::to('/images/svg/search-logo.svg') }}" alt="search logo">
-            </div>
-            <div class="header-icon-img">
-                <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">
-            </div>
-            <div class="header-icon-shop">
-                @if(session()->get('cart'))
-                    <sub>{{ count(session()->get('cart')) }}</sub>
-                @endif
-                <a href="{{ route('order') }}">
-                    <img src="{{ URL::to('/images/svg/shopping-cart.svg') }}" alt="sopping cart logo">
-                </a>
-            </div>
-            <div class="header-icon-img">
-                <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">
-            </div>
-            <div class="header-icon-leng">
-                <p>
-                    @if(LaravelLocalization::getCurrentLocale() == 'en')
-                        <a rel="alternate" hreflang="hy"
-                           href="{{ LaravelLocalization::getLocalizedURL('hy', null, [], true) }}">HY</a>
-                    @else
-                        <a rel="alternate" hreflang="en"
-                           href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">EN</a>
+
+        <div class="burger-menu-and-icons">
+            <div class="header-icon">
+                <div class="header-icon-serch search">
+                    <img src="{{ URL::to('/images/svg/search-logo.svg') }}" alt="search logo">
+                </div>
+                <div class="header-icon-img">
+                    <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">
+                </div>
+                <div class="header-icon-shop">
+                    @if(session()->get('cart'))
+                        <sub>{{ count(session()->get('cart')) }}</sub>
                     @endif
-                </p>
+                    <a href="{{ route('order') }}">
+                        <img src="{{ URL::to('/images/svg/shopping-cart.svg') }}" alt="sopping cart logo">
+                    </a>
+                </div>
+                <div class="header-icon-img">
+                    <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">
+                </div>
+                <div class="header-icon-leng">
+                    <p>
+                        @if(LaravelLocalization::getCurrentLocale() == 'en')
+                            <a rel="alternate" hreflang="hy"
+                               href="{{ LaravelLocalization::getLocalizedURL('hy', null, [], true) }}">HY</a>
+                        @else
+                            <a rel="alternate" hreflang="en"
+                               href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">EN</a>
+                        @endif
+                    </p>
+                </div>
             </div>
+            <div id="nav-icon1">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
         </div>
         @include('components.search')
     </div>

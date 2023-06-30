@@ -52,6 +52,17 @@ return [
     'email_unique' => 'Email is already exist!',
     'email_max' => 'Email is too long!',
     'success_subscribe' => 'Subscription created successfully',
+    'order_number' => 'Order number',
+    'ordered_items' => 'Items ordered',
+    'orders_products' => 'Order products',
+    'orders_receive' => 'We are receiving your order',
+    'hey' => 'Hey',
+    'we_send_order_soon' => 'We will send your order soon',
+    'total_price' => 'Total price',
+    'total_price_with_discount' => 'Total price with discount',
+    'order_created' => 'Order created',
+    'you_can_contact' => 'You can contact him',
+    'phone' => 'Phone',
     'about_text' => "<p>Newmag publishing house and 'Dream Projects' of 'Somnium' group of companies jointly initiated
                      'Dream' series. Thanks to the cooperation, 'Dream' will present Armenian and foreign children's authors
                      books and children will reach them at a cheaper price. The series will bring a new culture to children's literature.

@@ -6,7 +6,6 @@
     <meta name="x-apple-disable-message-reformatting">
     <title></title>
     <!--[if mso]>
-
     <![endif]-->
     <style>
         table, td, div, h1, p {
@@ -47,13 +46,13 @@
                                        align="center">
                                     </p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
-                                       align="center">{{ $order->name . ' ' . $order->lastname }} creates an order</p>
+                                       align="center">{{ __('messages.order_created') }}</p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
-                                       align="center">You can contact with him</p>
+                                       align="center">{{ $order->name . ' ' . $order->lastname }}</p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
-                                       align="center">Email: {{ $order->email }}</p>
+                                       align="center">{{ __('messages.email') }}: {{ $order->email }}</p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
-                                       align="center">Phone: {{ $order->phone }}</p>
+                                       align="center">{{ __('messages.phone') }}: {{ $order->phone }}</p>
                                 </th>
                             </tr>
                             <!-- END SECTION: Introduction -->
@@ -64,8 +63,7 @@
                                     bgcolor="#ffffff">
                                     <h2 style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; color: #4b4b4b; font-size: 20px; line-height: 26px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0;"
                                         align="center">
-                                                            <span
-                                                                data-key="1468270_order_number">Order No.</span> {{$order->id}}
+                                        <span data-key="1468270_order_number">{{ __('messages.order_number') }}.</span> {{$order->id}}
                                     </h2>
                                     <p class="muted"
                                        style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 14px; line-height: 26px; font-weight: normal; color: #bdbdbd; margin: 0;"
@@ -75,7 +73,6 @@
                             <!-- END SECTION: Order Number And Date -->
                             <tr>
                                 <td style="padding:0;">
-                                    {{--                                    <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">--}}
                                     <table cellspacing="0" cellpadding="0" border="0"
                                            width="100%" style="min-width: 100%;"
                                            role="presentation">
@@ -87,7 +84,7 @@
                                                 bgcolor="#ffffff" valign="top">
                                                 <h3 data-key="1468271_item"
                                                     style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; color: #bdbdbd; font-size: 16px; line-height: 52px; font-weight: 700; text-transform: uppercase; border-bottom-width: 2px; border-bottom-color: #dadada; border-bottom-style: solid; letter-spacing: 1px; margin: 0;"
-                                                    align="left">Items ordered</h3>
+                                                    align="left">{{ __('messages.ordered_items') }}</h3>
                                             </th>
                                         </tr>
 
@@ -150,7 +147,7 @@
                                                                 <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 0;"
                                                                    align="right">
                                                                     {{ $book->pivot->price }}
-                                                                    &nbsp; AMD
+                                                                    AMD
                                                                 </p>
                                                             </th>
                                                         </tr>
@@ -175,14 +172,13 @@
                                                             data-key="1468271_subtotal"
                                                             style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; width: 65%; padding: 6px 0;"
                                                             align="left" bgcolor="#ffffff" valign="top">
-                                                            Total Price
+                                                            {{ __('messages.total_price') }}
                                                         </th>
                                                         <th class="table-text"
                                                             style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; width: 35%; padding: 6px 0;"
                                                             align="right" bgcolor="#ffffff"
-                                                            valign="middle">{{$order->total_price}}&nbsp
+                                                            valign="middle">{{$order->total_price}}&nbsp;
                                                         <td>AMD</td>
-                                                        </th>
                                                     </tr>
 
                                                     @if($order->total_price_with_discount)
@@ -191,15 +187,14 @@
                                                                 data-key="1468271_subtotal"
                                                                 style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; width: 65%; padding: 6px 0;"
                                                                 align="left" bgcolor="#ffffff" valign="top">
-                                                                Total Price With Discount
+                                                                {{ __('messages.total_price_with_discount') }}
                                                             </th>
                                                             <th class="table-text"
                                                                 style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; width: 35%; padding: 6px 0;"
                                                                 align="right" bgcolor="#ffffff"
                                                                 valign="middle">
-                                                                {{$order->total_price_with_discount}}&nbsp
+                                                                {{$order->total_price_with_discount}}&nbsp;
                                                             <td>AMD</td>
-                                                            </th>
                                                         </tr>
                                                     @endif
 
@@ -281,5 +276,8 @@
                     </td>
                 </tr>
             </table>
+        </td>
+    </tr>
+</table>
 </body>
 </html>

@@ -38,7 +38,7 @@
                                        align="center">
                                         <span data-key="1468267_greeting_text"
                                               style="text-align: center; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363;">
-                                          Hey
+                                          {{ __('messages.hey') }}
                                         </span>
                                         {{ $order->name . ' ' . $order->lastname }},
                                     </p>
@@ -48,9 +48,9 @@
                                        align="center">
                                     </p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
-                                       align="center">We've got your order!</p>
+                                       align="center">{{ __('messages.order_receive') }} </p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
-                                       align="center">We'll ship it out to you as soon as possible.</p>
+                                       align="center">{{ __('messages.we_send_order_soon') }}</p>
                                 </th>
                             </tr>
                             <!-- END SECTION: Introduction -->
@@ -61,8 +61,7 @@
                                     bgcolor="#ffffff">
                                     <h2 style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; color: #4b4b4b; font-size: 20px; line-height: 26px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0;"
                                         align="center">
-                                                            <span
-                                                                data-key="1468270_order_number">Order No.</span> {{$order->id}}
+                                        <span data-key="1468270_order_number">{{ __('messages.order_number') }}.</span> {{$order->id}}
                                     </h2>
                                     <p class="muted"
                                        style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 14px; line-height: 26px; font-weight: normal; color: #bdbdbd; margin: 0;"
@@ -72,7 +71,6 @@
                             <!-- END SECTION: Order Number And Date -->
                             <tr>
                                 <td style="padding:0;">
-                                    {{--                                    <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">--}}
                                     <table cellspacing="0" cellpadding="0" border="0"
                                            width="100%" style="min-width: 100%;"
                                            role="presentation">
@@ -84,7 +82,7 @@
                                                 bgcolor="#ffffff" valign="top">
                                                 <h3 data-key="1468271_item"
                                                     style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; color: #bdbdbd; font-size: 16px; line-height: 52px; font-weight: 700; text-transform: uppercase; border-bottom-width: 2px; border-bottom-color: #dadada; border-bottom-style: solid; letter-spacing: 1px; margin: 0;"
-                                                    align="left">Items ordered</h3>
+                                                    align="left">{{ __('messages.ordered_items') }}</h3>
                                             </th>
                                         </tr>
 
@@ -172,7 +170,7 @@
                                                             data-key="1468271_subtotal"
                                                             style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; width: 65%; padding: 6px 0;"
                                                             align="left" bgcolor="#ffffff" valign="top">
-                                                            Total Price
+                                                            {{ __('messages.total_price') }}
                                                         </th>
                                                         <th class="table-text"
                                                             style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; width: 35%; padding: 6px 0;"
@@ -191,7 +189,7 @@
                                                     data-key="1468271_subtotal"
                                                     style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: bold; color: #666363; width: 65%; padding: 6px 0;"
                                                     align="left" bgcolor="#ffffff" valign="top">
-                                                    Total Price With Discount
+                                                    {{ __('messages.total_price_with_discount') }}
                                                 </th>
                                                 <th class="table-text"
                                                     style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; width: 35%; padding: 6px 0;"
@@ -244,32 +242,34 @@
                         </table>
                     </td>
                 </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td style="padding:30px;background:#ee4c50;">
-            <table role="presentation"
-                   style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
                 <tr>
-                    <td style="padding:0;width:50%;" align="left">
-                        <p style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
-                            &reg; Newmag © 2011-2023
-                        </p>
-                    </td>
-                    <td style="padding:0;width:50%;" align="right">
-                        <table role="presentation" style="border-collapse:collapse;border:0;border-spacing:0;">
+                    <td style="padding:30px;background:#ee4c50;">
+                        <table role="presentation"
+                               style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
                             <tr>
-                                <td style="padding:0 0 0 10px;width:38px;">
-                                    <a href="http://www.twitter.com/" style="color:#ffffff;"><img
-                                            src="https://assets.codepen.io/210284/tw_1.png" alt="Twitter" width="38"
-                                            style="height:auto;display:block;border:0;"/></a>
+                                <td style="padding:0;width:50%;" align="left">
+                                    <p style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
+                                        &reg; Newmag © 2011-2023
+                                    </p>
                                 </td>
-                                <td style="padding:0 0 0 10px;width:38px;">
-                                    <a href="http://www.facebook.com/" style="color:#ffffff;"><img
-                                            src="https://assets.codepen.io/210284/fb_1.png" alt="Facebook"
-                                            width="38"
-                                            style="height:auto;display:block;border:0;"/></a>
+                                <td style="padding:0;width:50%;" align="right">
+                                    <table role="presentation"
+                                           style="border-collapse:collapse;border:0;border-spacing:0;">
+                                        <tr>
+                                            <td style="padding:0 0 0 10px;width:38px;">
+                                                <a href="http://www.twitter.com/" style="color:#ffffff;"><img
+                                                        src="https://assets.codepen.io/210284/tw_1.png" alt="Twitter"
+                                                        width="38"
+                                                        style="height:auto;display:block;border:0;"/></a>
+                                            </td>
+                                            <td style="padding:0 0 0 10px;width:38px;">
+                                                <a href="http://www.facebook.com/" style="color:#ffffff;"><img
+                                                        src="https://assets.codepen.io/210284/fb_1.png" alt="Facebook"
+                                                        width="38"
+                                                        style="height:auto;display:block;border:0;"/></a>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                         </table>

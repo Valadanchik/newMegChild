@@ -45,6 +45,8 @@ class BooksController extends Controller
                     ->orWhere('description_en', 'like', '%' . $search . '%')
                     ->orWhere('description_hy', 'like', '%' . $search . '%');
             })
+                ->where('status', Books::ACTIVE)
+                ->orderBy('id', 'DESC')
                 ->get();
         }
 
@@ -65,6 +67,7 @@ class BooksController extends Controller
 //                    ->limit(4);
             }])
             ->where('slug', $slug)
+            ->where('status', Books::ACTIVE)
             ->firstOrFail();
 
         $shareUrl = LaravelLocalization::localizeUrl('/book/' . $book['slug']);
@@ -101,6 +104,7 @@ class BooksController extends Controller
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }])
             ->where('category_id', Categories::bookCategoryId($slug))
+            ->where('status', Books::ACTIVE)
             ->get();
 
         return view('book/books', compact('books', 'categories', 'slug'));

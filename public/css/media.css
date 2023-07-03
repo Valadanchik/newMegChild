@@ -1781,6 +1781,20 @@
     }
 
 
+    .authors-section-title-en h1 {
+        font-size: 30px;
+    }
+    .authors-section-title-en {
+        padding: 23px 32px 20px;
+    }
+    .translators-section-title-en h1 {
+        font-size: 22px;
+    }
+    .translators-section-title-en {
+        padding: 23px 32px 22px;
+    }
+
+
 }
 
 @media (max-width: 576px) {
@@ -1926,7 +1940,7 @@
 
     /*////////////////translators-page////////////*/
     .authors-boxes {
-        margin: 50px auto;
+        margin: 50px auto 20px;
         display: inherit;
         gap: unset;
         text-align: center;
@@ -2122,6 +2136,20 @@
         gap: 10px;
         width: 275px;
     }
+    .article-section-title-en h2,
+    .authors-section-title-en h2{
+        font-size: 24px;
+    }
+    .article-section-title-en {
+        padding: 23px 32px 27px;
+    }
+    .authors-section-title-en {
+        padding: 27px 32px 30px;
+    }
+    .authors-section-title-en {
+        padding: 19px 32px 22px;
+    }
+
 
 }
 
@@ -2308,6 +2336,17 @@
     .p-68 {
         padding: 68px 15px;
     }
+    .header-logo {
+        max-width: 100px;
+    }
+    .header-icon-serch,
+    .header-icon-shop{
+        max-width: 20px;
+    }
+    .burger-menu-and-icons {
+        gap: 18px;
+    }
+
 
 }
 

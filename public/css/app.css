@@ -1487,7 +1487,9 @@ section.book-page-item-banner {
     color: #000000;
 }
 
-.book-item-desc p {
+.book-item-desc p,
+.book-item-desc span
+{
     font-family: 'Montserrat arm';
     font-style: normal;
     font-weight: 400;
@@ -2729,7 +2731,7 @@ input[type=number] {
 #nav-icon1 span {
     display: block;
     position: absolute;
-    height: 3px;
+    height: 1px;
     width: 100%;
     background: black;
     border-radius: 9px;
@@ -2746,11 +2748,11 @@ input[type=number] {
 }
 
 #nav-icon1 span:nth-child(1) {
-    top: 0px;
+    top: 1px;
 }
 
 #nav-icon1 span:nth-child(2) {
-    top: 12px;
+    top: 13px;
     max-width: 24px;
 }
 
@@ -2916,6 +2918,7 @@ input:focus {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
+    justify-content: center;
 }
 
 .books-info-item-search .book-item {
@@ -3459,6 +3462,9 @@ li.slick-active button {
     width: 14px;
     height: 14px;
     border-radius: 100%;
+}
+.slick-dots {
+    bottom: -44px !important;
 }
 .burger-menu-and-icons {
     display: flex;

@@ -116,7 +116,7 @@ ul.header-menu-list li a {
     font-weight: 500;
     font-size: 16px;
     cursor: pointer;
-    line-height: 20px;
+    line-height: 30px;
     letter-spacing: 0.01em;
     color: #000000;
     transition-duration: .3s;
@@ -3116,6 +3116,7 @@ section.contacts-page h1 {
 .contact-page-partnership-desc p span,
 .contact-page-sponsorship-desc p span {
     color: rgba(38, 98, 188, 1);
+    text-decoration: underline;
 }
 
 .new-book-or-translation-desc ol {
@@ -3471,3 +3472,19 @@ li.slick-active button {
     gap: 40px;
     align-items: center;
 }
+
+.book-menu-drop-down:hover .books-drop-down {
+    display: block;
+    position: absolute;
+    top: 49px;
+    background: rgb(255, 255, 255);
+    padding: 16px;
+    box-shadow: 0px 4px 20px rgba(176, 176, 176, 0.25);
+    line-height: 30px;
+}
+.books-drop-down li a{
+    text-transform: capitalize;
+}
+/*.header-menu-list li > a{*/
+/*    color: red;*/
+/*}*/

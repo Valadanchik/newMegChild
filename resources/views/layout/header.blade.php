@@ -18,9 +18,19 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/books') }}"
+                    <li class="book-menu-drop-down">
+                        <a href="{{ LaravelLocalization::localizeUrl('/books') }}"
                            class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">{{ __('header.books') }}
-                            ...</a></li>
+                            ...</a>
+                        <ul  class="menu-drop-down books-drop-down">
+                            @foreach($categories as $category)
+                                <li class="{{ $slug == $category['name_en'] ? 'is-checked' : '' }}">
+                                    <a href="{{ LaravelLocalization::localizeUrl('/category/' . $category['name_en']) }}">{{ $category['name_' . app()->getLocale()] }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                    </li>
                     <li><a href="{{ LaravelLocalization::localizeUrl('/authors') }}"
                            class="{{ isRouteActive('authors') ? 'active-menu-underline' : '' }}">{{ __('header.authors') }}</a>
                     </li>

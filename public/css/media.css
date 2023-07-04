@@ -763,7 +763,7 @@
     }
 
     ul.header-menu-list {
-        gap: 35px;
+        gap: 20px;
     }
 
     .color-info-description-after {
@@ -898,6 +898,18 @@
         pointer-events: unset;
     }
 
+    .book-menu-drop-down:hover .books-drop-down {
+        display: block;
+        position: unset;
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
+        line-height: unset;
+    }
+
+    .book-menu-drop-down:hover .books-drop-down {
+        pointer-events: unset;
+    }
     .drop-down-articles {
         display: block;
         margin: 20px 30px;

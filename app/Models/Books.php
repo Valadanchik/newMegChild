@@ -72,6 +72,7 @@ class Books extends Model
         return Books::with(['authors' => function ($query) {
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }])->where('id', '!=', $bookId)
+            ->where('status', Books::ACTIVE)
             ->inRandomOrder()
             ->limit(4);
     }

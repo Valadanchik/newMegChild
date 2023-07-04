@@ -103,7 +103,7 @@ class BooksController extends Controller
         $books = Books::with(['authors' => function ($query) {
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }])
-            ->where('category_id', Categories::bookCategoryId($slug))
+            ->where('category_id', Categories::bookCategorySlug($slug))
             ->where('status', Books::ACTIVE)
             ->get();
 

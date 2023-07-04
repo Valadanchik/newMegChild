@@ -47,7 +47,7 @@ class Categories extends Model
      * @param $slug
      * @return int
      */
-    public static function bookCategoryId($slug): int
+    public static function bookCategorySlug($slug): int
     {
         return Categories::where('name_en', $slug)->firstOrFail()->id;
     }

@@ -10,7 +10,8 @@
                 <ul class="header-menu-list">
                     <li class="menu-about-us {{ isRouteActive('about') ? 'active-menu-underline' : '' }}">{{ __('header.about_us') }}
                         <ul class="menu-drop-down">
-                            <li><a href="{{ LaravelLocalization::localizeUrl('/about') }}"
+                            <li>
+                                <a href="{{ LaravelLocalization::localizeUrl('/about') }}"
                                    class="{{ isRouteActive('about') ? 'active-menu-underline' : '' }}">{{ __('header.about_directory') }}</a>
                             </li>
                             <li>
@@ -23,13 +24,12 @@
                            class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">{{ __('header.books') }}
                             ...</a>
                         <ul  class="menu-drop-down books-drop-down">
-                            @foreach($categories as $category)
-                                <li class="{{ $slug == $category['name_en'] ? 'is-checked' : '' }}">
+                            @foreach(\App\Models\Categories::all() as $category)
+                                <li>
                                     <a href="{{ LaravelLocalization::localizeUrl('/category/' . $category['name_en']) }}">{{ $category['name_' . app()->getLocale()] }}</a>
                                 </li>
                             @endforeach
                         </ul>
-
                     </li>
                     <li><a href="{{ LaravelLocalization::localizeUrl('/authors') }}"
                            class="{{ isRouteActive('authors') ? 'active-menu-underline' : '' }}">{{ __('header.authors') }}</a>

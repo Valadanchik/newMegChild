@@ -40,8 +40,8 @@ class PaymentController extends Controller
         return $this->paymentService->telcellRedirect($request);
     }
 
-    public function arcaCallback(Requet $request)
+    public function arcaCallback(Request $request)
     {
-        $this->paymentService->arcaCallback($request);
+        return $this->paymentService->arcaCallback($request);
     }
 }

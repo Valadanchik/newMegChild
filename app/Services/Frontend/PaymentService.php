@@ -4,8 +4,8 @@ namespace App\Services\Frontend;
 
 use App\Events\CouponQuantity;
 use App\Models\Order;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use App\Events\OrderPayment;
 
 class PaymentService
@@ -21,8 +21,8 @@ class PaymentService
      * @param Order $order
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|null
      */
-     public function makePayment(Order $order): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application|null
-     {
+    public function makePayment(Order $order): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application|null
+    {
         $amount = $order->total_price;
         $payment_method = $order->payment_method;
 
@@ -203,35 +203,65 @@ class PaymentService
 
     public function arcaPayment($amount, $order_id)
     {
-        $url = 'https://ipay.arca.am/payment/rest/register.do';
-        $data = [
-            'userName' => '34540336_api',
-            'password' => '$newmag2018$',
+        $params = [
+            'userName' => env('ARCA_USERNAME'),
+            'password' => env('ARCA_PASSWORD'),
             'orderNumber' => $order_id,
-            'jsonParams' => '{"FORCE_3DS2":"true"}',
-            'amount' => 1,
+            'amount' => $amount * 100,
             'currency' => '051',
             'returnUrl' => route('payment.arca_callback'),
-            'description' => '', // TODO: add description if needed
-            'language' => 'hy',
         ];
 
-        $req = Http::post($url, $data);
+        $client = new Client();
+        $response = $client->request('POST', env('ARCA_URL') . env('ARCA_PAYMENT_EPD'), [
+            'form_params' => $params
+        ]);
 
-        $response = $req->json();
+        $response = json_decode($response->getBody()->getContents(), true);
 
-        if ($response['errorCode'] == 0) {
-
+        if (!$response['error']) {
             return redirect()->away($response['formUrl']);
-        } else {
-
-            //TODO: add error to order
-            dd($response);
         }
+        abort(404);
     }
 
     public function arcaCallback(Request $request)
     {
-        dd($request->all());
+        if(!$request->has('orderId'))
+            abort(404);
+
+        $params = [
+            'userName' => env('ARCA_USERNAME'),
+            'password' => env('ARCA_PASSWORD'),
+            'orderId' => $request->orderId,
+        ];
+
+        $client = new Client();
+        $response = $client->request('POST', env('ARCA_URL') . env('ARCA_DETAILS_EDP'), [
+            'form_params' => $params
+        ]);
+
+        $response = json_decode($response->getBody()->getContents(), true);
+
+        if ($response['error'])
+            return redirect()->route('payment.fail');
+
+        $order = Order::where('order_payment_id', $response['orderNumber'])->firstOrFail();
+
+        $order->payment_callback = json_encode($response);
+
+        if ($response['orderStatus'] == 2) {
+            event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
+
+            if (session()->get('coupon')) {
+                event(new CouponQuantity(session()->get('coupon')));
+            }
+
+            return redirect()->route('payment.success');
+        } else {
+            event(new OrderPayment(false, $order, Order::STATUS_FAILED));
+
+            return redirect()->route('payment.fail');
+        }
     }
 }

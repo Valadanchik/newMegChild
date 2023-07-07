@@ -288,7 +288,6 @@
                                 </div>
                                 <p>{{ __('checkout.payment_method') }}</p>
                                 <div class="your-order-radio">
-
                                     <div class="packaging-standart">
                                         <input type="radio" id="idram" name="payment_method" class="my-radio"
                                                value="{{\App\Models\Order::PAYMENT_METHOD_IDRAM}}"
@@ -298,12 +297,24 @@
                                             <img src="{{ URL::to('images/svg/idram.svg') }}" alt="idram logo">
                                         </label>
                                     </div>
+
                                     <div class="packaging-premium">
                                         <input type="radio" id="telcell" name="payment_method" class="my-radio"
                                                value="{{\App\Models\Order::PAYMENT_METHOD_TELCELL}}"
                                                @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_TELCELL) checked @endif>
                                         <label for="telcell">
                                             <img src="{{ URL::to('images/svg/telcell.svg') }}" alt="telcell logo">
+                                        </label>
+                                    </div>
+
+
+                                    <div class="packaging-standart">
+                                        <input type="radio" id="bank" name="payment_method" class="my-radio"
+                                               value="{{\App\Models\Order::PAYMENT_METHOD_BANK}}"
+                                               @if(!old('payment_method') || old('payment_method') == \App\Models\Order::PAYMENT_METHOD_BANK) checked @endif>
+
+                                        <label for="bank">
+                                            <img src="{{ URL::to('images/svg/arca.svg') }}" alt="bank logo">
                                         </label>
                                     </div>
                                 </div>

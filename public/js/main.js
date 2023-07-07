@@ -501,7 +501,7 @@ const l_more = document.querySelector('.l_more')
 const height_text = document.querySelector('.book-item-desc p')?.offsetHeight
 const l_more_button = document.querySelector('.learn-more-btn')
 
-if (height_text >= 216) {
+if (height_text >= 120) {
     l_more?.classList.add('learn-more')
 } else if (l_more_button) {
     l_more_button.style.display = 'none';

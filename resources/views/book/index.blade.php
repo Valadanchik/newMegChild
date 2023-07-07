@@ -54,8 +54,7 @@
                 </div>
                 <div class="book-item-desc">
                     <h4>{{ __('messages.contents') }}</h4>
-                    <p>{{ $book['description_' . app()->getLocale()] }}</p>
-                    <br>
+                    <span>{{ $book['description_' . app()->getLocale()] }}</span>
                     <p>{{ $book['text_' . app()->getLocale()] }}</p>
                     <div class="l_more">
                         <button class="learn-more-btn">{{ __('messages.read_more') }}</button>

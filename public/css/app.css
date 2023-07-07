@@ -1506,9 +1506,8 @@ section.book-page-item-banner {
 }
 .book-item-desc span{
     margin-bottom: 10px;
-    font-size: 20px;
+    display: inline-block;
 }
-
 
 .book-page-item-btn a {
     font-family: 'Montserrat arm';

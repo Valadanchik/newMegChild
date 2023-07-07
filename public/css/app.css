@@ -1488,8 +1488,7 @@ section.book-page-item-banner {
 }
 
 .book-item-desc p,
-.book-item-desc span
-{
+.book-item-desc span  {
     font-family: 'Montserrat arm';
     font-style: normal;
     font-weight: 400;
@@ -1504,6 +1503,10 @@ section.book-page-item-banner {
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-word;
+}
+.book-item-desc span{
+    margin-bottom: 10px;
+    display: inline-block;
 }
 
 .book-page-item-btn a {
@@ -3069,14 +3072,6 @@ section.contacts-page h1 {
     color: #444444;
 }
 
-.new-book-or-translation-desc ol li {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: 0.01em;
-    list-style: disc;
-    color: #444444;
-}
 
 .contacts-page-info-decsription span {
     font-weight: 600;
@@ -3121,12 +3116,24 @@ section.contacts-page h1 {
 
 .new-book-or-translation-desc ol {
     margin-top: 32px;
-    padding-left: 15px;
+    padding-left: 90px;
 }
 
-.new-book-or-translation-desc ol li {
-    margin-bottom: 24px;
+.new-book-or-translation-desc ol li::before {
+    content: "•";
+    color: #8F52A1;
+    font-size: 46px;
+    line-height: 40px;
+    position: relative;
+    top: 6px;
+    left: -8px;
 }
+.new-book-or-translation-desc ol li{
+    color: #444444;
+    font-size: 16px;
+    line-height: 20px;
+}
+
 
 /*///////////////////////add boooks page style////////////////////////*/
 .book-item-img-book {

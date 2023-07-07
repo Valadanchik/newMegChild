@@ -208,7 +208,8 @@
         font-size: 14px;
     }
 
-    .book-item-desc p {
+    .book-item-desc p ,
+    .book-item-desc span {
         font-size: 14px;
     }
 
@@ -1291,17 +1292,19 @@
         font-size: 14px;
     }
 
-    .new-book-or-translation-desc ol li {
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 20px;
-        letter-spacing: 0.01em;
-        list-style: circle;
-        color: #444444;
-    }
-
     .slick-slide.slick-cloned {
         margin-left: 0;
+    }
+    .new-book-or-translation-desc ol li{
+        font-size: 14px;
+    }
+    .new-book-or-translation-desc ol li::before {
+        font-size: 40px;
+        line-height: 36px;
+    }
+    .new-book-or-translation-desc ol {
+        margin-top: 12px;
+        padding-left: 50px;
     }
 
 }

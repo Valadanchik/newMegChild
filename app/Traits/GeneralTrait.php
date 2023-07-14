@@ -17,7 +17,7 @@ trait GeneralTrait
     public static function imageUpload($file, $path): string
     {
         try {
-            $imageName = time() . rand(1, 50) . '.' . $file->extension();
+            $imageName = uniqid() . '.' . $file->extension();
             $file->storeAs('public/' . $path, $imageName);
             return $path . '/' . $imageName;
         } catch (\Exception $e) {

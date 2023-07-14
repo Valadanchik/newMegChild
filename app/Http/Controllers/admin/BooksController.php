@@ -143,8 +143,8 @@ class BooksController extends Controller
         $images = $book->images()->whereIn('id', $ids)->get();
         foreach ($images as $image) {
             $path = storage_path('app/public/' . $image->image);
+            $image->delete();
             if (File::exists($path)) {
-                $image->delete();
                 File::delete($path);
             }
         }

@@ -23,7 +23,7 @@ class UpdateMediaRequest extends FormRequest
     {
         return [
             'title_hy' => 'required|string|max:255',
-            'title_en' => 'required|string|max:255',
+//            'title_en' => 'required|string|max:255',
             'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }

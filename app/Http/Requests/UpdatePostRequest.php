@@ -23,11 +23,11 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title_hy' => 'required|string|max:255',
-            'title_en' => 'required|string|max:255',
+//            'title_en' => 'required|string|max:255',
             'description_hy' => 'required|string|max:255',
-            'description_en' => 'required|string|max:255',
+//            'description_en' => 'required|string|max:255',
             'text_hy' => 'required|string',
-            'text_en' => 'required|string',
+//            'text_en' => 'required|string',
             'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category_id' => 'integer:exists:post_categories,id',
             'slug' => 'required|string|max:255',

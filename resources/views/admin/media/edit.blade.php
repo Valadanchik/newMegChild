@@ -56,16 +56,16 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="card mb-4">
-                                <div class="card-header">Name (En)</div>
-                                <div class="card-body">
-                                    <input type="text" class="form-control" id="title_en" name="title_en"
-                                           value="{{ old('title_en', $media->title_en) }}">
-                                </div>
-                                @error('title_en')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+{{--                            <div class="card mb-4">--}}
+{{--                                <div class="card-header">Name (En)</div>--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <input type="text" class="form-control" id="title_en" name="title_en"--}}
+{{--                                           value="{{ old('title_en', $media->title_en) }}">--}}
+{{--                                </div>--}}
+{{--                                @error('title_en')--}}
+{{--                                <div class="text-danger">{{ $message }}</div>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
 
                             <div class="card mb-4">
                                 <div class="card-header">Slug</div>

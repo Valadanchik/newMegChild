@@ -22,9 +22,9 @@ class StoreAuthorRequest extends FormRequest
     {
         return [
             'name_hy' => 'required|string|max:255',
-            'name_en' => 'required|string|max:255',
+//            'name_en' => 'required|string|max:255',
             'about_hy' => 'required|string',
-            'about_en' => 'required|string',
+//            'about_en' => 'required|string',
             'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }

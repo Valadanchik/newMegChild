@@ -71,7 +71,7 @@
                 <div class="header-icon-img">
                     <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">
                 </div>
-                <div class="header-icon-leng">
+{{--                <div class="header-icon-leng">
                     <p>
                         @if(LaravelLocalization::getCurrentLocale() == 'en')
                             <a rel="alternate" hreflang="hy"
@@ -81,7 +81,7 @@
                                href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">EN</a>
                         @endif
                     </p>
-                </div>
+                </div>--}}
             </div>
             <div id="nav-icon1">
                 <span></span>

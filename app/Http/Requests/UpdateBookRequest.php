@@ -23,13 +23,13 @@ class UpdateBookRequest extends FormRequest
     {
         return [
             'title_hy' => 'required|string|max:255|unique:books,title_hy,' . $this->id,
-            'title_en' => 'required|string|max:255|unique:books,title_en,' . $this->id,
+//            'title_en' => 'required|string|max:255|unique:books,title_en,' . $this->id,
             'text_hy' => 'required|string',
-            'text_en' => 'required|string',
+//            'text_en' => 'required|string',
             'description_hy' => 'required|string',
-            'description_en' => 'required|string',
+//            'description_en' => 'required|string',
             'book_size_hy' => 'required|string',
-            'book_size_en' => 'required|string',
+//            'book_size_en' => 'required|string',
             'video_url' => 'nullable|string',
             'slug' => 'required|string|max:255|unique:books,slug,' . $this->id,
             'price' => 'required|integer',

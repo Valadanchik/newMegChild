@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->unsigned();
             $table->string('slug')->unique();
             $table->string('name_hy')->unique();
-            $table->string('name_en')->unique();
+            $table->string('name_en')->unique()->nullable();
             $table->text('about_hy')->nullable();
             $table->text('about_en')->nullable();
             $table->text('image');

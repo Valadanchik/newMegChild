@@ -56,7 +56,7 @@
                             @enderror
                         </div>
 
-                        <div class="card mb-4">
+{{--                        <div class="card mb-4">
                             <div class="card-header">Title (En)</div>
                             <div class="card-body">
                                 <input type="text" class="form-control" id="title_en" name="title_en"
@@ -65,7 +65,7 @@
                             @error('title_en')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
                         <div class="card mb-4">
                             <div class="card-header">Text (Hy)</div>
@@ -78,7 +78,7 @@
                             @enderror
                         </div>
 
-                        <div class="card mb-4">
+{{--                        <div class="card mb-4">
                             <div class="card-header">Text (En)</div>
                             <div class="card-body">
                                 <textarea class="form-control" id="text_en"
@@ -87,7 +87,7 @@
                             @error('text_en')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
                         <div class="card mb-4">
                             <div class="card-header">Description (Hy)</div>
@@ -100,7 +100,7 @@
                             @enderror
                         </div>
 
-                        <div class="card mb-4">
+{{--                        <div class="card mb-4">
                             <div class="card-header">Description (En)</div>
                             <div class="card-body">
                                 <textarea class="form-control" id="description_en"
@@ -109,7 +109,7 @@
                             @error('description_en')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
                         <div class="card mb-4">
                             <div class="card-header">Book Size (Hy)</div>
@@ -122,7 +122,7 @@
                             @enderror
                         </div>
 
-                        <div class="card mb-4">
+{{--                        <div class="card mb-4">
                             <div class="card-header">Book Size (En)</div>
                             <div class="card-body">
                                 <input type="text" class="form-control" id="book_size_en" name="book_size_en"
@@ -131,7 +131,7 @@
                             @error('book_size_en')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
                         <div class="card mb-4">
                             <div class="card-header">Slug</div>

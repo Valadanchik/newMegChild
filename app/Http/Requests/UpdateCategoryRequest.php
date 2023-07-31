@@ -23,7 +23,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name_hy' => 'required|string|max:255',
-            'name_en' => 'required|string|max:255',
+//            'name_en' => 'required|string|max:255',
             'age' => 'required|string',
         ];
     }

@@ -57,16 +57,16 @@
                             @enderror
                         </div>
 
-                        <div class="card mb-4">
-                            <div class="card-header">Title (En)</div>
-                            <div class="card-body">
-                                <input type="text" class="form-control" id="name_en" name="name_en"
-                                       value="{{ old('name_en', $author->name_en) }}">
-                            </div>
-                            @error('name_en')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+{{--                        <div class="card mb-4">--}}
+{{--                            <div class="card-header">Title (En)</div>--}}
+{{--                            <div class="card-body">--}}
+{{--                                <input type="text" class="form-control" id="name_en" name="name_en"--}}
+{{--                                       value="{{ old('name_en', $author->name_en) }}">--}}
+{{--                            </div>--}}
+{{--                            @error('name_en')--}}
+{{--                            <div class="text-danger">{{ $message }}</div>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
 
                         <div class="card mb-4">
                             <div class="card-header">Text (Hy)</div>
@@ -79,16 +79,16 @@
                             @enderror
                         </div>
 
-                        <div class="card mb-4">
-                            <div class="card-header">Text (En)</div>
-                            <div class="card-body">
-                                <textarea class="form-control" id="about_en"
-                                          name="about_en">{{ old('about_en', $author->about_en) }}</textarea>
-                            </div>
-                            @error('about_en')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+{{--                        <div class="card mb-4">--}}
+{{--                            <div class="card-header">Text (En)</div>--}}
+{{--                            <div class="card-body">--}}
+{{--                                <textarea class="form-control" id="about_en"--}}
+{{--                                          name="about_en">{{ old('about_en', $author->about_en) }}</textarea>--}}
+{{--                            </div>--}}
+{{--                            @error('about_en')--}}
+{{--                            <div class="text-danger">{{ $message }}</div>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
                     </div>
                     <div class="col-lg-6">
                         <div class="card mb-4">

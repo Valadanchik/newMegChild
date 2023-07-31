@@ -16,11 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('post_category_id')->nullable();
             $table->string('slug')->unique();
             $table->string('title_hy')->unique();
-            $table->string('title_en')->unique();
+            $table->string('title_en')->unique()->nullable();
             $table->string('description_hy')->nullable();
             $table->string('description_en')->nullable();
             $table->longText('text_hy');
-            $table->longText('text_en');
+            $table->longText('text_en')->nullable();
             $table->text('image');
             $table->softDeletes();
             $table->timestamps();

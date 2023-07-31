@@ -21,16 +21,15 @@ class StoreBookRequest extends FormRequest
      */
     public function rules(): array
     {
-
         return [
             'title_hy' => 'required|string|unique:books,title_hy|max:255',
-            'title_en' => 'required|string|unique:books,title_en|max:255',
+//            'title_en' => 'required|string|unique:books,title_en|max:255',
             'text_hy' => 'required|string',
-            'text_en' => 'required|string',
+//            'text_en' => 'required|string',
             'description_hy' => 'required|string',
-            'description_en' => 'required|string',
+//            'description_en' => 'required|string',
             'book_size_hy' => 'required|string',
-            'book_size_en' => 'required|string',
+//            'book_size_en' => 'required|string',
             'video_url' => 'nullable|string',
             'slug' => 'required|string|max:255|unique:books,slug',
             'price' => 'required|integer',

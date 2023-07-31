@@ -1,7 +1,7 @@
 /*/////////SLIDER//////////////*/
 $(document).ready(function () {
     $('.single-item').slick({
-        dots: true,
+        dots: false,
         prevArrow: ('<svg  class="slick-prev"  viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">\n' +
             '<g clip-path="url(#clip0_720_14)">\n' +
             '<g filter="url(#filter0_b_720_14)">\n' +

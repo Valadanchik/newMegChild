@@ -3174,7 +3174,7 @@ section.contacts-page h1 {
 }
 
 .slick-dots li button:before {
-    font-size: 12px;
+    font-size: 9px;
 }
 
 .slick-dots li.slick-active button:before {
@@ -3449,8 +3449,8 @@ li.slick-active button {
     font-size: 0;
     line-height: 0;
     display: block;
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     padding: 5px;
     cursor: pointer;
     color: transparent;
@@ -3467,8 +3467,8 @@ li.slick-active button {
 .slick-dots li button:focus:before {
     opacity: 1;
     background-color: #8f52a1;
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     border-radius: 100%;
 }
 .slick-dots {
@@ -3495,3 +3495,4 @@ li.slick-active button {
 /*.header-menu-list li > a{*/
 /*    color: red;*/
 /*}*/
+

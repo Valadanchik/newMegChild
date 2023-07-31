@@ -7,7 +7,7 @@
                 @foreach($data['categories'] as $category)
                     <div class="banner-img">
                         <a href="{{ LaravelLocalization::localizeUrl('/category/' . $category['name_en']) }}">
-                            <img src="{{ URL::to('/images/' . $category['name_en'] . '.png') }}" alt="logo filter">
+                            <img src="{{ URL::to('/images/svg/' . $category['name_en'] . '.svg') }}" alt="logo filter">
                         </a>
                     </div>
                 @endforeach

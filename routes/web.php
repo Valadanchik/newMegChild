@@ -21,7 +21,7 @@ use App\Http\Controllers\admin\MediaController;
 use App\Http\Controllers\admin\OrderController as AdminOrderController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\SubscriptionController as AdminSubscriptionController;
-use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\admin\SettingsController;
 use App\Http\Middleware\SetSettingDataServiceMiddleware;
 use App\Http\Controllers\admin\CouponController as AdminCouponController;
 /*

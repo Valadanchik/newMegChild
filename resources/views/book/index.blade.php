@@ -126,7 +126,7 @@
                             <span>{{ $book['font_size'] }}</span>
                         </div>
                     @endif
-                    @if(!empty($book->translators ))
+                    @if(count($book->translators))
                         <div class="additional-information-list-item">
                             <p>{{ __('messages.translator') }}</p>
                             <div class="additional-information-list-item-img">

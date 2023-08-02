@@ -53,7 +53,7 @@
                         <div class="article-box-item">
                             <div class="article-box-item-img">
                                 <a href="{{ LaravelLocalization::localizeUrl('/article/' . $otherPost['slug']) }}">
-                                    <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
+                                    <img src="{{ URL::to('storage/' . $otherPost['image']) }}" alt="">
                                 </a>
                             </div>
                             <div class="article-box-item-desc">

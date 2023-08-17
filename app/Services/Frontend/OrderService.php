@@ -40,7 +40,10 @@ class OrderService
     public function create(Request $request)
     {
         $request->request->add(['total_price' => session()->get('total_price')]);
-        return Order::create($request->except(['_token','terms']));
+        $order = Order::create($request->except(['_token','terms']));
+        $this->createOrderBook($order);
+
+        return $order;
     }
 
     /**

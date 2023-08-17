@@ -3496,3 +3496,7 @@ li.slick-active button {
 /*    color: red;*/
 /*}*/
 
+/*summernote image padding*/
+p img {
+    padding: 4px;
+}

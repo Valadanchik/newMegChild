@@ -24,14 +24,13 @@
                 <div class="books-info-item">
                     @foreach($books as $index => $book)
                         <div class="book-item">
+                            <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
                             <div class="book-item-images">
                                 <div class="book-item-img-logo">
                                     <img src="{{ URL::to('images/reade-more-img-logo-green.png') }}" alt="">
                                 </div>
                                 <div class="book-item-img-book">
-                                    <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">
                                         <img width="270px" src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
-                                    </a>
                                 </div>
                             </div>
                             <h3>{{ $book['title_' . app()->getLocale()]  }}</h3>
@@ -40,6 +39,7 @@
                                     {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}
                                 @endforeach
                             </p>
+                            </a>
                             <div class="book-price">
                                 <p class="book-pr">{{ $book['price']  }} ֏ </p>
                             </div>

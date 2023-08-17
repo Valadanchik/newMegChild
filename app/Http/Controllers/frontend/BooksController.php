@@ -22,7 +22,9 @@ class BooksController extends Controller
         $categories = Categories::all();
         $books = Books::with(['authors' => function ($query) {
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
-        }])->get();
+        }])
+            ->where('status', Books::ACTIVE)
+            ->get();
 
         return view('book/books', compact('books', 'categories', 'slug'));
     }

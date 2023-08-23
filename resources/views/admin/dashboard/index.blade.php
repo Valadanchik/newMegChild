@@ -3,7 +3,7 @@
 @section('admin.content')
     <main>
         <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-            <div class="container-xl px-4">
+            <div class="container-xxl px-4">
                 <div class="page-header-content pt-4">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
@@ -17,7 +17,7 @@
             </div>
         </header>
         <!-- Main page content-->
-        <div class="container-xl px-4 mt-n10">
+        <div class="container-xxl px-4 mt-n10">
             <div class="row">
                 <div class="col-xxl-12 col-xl-12 mb-4">
                     <div class="card h-100">

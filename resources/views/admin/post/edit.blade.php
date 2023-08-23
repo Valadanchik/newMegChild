@@ -112,7 +112,7 @@
                             <div class="card-header">Medias</div>
                             <div class="card-body">
                                 @foreach($postCategories as $category)
-                                    <div>
+                                    <div class="ml-4">
                                         <input class="form-check-input" type="radio" name="post_category_id" value="{{$category->id}}"
                                                @if((is_array(old('post_category_id')) && in_array($category->id, old('post_category_id'))) || ($category->id == ($post->postCategory->id ?? false))) checked @endif>
                                         <label class="form-check-label" for="flexCheckDefault">

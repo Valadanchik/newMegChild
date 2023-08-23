@@ -10,10 +10,9 @@ class Images extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'image',
-        'path',
         'book_id',
+        'order',
+        'image',
     ];
 
     public function book(): \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -3,7 +3,7 @@
 @section('admin.content')
     <main>
         <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-            <div class="container-xl px-4">
+            <div class="container-xxl px-4">
                 <div class="page-header-content pt-4">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
@@ -17,7 +17,7 @@
             </div>
         </header>
         <!-- Main page content-->
-        <div class="container-xl px-4 mt-n10">
+        <div class="container-xxl px-4 mt-n10">
             @if(session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -91,7 +91,7 @@
                                     @endswitch
                                 </td>
                                 <td>
-                                    <a href="{{ route('orders.show', $order['id']) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2"><i class="fa-regular fa-eye"></i></a>
+                                    <a href="{{ route('orders.show', $order['id']) }}" class="'bi bi-eye btn btn-datatable btn-icon btn-transparent-dark me-2"><i class="fa-regular fa-eye"></i></a>
                                 </td>
                             </tr>
                         @endforeach

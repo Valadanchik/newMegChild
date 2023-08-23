@@ -8,10 +8,13 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Models\Authors;
 use App\Models\Books;
 use App\Models\Categories;
+use App\Models\Images;
 use App\Models\Translators;
 use App\Traits\GeneralTrait;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\URL;
 
 class BooksController extends Controller
 {
@@ -22,7 +25,7 @@ class BooksController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $books = Books::all();
+        $books = Books::orderBy('id', 'DESC')->get();
         return view('admin.book.index', compact('books'));
     }
 
@@ -79,11 +82,32 @@ class BooksController extends Controller
         $authors = Authors::all();
         $translators = Translators::all();
         $categories = Categories::all();
-        $book = $books::with(['category', 'authors', 'translators', 'images'])->findOrFail($id);
+        $book = $books::with(['category', 'authors', 'translators'])
+            ->with(['images' => function ($query) {
+                $query->orderBy('images.order', 'ASC');
+            }])
+            ->findOrFail($id);
         $translatorsForSelected = self::filterData($book->translators);
         $authorsForSelected = self::filterData($book->authors);
+        $imagesPathAndId = $this->getImagePathAndId($book->images);
 
-        return view('admin.book.edit', compact('book', 'categories', 'authors', 'translators', 'translatorsForSelected', 'authorsForSelected'));
+        return view('admin.book.edit', compact('book', 'categories', 'authors', 'translators', 'translatorsForSelected', 'authorsForSelected', 'imagesPathAndId'));
+    }
+
+    /**
+     * @param $images
+     * @return false|string
+     */
+    public function getImagePathAndId($images)
+    {
+        $imagesPathAndId = [];
+        foreach ($images as $image) {
+            $imagesPathAndId[] = [
+                'image_url' => URL::to('storage/' . $image->image),
+                'id' => $image->id,
+            ];
+        }
+        return json_encode($imagesPathAndId);
     }
 
 
@@ -147,6 +171,44 @@ class BooksController extends Controller
             if (File::exists($path)) {
                 File::delete($path);
             }
+        }
+    }
+
+    /**
+     * @param Images $image
+     * @param $id
+     * @return true|void
+     */
+    public static function deleteBookImage(Images $image, $id)
+    {
+        try {
+            $image = $image::findOrFail($id);
+            $path = storage_path('app/public/' . $image->image);
+            $image->delete();
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            return true;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return true|void
+     */
+    public static function updateImagesOrder(Request $request)
+    {
+        try {
+            $imageOrder = $request->input('order');
+            foreach ($imageOrder as $position => $imageId) {
+                Images::where('id', $imageId['key'])->update(['order' => $position]);
+            }
+
+            return true;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
     }
 

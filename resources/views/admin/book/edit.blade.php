@@ -38,7 +38,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
+            <form class="book-page-form" action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="row gx-4">
@@ -236,22 +236,15 @@
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <input class="book-edit-images" type="hidden" value="{{ $imagesPathAndId }}">
+                        <input class="book-ordering-route" type="hidden" value="{{ route('admin.update.imagesOrder') }}">
+                        <input class="book-destroy-routing" type="hidden" value="{{ route('books.book-image-destroy') }}">
+
                         <div class="card mb-4">
                             <div class="card mb-4">
                                 <div class="card-header">Book Images</div>
                                 <div class="form-group">
-                                    <div class="card-body">
-                                        <label>Old Images:</label>
-                                        <input type="hidden" name="deleted_images_id" value="">
-                                        <div class="row old-images" >
-                                            @foreach($book->images as $item)
-                                                <div class="col-md-4">
-                                                    <img width="100px" class="img-thumbnail" alt="Selected Image" src="{{ URL::to('storage/'.$item->image) }}" alt="">
-                                                    <button type="button" class="btn btn-sm btn-danger mt-2 remove-image" data-img-id="{{ $item->id }}">Remove</button>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
                                     <div class="card-body">
                                         <input id="bookFiles" type="file" name="images[]" multiple class="images" data-overwrite-initial="false" >
                                     </div>
@@ -277,7 +270,7 @@
                             <div class="card-header">Authors</div>
                             <div class="card-body">
                                 @foreach($authors as $author)
-                                    <div>
+                                    <div class="ml-4">
                                         <input class="form-check-input" type="checkbox" name="authors[]" value="{{$author->id}}"
                                                @if((is_array(old('authors')) && in_array($author->id, old('authors'))) || in_array($author->id, $authorsForSelected)) checked @endif>
                                         <label class="form-check-label" for="flexCheckDefault">
@@ -295,7 +288,7 @@
                             <div class="card-header">Translators</div>
                             <div class="card-body">
                                 @foreach($translators as $key => $translator)
-                                    <div>
+                                    <div class="ml-4">
                                         <input class="form-check-input" type="checkbox" name="translators[]" value="{{$translator->id}}"
                                                @if((is_array(old('translators')) && in_array($translator->id, old('translators'))) || in_array($translator->id, $translatorsForSelected)) checked @endif>
                                         <label class="form-check-label" for="flexCheckDefault">

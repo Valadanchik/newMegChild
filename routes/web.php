@@ -110,6 +110,9 @@ Route::middleware([SetSettingDataServiceMiddleware::class])->group(function () {
                 Route::get('settings', [SettingsController::class, 'index'])->name('settings.index')->middleware('can:isAdmin');
                 Route::match(array('PUT', 'PATCH'), 'settings/update', [SettingsController::class, 'update'])->name('settings.update')->middleware('can:isAdmin');
 
+                Route::post('books/delete-image/{id?}', [BooksController::class, 'deleteBookImage'])->name('books.book-image-destroy')->middleware('can:isAdmin');
+                Route::match(array('PUT', 'PATCH'), 'books/update-images-order', [BooksController::class, 'updateImagesOrder'])->name('admin.update.imagesOrder')->middleware('can:isAdmin');
+
                 Route::resource('books', BooksController::class)->middleware('can:isAdmin');
                 Route::resource('authors', AuthorsController::class)->middleware('can:isAdmin');
                 Route::resource('translators', TranslatorsController::class)->middleware('can:isAdmin');

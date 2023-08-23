@@ -27,22 +27,68 @@ document.querySelectorAll('.dropdown-menu a').forEach(function(item) {
 });
 
 
-$("#bookFiles").fileinput({
-    showRemove: true,
-    showCancel: true,
-    browseLabel: "<i class='fa fa-folder-open'></i>",
-    initialPreviewAsData: true,
-    fileActionSettings :{
-        showUpload: false,
-        showZoom: false,
-        removeIcon: "<i class='fa fa-times'></i>",
-    },
-    allowedFileExtensions: ['jpg', 'png', 'gif'],
-    maxFileSize:2000,
-    maxFilesNum: 10,
-});
-
 $(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    let imageUrl = $('.book-edit-images').val()
+    let bookOrderingRoute = $('.book-ordering-route').val()
+    let bookDestroyRrouting = $('.book-destroy-routing').val()
+    let images = []
+    let updateUrl = ''
+    let deleteUrl = ''
+
+    if (bookOrderingRoute !== undefined) updateUrl = bookOrderingRoute
+
+    if (bookDestroyRrouting !== undefined) deleteUrl = bookDestroyRrouting
+
+    if (imageUrl !== undefined) images = JSON.parse(imageUrl)
+
+    $("#bookFiles").fileinput({
+        initialPreviewAsData: true,
+        initialPreview: images.map(image => image.image_url),
+        initialPreviewConfig: images.map(image => {
+            return {
+                key: image.id,
+                extra: { id: image.id },
+                url: deleteUrl + '/' + image.id,
+                keyExtra: { id: image.id },
+                width: "120px",
+                height: "80px",
+            };
+        }),
+        autoOrientImage: true,
+        overwriteInitial: true,
+        maxFileSize: 100,
+        initialCaption: "The Moon and the Earth",
+        showUpload: false,
+        showRemove: true,
+        fileActionSettings: {
+            removeIcon: "<i class='bi-trash'></i>",
+        }
+
+    }).on('filesorted', function(event, params) {
+        saveImageOrder(params.stack);
+    });
+
+    /**
+     *
+     * @param sortedImageIds
+     */
+    function saveImageOrder(sortedImageIds) {
+        $.ajax({
+            url: updateUrl,
+            method: "PUT",
+            data: { order: sortedImageIds },
+            success: function(response) {
+                console.log(response);
+            },
+        });
+    }
+
     $('.summernote').summernote({
         tabsize: 2,
         height: 320,

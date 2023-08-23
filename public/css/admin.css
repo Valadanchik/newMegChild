@@ -19369,6 +19369,7 @@ body {
     width: 20px !important;
     font-size: 0.75rem;
     border-radius: 0.35rem !important;
+    display: contents !important;
 }
 
 .sbp-dropdown-example .dropdown-menu {
@@ -19664,5 +19665,16 @@ pre[class*=language-] {
 }
 
 
+.book-page-form .file-preview-frame {
+    width: 100%;
+    max-width: 213px !important;
+}
+
+.book-page-form .krajee-default.file-preview-frame .kv-file-content {
+    width: 199px !important;
+}
 
 
+form .card .card-body > div {
+    /*margin-left:20px;*/
+}

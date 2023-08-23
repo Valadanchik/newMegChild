@@ -3,7 +3,7 @@
 @section('admin.content')
     <main>
         <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-            <div class="container-xl px-4">
+            <div class="container-xxl px-4">
                 <div class="page-header-content pt-4">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
@@ -17,7 +17,7 @@
             </div>
         </header>
         <!-- Main page content-->
-        <div class="container-xl px-4 mt-n10">
+        <div class="container-xxl px-4 mt-n10">
             @if(session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -74,13 +74,13 @@
                                 <td>{{ $comment['created_at'] }}</td>
 
                                 <td>
-                                    <a href="{{ url('fs-admin/comment/view/' . $comment['id'] ) }}" class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                    <a href="{{ url('fs-admin/comment/view/' . $comment['id'] ) }}" class="bi-pencil btn btn-datatable btn-icon btn-transparent-dark me-2">
                                         <i class="fa-regular fa-eye"></i>
                                     </a>
                                     <form style="display: inline-block" action="{{ route('admin.bookComment.destroy', $comment['id']) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button  class="btn btn-datatable btn-icon btn-transparent-dark me-2" type="submit" onclick="return confirm('Are you sure you want to delete this model?')"> <i class="fa-regular fa-trash-can"></i></button>
+                                        <button  class="btn btn-datatable btn-icon btn-transparent-dark me-2" type="submit" onclick="return confirm('Are you sure you want to delete this model?')"> <i class="bi-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

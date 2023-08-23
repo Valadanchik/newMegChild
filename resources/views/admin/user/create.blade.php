@@ -76,7 +76,7 @@
                             <div class="card-header">Roles</div>
                             <div class="card-body">
                                 @foreach($roles as $role)
-                                    <div>
+                                    <div class="ml-4">
                                         <input class="form-check-input" type="radio" name="role_id" value="{{$role->id}}"
                                                @if(is_array(old('role_id')) && in_array($role->id, old('role_id'))) checked @endif>
                                         <label class="form-check-label" for="flexCheckDefault">

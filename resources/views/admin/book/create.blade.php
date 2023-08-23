@@ -38,7 +38,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="book-page-form"  action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="row gx-4">
@@ -259,7 +259,7 @@
                             <div class="card-header">Authors</div>
                             <div class="card-body">
                                 @foreach($authors as $author)
-                                    <div>
+                                    <div class="ml-4">
                                         <input class="form-check-input" type="checkbox" name="authors[]" value="{{$author->id}}"
                                                @if(is_array(old('authors')) && in_array($author->id, old('authors'))) checked @endif>
                                         <label class="form-check-label" for="flexCheckDefault">
@@ -278,7 +278,7 @@
                             <div class="card-header">Translators</div>
                             <div class="card-body">
                                 @foreach($translators as $translator)
-                                    <div>
+                                    <div class="ml-4">
                                         <input class="form-check-input" type="checkbox" name="translators[]" value="{{$translator->id}}"
                                                @if(is_array(old('translators')) && in_array($translator->id, old('translators'))) checked @endif>
                                         <label class="form-check-label" for="flexCheckDefault">
@@ -308,17 +308,6 @@
                                 @error('category_id')
                                     <div style="color: red" class="required--error">{{ $message }}</div>
                                 @enderror
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header">Active</div>
-                            <div class="card-body">
-                                <div class="form-check form-switch form-check-input-red">
-                                    <input class="form-check-input" value="0" name="status" type="checkbox" id="flexSwitchCheckChecked"
-                                           @if(is_array(old('status')) && in_array(1, old('status'))) checked @endif>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">disable?</label>
-                                </div>
                             </div>
                         </div>
 

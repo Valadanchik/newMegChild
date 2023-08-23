@@ -74,16 +74,11 @@ class HomeController extends Controller
     public function getHomeBooks(): mixed
     {
         return $this->books->with('category')
-//            ->with(['authors' => function ($query) {
-//            $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
-//        }, 'translators' => function ($query) {
-//            $query->select('translators.id', 'translators.name_hy', 'translators.name_en');
-//        }])
             ->whereIn('id', function ($query) {
                 $query->select(DB::raw('MAX(id)'))
                     ->from('books')
                     ->whereIn('category_id', [Categories::AYB, Categories::BEN, Categories::GIM, Categories::DA])
-                    ->groupBy('category_id');
+                    ->groupBy('id');
             })
             ->where('status', Books::ACTIVE)
             ->take(Books::HOME_PAGE_BOOKS_COUNT)

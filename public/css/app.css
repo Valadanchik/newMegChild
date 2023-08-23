@@ -1298,12 +1298,17 @@ a.footer-address:hover {
 }
 
 .article-info-and-video-desc-article span {
-    font-family: 'Montserrat arm';
+    font-family: montserrat arm;
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    letter-spacing: 0.01em;
+    letter-spacing: .01em;
     color: #8F52A1;
+    border-left: 4px solid;
+    padding-bottom: 15px;
+    padding-left: 12px;
+    padding-top: 15px;
+    border-radius: 6px 0px 0px 6px;
 }
 
 .article-info-and-video-description p {

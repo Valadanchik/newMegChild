@@ -13,7 +13,8 @@
                 @endforeach
             </div>
         </section>
-        @foreach($data['books'] as $index => $book)
+{{--        @dd($data['books'])--}}
+    @foreach($data['books'] as $index => $book)
             <section class="{{ $book->category->name_en }}-color">
                 <div style="{{ ($book->category->id === \App\Models\Categories::AYB || $book->category->id === \App\Models\Categories::GIM) ? "flex-direction: row;" : "flex-direction: row-reverse;" }}"
                      class="book-section content">

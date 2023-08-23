@@ -24,6 +24,7 @@ class BooksController extends Controller
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }])
             ->where('status', Books::ACTIVE)
+            ->orderBy('id', 'DESC')
             ->get();
 
         return view('book/books', compact('books', 'categories', 'slug'));

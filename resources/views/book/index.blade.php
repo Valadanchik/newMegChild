@@ -24,7 +24,9 @@
                         <div class="book-page-item-description-param-group">
                             <p>{{ __('messages.group') }}</p>
                             <div class="book-page-item-group-desc-img">
-                                <img src="{{ URL::to('/images/' . ($book->category->name_en === 'parent' ? 'parent-gray' : $book->category->name_en) . '.png') }}" alt="">
+                                <img
+                                    src="{{ URL::to('/images/' . ($book->category->name_en === 'parent' ? 'parent-gray' : $book->category->name_en) . '.png') }}"
+                                    alt="">
                             </div>
                         </div>
                         <div class="book-page-item-description-age">
@@ -147,7 +149,7 @@
                     <h2 class="faq-title">{{ __('messages.authors') }}</h2>
                     @foreach($book->authors as $key => $author)
                         <div class="accordion-text  @if(sizeof($book->authors) < 1)info-authors @endif">
-                            <div class="accordion-text-info"  >
+                            <div class="accordion-text-info">
                                 <div class="book-page-item-after-img">
                                     <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
                                 </div>
@@ -176,20 +178,22 @@
             </div>
         </section>
 
-        <section class="book-page-reviews content">
-            <h2>{{ __('messages.comments') }}</h2>
-            <div class="book-page-reviews-boxes multiple-items">
-                @foreach($book->comments as $comment)
-                    <div class="book-page-reviews-item">
-                        <p>{{ $comment->comment }}</p>
-                        <span>{{ $comment->full_name }}</span>
-                    </div>
-                @endforeach
-            </div>
-            <div class="cloud-modal">
-                <p class="cloud-modal-text"></p>
-            </div>
-        </section>
+        @if(count($book->comments) > 0)
+            <section class="book-page-reviews content">
+                <div class="book-page-reviews-boxes multiple-items">
+                    @foreach($book->comments as $comment)
+                        <div class="book-page-reviews-item">
+                            <p>{{ $comment->comment }}</p>
+                            <span>{{ $comment->full_name }}</span>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="cloud-modal">
+                    <p class="cloud-modal-text"></p>
+                </div>
+            </section>
+        @endif
+
         <section class="book-page-leave-review">
             <div class="book-page-leave-review-form"></div>
         </section>

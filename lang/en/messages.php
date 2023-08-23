@@ -44,6 +44,7 @@ return [
     'email' => 'Email',
     'comment' => 'Comment',
     'comments' => 'Comments',
+    'no_comments' => 'No Comments',
     'terms' => 'I have read and agree to the terms of use',
     'send' => 'Send',
     'red_also' => 'Read also',

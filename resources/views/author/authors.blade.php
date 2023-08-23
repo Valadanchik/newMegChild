@@ -10,11 +10,9 @@
                 <div class="authors-boxes">
                     @foreach($authors as $author)
                         <div>
-                            <div>
-                                <a href="{{ LaravelLocalization::localizeUrl('/author/' . $author['slug']) }}">
-                                    <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
-                                </a>
-                            </div>
+                            <a href="{{ LaravelLocalization::localizeUrl('/author/' . $author['slug']) }}">
+                                <img src="{{ URL::to('storage/' . $author['image']) }}" alt="">
+                            </a>
                             <span> {{ $author['name_' . app()->getLocale()] }}</span>
                         </div>
                     @endforeach

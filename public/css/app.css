@@ -676,10 +676,23 @@ main {
     max-width: 212px;
 }
 
-.authors-boxes div img {
-    width: 100%;
+.authors-boxes  a {
+    position: relative;
     border: 4px solid #4DB848;
     border-radius: 100%;
+    display: block;
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+}
+
+.authors-boxes  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
 }
 
 .authors-boxes div span {

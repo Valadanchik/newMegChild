@@ -83,6 +83,7 @@ class HomeController extends Controller
             ->where('status', Books::ACTIVE)
             ->take(Books::HOME_PAGE_BOOKS_COUNT)
             ->orderBy('category_id', 'ASC')
+            ->limit(4)
             ->get();
     }
 

@@ -78,12 +78,11 @@ class HomeController extends Controller
                 $query->select(DB::raw('MAX(id)'))
                     ->from('books')
                     ->whereIn('category_id', [Categories::AYB, Categories::BEN, Categories::GIM, Categories::DA])
-                    ->groupBy('id');
+                    ->groupBy('category_id');
             })
             ->where('status', Books::ACTIVE)
             ->take(Books::HOME_PAGE_BOOKS_COUNT)
             ->orderBy('category_id', 'ASC')
-            ->limit(4)
             ->get();
     }
 

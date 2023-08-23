@@ -278,7 +278,8 @@ main {
     width: 100%;
 }
 
-.color-info-description h2 {
+
+.color-info-description h2 a {
     font-style: normal;
     font-weight: 600;
     font-size: 36px;
@@ -1953,14 +1954,18 @@ h2.book-page-leave-review-title {
 }
 
 .reade-more-item h3 {
+    margin-top: 19px;
+    margin-bottom: 34px;
+}
+
+.reade-more-item h3 a {
     font-family: 'Montserrat arm';
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;
-    margin-top: 19px;
     letter-spacing: 0.01em;
-    margin-bottom: 34px;
+    color: black;
 }
 
 .reade-more-item p {

@@ -270,7 +270,9 @@
                                 </a>
                             </div>
                         </div>
-                        <h3>{{ $book['title_' . app()->getLocale()] }}</h3>
+                        <h3>
+                            <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">{{ $book['title_' . app()->getLocale()] }}</a>
+                        </h3>
                         <p>
                             @foreach($book->authors as $key => $author)
                                 {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}

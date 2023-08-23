@@ -25,7 +25,9 @@
                         </div>
                     </div>
                     <div class="color-info-description">
-                        <h2>{{ $book['title_' . app()->getLocale()]  }}</h2>
+                        <h2>
+                            <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">{{ $book['title_' . app()->getLocale()]  }}</a>
+                        </h2>
                         {{-- <p class="color-info-description-after">{{ __('messages.author') }}`--}}
                         {{--     @foreach($book->authors as $key => $author)--}}
                         {{--         {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}--}}
@@ -114,7 +116,9 @@
                         </a>
                     </div>
                     <div class="color-info-description">
-                        <h2>{{ $data['lastParentBook']['title_' . app()->getLocale()]  }}</h2>
+                        <h2>
+                            <a href="{{ LaravelLocalization::localizeUrl('/book/' . $data['lastParentBook']['slug']) }}">{{ $data['lastParentBook']['title_' . app()->getLocale()] }}</a>
+                        </h2>
                         {{--                        <p class="color-info-description-after">{{ __('messages.author') }}`--}}
                         {{--                            @foreach($book->authors as $key => $author)--}}
                         {{--                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}--}}

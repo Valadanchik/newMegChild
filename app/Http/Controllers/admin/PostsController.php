@@ -18,7 +18,7 @@ class PostsController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $posts = Post::with('postCategory')->get();
+        $posts = Post::with('postCategory')->orderBy('id', 'desc')->get();
         return view('admin.post.index', compact('posts'));
     }
 
@@ -27,7 +27,7 @@ class PostsController extends Controller
      */
     public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $postCategories = PostCategory::all();
+        $postCategories = PostCategory::orderBy('id', 'desc')->get();
 
         return view('admin.post.create', compact('postCategories'));
     }

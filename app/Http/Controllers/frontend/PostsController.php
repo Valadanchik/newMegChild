@@ -14,7 +14,7 @@ class PostsController extends Controller
      */
     public function articles(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->get();
         $postCategories = self::getPostCategories();
         return view('article/articles', compact('posts'), compact('postCategories'));
     }
@@ -60,7 +60,7 @@ class PostsController extends Controller
      */
     public static function getPostCategories(): \Illuminate\Database\Eloquent\Collection|array
     {
-        return PostCategory::has('post')->get();
+        return PostCategory::has('post')->orderBy('id', 'DESC')->get();
     }
 
     /**

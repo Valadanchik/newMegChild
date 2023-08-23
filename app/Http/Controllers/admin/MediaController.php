@@ -17,7 +17,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        $medias= PostCategory::all();
+        $medias= PostCategory::orderBy('id', 'desc')->get();
         return view('admin.media.index', compact('medias'));
     }
 

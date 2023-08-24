@@ -78,6 +78,10 @@ class BooksController extends Controller
 
         $shareUrl = LaravelLocalization::localizeUrl('/book/' . $book['slug']);
 
+        if($book->video_url) {
+            $book->video_url = Books::filterYoutubeUrl($book->video_url);
+        }
+
         $otherBooks = $this->otherBooks($book->id, $book->category_id);
 
         return view('book/index', compact('book', 'shareUrl', 'otherBooks',));
@@ -98,7 +102,6 @@ class BooksController extends Controller
 
         return $otherBooks;
     }
-
 
     /**
      * Display the specified resource.

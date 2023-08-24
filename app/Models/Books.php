@@ -91,6 +91,14 @@ class Books extends Model
         }
     }
 
+    /**
+     * @param $url
+     * @return string
+     */
+    public static function filterYoutubeUrl($url): string
+    {
+       return str_replace('watch?v=', 'embed/', $url);
+    }
 
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

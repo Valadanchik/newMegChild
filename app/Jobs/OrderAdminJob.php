@@ -25,8 +25,15 @@ class OrderAdminJob implements ShouldQueue
      */
     public function handle(): void
     {
+        $mailGroup = [
+            env('EMAIL_NEW_MAG_CHILD'),
+            env('EMAIL_NEW_MAG_INFO'),
+            env('EMAIL_NEW_MAG_DAVID'),
+            env('EMAIL_NEW_MAG_HOVO_QOCH'),
+            env('EMAIL_NEW_MAG_BOOKS'),
+        ];
         try {
-            Mail::to(env('EMAIL_NEW_MAG_CHILD'))->send(new OrderAdminMail($this->order));
+            Mail::to($mailGroup)->send(new OrderAdminMail($this->order));
         } catch (\Exception $e) {
             info('OrderUserJob: error-2: ' . $e->getMessage());
         }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SearchFilterResource;
+use App\Models\Accessor;
 use App\Models\BookComments;
 use App\Models\Books;
 use App\Models\Categories;
@@ -19,7 +20,8 @@ class BooksController extends Controller
     {
         $slug = null;
 
-        $categories = Categories::all();
+        $categories = Categories::where('type', Categories::TYPE_BOOK)->get();
+//        dd($categories);
         $books = Books::with(['authors' => function ($query) {
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }])
@@ -72,6 +74,9 @@ class BooksController extends Controller
             ->with(['images' => function ($query) {
                 $query->orderBy('images.order', 'ASC');
             }])
+            ->with(['accessors' => function ($query) {
+                   $query->inRandomOrder()->limit(4);
+            }])
             ->where('slug', $slug)
             ->where('status', Books::ACTIVE)
             ->firstOrFail();
@@ -84,8 +89,37 @@ class BooksController extends Controller
 
         $otherBooks = $this->otherBooks($book->id, $book->category_id);
 
-        return view('book/index', compact('book', 'shareUrl', 'otherBooks',));
+
+        // Accessors Take Functional
+        $accessorCount = count($book->accessors);
+        $accessors = $book->accessors;
+        if ($accessorCount < 4) {
+            $accessors = $this->getRandomAccesors($book->accessors, $accessorCount);
+        }
+
+//        dd($accessors);
+
+        return view('book/index', compact('book', 'shareUrl', 'otherBooks', 'accessors'));
     }
+
+    /**
+     * @param $bookAccessors
+     * @param $accessorCount
+     * @return void
+     */
+    public function getRandomAccesors($bookAccessors, $accessorCount)
+    {
+        $takeBookAccessorIds = $bookAccessors->pluck('id');
+
+        $accessor = Accessor::whereNotIn('id', $takeBookAccessorIds)
+            ->inRandomOrder()
+            ->limit(4 - $accessorCount)
+            ->get();
+
+        // merge accessors
+        return $bookAccessors->merge($accessor);
+    }
+
 
     /**
      * @param $bookId
@@ -108,7 +142,7 @@ class BooksController extends Controller
      */
     public function booksByCategory($slug): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $categories = Categories::all();
+        $categories = Categories::where('type', Categories::TYPE_BOOK)->get();
         $books = Books::with(['authors' => function ($query) {
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }])
@@ -116,7 +150,9 @@ class BooksController extends Controller
             ->where('status', Books::ACTIVE)
             ->get();
 
-        return view('book/books', compact('books', 'categories', 'slug'));
+//        dd($categories);
+
+return view('book/books', compact('books', 'categories', 'slug'));
     }
 
 }

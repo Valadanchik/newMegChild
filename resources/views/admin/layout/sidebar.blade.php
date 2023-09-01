@@ -17,6 +17,10 @@
                         <div class="nav-link-icon"><i data-feather="book"></i></div>
                         Books
                     </a>
+                    <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/accessors') }}">
+                        <div class="nav-link-icon"><i data-feather="book"></i></div>
+                        Accessors
+                    </a>
                     <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('fs-admin/comment/index') }}">
                         <div class="nav-link-icon"><i data-feather="book"></i></div>
                         Book Comments

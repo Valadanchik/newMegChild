@@ -40,6 +40,7 @@ class StoreBookRequest extends FormRequest
             'in_stock' => 'required|integer',
             'published_date' => 'required|string',
             'authors' => 'required|array',
+            'accessors' => 'array',
             'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'files.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];

@@ -6,6 +6,7 @@ return [
     'about_directory' => 'Մատենաշարի մասին',
     'books' => 'Գրքեր',
     'authors' => 'Հեղինակներ',
+    'accessors' => 'Աքսեսուարներ',
     'translators' => 'Թարգմանիչներ',
     'news' => 'Լուրեր',
     'media' => 'Մեդիա',

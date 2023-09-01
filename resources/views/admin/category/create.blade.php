@@ -39,24 +39,50 @@
                 @method('POST')
                 <div class="row gx-4">
                     <div class="col-lg-6">
+
+                        <div class="card mb-4">
+                            <div class="card-header">Type</div>
+                            <div class="card-body">
+                                <div class="ml-4">
+                                    <input class="form-check-input" type="radio" name="type" value="book" checked
+                                           @if((!old('type') === 'book') ) checked @endif >
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Book
+                                    </label>
+                                </div>
+                                <div class="ml-4">
+                                    <input class="form-check-input" type="radio" name="type" value="accessor"
+                                           @if((old('type') === 'accessor')) checked @endif>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Accessor
+                                    </label>
+                                </div>
+                                @error('type')
+                                <div style="color: red" class="required--error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+
                         <div class="card mb-4">
                             <div class="card-header">Name (Hy)</div>
                             <div class="card-body">
-                                <input type="text" class="form-control" id="name_hy" name="name_hy" value="{{ old('name_hy') }}">
+                                <input type="text" class="form-control" id="name_hy" name="name_hy"
+                                       value="{{ old('name_hy') }}">
                             </div>
                             @error('name_hy')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-{{--                        <div class="card mb-4">--}}
-{{--                            <div class="card-header">Name (En)</div>--}}
-{{--                            <div class="card-body">--}}
-{{--                                <input type="text" class="form-control" id="name_en" name="name_en" value="{{ old('name_en') }}">--}}
-{{--                            </div>--}}
-{{--                            @error('name_en')--}}
-{{--                            <div class="text-danger">{{ $message }}</div>--}}
-{{--                            @enderror--}}
-{{--                        </div>--}}
+                        <div class="card mb-4">
+                            <div class="card-header">Name (En)</div>
+                            <div class="card-body">
+                                <input type="text" class="form-control" id="name_en" name="name_en" value="{{ old('name_en') }}">
+                            </div>
+                            @error('name_en')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="card mb-4">
                             <div class="card-header">Age</div>
                             <div class="card-body">

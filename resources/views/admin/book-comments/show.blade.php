@@ -9,7 +9,7 @@
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="book"></i></div>
-                                <strong>Book Name: </strong> {{ $comment['book']['title_' . app()->getLocale() ] }}
+                                <strong>Book Name: </strong> {{ $comment['commentable']['title_' . app()->getLocale() ] }}
                             </h1>
                         </div>
                     </div>

@@ -2,9 +2,8 @@
 
 namespace App\Traits;
 
-use App\Models\Images;
 use \Illuminate\Database\Eloquent\Collection;
-use JetBrains\PhpStorm\NoReturn;
+use Illuminate\Support\Facades\URL;
 
 trait GeneralTrait
 {
@@ -77,4 +76,20 @@ trait GeneralTrait
         return redirect($urlWithoutParams);
     }
 
+    /**
+     * @param $images
+     * @return false|string
+     */
+    public function getImagePathAndId($images): bool|string
+    {
+        $imagesPathAndId = [];
+        foreach ($images as $image) {
+            $imagesPathAndId[] = [
+                'image_url' => URL::to('storage/' . $image->image),
+                'id' => $image->id,
+            ];
+        }
+
+        return json_encode($imagesPathAndId);
+    }
 }

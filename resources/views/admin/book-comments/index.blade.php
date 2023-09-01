@@ -36,6 +36,7 @@
                         <tr>
                             <th>Book Name</th>
                             <th>User Full Name</th>
+                            <th>Product Type</th>
                             <th>Email</th>
                             <th>Comment</th>
                             <th>Status</th>
@@ -47,6 +48,7 @@
                         <tr>
                             <th>Book Name</th>
                             <th>User Full Name</th>
+                            <th>Product Type</th>
                             <th>Email</th>
                             <th>Comment</th>
                             <th>Status</th>
@@ -57,8 +59,9 @@
                         <tbody>
                         @foreach($comments as $index => $comment)
                             <tr>
-                                <td>{{ $comment['book']['title_' . app()->getLocale() ] }}</td>
+                                <td>{{ $comment['commentable']['title_' . app()->getLocale() ] }}</td>
                                 <td>{{ $comment['full_name'] }}</td>
+                                <td>{{ $comment['commentable']['category']['type'] }}</td>
                                 <td>{{ $comment['email'] }}</td>
                                 <td>{{ $comment['comment'] }}</td>
                                 <td>

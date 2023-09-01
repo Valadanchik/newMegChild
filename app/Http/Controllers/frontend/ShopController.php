@@ -25,6 +25,7 @@ class ShopController extends Controller
 
     public function addToCart(Request $request)
     {
+//        dd($request->all());
         $request->only(['quantity', 'product',]);
 
         $this->shopService->addToCart($request);

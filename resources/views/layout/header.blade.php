@@ -24,17 +24,23 @@
                            class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">{{ __('header.books') }}
                             ...</a>
                         <ul  class="menu-drop-down books-drop-down">
-                            @foreach(\App\Models\Categories::all() as $category)
+                            @foreach(\App\Models\Categories::where('type', \App\Models\Categories::TYPE_BOOK)->get() as $category)
                                 <li>
                                     <a href="{{ LaravelLocalization::localizeUrl('/category/' . $category['name_en']) }}">{{ $category['name_' . app()->getLocale()] }}</a>
                                 </li>
                             @endforeach
                         </ul>
                     </li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/authors') }}"
+                    <li>
+                        <a href="{{ LaravelLocalization::localizeUrl('/accessors') }}"
+                           class="{{ isRouteActive('accessors') ? 'active-menu-underline' : '' }}">{{ __('header.accessors') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ LaravelLocalization::localizeUrl('/authors') }}"
                            class="{{ isRouteActive('authors') ? 'active-menu-underline' : '' }}">{{ __('header.authors') }}</a>
                     </li>
-                    <li><a href="{{ LaravelLocalization::localizeUrl('/translators') }}"
+                    <li>
+                        <a href="{{ LaravelLocalization::localizeUrl('/translators') }}"
                            class="{{ isRouteActive('translators') ? 'active-menu-underline' : '' }}">{{ __('header.translators') }}</a>
                     </li>
                     <li class="menu-drop-down-articles">
@@ -68,9 +74,9 @@
                         <img src="{{ URL::to('/images/svg/shopping-cart.svg') }}" alt="sopping cart logo">
                     </a>
                 </div>
-                <div class="header-icon-img">
-                    <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">
-                </div>
+{{--                <div class="header-icon-img">--}}
+{{--                    <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">--}}
+{{--                </div>--}}
 {{--                <div class="header-icon-leng">
                     <p>
                         @if(LaravelLocalization::getCurrentLocale() == 'en')

@@ -178,8 +178,54 @@
             </div>
         </section>
 
+        @if(count($accessors))
+            <section class="reade-more content">
+                <h2 class="{{"reade-more-title-".app()->getLocale()}}">{{ __('messages.accessors') }}</h2>
+                <div class="reade-more-info-item">
+                    @foreach($accessors as $index => $accessor)
+                        <div class="reade-more-item">
+                            <div class="reade-more-item-images">
+                                <div class="book-item-img-logo"></div>
+                                <div class="reade-more-item-img-book">
+                                    <a href="{{ LaravelLocalization::localizeUrl('/accessor/' . $accessor['slug']) }}">
+                                        <img width="270px" src="{{ URL::to('storage/' . $accessor['main_image']) }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <h3>
+                                <a href="{{ LaravelLocalization::localizeUrl('/accessor/' . $accessor['slug']) }}">{{ $accessor['title_' . app()->getLocale()] }}</a>
+                            </h3>
+
+                            <div class="book-price">
+                                <p class="book-pr">{{ $accessor['price']  }} ֏ </p>
+                            </div>
+                            <div class="book-price">
+                                <p class="book-pr">Տարիք։ {{ $accessor['age'] }}</p>
+                            </div>
+                            <div class="book-btn">
+                                <a href="{{ LaravelLocalization::localizeUrl('/accessors/' . $accessor['slug']) }}">
+                                    {{ __('messages.buy') }}
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="reade-more-see-more">
+                    <a href="{{ LaravelLocalization::localizeUrl('/books') }}">{{ __('messages.see_more') }}</a>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 17L18 12L13 7" stroke="black" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M6 17L11 12L6 7" stroke="black" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </section>
+        @endif
+
         @if(count($book->comments) > 0)
             <section class="book-page-reviews content">
+                <h2>{{ __('messages.comments') }}</h2>
                 <div class="book-page-reviews-boxes multiple-items">
                     @foreach($book->comments as $comment)
                         <div class="book-page-reviews-item">
@@ -202,6 +248,8 @@
             <div class="book-page-leave-review-form content">
                 <form action="{{ route('book.comment') }}" method="POST" class="forms review-form">
                     @csrf
+                    <input type="hidden" name="product_id" value="{{ $book->id }}">
+                    <input type="hidden" name="product_type" value="{{ $book->category->type }}">
                     <div class=" form-control form-first-name">
                         <input type="text" id="firs-name" name="full_name"
                                placeholder="{{ __('messages.full_name') }} *">

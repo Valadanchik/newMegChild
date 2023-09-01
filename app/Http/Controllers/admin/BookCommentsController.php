@@ -18,7 +18,13 @@ class BookCommentsController extends Controller
      */
     public function index(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $comments = BookComments::with('book')->orderBy('id', 'desc')->get();
+        $bookComments = BookComments::with('commentable', 'commentable.category')->orderBy('id', 'desc')->get();
+        $accessorComments = BookComments::with('commentable', 'commentable.category')->orderBy('id', 'desc')->get();
+
+        $comments = $bookComments->merge($accessorComments);
+//
+//        dd($bookComments);
+
         return view('admin.book-comments.index', compact('comments'));
     }
 

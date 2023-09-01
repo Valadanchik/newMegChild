@@ -2,6 +2,7 @@
 
 namespace App\Services\Frontend;
 
+use App\Models\Accessor;
 use App\Models\Books;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
@@ -87,31 +88,32 @@ class ShopService
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public static function getCartTotalPrice($couponDiscount = false, $booksId = [], $total_price = 0, $couponType = null): float|int
+    public static function getCartTotalPrice($couponDiscount = false, $productsId = [], $total_price = 0, $couponType = null): float|int
     {
         $cart = session()->get('cart');
-
         if ($cart && is_array($cart)) {
 
             $sessionProductsId = array_keys($cart);
 
-            if ($booksId === Coupon::ALL_BOOKS) {
-                $booksId = $sessionProductsId;
+            if ($productsId === Coupon::ALL_BOOKS) {
+                $productsId = $sessionProductsId;
             }
 
-            $cartBooksId = count($booksId) ? $booksId : $sessionProductsId;
-            $books = Books::whereIn('id', $cartBooksId)->where('status', true)->get();
+            $cartProductsId = count($productsId) ? $productsId : $sessionProductsId;
+            $books = Books::whereIn('id', $cartProductsId)->where('status', true)->get();
+            $accessors = Accessor::whereIn('id', $cartProductsId)->where('status', true)->get();
+            $products = $books->merge($accessors);
 
-            foreach ($books as $book) {
+            foreach ($products as $product) {
                 if ($couponDiscount && $couponType === Coupon::EACH_BOOKS) {
-                    $total_price += ($book->price - $couponDiscount) * $cart[$book->id];
+                    $total_price += ($product->price - $couponDiscount) * $cart[$product->id];
                 } else {
-                    $total_price += $book->price * $cart[$book->id];
+                    $total_price += $product->price * $cart[$product->id];
                 }
             }
 
             if ($couponType === Coupon::SINGLE_BOOK && $couponDiscount) {
-                $total_price = $total_price - ($couponDiscount * count($booksId));
+                $total_price = $total_price - ($couponDiscount * count($productsId));
             }
         }
 

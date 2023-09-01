@@ -9,6 +9,10 @@ class Categories extends Model
 {
     use HasFactory;
 
+    const TYPE_BOOK = 'book';
+
+    const TYPE_ACCESSOR = 'accessor';
+
     const AYB = 1;
     const BEN = 2;
     const GIM = 3;
@@ -38,6 +42,7 @@ class Categories extends Model
 
     protected $fillable = [
         'id',
+        'type',
         'name_hy',
         'name_en',
         'age',

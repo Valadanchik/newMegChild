@@ -34,6 +34,7 @@ class OrderController extends Controller
             $countries = $this->orderService->getCountries();
             $cardBooks = $this->orderService->getCartProducts();
             $cardProductsTotalPrice = $this->shopService->getCartTotalPrice();
+//            dd($cardBooks);
             $data = compact('cardBooks', 'regions', 'countries', 'cardProductsTotalPrice');
         } else {
             $data = compact('cardBooks');

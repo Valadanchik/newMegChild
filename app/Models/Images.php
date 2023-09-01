@@ -10,7 +10,9 @@ class Images extends Model
     use HasFactory;
 
     protected $fillable = [
-        'book_id',
+//        'book_id',
+        'imagaeable_id',
+        'imagaeable_type',
         'order',
         'image',
     ];
@@ -20,4 +22,12 @@ class Images extends Model
         return $this->belongsTo(Books::class);
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }

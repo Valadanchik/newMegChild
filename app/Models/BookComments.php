@@ -14,7 +14,8 @@ class BookComments extends Model
     const NOT_PUBLISHED = 0;
 
     protected $fillable = [
-        'book_id',
+        'commentable_id',
+        'commentable_type',
         'full_name',
         'email',
         'comment',
@@ -38,5 +39,21 @@ class BookComments extends Model
     public function book(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Books::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function accessor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Accessor::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function commentable(): \Illuminate\Database\Eloquent\Relations\MorphTo
+    {
+        return $this->morphTo();
     }
 }

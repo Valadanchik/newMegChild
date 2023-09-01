@@ -47,7 +47,7 @@ $(document).ready(function() {
 
     if (imageUrl !== undefined) images = JSON.parse(imageUrl)
 
-    $("#bookFiles").fileinput({
+    $("#bookFiles, #accessorsFiles").fileinput({
         initialPreviewAsData: true,
         initialPreview: images.map(image => image.image_url),
         initialPreviewConfig: images.map(image => {

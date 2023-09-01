@@ -20,11 +20,13 @@
                                         <h3 class="color-info-description-after">
                                             {{ $card['title_' . app()->getLocale()] }}
                                         </h3>
-                                        <p class="color-info-description-translate">
-                                            @foreach($card->authors as $key => $author)
-                                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($card->authors) - 1 ? ',' : '' }}
-                                            @endforeach
-                                        </p>
+                                        @if($card->category->type === \App\Models\Categories::TYPE_BOOK)
+                                            <p class="color-info-description-translate">
+                                                @foreach($card->authors as $key => $author)
+                                                    {{ $author['name_' . app()->getLocale()] }} {{ $key < count($card->authors) - 1 ? ',' : '' }}
+                                                @endforeach
+                                            </p>
+                                        @endif
                                     </div>
                                     <div class="shopping-cart-products-item-count">
                                         <div class="shopping-cart-products-item-count-img">

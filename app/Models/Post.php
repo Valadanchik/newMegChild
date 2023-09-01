@@ -9,6 +9,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    const API_LAST_POSTS_LIMIT = 4;
+
     const OTHERS_POSTS_LIMIT = 4;
 
     const POST_IMAGE_PATH = 'images/posts';

@@ -2,6 +2,7 @@
 
 namespace App\Services\Frontend;
 
+use App\Models\Accessor;
 use App\Models\Books;
 use App\Models\Country;
 use App\Models\Order;
@@ -22,25 +23,55 @@ class OrderService
         return Country::where('status', true)->orderBy('order')->get();
     }
 
-    public function getCartProducts(): \Illuminate\Database\Eloquent\Collection|array
+    /**
+     * @param $sessionProductsId
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getBookProducts($sessionProductsId)
     {
-        $sessionProductsId = array_keys(session()->get('cart'));
-
         return Books::with(['authors' => function ($query) {
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }, 'translators' => function ($query) {
             $query->select('translators.id', 'translators.name_hy', 'translators.name_en');
-        }])
+        }, 'category'])
             ->whereIn('id', $sessionProductsId)
-            ->where('status',true )
             ->where('in_stock', '>', 0)
+            ->where('status', Books::ACTIVE)
             ->get();
     }
 
-    public function create(Request $request)
+    /**
+     * @param $sessionProductsId
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getAccessorsProducts($sessionProductsId): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return Accessor::with('category')
+            ->whereIn('id', $sessionProductsId)
+            ->where('in_stock', '>', 0)
+            ->where('status', Accessor::ACTIVE)
+            ->get();
+    }
+
+    public function getCartProducts(): \Illuminate\Database\Eloquent\Collection|array
+    {
+        $sessionProductsId = array_keys(session()->get('cart'));
+        $getBookProducts = $this->getBookProducts($sessionProductsId);
+        $getAccessorProducts = $this->getAccessorsProducts($sessionProductsId);
+
+        return $getBookProducts->merge($getAccessorProducts);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function create(Request $request): mixed
     {
         $request->request->add(['total_price' => session()->get('total_price')]);
-        $order = Order::create($request->except(['_token','terms']));
+        $order = Order::create($request->except(['_token', 'terms']));
         $this->createOrderBook($order);
 
         return $order;

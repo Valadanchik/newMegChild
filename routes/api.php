@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('/telcellCallback', [\App\Http\Controllers\frontend\PaymentController::class, 'telcellCallback'])->name('payment.telcell_callback');
 Route::post('/payment/idramCallback', [\App\Http\Controllers\frontend\PaymentController::class, 'idramCallback'])->name('payment.idram_callback');
 
+
+Route::get('/last-books', [\App\Http\Controllers\api\BooksController::class, 'getLastBooks'])->name('api.last.books');
+Route::get('/last-posts', [\App\Http\Controllers\api\PostsController::class, 'getLastPosts'])->name('api.last.posts');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

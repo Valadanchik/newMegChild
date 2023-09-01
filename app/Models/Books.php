@@ -13,6 +13,9 @@ class Books extends Model
     const INACTIVE = 0;
 
     const ACTIVE = 1;
+
+    const API_LAST_BOOKS_LIMIT = 4;
+
     const HOME_PAGE_BOOKS_COUNT = 4;
 
     const BOOK_IMAGE_PATH = 'images/books';
@@ -115,9 +118,14 @@ class Books extends Model
         return $this->belongsToMany(Translators::class, 'book_translators_pivot', 'book_id', 'translator_id')->withTimestamps();
     }
 
-    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+//    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+//    {
+//        return $this->hasMany(Images::class, 'book_id', 'id');
+//    }
+
+    public function images()
     {
-        return $this->hasMany(Images::class, 'book_id', 'id');
+        return $this->morphMany(Images::class, 'imageable');
     }
 
     public function orders()
@@ -125,8 +133,25 @@ class Books extends Model
         return $this->belongsToMany(Order::class, 'order_book_pivote', 'book_id', 'order_id')->withPivot('id', 'quantity', 'price', 'status');
     }
 
-    public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
+//    public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
+//    {
+//        return $this->hasMany(BookComments::class, 'book_id', 'id');
+//    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function comments(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
-        return $this->hasMany(BookComments::class, 'book_id', 'id');
+        return $this->morphMany(BookComments::class, 'commentable');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function accessors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Accessor::class, 'accessor_books', 'book_id', 'accessor_id');
     }
 }

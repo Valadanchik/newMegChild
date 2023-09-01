@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BookCommentsController as AdminBookCommentsController;
 use App\Http\Controllers\admin\BooksController;
+use App\Http\Controllers\admin\AccessorController;
 use App\Http\Controllers\admin\AuthorsController;
 use App\Http\Controllers\admin\TranslatorsController;
 use App\Http\Controllers\admin\CategoriesController;
@@ -52,6 +53,11 @@ Route::middleware([SetSettingDataServiceMiddleware::class])->group(function () {
         Route::get('book/{slug}', 'App\Http\Controllers\frontend\BooksController@view')->name('book.view');
         Route::post('books/search', 'App\Http\Controllers\frontend\BooksController@searchBooks')->name('books.search');
         Route::post('book/comment', [BookCommentsController::class, 'store'])->name('book.comment');
+        /** Accessors Route */
+        Route::get('accessors', 'App\Http\Controllers\frontend\AccessorController@accessors')->name('accessors');
+        Route::get('accessor/{slug}', 'App\Http\Controllers\frontend\AccessorController@view')->name('accessor.view');
+//        Route::post('accessor/comment', [BookCommentsController::class, 'store'])->name('accessor.comment');
+
         /** Posts Routers */
         Route::get('articles', 'App\Http\Controllers\frontend\PostsController@articles')->name('articles');
         Route::get('article/{slug}', 'App\Http\Controllers\frontend\PostsController@view')->name('article.view');
@@ -113,6 +119,7 @@ Route::middleware([SetSettingDataServiceMiddleware::class])->group(function () {
                 Route::post('books/delete-image/{id?}', [BooksController::class, 'deleteBookImage'])->name('books.book-image-destroy')->middleware('can:isAdmin');
                 Route::match(array('PUT', 'PATCH'), 'books/update-images-order', [BooksController::class, 'updateImagesOrder'])->name('admin.update.imagesOrder')->middleware('can:isAdmin');
 
+                Route::resource('accessors', AccessorController::class)->middleware('can:isAdmin');
                 Route::resource('books', BooksController::class)->middleware('can:isAdmin');
                 Route::resource('authors', AuthorsController::class)->middleware('can:isAdmin');
                 Route::resource('translators', TranslatorsController::class)->middleware('can:isAdmin');

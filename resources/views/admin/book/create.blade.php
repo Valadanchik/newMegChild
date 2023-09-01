@@ -294,6 +294,29 @@
                         </div>
 
                         <div class="card mb-4">
+                            <div class="card-header">Accessors</div>
+                            <div class="card-body">
+                                <div class="accessors-list">
+                                    @foreach($accessors as $accessor)
+                                        <div class="ml-4 d-flex align-items-center">
+                                            <input class="form-check-input" type="checkbox" name="accessors[]" value="{{$accessor->id}}"
+                                                   @if(is_array(old('accessors')) && in_array($accessor->id, old('accessors'))) checked @endif>
+                                            <div class="p-2">
+                                                <img width="50px" src="{{ URL::to('storage/' . $accessor->main_image) }}" alt="">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    {{$accessor->{'title_' . app()->getLocale()} }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                @error('accessors')
+                                    <div style="color: red" class="required--error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
                             <div class="card-header">Categories</div>
                             <div class="card-body">
                                 <select class="form-select" name="category_id" aria-label="Default select example">

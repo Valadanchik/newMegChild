@@ -81,7 +81,7 @@ ul.header-menu-list {
 
 .header-icon {
     display: flex;
-    gap: 40px;
+    gap: 20px;
     align-items: center;
 }
 
@@ -703,6 +703,7 @@ main {
     line-height: 20px;
     letter-spacing: 0.01em;
     color: #000000;
+    text-align: center;
 }
 
 .see-more {
@@ -1971,6 +1972,11 @@ h2.book-page-leave-review-title {
     margin-top: 38px;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.accessor-index .reade-more-item-images {
+    display: flex;
+    justify-content: center;
 }
 
 .reade-more-item-images {

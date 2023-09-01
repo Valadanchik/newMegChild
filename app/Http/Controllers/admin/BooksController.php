@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Models\Accessor;
 use App\Models\Authors;
 use App\Models\Books;
 use App\Models\Categories;
@@ -36,9 +37,10 @@ class BooksController extends Controller
     {
         $authors = Authors::all();
         $translators = Translators::all();
-        $categories = Categories::all();
+        $categories = Categories::where('type', Categories::TYPE_BOOK)->get();
+        $accessors  = Accessor::where('status', Accessor::ACTIVE)->get();
 
-        return view('admin.book.create', compact('authors', 'translators', 'categories'));
+        return view('admin.book.create', compact('authors', 'translators', 'categories', 'accessors'));
     }
 
     /**
@@ -46,8 +48,6 @@ class BooksController extends Controller
      */
     public function store(StoreBookRequest $request, Books $books): \Illuminate\Http\RedirectResponse
     {
-        DB::beginTransaction();
-
         try {
             $bookImages = [];
             if ($request->hasFile('file')) {
@@ -63,6 +63,7 @@ class BooksController extends Controller
             $bookCreate = $books::create($request->all());
             $bookCreate->authors()->attach($request->authors);
             $bookCreate->translators()->attach($request->translators);
+            $bookCreate->accessors()->attach($request->accessors);
             if (count($bookImages)) $bookCreate->images()->createMany($bookImages);
 
             DB::commit();
@@ -81,35 +82,36 @@ class BooksController extends Controller
     {
         $authors = Authors::all();
         $translators = Translators::all();
-        $categories = Categories::all();
-        $book = $books::with(['category', 'authors', 'translators'])
+        $categories = Categories::where('type', Categories::TYPE_BOOK)->get();
+        $accessors  = Accessor::where('status', Accessor::ACTIVE)->get();
+        $book = $books::with(['category', 'authors', 'translators', 'accessors'])
             ->with(['images' => function ($query) {
                 $query->orderBy('images.order', 'ASC');
             }])
             ->findOrFail($id);
         $translatorsForSelected = self::filterData($book->translators);
         $authorsForSelected = self::filterData($book->authors);
+        $accessorsForSelected = self::filterData($book->accessors);
         $imagesPathAndId = $this->getImagePathAndId($book->images);
 
-        return view('admin.book.edit', compact('book', 'categories', 'authors', 'translators', 'translatorsForSelected', 'authorsForSelected', 'imagesPathAndId'));
+        return view('admin.book.edit', compact('book', 'categories', 'authors', 'translators', 'accessors', 'translatorsForSelected', 'authorsForSelected', 'accessorsForSelected', 'imagesPathAndId'));
     }
 
-    /**
-     * @param $images
-     * @return false|string
-     */
-    public function getImagePathAndId($images)
-    {
-        $imagesPathAndId = [];
-        foreach ($images as $image) {
-            $imagesPathAndId[] = [
-                'image_url' => URL::to('storage/' . $image->image),
-                'id' => $image->id,
-            ];
-        }
-        return json_encode($imagesPathAndId);
-    }
-
+//    /**
+//     * @param $images
+//     * @return false|string
+//     */
+//    public function getImagePathAndId($images)
+//    {
+//        $imagesPathAndId = [];
+//        foreach ($images as $image) {
+//            $imagesPathAndId[] = [
+//                'image_url' => URL::to('storage/' . $image->image),
+//                'id' => $image->id,
+//            ];
+//        }
+//        return json_encode($imagesPathAndId);
+//    }
 
     /**
      * Update the specified resource in storage.
@@ -136,6 +138,7 @@ class BooksController extends Controller
             $book->update($request->all());
             $book->authors()->sync($request->authors);
             $book->translators()->sync($request->translators);
+            $book->accessors()->sync($request->accessors);
             if (count($bookImages)) $book->images()->createMany($bookImages);
 
             DB::commit();

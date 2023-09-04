@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    const API_LAST_POSTS_LIMIT = 4;
+    const API_LAST_POSTS_LIMIT = 6;
 
     const OTHERS_POSTS_LIMIT = 4;
 

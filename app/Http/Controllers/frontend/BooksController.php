@@ -21,7 +21,7 @@ class BooksController extends Controller
         $slug = null;
 
         $categories = Categories::where('type', Categories::TYPE_BOOK)->get();
-//        dd($categories);
+
         $books = Books::with(['authors' => function ($query) {
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }])

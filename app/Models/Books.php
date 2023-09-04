@@ -14,7 +14,7 @@ class Books extends Model
 
     const ACTIVE = 1;
 
-    const API_LAST_BOOKS_LIMIT = 4;
+    const API_LAST_BOOKS_LIMIT = 6;
 
     const HOME_PAGE_BOOKS_COUNT = 4;
 

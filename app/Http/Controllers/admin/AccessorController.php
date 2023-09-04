@@ -71,7 +71,9 @@ class AccessorController extends Controller
      */
     public function edit($id)
     {
-        $accessor = Accessor::with('images')->findOrFail($id);
+        $accessor = Accessor::with(['images' => function ($query) {
+            $query->orderBy('images.order', 'ASC');
+        }])->findOrFail($id);
         $categories = Categories::where('type', Categories::TYPE_ACCESSOR)->get();
         $imagesPathAndId = $this->getImagePathAndId($accessor->images);
 

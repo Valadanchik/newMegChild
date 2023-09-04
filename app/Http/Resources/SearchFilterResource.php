@@ -21,6 +21,7 @@ class SearchFilterResource extends JsonResource
             'slug' => $this->slug,
             'price' => $this->price,
             'main_image' => $this->main_image,
+            'category_name' => $this->category->name_en,
             'authors' => AuthorsResource::collection($this->authors),
         ];
     }

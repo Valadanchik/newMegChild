@@ -22,7 +22,7 @@ class BooksController extends Controller
 
         $categories = Categories::where('type', Categories::TYPE_BOOK)->get();
 
-        $books = Books::with(['authors' => function ($query) {
+        $books = Books::with(['category', 'authors' => function ($query) {
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }])
             ->where('status', Books::ACTIVE)
@@ -40,7 +40,7 @@ class BooksController extends Controller
         $books = [];
         if ($request->search != '') {
             $search = trim($request->search);
-            $books = Books::with(['authors' => function ($query) {
+            $books = Books::with(['category', 'authors' => function ($query) {
                 $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
             }])->where(function ($query) use ($search) {
                 $query->where('title_en', 'like', '%' . $search . '%')

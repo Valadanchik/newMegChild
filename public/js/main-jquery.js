@@ -185,7 +185,7 @@ function htmlFilter(books) {
                 `<div class="book-item d-block">
                 <div class="book-item-images">
                     <div class="book-item-img-logo">
-                        <img src="${bookItemLogo}" alt="">
+                        <img src="${bookItemLogo + book.category_name + '.png'}" alt="">
                     </div>
                     <div class="book-item-img-book">
                         <a href="${bookUrl + '/' + book.slug}">

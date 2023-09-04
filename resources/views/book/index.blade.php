@@ -314,7 +314,7 @@
                     <div class="reade-more-item">
                         <div class="reade-more-item-images">
                             <div class="reade-more-item-img-logo">
-                                <img src="{{ URL::to('images/reade-more-img-logo-green.png') }}" alt="">
+                                <img src="{{ URL::to('images/reade-more-img-logo-' . $book->category->name_en. '.png') }}" alt="">
                             </div>
                             <div class="reade-more-item-img-book">
                                 <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">

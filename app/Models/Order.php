@@ -91,23 +91,4 @@ class Order extends Model
             ->withPivot('id', 'quantity', 'price', 'status')
             ->withTimestamps();
     }
-
-
-//
-//    /**
-//     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
-//     */
-//    public function books(): \Illuminate\Database\Eloquent\Relations\MorphToMany
-//    {
-//        return $this->morphedByMany(Books::class, 'orderable');
-//    }
-//
-//    /**
-//     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
-//     */
-//    public function accessors(): \Illuminate\Database\Eloquent\Relations\MorphToMany
-//    {
-//        return $this->morphedByMany(Accessor::class, 'orderable');
-//    }
-
 }

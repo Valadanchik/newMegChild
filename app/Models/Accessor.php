@@ -64,9 +64,12 @@ class Accessor extends Model
         return $this->belongsTo(Categories::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function orders()
     {
-        return $this->morphToMany(Order::class, 'orderable');
+        return $this->belongsToMany(Order::class, 'order_book_pivote', 'book_id', 'order_id')
+            ->withPivot('id', 'quantity', 'price', 'status');
     }
-
 }

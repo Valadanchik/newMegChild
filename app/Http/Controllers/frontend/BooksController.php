@@ -89,7 +89,6 @@ class BooksController extends Controller
 
         $otherBooks = $this->otherBooks($book->id, $book->category_id);
 
-
         // Accessors Take Functional
         $accessorCount = count($book->accessors);
         $accessors = $book->accessors;

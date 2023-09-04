@@ -56,12 +56,17 @@ class Accessor extends Model
 
     public function comments()
     {
-        return $this->morphMany(BookComments::class, 'commentable');
+        return $this->morphMany(ProductComments::class, 'commentable');
     }
 
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Categories::class);
+    }
+
+    public function orders()
+    {
+        return $this->morphToMany(Order::class, 'orderable');
     }
 
 }

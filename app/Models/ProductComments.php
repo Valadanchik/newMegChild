@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BookComments extends Model
+class ProductComments extends Model
 {
     use HasFactory, SoftDeletes;
 
     const PUBLISHED = 1;
     const NOT_PUBLISHED = 0;
+
+    protected $table = 'product_comments';
 
     protected $fillable = [
         'commentable_id',
@@ -28,7 +30,7 @@ class BookComments extends Model
      */
     public static function updateStatus($status, $id): void
     {
-        $getComment = BookComments::findOrFail($id);
+        $getComment = ProductComments::findOrFail($id);
         $getComment->is_active = $status;
         $getComment->save();
     }

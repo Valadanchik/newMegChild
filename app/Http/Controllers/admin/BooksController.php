@@ -15,7 +15,6 @@ use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\URL;
 
 class BooksController extends Controller
 {
@@ -96,22 +95,6 @@ class BooksController extends Controller
 
         return view('admin.book.edit', compact('book', 'categories', 'authors', 'translators', 'accessors', 'translatorsForSelected', 'authorsForSelected', 'accessorsForSelected', 'imagesPathAndId'));
     }
-
-//    /**
-//     * @param $images
-//     * @return false|string
-//     */
-//    public function getImagePathAndId($images)
-//    {
-//        $imagesPathAndId = [];
-//        foreach ($images as $image) {
-//            $imagesPathAndId[] = [
-//                'image_url' => URL::to('storage/' . $image->image),
-//                'id' => $image->id,
-//            ];
-//        }
-//        return json_encode($imagesPathAndId);
-//    }
 
     /**
      * Update the specified resource in storage.

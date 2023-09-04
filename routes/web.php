@@ -6,7 +6,7 @@ use App\Http\Controllers\frontend\ShopController;
 use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\frontend\PaymentController;
 use App\Http\Controllers\frontend\ContactUsController;
-use App\Http\Controllers\frontend\BookCommentsController;
+use App\Http\Controllers\frontend\ProductCommentsController;
 use App\Http\Controllers\frontend\SubscriptionController;
 use \App\Http\Controllers\frontend\CouponController;
 use App\Http\Controllers\admin\DashboardController;
@@ -52,7 +52,7 @@ Route::middleware([SetSettingDataServiceMiddleware::class])->group(function () {
         Route::get('books', 'App\Http\Controllers\frontend\BooksController@books')->name('books');
         Route::get('book/{slug}', 'App\Http\Controllers\frontend\BooksController@view')->name('book.view');
         Route::post('books/search', 'App\Http\Controllers\frontend\BooksController@searchBooks')->name('books.search');
-        Route::post('book/comment', [BookCommentsController::class, 'store'])->name('book.comment');
+        Route::post('book/comment', [ProductCommentsController::class, 'store'])->name('book.comment');
         /** Accessors Route */
         Route::get('accessors', 'App\Http\Controllers\frontend\AccessorController@accessors')->name('accessors');
         Route::get('accessor/{slug}', 'App\Http\Controllers\frontend\AccessorController@view')->name('accessor.view');

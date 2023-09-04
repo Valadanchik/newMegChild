@@ -14,30 +14,30 @@ class ImageSeeder extends Seeder
     {
         $images= [
             [
-                'book_id' => 1,
+                'imageable_id' => 1,
                 'image' => 'images/books/Ella.png',
             ],
             [
-                'book_id' => 1,
+                'imageable_id' => 1,
                 'image' => 'images/books/parent.png',
             ],
             [
-                'book_id' => 2,
+                'imageable_id' => 2,
                 'image' => 'images/books/Ella.png',
             ],
             [
-                'book_id' => 2,
+                'imageable_id' => 2,
                 'image' => 'images/books/Ella.png',
             ],
             [
-                'book_id' => 2,
+                'imageable_id' => 2,
                 'image' => 'images/books/Ella.png',
             ],
 
         ];
         foreach ($images as $image) {
             DB::table('images')->insert([
-                'book_id' => $image['book_id'],
+                'imageable_id' => $image['imageable_id'],
                 'image' => $image['image'],
                 'created_at' => now(),
                 'updated_at' => now(),

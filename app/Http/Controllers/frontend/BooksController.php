@@ -5,7 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SearchFilterResource;
 use App\Models\Accessor;
-use App\Models\BookComments;
+use App\Models\ProductComments;
 use App\Models\Books;
 use App\Models\Categories;
 use Illuminate\Http\Request;
@@ -68,7 +68,7 @@ class BooksController extends Controller
         $book = $books::with(['authors', 'translators', 'category'])
             ->with(['comments' => function ($query) {
                 $query->orderBy('book_comments.created_at', 'desc')
-                    ->where('book_comments.is_active', '=', BookComments::PUBLISHED);
+                    ->where('book_comments.is_active', '=', ProductComments::PUBLISHED);
 //                    ->limit(4);
             }])
             ->with(['images' => function ($query) {

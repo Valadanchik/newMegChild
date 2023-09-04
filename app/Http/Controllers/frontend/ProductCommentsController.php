@@ -9,7 +9,7 @@ use App\Models\Accessor;
 use App\Models\Books;
 use Illuminate\Support\Facades\Mail;
 
-class BookCommentsController extends Controller
+class ProductCommentsController extends Controller
 {
 
     /**

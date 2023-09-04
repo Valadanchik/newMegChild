@@ -80,8 +80,34 @@ class Order extends Model
 
     public function books(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Books::class,'order_book_pivote', 'order_id', 'book_id')
+        return $this->belongsToMany(Books::class,'order_book_pivote', 'order_id', 'product_id')
             ->withPivot('id', 'quantity', 'price', 'status')
             ->withTimestamps();
     }
+
+    public function accessors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Accessor::class,'order_book_pivote', 'order_id', 'product_id')
+            ->withPivot('id', 'quantity', 'price', 'status')
+            ->withTimestamps();
+    }
+
+
+//
+//    /**
+//     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+//     */
+//    public function books(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+//    {
+//        return $this->morphedByMany(Books::class, 'orderable');
+//    }
+//
+//    /**
+//     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+//     */
+//    public function accessors(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+//    {
+//        return $this->morphedByMany(Accessor::class, 'orderable');
+//    }
+
 }

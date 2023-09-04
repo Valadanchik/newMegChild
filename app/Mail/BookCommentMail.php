@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\BookComments;
+use App\Models\ProductComments;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,9 +13,9 @@ class BookCommentMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     /**
-     * @param BookComments $comment
+     * @param ProductComments $comment
      */
-    public function __construct(public BookComments $comment)
+    public function __construct(public ProductComments $comment)
     {
 
     }

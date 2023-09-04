@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('images', function (Blueprint $table) {
-            $table->renameColumn('book_id', 'imageable_id');
-            $table->string('imageable_type',255)->after('book_id')->default('App\Models\Books');
+        Schema::table('order_book_pivote', function (Blueprint $table) {
+            $table->renameColumn('book_id', 'product_id');
             $table->dropForeign(['book_id']);
         });
     }
@@ -23,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('images', function (Blueprint $table) {
-            //
+        Schema::table('product_id', function (Blueprint $table) {
+            $table->renameColumn('product_id', 'book_id');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 };

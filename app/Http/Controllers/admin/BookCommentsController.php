@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BookComments;
+use App\Models\ProductComments;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -18,12 +18,10 @@ class BookCommentsController extends Controller
      */
     public function index(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $bookComments = BookComments::with('commentable', 'commentable.category')->orderBy('id', 'desc')->get();
-        $accessorComments = BookComments::with('commentable', 'commentable.category')->orderBy('id', 'desc')->get();
+        $productComments = ProductComments::with('commentable', 'commentable.category')->orderBy('id', 'desc')->get();
+        $accessorComments = ProductComments::with('commentable', 'commentable.category')->orderBy('id', 'desc')->get();
 
-        $comments = $bookComments->merge($accessorComments);
-//
-//        dd($bookComments);
+        $comments = $productComments->merge($accessorComments);
 
         return view('admin.book-comments.index', compact('comments'));
     }
@@ -37,7 +35,7 @@ class BookCommentsController extends Controller
     {
         $geParam = $request->input('immediately_activate');
         if ($geParam) {
-            BookComments::updateStatus(BookComments::PUBLISHED, $id);
+            ProductComments::updateStatus(ProductComments::PUBLISHED, $id);
             Session::put('success_activate', 'Մեկնաբանությունը հաջողությամբ Հրապարակվել է');
 
             return $this->deleteUrlParameters($request->input());
@@ -46,7 +44,7 @@ class BookCommentsController extends Controller
         $gerActivateMessage = Session::get('success_activate');
         Session::forget('success_activate');
 
-        $comment = BookComments::with('book')->findOrFail($id);
+        $comment = ProductComments::with('book')->findOrFail($id);
         return view('admin.book-comments.show', compact('comment', 'gerActivateMessage'));
     }
 
@@ -58,7 +56,7 @@ class BookCommentsController extends Controller
     public function update(Request $request, $id): \Illuminate\Http\RedirectResponse
     {
         try {
-            BookComments::updateStatus($request->is_active, $id);
+            ProductComments::updateStatus($request->is_active, $id);
             return redirect()->back()->with('success', 'Մեկնաբանությունը Հաջողությամբ թարմացվել է');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Comment not updated');
@@ -72,7 +70,7 @@ class BookCommentsController extends Controller
     public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         try {
-            $getComment = BookComments::findOrFail($id);
+            $getComment = ProductComments::findOrFail($id);
             $getComment->delete();
             return redirect()->back()->with('success', 'Մեկնաբանությունը հեռացվել է');
         } catch (\Exception $e) {

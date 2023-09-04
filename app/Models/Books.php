@@ -103,49 +103,54 @@ class Books extends Model
        return str_replace('watch?v=', 'embed/', $url);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Categories::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function authors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Authors::class, 'book_authors_pivot', 'book_id', 'author_id')->withTimestamps();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function translators(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Translators::class, 'book_translators_pivot', 'book_id', 'translator_id')->withTimestamps();
     }
 
-//    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
-//    {
-//        return $this->hasMany(Images::class, 'book_id', 'id');
-//    }
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function images()
     {
         return $this->morphMany(Images::class, 'imageable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function orders()
     {
-        return $this->belongsToMany(Order::class, 'order_book_pivote', 'book_id', 'order_id')->withPivot('id', 'quantity', 'price', 'status');
+        return $this->belongsToMany(Order::class, 'order_book_pivote', 'book_id', 'order_id')
+            ->withPivot('id', 'quantity', 'price', 'status');
     }
-
-//    public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
-//    {
-//        return $this->hasMany(BookComments::class, 'book_id', 'id');
-//    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function comments(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
-        return $this->morphMany(BookComments::class, 'commentable');
+        return $this->morphMany(ProductComments::class, 'commentable');
     }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -154,4 +159,6 @@ class Books extends Model
     {
         return $this->belongsToMany(Accessor::class, 'accessor_books', 'book_id', 'accessor_id');
     }
+
+
 }

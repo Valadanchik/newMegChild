@@ -4,6 +4,7 @@ namespace App\Services\Frontend;
 
 use App\Models\Accessor;
 use App\Models\Books;
+use App\Models\Categories;
 use App\Models\Country;
 use App\Models\Order;
 use App\Models\Region;
@@ -72,7 +73,7 @@ class OrderService
     {
         $request->request->add(['total_price' => session()->get('total_price')]);
         $order = Order::create($request->except(['_token', 'terms']));
-        $this->createOrderBook($order);
+        $this->createOrderProducts($order);
 
         return $order;
     }
@@ -83,21 +84,28 @@ class OrderService
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function createOrderBook(Order $order)
+    public function createOrderProducts(Order $order)
     {
         $order->load('region');
-
         $cart = session()->get('cart');
         $total_price = 0;
+
         if ($cart && is_array($cart)) {
-
             $sessionProductsId = array_keys(session()->get('cart'));
-            $books = Books::whereIn('id', $sessionProductsId)->where('status', true)->get();
-            foreach ($books as $book) {
-                $total_price += $book->price * $cart[$book->id];
+            $books = Books::whereIn('id', $sessionProductsId)->where('status', true)->with('category')->get();
+            $accessors = Accessor::whereIn('id', $sessionProductsId)->where('status', true)->with('category')->get();
+            $products = $books->merge($accessors);
 
-                $book->save();
-                $order->books()->attach($book->id, ['quantity' => $cart[$book->id], 'price' => $book->price, 'status' => Order::STATUS_NEW]);
+            foreach ($products as $product) {
+                $total_price += $product->price * $cart[$product->id];
+
+                $product->save();
+
+                if($product->category->type === Categories::TYPE_BOOK) {
+                    $order->books()->attach($product->id, ['quantity' => $cart[$product->id], 'price' => $product->price, 'status' => Order::STATUS_NEW]);
+                } else if ($product->category->type === Categories::TYPE_ACCESSOR) {
+                    $order->accessors()->attach($product->id, ['quantity' => $cart[$product->id], 'price' => $product->price, 'status' => Order::STATUS_NEW]);
+                }
             }
         }
 

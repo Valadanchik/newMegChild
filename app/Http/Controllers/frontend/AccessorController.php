@@ -26,14 +26,10 @@ class AccessorController extends Controller
      */
     public function view($slug): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $accessor = Accessor::with(['category', 'images'])->where(['status' => Accessor::ACTIVE, 'slug' => $slug])->first();
-
+        $accessor = Accessor::with(['category', 'images'])->where(['status' => Accessor::ACTIVE, 'slug' => $slug])->firstOrFail();
         $shareUrl = LaravelLocalization::localizeUrl('/accessor/' . $accessor['slug']);
-//        $otherAccessors = [];
-
         $otherAccessors = $this->otherBooks($accessor->id, $accessor->category_id);
 
-//        dd($accessor);
         return view('accessor.index', compact('accessor', 'shareUrl', 'otherAccessors'));
     }
 

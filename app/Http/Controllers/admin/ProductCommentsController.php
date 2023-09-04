@@ -8,7 +8,7 @@ use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class BookCommentsController extends Controller
+class ProductCommentsController extends Controller
 {
 
     use GeneralTrait;

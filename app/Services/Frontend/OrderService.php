@@ -101,10 +101,22 @@ class OrderService
 
                 $product->save();
 
-                if($product->category->type === Categories::TYPE_BOOK) {
-                    $order->books()->attach($product->id, ['quantity' => $cart[$product->id], 'price' => $product->price, 'status' => Order::STATUS_NEW]);
+                if ($product->category->type === Categories::TYPE_BOOK) {
+                    $order->books()->attach($product->id,
+                        [
+                            'quantity' => $cart[$product->id],
+                            'price' => $product->price,
+                            'status' => Order::STATUS_NEW,
+                            'product_type' => Categories::TYPE_ACCESSOR
+                        ]);
                 } else if ($product->category->type === Categories::TYPE_ACCESSOR) {
-                    $order->accessors()->attach($product->id, ['quantity' => $cart[$product->id], 'price' => $product->price, 'status' => Order::STATUS_NEW]);
+                    $order->accessors()->attach($product->id,
+                        [
+                            'quantity' => $cart[$product->id],
+                            'price' => $product->price,
+                            'status' => Order::STATUS_NEW,
+                            'product_type' => Categories::TYPE_BOOK
+                        ]);
                 }
             }
         }

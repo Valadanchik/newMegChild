@@ -140,7 +140,7 @@ class Books extends Model
      */
     public function orders()
     {
-        return $this->belongsToMany(Order::class, 'order_book_pivote', 'book_id', 'order_id')
+        return $this->belongsToMany(Order::class, 'order_product_pivote', 'book_id', 'order_id')
             ->withPivot('id', 'quantity', 'price', 'status');
     }
 

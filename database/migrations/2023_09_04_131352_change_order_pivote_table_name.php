@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::rename('book_comments', 'product_comments');
+        Schema::rename('order_book_pivote', 'order_product_pivote');
     }
 
     /**
@@ -19,6 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::rename('product_comments', 'book_comments');
+        Schema::rename('order_product_pivote', 'order_book_pivote');
     }
 };

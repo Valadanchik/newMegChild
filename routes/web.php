@@ -11,7 +11,7 @@ use App\Http\Controllers\frontend\SubscriptionController;
 use \App\Http\Controllers\frontend\CouponController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AuthController;
-use App\Http\Controllers\admin\BookCommentsController as AdminBookCommentsController;
+use App\Http\Controllers\admin\ProductCommentsController as AdminBookCommentsController;
 use App\Http\Controllers\admin\BooksController;
 use App\Http\Controllers\admin\AccessorController;
 use App\Http\Controllers\admin\AuthorsController;

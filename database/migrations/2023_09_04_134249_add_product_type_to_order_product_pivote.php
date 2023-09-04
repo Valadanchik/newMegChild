@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::rename('book_comments', 'product_comments');
+        Schema::table('order_product_pivote', function (Blueprint $table) {
+            $table->enum('product_type', ['book', 'accessor'])->default('book')->nullable()->after('status');
+        });
     }
 
     /**
@@ -19,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::rename('product_comments', 'book_comments');
+        Schema::table('order_product_pivote', function (Blueprint $table) {
+            $table->dropColumn('product_type');
+        });
     }
 };

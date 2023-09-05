@@ -74,6 +74,9 @@
                         <img src="{{ URL::to('/images/svg/shopping-cart.svg') }}" alt="sopping cart logo">
                     </a>
                 </div>
+                <div class="header-icon-img-left ">
+                    <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">
+                </div>
 {{--                <div class="header-icon-img">--}}
 {{--                    <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">--}}
 {{--                </div>--}}

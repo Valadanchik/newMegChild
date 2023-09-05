@@ -67,7 +67,7 @@
     }
 
     ul.header-menu-list {
-        gap: 50px;
+        gap: 35px;
     }
 
     /*//////////////////////////footer/////////////////////*/
@@ -285,6 +285,21 @@
         gap: 24px;
         justify-content: center;
     }
+    .article-itm-page-banner-desc-title-and-data h2 {
+        font-size: 28px;
+        line-height: 40px;
+    }
+    .articles {
+        background-color: #FEFDFB;
+        padding-top: 40px;
+    }
+    .other-article-section-title h2 {
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .other-article-section-title {
+        padding: 56px 32px 66px;
+    }
 
     /*////////////////media-page////////////////*/
     .choose-media-section {
@@ -403,7 +418,7 @@
         gap: 130px;
     }
 
-    .color-info-description h2 {
+    .color-info-description h2 a {
         font-size: 30px;
     }
 
@@ -427,6 +442,11 @@
     .article-boxes {
         justify-content: center;
         flex-wrap: wrap;
+    }
+
+    .authors-boxes a {
+        height: 190px;
+        width: 190px;
     }
 
     /*/////////////////////footer//////////////////////////*/
@@ -478,7 +498,7 @@
     }
 
     h2.book-page-leave-review-title {
-        margin-top: 100px;
+        margin-top: 50px;
         padding-top: 50px;
     }
 
@@ -614,6 +634,12 @@
     .articles-list {
         grid-template-columns: repeat(3, 310px);
         gap: 18px;
+    }
+    .other-article-section-title h2 {
+        font-size: 28px;
+    }
+    .other-article-section-title {
+        padding: 50px 32px 53px;
     }
 
     /*/////////////////media-page///////////////*/
@@ -751,7 +777,7 @@
 
 @media (max-width: 1100px) {
 
-    .color-info-description h2 {
+    .color-info-description h2 a{
         font-size: 25px;
     }
 
@@ -981,7 +1007,7 @@
 
     footer {
         background-image: url(../images/footer-background.png);
-        background-color: white;
+
     }
 
     /*///////////////////////// index/////////////////////////////*/
@@ -1001,7 +1027,7 @@
         display: inline-block;
     }
 
-    .color-info-description h2 {
+    .color-info-description h2 a{
         font-size: 20px;
         line-height: 33px;
     }
@@ -1076,12 +1102,16 @@
         line-height: 22px;
     }
 
-    .authors-boxes div {
-        max-width: 190px;
-    }
+    /*.authors-boxes div {*/
+    /*    max-width: 190px;*/
+    /*}*/
 
     .authors-boxes {
         margin: 40px auto;
+    }
+    .authors-boxes a {
+        height: 180px;
+        width: 180px;
     }
 
     /*/////////////////////Books-page///////////////////////////////*/
@@ -1112,7 +1142,7 @@
     }
 
     .book-page-item-full-information {
-        padding-bottom: 60px;
+        padding-bottom: 0;
     }
 
     .slick-next {
@@ -1149,7 +1179,16 @@
     .articles-list {
         grid-template-columns: repeat(2, 330px);
     }
-
+    .article-itm-page-banner-desc-title-and-data h2 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .other-article-section-title h2 {
+        font-size: 24px;
+    }
+    .article-info-and-video-desc-article {
+        margin-top: 40px;
+    }
     /*/////////////////media-page//////////////////*/
     .media-filter-icon {
         display: flex;
@@ -1306,6 +1345,9 @@
         margin-top: 12px;
         padding-left: 50px;
     }
+    .header-icon-img-left img{
+        display: block;
+    }
 
 }
 
@@ -1354,7 +1396,7 @@
     }
 
     .color-info-description-btn a {
-        padding: 9px 15px;
+        padding: 13px 15px;
         font-size: 14px;
     }
 
@@ -1381,17 +1423,17 @@
     }
 
     .articles {
-        background-color: #FFFFFF;
+        background-color: rgb(255, 255, 255);
         padding-top: 40px;
     }
 
     .article-boxes {
-        margin-top: 40px;
+        margin-top: 30px;
     }
 
     .article-btn {
         padding-bottom: 40px;
-        margin: 40px auto 0;
+        margin: 30px auto 0;
     }
 
     .parent {
@@ -1411,9 +1453,13 @@
     .authors-boxes {
         margin: 30px auto;
     }
+    .authors-boxes a {
+        height: 164px;
+        width: 164px;
+    }
 
     .authors-section-title-hy {
-        padding: 50px 32px 50px;
+        padding: 60px 32px 50px;
     }
 
     .authors {
@@ -1512,11 +1558,11 @@
     h2.book-page-leave-review-title,
     .reade-more-title-hy,
     .reade-more-title-en {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .reade-more-title-hy {
-        padding: 48px 26px 48px;
+        padding: 35px 26px 32px;
     }
 
     .reade-more-item {
@@ -1583,7 +1629,31 @@
     .media-list-item {
         width: 240px;
     }
-
+    .article-itm-page-banner-info {
+        flex-direction: column;
+    }
+    .article-itm-page-banner-desc-title-and-data h2 {
+        font-size: 18px;
+        line-height: 25px;
+    }
+    .article-itm-page-banner-desc-title-and-data p {
+        font-size: 14px;
+    }
+    .article-info-and-video-desc-article span {
+        font-size: 14px;
+    }
+    .article-info-and-video-description p {
+        font-size: 14px;
+    }
+    .other-article-section-title h2 {
+        font-size: 20px;
+    }
+    .other-article-section-title {
+        padding: 40px 32px 30px;
+    }
+    .article-info-and-video-description p a iframe {
+        margin-top: 40px;
+    }
     /*//////////////about-us////////////////*/
     .about-us h1 {
         font-size: 20px;
@@ -1615,6 +1685,7 @@
 
     .authors-boxes div span {
         margin-top: 14px;
+        font-size: 14px;
     }
 
     /*////////////////authors-page////////////*/
@@ -1808,6 +1879,9 @@
     .translators-section-title-en {
         padding: 23px 32px 22px;
     }
+    .burger-menu-and-icons{
+        gap: 16px;
+    }
 
 
 }
@@ -1822,9 +1896,11 @@
     }
 
     .color-info-description {
-        padding-top: 15px;
+        padding-top: 16px;
     }
-
+    .book-section {
+        gap: 0;
+    }
     .parent-section {
         flex-direction: column;
     }
@@ -1968,8 +2044,8 @@
     .authors-boxes div {
         max-width: 140px;
         display: inline-flex;
-        margin-right: 20px;
-        margin-left: 30px;
+        margin-right: 17px;
+        margin-left: 17px;
     }
 
     ::-webkit-scrollbar:horizontal {
@@ -2138,6 +2214,9 @@
         font-size: 20px;
         line-height: 22px;
     }
+    .authors-section-title-hy {
+        padding: 43px 32px 37px;
+    }
     .article-section-title-hy {
         padding: 35px 32px 42px;
     }
@@ -2164,15 +2243,24 @@
     .authors-section-title-en {
         padding: 19px 32px 22px;
     }
+    .header-icon-img-left img,.header-icon-img img{
+        height:24px ;
+    }
+
+
+
+
+
+
 
 
 }
 
 @media (max-width: 400px) {
 
-    .color-info-description h2 {
-        font-size: 16px;
-        line-height: 23px;
+    .color-info-description h2 a{
+        font-size: 18px;
+        line-height: 24px;
     }
 
     .description-param-group p,
@@ -2361,6 +2449,24 @@
     .burger-menu-and-icons {
         gap: 18px;
     }
+    header {
+        background-image: url("../images/header-bg-min-2.png");
+        background-repeat: no-repeat;
+
+        height: 106px;
+        background-position: center top;
+        position: sticky;
+        top: 0;
+        background-size: cover;
+        z-index: 99;
+
+    }
+
+
+
+
+}
+@media (max-width: 376px) {
 
 
 }
@@ -2383,3 +2489,4 @@
         padding: 55px 47px 42px 26px;
     }
 }
+/*565656565*/

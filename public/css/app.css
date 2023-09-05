@@ -57,7 +57,7 @@ body {
 header {
     background-image: url("../images/header cloud.png");
     background-repeat: no-repeat;
-    height: 130px;
+    height: 150px;
     background-position: center top;
     position: sticky;
     top: 0;
@@ -493,6 +493,11 @@ main {
 
 .article-box-item-img img {
     width: 100%;
+    height: 243px;
+    object-fit: cover;
+}
+.article-info-and-video-description p a iframe {
+    margin-top: 70px;
 }
 
 .article-box-item-desc h3 {
@@ -1299,6 +1304,7 @@ a.footer-address:hover {
 .article-itm-page-banner-desc-icon {
     display: flex;
     gap: 15px;
+    margin-top: 16px;
 }
 
 .article-info-and-video-desc-article {
@@ -1309,6 +1315,7 @@ a.footer-address:hover {
     gap: 12px;
     margin-top: 56px;
     margin-bottom: 40px;
+    border-radius: 6px;
 }
 
 .article-info-and-video-desc-article span {
@@ -2345,7 +2352,6 @@ section.about-us {
 }
 
 .shopping-cart-promo-code-btn button {
-    background: white;
     width: 100%;
     max-width: 258px;
     padding: 12px 37px;
@@ -2356,11 +2362,6 @@ section.about-us {
     line-height: 22px;
     text-align: center;
     color: #F34802;
-}
-
-.shopping-cart-promo-code-btn button:hover {
-    background: #f36f21;
-    color: #FFF;
 }
 
 .shopping-cart-products-buy-items {
@@ -2413,7 +2414,7 @@ section.about-us {
     margin-top: 20px;
 }
 
-.form-text-info p a {
+.form-text-info p span {
     color: #f57541;
 }
 
@@ -3543,4 +3544,11 @@ li.slick-active button {
 /*summernote image padding*/
 p img {
     padding: 4px;
+}
+
+.header-icon-img-left,.header-icon-img{
+    height: 48px;
+}
+.header-icon-img-left img{
+    display: none;
 }

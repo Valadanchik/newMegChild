@@ -10,6 +10,7 @@
                 <a href="{{ LaravelLocalization::localizeUrl('/books') }}">{{ __('header.books') }}...</a>
                 <a href="{{ LaravelLocalization::localizeUrl('/translators') }}">{{ __('header.translators') }}</a>
                 <a href="{{ LaravelLocalization::localizeUrl('/articles') }}">{{ __('header.articles') }}</a>
+                <a href="{{ LaravelLocalization::localizeUrl('/accessors') }}" class="{{ isRouteActive('accessors') ? 'active-menu-underline' : '' }}">{{ __('header.accessors') }}</a>
             </div>
         </div>
         <div class="footer-icon-input">

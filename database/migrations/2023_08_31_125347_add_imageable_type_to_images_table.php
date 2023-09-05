@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('images', function (Blueprint $table) {
             $table->renameColumn('book_id', 'imageable_id');
-            $table->string('imageable_type',255)->after('book_id')->default('App\Models\Books');
+            $table->string('imageable_type',255)->after('book_id')->default('App\\Models\\Books');
             $table->dropForeign(['book_id']);
         });
     }

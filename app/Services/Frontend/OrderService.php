@@ -107,7 +107,7 @@ class OrderService
                             'quantity' => $cart[$product->id],
                             'price' => $product->price,
                             'status' => Order::STATUS_NEW,
-                            'product_type' => Categories::TYPE_ACCESSOR
+                            'product_type' => Categories::TYPE_BOOK
                         ]);
                 } else if ($product->category->type === Categories::TYPE_ACCESSOR) {
                     $order->accessors()->attach($product->id,
@@ -115,7 +115,7 @@ class OrderService
                             'quantity' => $cart[$product->id],
                             'price' => $product->price,
                             'status' => Order::STATUS_NEW,
-                            'product_type' => Categories::TYPE_BOOK
+                            'product_type' => Categories::TYPE_ACCESSOR
                         ]);
                 }
             }

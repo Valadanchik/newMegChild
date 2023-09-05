@@ -15,7 +15,7 @@ return [
     'phone' => 'Phone',
     'email' => 'Email',
     'shipping_info' => 'Additional information about your order, for example, special notes for delivery',
-    'checkout_text' => 'Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <span>Terms of Service</span>.',
+    'checkout_text' => 'Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="https://newmag.am/terms" target="_blank">Terms of Service</a>.',
     'agree' => 'I agree to the terms and conditions',
     'your_order' => 'Your order',
     'payment_method' => 'Payment method',

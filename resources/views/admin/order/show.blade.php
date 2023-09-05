@@ -86,6 +86,7 @@
                         <thead>
                         <tr>
                             <th>Image</th>
+                            <th>Product Type</th>
                             <th>Name</th>
                             <th>Price</th>
                         </tr>
@@ -96,8 +97,19 @@
                                 <td>
                                     <img width="200px" src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
                                 </td>
+                                <td>BOOK</td>
                                 <td>{{ $book['title_' . app()->getLocale()]  }}</td>
                                 <td>{{ $book['price'] }} ֏</td>
+                            </tr>
+                        @endforeach
+                        @foreach($order->accessors as $index => $accessor)
+                            <tr>
+                                <td>
+                                    <img width="200px" src="{{ URL::to('storage/' . $accessor['main_image']) }}" alt="">
+                                </td>
+                                <td>ACCESSOR</td>
+                                <td>{{ $accessor['title_' . app()->getLocale()]  }}</td>
+                                <td>{{ $accessor['price'] }} ֏</td>
                             </tr>
                         @endforeach
                         </tbody>

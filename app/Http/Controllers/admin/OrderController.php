@@ -23,9 +23,16 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        $order = Order::with(['country', 'books', 'accessors'])->orderBy('id', 'DESC')->findOrFail($id);
+        $order = Order::with(['country',
+            'books' => function ($query) {
+                $query->where('product_type', 'book');
+            },
+            'accessors' => function ($query) {
+                $query->where('product_type', 'accessor');
+            }])
+            ->orderBy('id', 'DESC')
+            ->findOrFail($id);
 
-        dd($order->books);
         return view('admin.order.show', compact('order'));
     }
 

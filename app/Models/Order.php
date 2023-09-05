@@ -81,14 +81,14 @@ class Order extends Model
     public function books(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Books::class,'order_product_pivote', 'order_id', 'product_id')
-            ->withPivot('id', 'quantity', 'price', 'status')
+            ->withPivot('id', 'quantity', 'price', 'status', 'product_type')
             ->withTimestamps();
     }
 
     public function accessors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Accessor::class,'order_product_pivote', 'order_id', 'product_id')
-            ->withPivot('id', 'quantity', 'price', 'status')
+            ->withPivot('id', 'quantity', 'price', 'status', 'product_type')
             ->withTimestamps();
     }
 }

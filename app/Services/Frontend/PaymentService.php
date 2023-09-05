@@ -3,10 +3,12 @@
 namespace App\Services\Frontend;
 
 use App\Events\CouponQuantity;
+use App\Http\Controllers\frontend\OrderController;
 use App\Models\Order;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Events\OrderPayment;
+use Illuminate\Support\Facades\Log;
 
 class PaymentService
 {
@@ -72,6 +74,8 @@ class PaymentService
 
             if (strtoupper($request->EDP_CHECKSUM) == strtoupper($checksum) &&
                 $order->total_price == $request->EDP_AMOUNT) {
+
+                $order = OrderController::getOrderWithProducts($order);
 
                 event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
 
@@ -153,6 +157,8 @@ class PaymentService
         $order->payment_callback = json_encode($request->all());
 
         if ($request->status == 'PAID') {
+
+            $order = OrderController::getOrderWithProducts($order);
 
             event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
 
@@ -251,6 +257,9 @@ class PaymentService
         $order->payment_callback = json_encode($response);
 
         if ($response['orderStatus'] == 2) {
+
+            $order = OrderController::getOrderWithProducts($order);
+
             event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
 
             if (session()->get('coupon')) {

@@ -34,7 +34,7 @@ class OrderController extends Controller
             $countries = $this->orderService->getCountries();
             $cardBooks = $this->orderService->getCartProducts();
             $cardProductsTotalPrice = $this->shopService->getCartTotalPrice();
-//            dd($cardBooks);
+
             $data = compact('cardBooks', 'regions', 'countries', 'cardProductsTotalPrice');
         } else {
             $data = compact('cardBooks');
@@ -89,6 +89,22 @@ class OrderController extends Controller
     public function fail(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('payments.fail');
+    }
+
+    /**
+     * @param $orderModel
+     * @return mixed
+     */
+    public static function getOrderWithProducts($orderModel): mixed
+    {
+        return $orderModel::with(['country',
+            'books' => function ($query) {
+                $query->where('product_type', 'book');
+            },
+            'accessors' => function ($query) {
+                $query->where('product_type', 'accessor');
+            }])
+            ->orderBy('id', 'DESC')->first();
     }
 
 }

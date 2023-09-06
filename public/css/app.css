@@ -705,6 +705,7 @@ main {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
+    text-wrap: balance;
     line-height: 20px;
     letter-spacing: 0.01em;
     color: #000000;
@@ -3551,4 +3552,7 @@ p img {
 }
 .header-icon-img-left img{
     display: none;
+}
+.form-text-info p a{
+    color: #f36f21 ;
 }

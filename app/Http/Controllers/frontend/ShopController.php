@@ -68,6 +68,7 @@ class ShopController extends Controller
      */
     public static function returnTotalPriceResponse($getTotalPrice, $coupon = null, bool $success = true, string $message = ''): \Illuminate\Http\JsonResponse
     {
+//        dd($getTotalPrice);
         return response()->json([
             'total_price' => $getTotalPrice,
             'coupon' => $coupon,

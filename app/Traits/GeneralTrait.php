@@ -2,6 +2,9 @@
 
 namespace App\Traits;
 
+use App\Models\Accessor;
+use App\Models\Books;
+use App\Models\Categories;
 use \Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\URL;
 
@@ -92,4 +95,45 @@ trait GeneralTrait
 
         return json_encode($imagesPathAndId);
     }
+
+    /**
+     * @param $sessionCart
+     * @return Collection
+     */
+    public static function separateProductsSessionIDAndGetProducts($sessionCart): Collection
+    {
+        $sessionBookId = [];
+        $sessionAccessorId = [];
+        $books = null;
+        $accessors = null;
+
+        foreach ($sessionCart as $key => $cartValue) {
+            match ($cartValue['product_type']) {
+                Categories::TYPE_BOOK => $sessionBookId[] = $cartValue['product_id'],
+                Categories::TYPE_ACCESSOR => $sessionAccessorId[] = $cartValue['product_id'],
+            };
+        }
+
+        if (!empty($sessionBookId)) {
+            $books = Books::whereIn('id', $sessionBookId)->where('status', Books::ACTIVE)
+                ->with('category')->get();
+        }
+        if (!empty($sessionAccessorId)) {
+            $accessors = Accessor::whereIn('id', $sessionAccessorId)->where('status', Accessor::ACTIVE)
+                ->with('category')->get();
+        }
+
+        if ($books && $accessors) {
+            $products = $books->merge($accessors);
+        } elseif ($books) {
+            $products = $books;
+        } elseif ($accessors) {
+            $products = $accessors;
+        } else {
+            $products = Collection::empty();
+        }
+
+        return $products;
+    }
+
 }

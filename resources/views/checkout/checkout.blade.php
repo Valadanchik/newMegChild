@@ -28,7 +28,8 @@
                                             </p>
                                         @endif
                                     </div>
-{{--                                    @dd(session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'])--}}
+{{--                                    @dd($card->category->type)--}}
+{{--                                    @dd(session()->get('cart'))--}}
 {{--                                    @dd(session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'])--}}
                                     <div class="shopping-cart-products-item-count">
                                         <div class="shopping-cart-products-item-count-img">

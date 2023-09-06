@@ -30,13 +30,17 @@ class CouponController extends Controller
         $userCoupon = $request->coupon;
         $coupon = self::checkCouponIsValid($userCoupon);
 
+//        dd($coupon);
+
         if ($coupon) {
             $total_price = 0;
             if ($coupon->type === Coupon::SINGLE_BOOK) {
                 $total_price = self::singleCouponFunction($coupon);
             } else if ($coupon->type === Coupon::EACH_BOOKS) {
+//                dd($coupon);
                 $total_price = self::eachBooksCouponFunction($coupon);
             }
+
 
             if ($includeCoupon) {
                 return $total_price;
@@ -94,6 +98,7 @@ class CouponController extends Controller
      */
     public static function eachBooksCouponFunction($couponModel): float|int
     {
+//        dd($couponModel);
         $total_price = 0;
         if ($couponModel->book_id === Coupon::ALL_BOOKS) {
             $total_price = ShopService::getCartTotalPrice($couponModel->price, $couponModel->book_id, $total_price, Coupon::EACH_BOOKS);
@@ -113,10 +118,13 @@ class CouponController extends Controller
     public static function filterCouponBookData($couponModel): float|int
     {
         $total_price = 0;
-        $sessionProductsId = array_keys(session()->get('cart'));
+        $sessionProductsId = array_column(array_values(session()->get('cart')), "product_id");
         $couponProductsId = json_decode($couponModel->book_id);
         $checkProductsHasCouponIds = [];
         $productsIdWithoutCouponIds = [];
+
+//        dd($sessionProductsId);
+
 
         foreach ($sessionProductsId as $value) {
             if (in_array($value, $couponProductsId)) {
@@ -125,7 +133,7 @@ class CouponController extends Controller
                 $productsIdWithoutCouponIds[] = $value;
             }
         }
-
+//dump($couponModel->price, $checkProductsHasCouponIds, $total_price, $couponModel->type);
         if (count($checkProductsHasCouponIds)) {
             $total_price = ShopService::getCartTotalPrice($couponModel->price, $checkProductsHasCouponIds, $total_price, $couponModel->type);
         }

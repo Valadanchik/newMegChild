@@ -4,6 +4,7 @@ namespace App\Services\Frontend;
 
 use App\Models\Accessor;
 use App\Models\Books;
+use App\Models\Categories;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,11 @@ class ShopService
     public function addToCart(Request $request): void
     {
         $prod = [
-            $request->product => $request->quantity,
+            $request->product_type . '-' . $request->product => [
+                'product_type' => $request->product_type,
+                'product_id' => $request->product,
+                'product_count' => $request->quantity,
+            ]
         ];
         $cart = session()->get('cart');
 
@@ -27,12 +32,17 @@ class ShopService
             session()->put('cart', $prod);
         } else {
             if (isset($cart[$request->product])) {
-                $cart[$request->product] += $request->quantity;
+                $cart[$request->product_type . '-' . $request->product]['product_id'] = $request->product;
+                $cart[$request->product_type . '-' . $request->product]['product_count'] += $request->quantity;
+                $cart[$request->product_type . '-' . $request->product]['product_type'] = $request->product_type;
             } else {
-                $cart[$request->product] = $request->quantity;
+                $cart[$request->product_type . '-' . $request->product]['product_id'] = $request->product;
+                $cart[$request->product_type . '-' . $request->product]['product_count'] = $request->quantity;
+                $cart[$request->product_type . '-' . $request->product]['product_type'] = $request->product_type;
             }
             session()->put('cart', $cart);
         }
+
     }
 
     /**
@@ -47,6 +57,7 @@ class ShopService
         if ($cart && is_array($cart)) {
             $total_count = count($cart);
         }
+
         return $total_count;
     }
 
@@ -61,8 +72,11 @@ class ShopService
         $cart = session()->get('cart');
 
         if ($cart && is_array($cart)) {
-            if (isset($cart[$request->book_id])) {
-                $cart[$request->book_id] = $request->quantity;
+            if (isset($cart[$request->productType . '-' . $request->product_id])) {
+                $cart[$request->productType . '-' . $request->product_id]['product_id'] = $request->product_id;
+                $cart[$request->productType . '-' . $request->product_id]['product_count'] = $request->quantity;
+                $cart[$request->productType . '-' . $request->product_id]['product_type'] = $request->productType;
+
                 session()->put('cart', $cart);
             }
         }
@@ -77,8 +91,9 @@ class ShopService
     public function removeFromCart(Request $request): void
     {
         $cart = session()->get('cart');
-        if (isset($cart[$request->book_id])) {
-            unset($cart[$request->book_id]);
+
+        if (isset($cart[$request->product_type . '-' . $request->product_id])) {
+            unset($cart[$request->product_type . '-' . $request->product_id]);
             session()->put('cart', $cart);
         }
     }
@@ -93,22 +108,49 @@ class ShopService
         $cart = session()->get('cart');
         if ($cart && is_array($cart)) {
 
-            $sessionProductsId = array_keys($cart);
+            $sessionBookId = [];
+            $sessionAccessorId = [];
+
+            foreach ($cart as $key => $cartValue) {
+                match ($cartValue['product_type']) {
+                    Categories::TYPE_BOOK => $sessionBookId[] = $cartValue['product_id'],
+                    Categories::TYPE_ACCESSOR => $sessionAccessorId[] = $cartValue['product_id'],
+                };
+            }
+
+            $sessionProductsId = array_merge($sessionBookId, $sessionAccessorId);
 
             if ($productsId === Coupon::ALL_BOOKS) {
                 $productsId = $sessionProductsId;
             }
 
-            $cartProductsId = count($productsId) ? $productsId : $sessionProductsId;
-            $books = Books::whereIn('id', $cartProductsId)->where('status', true)->get();
-            $accessors = Accessor::whereIn('id', $cartProductsId)->where('status', true)->get();
-            $products = $books->merge($accessors);
+//            $cartProductsId = count($productsId) ? $productsId : $sessionProductsId;
+            $books = null;
+            $accessors = null;
+            if (!empty($sessionBookId)) {
+                $books = Books::whereIn('id', $sessionBookId)->where('status', true)
+                    ->with('category')->get();
+            }
+            if (!empty($sessionAccessorId)) {
+                $accessors = Accessor::whereIn('id', $sessionAccessorId)->where('status', true)
+                    ->with('category')->get();
+            }
+
+            if ($books && $accessors) {
+                $products = $books->merge($accessors);
+            } elseif ($books) {
+                $products = $books;
+            } elseif ($accessors) {
+                $products = $accessors;
+            } else {
+                $products = [];
+            }
 
             foreach ($products as $product) {
                 if ($couponDiscount && $couponType === Coupon::EACH_BOOKS) {
                     $total_price += ($product->price - $couponDiscount) * $cart[$product->id];
                 } else {
-                    $total_price += $product->price * $cart[$product->id];
+                    $total_price += $product->price * $cart[$product->category->type . '-' . $product->id]['product_count'];
                 }
             }
 

@@ -79,4 +79,10 @@ return [
                  <p> The author's font called 'Hekiat' was developed specifically for children's books, which is easy to read.</p>
                  <p> In addition to books, the series will also present stationery with characters from the 'Dream' books.</p>",
     'thank_you' => 'Thank you',
+    'company' => 'Company',
+    'region' => 'Region',
+    'street' => 'Street',
+    'house' => 'House',
+    'postal_code' => 'Postal code',
+    'order_text' => 'Order text',
 ];

@@ -46,13 +46,25 @@
                                        align="center">
                                     </p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
-                                       align="center">{{ __('messages.order_created') }}</p>
+                                       align="center"><strong>{{ __('messages.order_created') }}: </strong> {{ $order->name . ' ' . $order->lastname }}</p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
-                                       align="center">{{ $order->name . ' ' . $order->lastname }}</p>
+                                       align="center"><strong>{{ __('messages.company') }}: </strong>{{ $order->company }}</p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
-                                       align="center">{{ __('messages.email') }}: {{ $order->email }}</p>
+                                       align="center"><strong>{{ __('messages.email') }}: </strong>{{ $order->email }}</p>
                                     <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
-                                       align="center">{{ __('messages.phone') }}: {{ $order->phone }}</p>
+                                       align="center"><strong>{{ __('messages.phone') }}: </strong>{{ $order->phone }}</p>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
+                                       align="center"><strong>{{ __('messages.region') }}: </strong>{{ $order->region }}</p>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
+                                       align="center"><strong>{{ __('messages.street') }}: </strong>{{ $order->street }}</p>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
+                                       align="center"><strong>{{ __('messages.house') }}: </strong>{{ $order->house }}</p>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
+                                       align="center"><strong>{{ __('messages.postal_code') }}: </strong>{{ $order->postal_code }}</p>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
+                                       align="center"><strong>{{ __('messages.order_text') }}: </strong>{{ $order->order_text }}</p>
+                                    <p style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 16px; line-height: 26px; font-weight: 400; color: #666363; margin: 13px 0;"
+                                       align="center"><strong>{{ __('messages.total_price') }}: </strong>{{ $order->total_price }}</p>
                                 </th>
                             </tr>
                             <!-- END SECTION: Introduction -->

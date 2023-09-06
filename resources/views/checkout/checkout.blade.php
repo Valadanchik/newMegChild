@@ -28,18 +28,24 @@
                                             </p>
                                         @endif
                                     </div>
+{{--                                    @dd(session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'])--}}
+{{--                                    @dd(session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'])--}}
                                     <div class="shopping-cart-products-item-count">
                                         <div class="shopping-cart-products-item-count-img">
-                                            <div data-product="{{ $card['id'] }}" data-price="{{ $card['price'] }}"
+                                            <div data-product="{{ $card['id'] }}"
+                                                 data-product-type="{{ $card->category->type }}"
+                                                 data-price="{{ $card['price'] }}"
                                                  data-item="{{$card_key}}"
-                                                 class="shopping-cart-products-count-item-min @if(session()->get('cart')[$card['id']] == 1) min-none @endif min-count-{{$card_key}}">
+                                                 class="shopping-cart-products-count-item-min @if(session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'] == 1) min-none @endif min-count-{{$card_key}}">
                                                 <img class="min"
                                                      src="{{ URL::to('/images/svg/shopping-cart-min-img.svg') }}"
                                                      alt="min img" data-id="min-1">
                                             </div>
                                             <input type="number" class="count-shop" id="count-shop-{{$card_key}}"
-                                                   value="{{ session()->get('cart')[$card['id']] }}">
-                                            <div data-product="{{ $card['id'] }}" data-max="{{ $card['in_stock'] }}"
+                                                   value="{{ session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'] }}">
+                                            <div data-product="{{ $card['id'] }}"
+                                                 data-product-type="{{ $card->category->type }}"
+                                                 data-max="{{ $card['in_stock'] }}"
                                                  data-price="{{ $card['price'] }}" data-item="{{$card_key}}"
                                                  class="shopping-cart-products-count-item-plus">
                                                 <img src="{{ URL::to('/images/svg/plus-circle.svg') }}"
@@ -55,11 +61,12 @@
                                          class="shopping-cart-products-count-close-icon">
                                         <img src="{{ URL::to('/images/svg/close.svg') }}"
                                              class="remove-product-from-card" alt="close"
-                                             data-book-id="{{ $card['id'] }}">
+                                             data-product-id="{{ $card['id'] }}" data-product-type="{{ $card->category->type }}">
                                     </div>
                                 </div>
                                 <input id="product-id" type="hidden" value="{{ $card['id'] }}">
-                                <input id="quantity" type="hidden" value="{{ session()->get('cart')[$card['id']] }}"
+                                <input id="product-type" type="hidden" value="{{ $card->category->type  }}">
+                                <input id="quantity" type="hidden" value="{{ session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'] }}"
                                        name="number">
                             @endforeach
 

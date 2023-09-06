@@ -31,10 +31,11 @@ document.getElementById('add-to-cart')?.addEventListener('click', function (even
     xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
 
     var checkoutRouterUrl = document.getElementById('checkout-router').value;
+    var product_type = document.getElementById('product-type').value;
     var product = document.getElementById('product-id').value;
     var quantity = document.getElementById('quantity').value;
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var data = JSON.stringify({_token: csrfToken, quantity: quantity, product: product});
+    var data = JSON.stringify({_token: csrfToken, quantity: quantity, product: product, product_type: product_type});
 
     xhr.onload = function () {
         if (xhr.status === 200) {
@@ -100,7 +101,7 @@ function activeMenuItem(e) {
 
 }
 
-function updateCartProductCount(quantity, productId) {
+function updateCartProductCount(quantity, productId, productType) {
 
     document.querySelector('.loader-container').style.display = 'flex';
 
@@ -117,7 +118,7 @@ function updateCartProductCount(quantity, productId) {
     // var product = document.getElementById('product-id').value;
     var coupon_name = document.getElementById('couponName').value;
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var data = JSON.stringify({_token: csrfToken, quantity: quantity, book_id: productId, coupon: coupon_name});
+    var data = JSON.stringify({_token: csrfToken, quantity: quantity, product_id: productId, productType: productType, coupon: coupon_name});
 
     xhr.onload = function () {
         if (xhr.status === 200) {
@@ -161,16 +162,16 @@ min?.forEach((item) => {
         let countElement = document.getElementById('count-shop-' + dataItem);
         let minBtn = document.querySelector(`.min-count-${dataItem} img`);
         let productId = parseInt(event.currentTarget.dataset.product);
-
+        let productType = event.currentTarget.dataset.productType;
         if (parseInt(countElement.value) > 2) {
             countElement.value = parseInt(countElement.value) - 1;
-            updateCartProductCount(countElement.value, productId)
+            updateCartProductCount(countElement.value, productId, productType)
 
             // totalPriceElement.innerHTML = totalPrice - itemPrice;
             // payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
         } else {
             countElement.value = parseInt(countElement.value) - 1;
-            updateCartProductCount(countElement.value, productId)
+            updateCartProductCount(countElement.value, productId, productType)
 
             // totalPriceElement.innerHTML = totalPrice - itemPrice;
             // payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) - itemPrice;
@@ -192,11 +193,12 @@ plus?.forEach((item) => {
         let maxCount = parseInt(event.currentTarget.dataset.max);
         let countElement = document.getElementById('count-shop-' + dataItem);
         let productId = parseInt(event.currentTarget.dataset.product);
+        let productType = event.currentTarget.dataset.productType;
         let minBtn = document.querySelector(`.min-count-${dataItem}`);
 
         if (parseInt(countElement.value) < maxCount) {
             countElement.value = parseInt(countElement.value) + 1;
-            updateCartProductCount(countElement.value, productId)
+            updateCartProductCount(countElement.value, productId, productType)
             // totalPriceElement.innerHTML = totalPrice + itemPrice;
             // payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) + itemPrice;
             minBtn.querySelector('img').src = "/images/svg/minus-circle.svg";
@@ -216,9 +218,10 @@ deleteBtn?.forEach((item) => {
         xhr.open('POST', document.getElementById('remove-from-cart-url').value);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
-        var bookId = event.target.getAttribute("data-book-id");
+        var productId = event.target.getAttribute("data-product-id");
+        var productType = event.target.getAttribute("data-product-type");
         var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        var data = JSON.stringify({_token: csrfToken, book_id: bookId});
+        var data = JSON.stringify({_token: csrfToken, product_id: productId, product_type: productType});
 
         xhr.onload = function () {
             if (xhr.status === 200) {

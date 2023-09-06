@@ -40,6 +40,7 @@
                     <input id="add-to-cart-url" type="hidden" value="{{ route('addToCart') }}">
                     <input id="checkout-router" type="hidden" value="{{ route('order') }}">
                     <input id="product-id" type="hidden" value="{{ $accessor['id'] }}">
+                    <input id="product-type" type="hidden" value="{{ $accessor->category->type }}">
                     <input id="quantity" type="hidden" value="1" name="number">
                 </div>
                 <div class="book-item-desc">

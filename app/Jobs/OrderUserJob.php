@@ -26,7 +26,7 @@ class OrderUserJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            Mail::to(env('EMAIL_NEW_MAG_CHILD'))->send(new OrderUserMail($this->order));
+            Mail::to($this->order->email)->send(new OrderUserMail($this->order));
         } catch (\Exception $e) {
             info('OrderUserJob: error-2: ' . $e->getMessage());
         }

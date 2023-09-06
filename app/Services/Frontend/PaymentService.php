@@ -27,6 +27,7 @@ class PaymentService
     {
         $amount = $order->total_price;
         $payment_method = $order->payment_method;
+        $order = OrderController::getOrderWithProducts($order);
 
         return match ((int)$payment_method) {
             Order::PAYMENT_METHOD_IDRAM => $this->idramPayment($amount, $order->order_payment_id),

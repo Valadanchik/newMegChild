@@ -30,11 +30,11 @@ class OrderService
      */
     public function getBookProducts($sessionProductsId)
     {
-        return Books::with(['authors' => function ($query) {
+        return Books::with(['category', 'authors' => function ($query) {
             $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
         }, 'translators' => function ($query) {
             $query->select('translators.id', 'translators.name_hy', 'translators.name_en');
-        }, 'category'])
+        }])
             ->whereIn('id', $sessionProductsId)
             ->where('in_stock', '>', 0)
             ->where('status', Books::ACTIVE)
@@ -56,7 +56,8 @@ class OrderService
 
     public function getCartProducts(): \Illuminate\Database\Eloquent\Collection|array
     {
-        $sessionProductsId = array_keys(session()->get('cart'));
+        $sessionProductsId = array_column(array_values(session()->get('cart')), "product_id");
+
         $getBookProducts = $this->getBookProducts($sessionProductsId);
         $getAccessorProducts = $this->getAccessorsProducts($sessionProductsId);
 

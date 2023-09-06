@@ -7,7 +7,6 @@ use App\Http\Requests\OrderStoreRequest;
 use App\Services\Frontend\OrderService;
 use App\Services\Frontend\PaymentService;
 use App\Services\Frontend\ShopService;
-
 use Psr\Container\NotFoundExceptionInterface;
 
 class OrderController extends Controller
@@ -18,7 +17,6 @@ class OrderController extends Controller
      */
     public function __construct(protected OrderService $orderService, protected ShopService $shopService)
     {
-
     }
 
     /**
@@ -52,6 +50,7 @@ class OrderController extends Controller
     {
         $cardBooks = $this->orderService->getCartProducts();
         $sessionProductsId = array_keys(session()->get('cart'));
+
         return (count($sessionProductsId) === count($cardBooks));
     }
 

@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Categories extends Model
 {
     use HasFactory;
-
     const TYPE_BOOK = 'book';
-
     const TYPE_ACCESSOR = 'accessor';
+    const PRODUCTS_TYPE = [
+        self::TYPE_BOOK,
+        self::TYPE_ACCESSOR,
+    ];
 
     const AYB = 1;
     const BEN = 2;

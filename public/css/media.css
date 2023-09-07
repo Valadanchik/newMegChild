@@ -246,6 +246,7 @@
 
     .book-page-item-after-img {
         max-width: 170px;
+        height: 170px;
     }
 
     .additional-information-list-item p {
@@ -786,7 +787,7 @@
     }
 
     ul.header-menu-list li a {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     ul.header-menu-list {
@@ -905,11 +906,33 @@
     ul.header-menu-list {
         align-items: start;
         flex-direction: column;
-        padding-left: 20px;
+        padding-left: 40px;
+    }
+
+    .arrow-menu{
+        display: block;
     }
 
     .menu-drop-down {
+        display: none;
+    }
+    ul.menu-drop-down.clickOpen{
         display: block;
+    }
+
+    ul.books-drop-down{
+        display: none;
+    }
+
+    ul.books-drop-down.clickOpen {
+        display: block !important;
+        padding-left: 30px !important;
+
+    }
+
+    ul.drop-down-articles.clickOpen {
+        display: block !important;
+
     }
 
     .menu-drop-down-articles:hover .drop-down-articles {
@@ -933,6 +956,14 @@
         box-shadow: none;
         line-height: unset;
     }
+    li.book-menu-drop-down, li.menu-drop-down-articles, li.menu-about-us {
+        display: grid;
+        grid-template-columns: 650px 25px;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+
 
     .book-menu-drop-down:hover .books-drop-down {
         pointer-events: unset;
@@ -943,25 +974,27 @@
     }
 
     ul.drop-down-articles li {
-        padding-bottom: 20px;
+        padding-bottom: 10px;
     }
     .search-section.open {
         z-index: 99;
     }
 
+
     /*///////////////////////////footer///////////////////////////*/
     .footer-menu {
         grid-template-columns: repeat(2, 130px);
         justify-content: center;
+        column-gap: 40px;
     }
 
     .footer-icons {
-        column-gap: 10px;
+        column-gap: 28px;
     }
 
     .footer-icons div {
-        height: 30px !important;
-        max-width: 30px;
+        height: 44px !important;
+        max-width: 44px;
     }
 
     .footer-form-box {
@@ -1009,6 +1042,13 @@
         background-image: url(../images/footer-background.png);
 
     }
+    .footer-menu a, a.footer-address, .footer-book a {
+        font-size: 16px;
+    }
+
+    .footer {
+        grid-template-columns: repeat(1, 404px);
+    }
 
     /*///////////////////////// index/////////////////////////////*/
     .menu-about-us:hover .menu-drop-down {
@@ -1021,7 +1061,7 @@
     }
 
     ul.menu-drop-down li a {
-        padding-top: 20px;
+        padding-top: 10px;
         line-height: 30px;
         padding-left: 30px;
         display: inline-block;
@@ -1102,9 +1142,6 @@
         line-height: 22px;
     }
 
-    /*.authors-boxes div {*/
-    /*    max-width: 190px;*/
-    /*}*/
 
     .authors-boxes {
         margin: 40px auto;
@@ -1348,7 +1385,9 @@
     .header-icon-img-left img{
         display: block;
     }
-
+    .drop-down-articles{
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1484,7 +1523,7 @@
     }
 
     .footer-newmag p {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     /*/////////////////////Books-page///////////////////////////////*/
@@ -1849,11 +1888,9 @@
         font-size: 16px;
         margin-bottom: 10px;
     }
-
     .new-book-or-translation-desc ol li {
         margin-bottom: 12px;
     }
-
     .contact-page-sale-desc,
     .contact-page-work-desc,
     .contact-page-partnership-desc {
@@ -1865,8 +1902,6 @@
     .books-info-item-search .book-item {
         max-width: 262px;
     }
-
-
     .authors-section-title-en h1 {
         font-size: 30px;
     }
@@ -1882,7 +1917,13 @@
     .burger-menu-and-icons{
         gap: 16px;
     }
-
+    li.book-menu-drop-down, li.menu-drop-down-articles, li.menu-about-us {
+         grid-template-columns: 19fr 1fr;
+     }
+    .arrow-menu {
+        display: block;
+        padding-right: 20px;
+    }
 
 }
 
@@ -1927,13 +1968,6 @@
         top: 10px;
     }
 
-    .footer-menu a, a.footer-address, .footer-book a {
-        font-size: 13px;
-    }
-
-    .footer {
-        grid-template-columns: repeat(1, 280px);
-    }
 
     .footer-money {
         gap: 6px;
@@ -2045,7 +2079,7 @@
         max-width: 140px;
         display: inline-flex;
         margin-right: 17px;
-        margin-left: 17px;
+        margin-left: 15px;
     }
 
     ::-webkit-scrollbar:horizontal {
@@ -2073,6 +2107,7 @@
 
     .shopping-cart-products-item-count-img {
         justify-content: start;
+        padding-top: 25px;
     }
 
     .shopping-cart-products-count-close-icon {
@@ -2089,7 +2124,7 @@
     }
 
     .shopping-cart-products-item {
-        gap: 20px;
+        gap: 10px;
     }
 
     .shopping-cart-products-item-img {
@@ -2123,8 +2158,11 @@
         text-align: start;
     }
 
-    .shopping-cart-products-item-price p, input.count-shop {
+    .shopping-cart-products-item-price p {
         font-size: 20px;
+    }
+    input.count-shop{
+        font-size: 16px;
     }
 
     .form-shopping-cart-home,
@@ -2142,7 +2180,7 @@
     }
 
     .accept {
-        flex-wrap: unset;
+        flex-wrap: wrap;
         align-items: center;
     }
 
@@ -2200,7 +2238,8 @@
     }
 
     .accept > label {
-        max-width: 420px;
+        /*max-width: 420px;*/
+        max-width: 350px;
         width: 100%;
     }
 
@@ -2246,13 +2285,28 @@
     .header-icon-img-left img,.header-icon-img img{
         height:24px ;
     }
-
-
-
-
-
-
-
+    .authors-boxes.author-single-page,
+    .authors-boxes.translators-single-page {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .shopping-cart-products-item-desc h3{
+        font-size: 15px;
+    }
+    .shopping-cart-buttons {
+        gap: 16px;
+    }
+    .shopping-cart-promo-code-btn button,
+    .shopping-cart-code-input input {
+        font-size: 14px;
+    }
+    .shopping-cart h2 {
+        font-weight: 400;
+    }
+    .shopping-cart-products-item {
+        padding: 20px 10px;
+    }
 
 }
 
@@ -2463,12 +2517,6 @@
     }
 
 
-
-
-}
-@media (max-width: 376px) {
-
-
 }
 
 @media (max-width: 330px) {
@@ -2489,4 +2537,4 @@
         padding: 55px 47px 42px 26px;
     }
 }
-/*565656565*/
+

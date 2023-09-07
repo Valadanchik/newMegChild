@@ -625,3 +625,30 @@ modal_filter1.addEventListener('click', () => {
 
 })
 
+
+//////////////menu-mobile/////////////////////
+
+let about_us = document.querySelector('.menu-about-us')
+let book_menu_drop_down = document.querySelector('.book-menu-drop-down')
+
+let menu_item = document.querySelectorAll('.menu-drop-down')
+let book_item = document.querySelector('.books-drop-down')
+
+let article_menu_drop_down = document.querySelector('.menu-drop-down-articles')
+let article_item = document.querySelector('.drop-down-articles')
+
+
+about_us.addEventListener('click', () =>{
+    menu_item.forEach((item) => {
+        item.classList.toggle('clickOpen')
+    })
+})
+
+book_menu_drop_down.addEventListener('click', () => {
+    book_item.classList.toggle('clickOpen')
+})
+
+article_menu_drop_down.addEventListener('click', () => {
+    article_item.classList.toggle('clickOpen')
+})
+

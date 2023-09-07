@@ -787,7 +787,7 @@
     }
 
     ul.header-menu-list li a {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     ul.header-menu-list {
@@ -906,11 +906,33 @@
     ul.header-menu-list {
         align-items: start;
         flex-direction: column;
-        padding-left: 20px;
+        padding-left: 40px;
+    }
+
+    .arrow-menu{
+        display: block;
     }
 
     .menu-drop-down {
+        display: none;
+    }
+    ul.menu-drop-down.clickOpen{
         display: block;
+    }
+
+    ul.books-drop-down{
+        display: none;
+    }
+
+    ul.books-drop-down.clickOpen {
+        display: block !important;
+        padding-left: 30px !important;
+
+    }
+
+    ul.drop-down-articles.clickOpen {
+        display: block !important;
+
     }
 
     .menu-drop-down-articles:hover .drop-down-articles {
@@ -934,6 +956,14 @@
         box-shadow: none;
         line-height: unset;
     }
+    li.book-menu-drop-down, li.menu-drop-down-articles, li.menu-about-us {
+        display: grid;
+        grid-template-columns: 650px 25px;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+
 
     .book-menu-drop-down:hover .books-drop-down {
         pointer-events: unset;
@@ -949,6 +979,7 @@
     .search-section.open {
         z-index: 99;
     }
+
 
     /*///////////////////////////footer///////////////////////////*/
     .footer-menu {
@@ -1111,9 +1142,6 @@
         line-height: 22px;
     }
 
-    /*.authors-boxes div {*/
-    /*    max-width: 190px;*/
-    /*}*/
 
     .authors-boxes {
         margin: 40px auto;
@@ -1357,7 +1385,9 @@
     .header-icon-img-left img{
         display: block;
     }
-
+    .drop-down-articles{
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1858,11 +1888,9 @@
         font-size: 16px;
         margin-bottom: 10px;
     }
-
     .new-book-or-translation-desc ol li {
         margin-bottom: 12px;
     }
-
     .contact-page-sale-desc,
     .contact-page-work-desc,
     .contact-page-partnership-desc {
@@ -1874,8 +1902,6 @@
     .books-info-item-search .book-item {
         max-width: 262px;
     }
-
-
     .authors-section-title-en h1 {
         font-size: 30px;
     }
@@ -1891,7 +1917,13 @@
     .burger-menu-and-icons{
         gap: 16px;
     }
-
+    li.book-menu-drop-down, li.menu-drop-down-articles, li.menu-about-us {
+         grid-template-columns: 19fr 1fr;
+     }
+    .arrow-menu {
+        display: block;
+        padding-right: 20px;
+    }
 
 }
 
@@ -1936,13 +1968,6 @@
         top: 10px;
     }
 
-    /*.footer-menu a, a.footer-address, .footer-book a {*/
-    /*    font-size: 16px;*/
-    /*}*/
-
-    /*.footer {*/
-    /*    grid-template-columns: repeat(1, 404px);*/
-    /*}*/
 
     .footer-money {
         gap: 6px;
@@ -2282,9 +2307,7 @@
     .shopping-cart-products-item {
         padding: 20px 10px;
     }
-    /*.footer-menu {*/
-    /*    column-gap: 40px;*/
-    /*}*/
+
 }
 
 @media (max-width: 400px) {
@@ -2494,13 +2517,6 @@
     }
 
 
-
-
-
-}
-@media (max-width: 376px) {
-
-
 }
 
 @media (max-width: 330px) {
@@ -2521,5 +2537,4 @@
         padding: 55px 47px 42px 26px;
     }
 }
-/*565656565*/
-/*5555454*/
+

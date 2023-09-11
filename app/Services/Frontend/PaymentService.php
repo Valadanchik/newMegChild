@@ -69,14 +69,13 @@ class PaymentService
                 $request->EDP_TRANS_ID,
                 $request->EDP_TRANS_DATE);
 
-            $order = Order::where('order_payment_id', $request->EDP_BILL_NO)->firstOrFail();
+
+            $order = OrderController::getOrderWithProducts($request->EDP_BILL_NO);
 
             $order->payment_callback = json_encode($request->all());
 
             if (strtoupper($request->EDP_CHECKSUM) == strtoupper($checksum) &&
                 $order->total_price_with_discount == $request->EDP_AMOUNT) {
-
-                $order = OrderController::getOrderWithProducts($order);
 
                 event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
 
@@ -136,7 +135,7 @@ class PaymentService
             abort(404);
         }
 
-        $order = Order::where('order_payment_id', $request->issuer_id)->firstOrFail();
+        $order = OrderController::getOrderWithProducts($request->issuer_id);
 
         $checksum = $this->getTelcellChecksum(
             $request->invoice,
@@ -158,8 +157,6 @@ class PaymentService
         $order->payment_callback = json_encode($request->all());
 
         if ($request->status == 'PAID') {
-
-            $order = OrderController::getOrderWithProducts($order);
 
             event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
 
@@ -253,13 +250,11 @@ class PaymentService
         if ($response['error'])
             return redirect()->route('payment.fail');
 
-        $order = Order::where('order_payment_id', $response['orderNumber'])->firstOrFail();
+        $order = OrderController::getOrderWithProducts($response['orderNumber']);
 
         $order->payment_callback = json_encode($response);
 
         if ($response['orderStatus'] == 2) {
-
-            $order = OrderController::getOrderWithProducts($order);
 
             event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
 

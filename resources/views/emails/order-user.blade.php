@@ -77,7 +77,7 @@
                                     bgcolor="#ffffff">
                                     <h2 style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; color: #4b4b4b; font-size: 20px; line-height: 26px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0;"
                                         align="center">
-                                        <span data-key="1468270_order_number">{{ __('messages.order_number') }}.</span> {{$order->id}}
+                                        <span data-key="1468270_order_number">{{ __('messages.order_number') }}.</span> {{$order->order_payment_id}}
                                     </h2>
                                     <p class="muted"
                                        style="mso-line-height-rule: exactly; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,'Karla'; font-size: 14px; line-height: 26px; font-weight: normal; color: #bdbdbd; margin: 0;"

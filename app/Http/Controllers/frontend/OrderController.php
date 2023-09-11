@@ -4,9 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderStoreRequest;
-use App\Models\Accessor;
-use App\Models\Books;
-use App\Models\Categories;
+use App\Models\Order;
 use App\Services\Frontend\OrderService;
 use App\Services\Frontend\PaymentService;
 use App\Services\Frontend\ShopService;
@@ -98,16 +96,16 @@ class OrderController extends Controller
      * @param $orderModel
      * @return mixed
      */
-    public static function getOrderWithProducts($orderModel): mixed
+    public static function getOrderWithProducts($order_payment_id): mixed
     {
-        return $orderModel::with(['country',
+        return Order::where('order_payment_id', $order_payment_id)->with(['country',
             'books' => function ($query) {
                 $query->where('product_type', 'book');
             },
             'accessors' => function ($query) {
                 $query->where('product_type', 'accessor');
             }])
-            ->orderBy('id', 'DESC')->first();
+            ->orderBy('id', 'DESC')->firstOrFail();
     }
 
 }

@@ -33,8 +33,8 @@
           integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-    <link rel="stylesheet" href="{{ asset('/css/app.css?v=1.0') }}">
-    <link rel="stylesheet" href="{{ asset('/css/media.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/app.css?v=1.1') }}">
+    <link rel="stylesheet" href="{{ asset('/css/media.css?v=1.1') }}">
 </head>
 <body class="body filter-body">
 

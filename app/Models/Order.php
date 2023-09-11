@@ -79,10 +79,10 @@ class Order extends Model
         }
 
         if ($cart && is_array($cart) && count($sessionBookId) > 0 || count($sessionAccessorId) > 0) {
-            if(count($sessionAccessorId)) {
+            if (count($sessionAccessorId)) {
                 Accessor::changeInStockAfterOrder($sessionAccessorId);
             }
-            if(count($sessionBookId)) {
+            if (count($sessionBookId)) {
                 Books::changeInStockAfterOrder($sessionBookId);
             }
         }
@@ -90,6 +90,37 @@ class Order extends Model
         session()->forget('cart');
     }
 
+    /**
+     * @return Model|\Illuminate\Database\Eloquent\Builder
+     */
+    public static function getOrderWithProducts(): Model|\Illuminate\Database\Eloquent\Builder
+    {
+        return Order::with(['country',
+            'books' => function ($query) {
+                $query->where('product_type', 'book');
+            },
+            'accessors' => function ($query) {
+                $query->where('product_type', 'accessor');
+            }])
+            ->orderBy('id', 'DESC')->firstOrFail();
+    }
+
+    /**
+     * @param $order_payment_id
+     * @return mixed
+     */
+    public static function getOrderWithProductsByPaymentId($order_payment_id)
+    {
+        return Order::where('order_payment_id', $order_payment_id)
+            ->with(['country',
+                'books' => function ($query) {
+                    $query->where('product_type', 'book');
+                },
+                'accessors' => function ($query) {
+                    $query->where('product_type', 'accessor');
+                }])
+            ->orderBy('id', 'DESC')->firstOrFail();
+    }
 
 
     //on create
@@ -115,14 +146,14 @@ class Order extends Model
 
     public function books(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Books::class,'order_product_pivote', 'order_id', 'product_id')
+        return $this->belongsToMany(Books::class, 'order_product_pivote', 'order_id', 'product_id')
             ->withPivot('id', 'quantity', 'price', 'status', 'product_type')
             ->withTimestamps();
     }
 
     public function accessors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Accessor::class,'order_product_pivote', 'order_id', 'product_id')
+        return $this->belongsToMany(Accessor::class, 'order_product_pivote', 'order_id', 'product_id')
             ->withPivot('id', 'quantity', 'price', 'status', 'product_type')
             ->withTimestamps();
     }

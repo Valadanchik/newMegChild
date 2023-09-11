@@ -91,21 +91,4 @@ class OrderController extends Controller
     {
         return view('payments.fail');
     }
-
-    /**
-     * @param $orderModel
-     * @return mixed
-     */
-    public static function getOrderWithProducts($order_payment_id): mixed
-    {
-        return Order::where('order_payment_id', $order_payment_id)->with(['country',
-            'books' => function ($query) {
-                $query->where('product_type', 'book');
-            },
-            'accessors' => function ($query) {
-                $query->where('product_type', 'accessor');
-            }])
-            ->orderBy('id', 'DESC')->firstOrFail();
-    }
-
 }

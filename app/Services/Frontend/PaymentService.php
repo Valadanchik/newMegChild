@@ -27,7 +27,7 @@ class PaymentService
     {
         $amount = $order->total_price_with_discount;
         $payment_method = $order->payment_method;
-        $order = OrderController::getOrderWithProducts($order);
+        $order = Order::getOrderWithProducts();
 
         return match ((int)$payment_method) {
             Order::PAYMENT_METHOD_IDRAM => $this->idramPayment($amount, $order->order_payment_id),
@@ -70,7 +70,7 @@ class PaymentService
                 $request->EDP_TRANS_DATE);
 
 
-            $order = OrderController::getOrderWithProducts($request->EDP_BILL_NO);
+            $order = Order::getOrderWithProductsByPaymentId($request->EDP_BILL_NO);
 
             $order->payment_callback = json_encode($request->all());
 
@@ -135,7 +135,7 @@ class PaymentService
             abort(404);
         }
 
-        $order = OrderController::getOrderWithProducts($request->issuer_id);
+        $order = Order::getOrderWithProductsByPaymentId($request->issuer_id);
 
         $checksum = $this->getTelcellChecksum(
             $request->invoice,
@@ -250,7 +250,7 @@ class PaymentService
         if ($response['error'])
             return redirect()->route('payment.fail');
 
-        $order = OrderController::getOrderWithProducts($response['orderNumber']);
+        $order = Order::getOrderWithProductsByPaymentId($response['orderNumber']);
 
         $order->payment_callback = json_encode($response);
 

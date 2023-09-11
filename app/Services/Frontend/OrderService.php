@@ -45,7 +45,6 @@ class OrderService
     {
         $request->request->add(['total_price' => session()->get('total_price'), 'total_price_with_discount' => session()->get('total_price')]);
 
-//        dd($request->all());
         $order = Order::create($request->except(['_token', 'terms']));
 
         $this->createOrderProducts($order);

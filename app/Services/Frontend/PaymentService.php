@@ -25,7 +25,7 @@ class PaymentService
      */
     public function makePayment(Order $order): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application|null
     {
-        $amount = $order->total_price;
+        $amount = $order->total_price_with_discount;
         $payment_method = $order->payment_method;
         $order = OrderController::getOrderWithProducts($order);
 
@@ -74,7 +74,7 @@ class PaymentService
             $order->payment_callback = json_encode($request->all());
 
             if (strtoupper($request->EDP_CHECKSUM) == strtoupper($checksum) &&
-                $order->total_price == $request->EDP_AMOUNT) {
+                $order->total_price_with_discount == $request->EDP_AMOUNT) {
 
                 $order = OrderController::getOrderWithProducts($order);
 

@@ -2310,6 +2310,11 @@
     .article-box-item-img img {
         height: 210px;
     }
+    .book-menu-drop-down:hover .books-drop-down,
+    .menu-drop-down-articles:hover .drop-down-articles {
+        display: none;
+    }
+
 
 }
 
@@ -2517,6 +2522,9 @@
         background-size: cover;
         z-index: 99;
 
+    }
+    .menu-drop-down-articles:hover .drop-down-articles{
+        display: none;
     }
 
 

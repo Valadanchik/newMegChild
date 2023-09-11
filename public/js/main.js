@@ -629,7 +629,7 @@ modal_filter1.addEventListener('click', () => {
 //////////////menu-mobile/////////////////////
 
 let about_us = document.querySelector('.menu-about-us')
-let book_menu_drop_down = document.querySelector('.book-menu-drop-down')
+let book_menu_drop_down = document.querySelector('.book-arrow')
 
 let menu_item = document.querySelectorAll('.menu-drop-down')
 let book_item = document.querySelector('.books-drop-down')

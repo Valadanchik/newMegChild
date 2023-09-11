@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Events\OrderPayment;
 use App\Http\Controllers\Controller;
 use App\Models\Authors;
 use App\Models\Books;

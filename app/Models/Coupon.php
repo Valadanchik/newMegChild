@@ -11,6 +11,7 @@ class Coupon extends Model
     use HasFactory;
 
     const ALL_BOOKS = 'all_books';
+    const ALL_PRODUCTS = 'all_products';
 
     const SINGLE_BOOK = 'single';
 
@@ -22,6 +23,7 @@ class Coupon extends Model
         'quantity',
         'type',
         'book_id',
+        'accessor_id',
     ];
 
     /**

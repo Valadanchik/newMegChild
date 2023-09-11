@@ -43,8 +43,11 @@ class OrderService
      */
     public function create(Request $request): mixed
     {
-        $request->request->add(['total_price' => session()->get('total_price')]);
+        $request->request->add(['total_price' => session()->get('total_price'), 'total_price_with_discount' => session()->get('total_price')]);
+
+//        dd($request->all());
         $order = Order::create($request->except(['_token', 'terms']));
+
         $this->createOrderProducts($order);
 
         return $order;
@@ -66,35 +69,40 @@ class OrderService
 
             $products = self::separateProductsSessionIDAndGetProducts($cart);
 
-
-            foreach ($products as $product) {
-                $total_price += $product->price * $cart[$product->category->type . '-' . $product->id]['product_count'];
-
-                $product->save();
-
-                if ($product->category->type === Categories::TYPE_BOOK) {
-                    $order->books()->attach($product->id,
-                        [
-                            'quantity' => $cart[$product->category->type . '-' . $product->id]['product_id'],
-                            'price' => $product->price,
-                            'status' => Order::STATUS_NEW,
-                            'product_type' => Categories::TYPE_BOOK
-                        ]);
-                } else if ($product->category->type === Categories::TYPE_ACCESSOR) {
-                    $order->accessors()->attach($product->id,
-                        [
-                            'quantity' => $cart[$product->category->type . '-' . $product->id]['product_id'],
-                            'price' => $product->price,
-                            'status' => Order::STATUS_NEW,
-                            'product_type' => Categories::TYPE_ACCESSOR
-                        ]);
-                }
+            foreach ($products['accessors'] as $product) {
+                $total_price = self::orderProductsPivotAttach($order, $product, $cart, $total_price);
+            }
+            foreach ($products['books'] as $product) {
+                $total_price = self::orderProductsPivotAttach($order, $product, $cart, $total_price);
             }
         }
 
         $order->update([
             'total_price' => $total_price,
         ]);
+    }
+
+    /**
+     * @param $order
+     * @param $product
+     * @param $cart
+     * @param $total_price
+     * @return float|int
+     */
+    public static function orderProductsPivotAttach($order, $product, $cart, $total_price): float|int
+    {
+        $total_price += $product->price * $cart[$product->category->type . '-' . $product->id]['product_count'];
+        $product->save();
+
+        $order->books()->attach($product->id,
+            [
+                'quantity' => $cart[$product->category->type . '-' . $product->id]['product_count'],
+                'price' => $product->price,
+                'status' => Order::STATUS_NEW,
+                'product_type' => $product->category->type
+            ]);
+
+        return $total_price;
     }
 
 }

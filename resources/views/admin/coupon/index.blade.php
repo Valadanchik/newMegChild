@@ -57,11 +57,14 @@
                         <tbody>
                         @foreach($coupons as $index => $coupon)
                             <tr>
-                                <td>{{ $coupon['code']  }}</td>
-                                <td>{{ $coupon['price']  }}</td>
-                                <td>{{ $coupon['quantity']  }}</td>
+                                <td>{{ $coupon['code'] }}</td>
+                                <td>{{ $coupon['price'] }}</td>
+                                <td>{{ $coupon['quantity'] }}</td>
                                 <td>{{ $coupon['type'] }}</td>
-                                <td>{{ $coupon['book_id'] === \App\Models\Coupon::ALL_BOOKS ? 'All Books' :  implode(', ', json_decode($coupon['book_id']))  }}</td>
+                                <td>
+                                    <p><strong>Books:</strong> {{ $coupon['book_id'] === \App\Models\Coupon::ALL_PRODUCTS ? 'All Books' :  ($coupon['book_id'] ? implode(', ', json_decode($coupon['book_id'])) : 'no attached books')  }}</p>
+                                    <p><strong>Accessors:</strong> {{ $coupon['accessor_id'] === \App\Models\Coupon::ALL_PRODUCTS ? 'All Books' :  ($coupon['accessor_id'] ? implode(', ', json_decode($coupon['accessor_id'])) : 'no attached books')  }}</p>
+                                </td>
                                 <td>
                                     <a href="{{ url('fs-admin/coupons/' . $coupon['id'] . '/edit' ) }}" class="bi-pencil btn btn-datatable btn-icon btn-transparent-dark me-2">
                                         <i class="fa-regular fa-edit"></i>

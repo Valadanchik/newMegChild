@@ -111,8 +111,8 @@
                                         <div class="card-body">
                                             <li>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="book_id" value="all_books" id="all_books"
-                                                        @if($allBooks) checked @endif
+                                                    <input class="form-check-input" type="checkbox" name="all_products" value="all_products" id="all_books"
+                                                        @if($allProducts) checked @endif
                                                     >
                                                     <label class="form-check-label" for="Checkme4">All Books</label>
                                                 </div>
@@ -120,6 +120,8 @@
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
+                                            <div><strong>Books</strong></div>
+
                                             @foreach($books as $book)
                                                 <li>
                                                     <div class="form-check">
@@ -127,6 +129,17 @@
                                                                @if((is_array(old('book_id')) && in_array($book->id, old('book_id'))) || in_array($book->id, $booksForSelected)) checked @endif
                                                         >
                                                         <label class="form-check-label" for="book">{{ $book->{'title_' . app()->getLocale()} }}</label>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                            <div><strong>Accessors</strong></div>
+                                            @foreach($accessors as $accessor)
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input book_id" name="accessor_id[]" type="checkbox" value="{{$accessor->id}}" id="accessor_id"
+                                                               @if((is_array(old('accessor_id')) && in_array($accessor->id, old('accessor_id'))) || in_array($accessor->id, $accessorsForSelected)) checked @endif
+                                                        >
+                                                        <label class="form-check-label" for="book">{{ $accessor->{'title_' . app()->getLocale()} }}</label>
                                                     </div>
                                                 </li>
                                             @endforeach

@@ -2,8 +2,6 @@
 
 namespace App\Services\Frontend;
 
-use App\Models\Accessor;
-use App\Models\Books;
 use App\Models\Categories;
 use App\Models\Coupon;
 use App\Traits\GeneralTrait;
@@ -11,7 +9,6 @@ use Illuminate\Http\Request;
 
 class ShopService
 {
-
     use GeneralTrait;
 
     /**
@@ -30,11 +27,11 @@ class ShopService
             ]
         ];
         $cart = session()->get('cart');
-
         if (!$cart) {
             session()->put('cart', $prod);
         } else {
-            if (isset($cart[$request->product])) {
+            $productInfo = $cart[$request->product_type . '-' . $request->product] ?? false;
+            if ($productInfo) {
                 $cart[$request->product_type . '-' . $request->product]['product_id'] = $request->product;
                 $cart[$request->product_type . '-' . $request->product]['product_count'] += $request->quantity;
                 $cart[$request->product_type . '-' . $request->product]['product_type'] = $request->product_type;
@@ -110,43 +107,70 @@ class ShopService
     {
         $cart = session()->get('cart');
         if ($cart && is_array($cart)) {
-
             $products = self::separateProductsSessionIDAndGetProducts($cart);
-
-
-
             $sessionBookId = [];
             $sessionAccessorId = [];
-            foreach ($cart as $key => $cartValue) {
+            foreach ($cart as $cartValue) {
                 match ($cartValue['product_type']) {
                     Categories::TYPE_BOOK => $sessionBookId[] = $cartValue['product_id'],
                     Categories::TYPE_ACCESSOR => $sessionAccessorId[] = $cartValue['product_id'],
                 };
             }
 
-            $sessionProductsId = array_merge($sessionBookId, $sessionAccessorId);
-
-
-            if ($productsId === Coupon::ALL_BOOKS) {
-                $productsId = $sessionProductsId;
+            $allProducts = false;
+            if ($productsId === Coupon::ALL_PRODUCTS) {
+                $allProducts = true;
+                $productsId = [];
+                $productsId['books_id'] = $sessionBookId;
+                $productsId['accessors_id'] = $sessionAccessorId;
             }
 
-            foreach ($products as $product) {
-                if ($couponDiscount && $couponType === Coupon::EACH_BOOKS) {
-                    $total_price += ($product->price - $couponDiscount) * $cart[$product->category->type . '-' . $product->id]['product_count'];
-                } else {
-                    $total_price += $product->price * $cart[$product->category->type . '-' . $product->id]['product_count'];
+            if(isset($products['books'])) {
+                foreach ($products['books'] as $product) {
+                    $total_price = self::calculateTotalPrice($product, $productsId['books_id'] ?? $sessionBookId, $couponDiscount, $couponType, $allProducts, $total_price, $cart);
                 }
             }
 
-
-            if ($couponType === Coupon::SINGLE_BOOK && $couponDiscount) {
-                $total_price = $total_price - ($couponDiscount * count($productsId));
+            if(isset($products['accessors'])) {
+                foreach ($products['accessors'] as $product) {
+                    $total_price = self::calculateTotalPrice($product, $productsId['accessors_id'] ?? $sessionAccessorId, $couponDiscount, $couponType, $allProducts, $total_price, $cart);
+                }
             }
 
+            if ($couponType === Coupon::SINGLE_BOOK && $couponDiscount && $allProducts) {
+                $total_price = $total_price - ($couponDiscount * count(array_filter($products)));
+            }
         }
         session()->put('total_price', $total_price);
 
         return $total_price;
     }
+
+    /**
+     * @param $product
+     * @param $productsId
+     * @param $couponDiscount
+     * @param $couponType
+     * @param $allProducts
+     * @param $total_price
+     * @param $cart
+     * @return float|int
+     */
+    public static function calculateTotalPrice($product, $productsId, $couponDiscount, $couponType, $allProducts, $total_price, $cart): float|int
+    {
+        $productCount = $cart[$product->category->type . '-' . $product->id]['product_count'];
+        if (!$allProducts && in_array($product->id, $productsId)) {
+            if ($couponType === Coupon::EACH_BOOKS) {
+                $total_price += ($product->price * $productCount) - ($couponDiscount * $productCount);
+            } else {
+                $total_price += ($product->price * $productCount) - $couponDiscount;
+            }
+        } else if ($couponDiscount && $couponType === Coupon::EACH_BOOKS && $allProducts) {
+            $total_price += ($product->price - $couponDiscount) * $productCount;
+        } else {
+            $total_price += $product->price * $productCount;
+        }
+        return $total_price;
+    }
+
 }

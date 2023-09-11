@@ -6,71 +6,119 @@
             <div class="shopping-cart-block-title">
                 <h2>{{ __('checkout.cart') }}</h2>
             </div>
-            @if(count($cardBooks))
+            @if(count($cardProducts))
                 <form action="{{route('order.create')}}" method="POST" class="shopping-cart form-shopping-cart">
                     @csrf
                     <div class="shopping-cart-products-buy" style="margin-right: 20px">
                         <div class="shopping-cart-products-buy-items">
-                            @foreach($cardBooks as $card_key => $card)
-                                <div id="shopping-cart-products-item-{{$card_key}}" class="shopping-cart-products-item">
+                            @if(isset($cardProducts['books']))
+                                @foreach($cardProducts['books'] as $card_b_key => $book)
+                                <div id="shopping-cart-products-item-{{ $book->category->type . '-' . $book['id']}}" class="shopping-cart-products-item">
                                    <div class="shopping-cart-products-item-img">
-                                        <img src="{{ URL::to('storage/' . $card['main_image']) }}" alt="">
+                                        <img src="{{ URL::to('storage/' . $book['main_image']) }}" alt="">
                                     </div>
                                     <div class="shopping-cart-products-item-desc">
                                         <h3 class="color-info-description-after">
-                                            {{ $card['title_' . app()->getLocale()] }}
+                                            {{ $book['title_' . app()->getLocale()] }}
                                         </h3>
-                                        @if($card->category->type === \App\Models\Categories::TYPE_BOOK)
-                                            <p class="color-info-description-translate">
-                                                @foreach($card->authors as $key => $author)
-                                                    {{ $author['name_' . app()->getLocale()] }} {{ $key < count($card->authors) - 1 ? ',' : '' }}
-                                                @endforeach
-                                            </p>
-                                        @endif
+                                        <p class="color-info-description-translate">
+                                            @foreach($book->authors as $key => $author)
+                                                {{ $author['name_' . app()->getLocale()] }} {{ $key < count($book->authors) - 1 ? ',' : '' }}
+                                            @endforeach
+                                        </p>
                                     </div>
-{{--                                    @dd($card->category->type)--}}
-{{--                                    @dd(session()->get('cart'))--}}
-{{--                                    @dd(session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'])--}}
                                     <div class="shopping-cart-products-item-count">
                                         <div class="shopping-cart-products-item-count-img">
-                                            <div data-product="{{ $card['id'] }}"
-                                                 data-product-type="{{ $card->category->type }}"
-                                                 data-price="{{ $card['price'] }}"
-                                                 data-item="{{$card_key}}"
-                                                 class="shopping-cart-products-count-item-min @if(session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'] == 1) min-none @endif min-count-{{$card_key}}">
+                                            <div data-product="{{ $book['id'] }}"
+                                                 data-product-type="{{ $book->category->type }}"
+                                                 data-price="{{ $book['price'] }}"
+                                                 data-item="{{ $book->category->type . '-' . $book['id'] }}"
+                                                 class="shopping-cart-products-count-item-min @if(session()->get('cart')[$book->category->type . '-' . $book['id']]['product_count'] == 1) min-none @endif min-count-{{ $book->category->type . '-' . $book['id'] }}">
                                                 <img class="min"
                                                      src="{{ URL::to('/images/svg/shopping-cart-min-img.svg') }}"
                                                      alt="min img" data-id="min-1">
                                             </div>
-                                            <input type="number" class="count-shop" id="count-shop-{{$card_key}}"
-                                                   value="{{ session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'] }}">
-                                            <div data-product="{{ $card['id'] }}"
-                                                 data-product-type="{{ $card->category->type }}"
-                                                 data-max="{{ $card['in_stock'] }}"
-                                                 data-price="{{ $card['price'] }}" data-item="{{$card_key}}"
+                                            <input type="number" class="count-shop" id="count-shop-{{$book->category->type}}-{{$book['id']}}"
+                                                   value="{{ session()->get('cart')[$book->category->type . '-' . $book['id']]['product_count'] }}">
+                                            <div data-product="{{ $book['id'] }}"
+                                                 data-product-type="{{ $book->category->type }}"
+                                                 data-max="{{ $book['in_stock'] }}"
+                                                 data-price="{{ $book['price'] }}" data-item="{{ $book->category->type . '-' . $book['id'] }}"
                                                  class="shopping-cart-products-count-item-plus">
                                                 <img src="{{ URL::to('/images/svg/plus-circle.svg') }}"
                                                      alt="plus img">
                                             </div>
                                         </div>
-                                        <span>{{ __('checkout.in_stock') }} {{ $card['in_stock'] }} {{ __('checkout.pcs') }}</span>
+                                        <span>{{ __('checkout.in_stock') }} {{ $book['in_stock'] }} {{ __('checkout.pcs') }}</span>
                                     </div>
                                     <div class="shopping-cart-products-item-price">
-                                        <p>{{ $card['price'] }} ֏</p>
+                                        <p>{{ $book['price'] }} ֏</p>
                                     </div>
-                                    <div data-price="{{ $card['price'] }}" data-item="{{$card_key}}"
+                                    <div data-price="{{ $book['price'] }}" data-item="{{ $book->category->type . '-' . $book['id'] }}" data-product-type="{{ $book->category->type }}"
                                          class="shopping-cart-products-count-close-icon">
                                         <img src="{{ URL::to('/images/svg/close.svg') }}"
                                              class="remove-product-from-card" alt="close"
-                                             data-product-id="{{ $card['id'] }}" data-product-type="{{ $card->category->type }}">
+                                             data-product-id="{{ $book['id'] }}" data-product-type="{{ $book->category->type }}">
                                     </div>
                                 </div>
-                                <input id="product-id" type="hidden" value="{{ $card['id'] }}">
-                                <input id="product-type" type="hidden" value="{{ $card->category->type  }}">
-                                <input id="quantity" type="hidden" value="{{ session()->get('cart')[$card->category->type . '-' . $card['id']]['product_count'] }}"
+                                <input id="product-id" type="hidden" value="{{ $book['id'] }}">
+                                <input id="product-type" type="hidden" value="{{ $book->category->type  }}">
+                                <input id="quantity" type="hidden" value="{{ session()->get('cart')[$book->category->type . '-' . $book['id']]['product_count'] }}"
                                        name="number">
                             @endforeach
+                            @endif
 
+                            @if(isset($cardProducts['accessors']))
+                                @foreach($cardProducts['accessors'] as $card_a_key => $accessor)
+                                <div id="shopping-cart-products-item-{{ $accessor->category->type . '-' . $accessor['id'] }}" class="shopping-cart-products-item">
+                                   <div class="shopping-cart-products-item-img">
+                                        <img src="{{ URL::to('storage/' . $accessor['main_image']) }}" alt="">
+                                    </div>
+                                    <div class="shopping-cart-products-item-desc">
+                                        <h3 class="color-info-description-after">
+                                            {{ $accessor['title_' . app()->getLocale()] }}
+                                        </h3>
+                                    </div>
+                                    <div class="shopping-cart-products-item-count">
+                                        <div class="shopping-cart-products-item-count-img">
+                                            <div data-product="{{ $accessor['id'] }}"
+                                                 data-product-type="{{ $accessor->category->type }}"
+                                                 data-price="{{ $accessor['price'] }}"
+                                                 data-item="{{$accessor->category->type . '-' . $accessor['id']}}"
+                                                 class="shopping-cart-products-count-item-min @if(session()->get('cart')[$accessor->category->type . '-' . $accessor['id']]['product_count'] == 1) min-none @endif min-count-{{ $accessor->category->type . '-' . $accessor['id'] }}">
+                                                <img class="min"
+                                                     src="{{ URL::to('/images/svg/shopping-cart-min-img.svg') }}"
+                                                     alt="min img" data-id="min-1">
+                                            </div>
+                                            <input type="number" class="count-shop" id="count-shop-{{$accessor->category->type}}-{{$accessor['id']}}"
+                                                   value="{{ session()->get('cart')[$accessor->category->type . '-' . $accessor['id']]['product_count'] }}">
+                                            <div data-product="{{ $accessor['id'] }}"
+                                                 data-product-type="{{ $accessor->category->type }}"
+                                                 data-max="{{ $accessor['in_stock'] }}"
+                                                 data-price="{{ $accessor['price'] }}" data-item="{{ $accessor->category->type . '-' . $accessor['id'] }}"
+                                                 class="shopping-cart-products-count-item-plus">
+                                                <img src="{{ URL::to('/images/svg/plus-circle.svg') }}"
+                                                     alt="plus img">
+                                            </div>
+                                        </div>
+                                        <span>{{ __('checkout.in_stock') }} {{ $accessor['in_stock'] }} {{ __('checkout.pcs') }}</span>
+                                    </div>
+                                    <div class="shopping-cart-products-item-price">
+                                        <p>{{ $accessor['price'] }} ֏</p>
+                                    </div>
+                                    <div data-price="{{ $accessor['price'] }}" data-item="{{ $accessor->category->type . '-' . $accessor['id'] }}" data-product-type="{{ $accessor->category->type }}"
+                                         class="shopping-cart-products-count-close-icon">
+                                        <img src="{{ URL::to('/images/svg/close.svg') }}"
+                                             class="remove-product-from-card" alt="close"
+                                             data-product-id="{{ $accessor['id'] }}" data-product-type="{{ $accessor->category->type }}">
+                                    </div>
+                                </div>
+                                <input id="product-id" type="hidden" value="{{ $accessor['id'] }}">
+                                <input id="product-type" type="hidden" value="{{ $accessor->category->type  }}">
+                                <input id="quantity" type="hidden" value="{{ session()->get('cart')[$accessor->category->type . '-' . $accessor['id']]['product_count'] }}"
+                                       name="number">
+                            @endforeach
+                            @endif
                             <input id="remove-from-cart-url" type="hidden" value="{{ route('removeFromCart') }}">
                             <input id="change-cart-product-count" type="hidden" value="{{ route('updateCart') }}">
                             <div class="shopping-cart-buttons">

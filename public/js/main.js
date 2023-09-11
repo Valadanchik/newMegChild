@@ -154,15 +154,11 @@ let deleteBtn = document.querySelectorAll('.shopping-cart-products-count-close-i
 
 min?.forEach((item) => {
     item.addEventListener('click', (event) => {
-        let payPriceElement = document.querySelector('.all-result-payable-to span span');
-        let totalPriceElement = document.querySelector('.all-result-total span span');
-        let totalPrice = parseInt(totalPriceElement.innerHTML);
-        let dataItem = parseInt(event.currentTarget.dataset.item);
-        let itemPrice = parseInt(event.currentTarget.dataset.price);
+        let dataItem = event.currentTarget.dataset.item;
+        let productType = event.currentTarget.dataset.productType;
         let countElement = document.getElementById('count-shop-' + dataItem);
         let minBtn = document.querySelector(`.min-count-${dataItem} img`);
         let productId = parseInt(event.currentTarget.dataset.product);
-        let productType = event.currentTarget.dataset.productType;
         if (parseInt(countElement.value) > 2) {
             countElement.value = parseInt(countElement.value) - 1;
             updateCartProductCount(countElement.value, productId, productType)
@@ -188,19 +184,17 @@ plus?.forEach((item) => {
         let payPriceElement = document.querySelector('.all-result-payable-to span span');
         let totalPriceElement = document.querySelector('.all-result-total span span');
         let totalPrice = parseInt(totalPriceElement.innerHTML);
-        let dataItem = parseInt(event.currentTarget.dataset.item);
+        let dataItem = event.currentTarget.dataset.item;
         let itemPrice = parseInt(event.currentTarget.dataset.price);
         let maxCount = parseInt(event.currentTarget.dataset.max);
+        let productType = event.currentTarget.dataset.productType;
         let countElement = document.getElementById('count-shop-' + dataItem);
         let productId = parseInt(event.currentTarget.dataset.product);
-        let productType = event.currentTarget.dataset.productType;
         let minBtn = document.querySelector(`.min-count-${dataItem}`);
 
         if (parseInt(countElement.value) < maxCount) {
             countElement.value = parseInt(countElement.value) + 1;
             updateCartProductCount(countElement.value, productId, productType)
-            // totalPriceElement.innerHTML = totalPrice + itemPrice;
-            // payPriceElement.innerHTML = parseInt(payPriceElement.innerHTML) + itemPrice;
             minBtn.querySelector('img').src = "/images/svg/minus-circle.svg";
             minBtn.classList.remove('min-none');
         }
@@ -209,24 +203,22 @@ plus?.forEach((item) => {
 
 deleteBtn?.forEach((item) => {
     item.addEventListener('click', (event) => {
-
-        let dataItem = parseInt(event.currentTarget.dataset.item);
+        let dataItem = event.currentTarget.dataset.item;
         let itemPrice = parseInt(event.currentTarget.dataset.price);
         let rowItemElement = document.getElementById('shopping-cart-products-item-' + dataItem);
+        let productType = event.target.getAttribute("data-product-type");
         let rowItemCountElement = document.getElementById('count-shop-' + dataItem);
         var xhr = new XMLHttpRequest();
         xhr.open('POST', document.getElementById('remove-from-cart-url').value);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
         var productId = event.target.getAttribute("data-product-id");
-        var productType = event.target.getAttribute("data-product-type");
         var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         var data = JSON.stringify({_token: csrfToken, product_id: productId, product_type: productType});
 
         xhr.onload = function () {
             if (xhr.status === 200) {
                 var data = JSON.parse(xhr.responseText);
-                // window.location.reload();
                 let payPriceElement = document.querySelector('.all-result-payable-to span span');
                 let totalPriceElement = document.querySelector('.all-result-total span span');
                 let totalPrice = parseInt(totalPriceElement.innerHTML);

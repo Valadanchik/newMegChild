@@ -57,7 +57,13 @@
                                     @break
                             @endswitch
                         </p>
-                        <p><strong>TOTAL PRICE:</strong> {{ $order->total_price }}</p>
+                        @if($order->total_price_with_discount < $order->total_price)
+                            <p><strong>TOTAL PRICE:</strong> <s> {{ $order->total_price }} </s> AMD</p>
+                            <p><strong>TOTAL PRICE WITH DISCOUNT:</strong> {{ $order->total_price_with_discount }} AMD</p>
+                        @else
+                            <p><strong>TOTAL PRICE:</strong> {{ $order->total_price }} </p>
+                        @endif
+
                     </div>
                     <hr>
                     <div>

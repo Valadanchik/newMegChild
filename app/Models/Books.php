@@ -44,26 +44,20 @@ class Books extends Model
     ];
 
     /**
+     * @param $sessionBookId
      * @return void
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public static function changeInStockAfterOrder(): void
+    public static function changeInStockAfterOrder($sessionBookId): void
     {
-        $card = session()->get('cart');
-        if ($card && is_array($card) && count($card) > 0) {
-            $sessionProductsId = array_keys($card);
-            $books = Books::whereIn('id', $sessionProductsId)->get();
-
-            foreach ($books as $book) {
-                $oldInStock = $book->in_stock;
-                $newInStock = (int)$card[$book->id];
-                $quantityToSubtract = $oldInStock - $newInStock;
-                $book->in_stock = $quantityToSubtract;
-                $book->save();
-            }
+        $getBooksId = array_keys($sessionBookId);
+        $books = Books::whereIn('id', $getBooksId)->get();
+        foreach ($books as $book) {
+            $oldInStock = $book->in_stock;
+            $newInStock = (int)$sessionBookId[$book->id];
+            $quantityToSubtract = $oldInStock - $newInStock;
+            $book->in_stock = $quantityToSubtract;
+            $book->save();
         }
-        session()->forget('cart');
     }
 
     /**
@@ -159,6 +153,5 @@ class Books extends Model
     {
         return $this->belongsToMany(Accessor::class, 'accessor_books', 'book_id', 'accessor_id');
     }
-
 
 }

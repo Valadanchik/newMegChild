@@ -26,7 +26,7 @@ class StoreCouponRequest extends FormRequest
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
             'type' => 'required|in:single,each_books',
-            'book_id' => 'required',
+            'all_products' => 'required_without_all:book_id,accessor_id',
         ];
     }
 }

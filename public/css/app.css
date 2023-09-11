@@ -2352,6 +2352,7 @@ section.about-us {
 }
 
 .shopping-cart-promo-code-btn button {
+    background: white;
     width: 100%;
     max-width: 258px;
     padding: 12px 37px;
@@ -2362,6 +2363,11 @@ section.about-us {
     line-height: 22px;
     text-align: center;
     color: #F34802;
+}
+
+.shopping-cart-promo-code-btn button:hover {
+    background: #f36f21;
+    color: #FFF;
 }
 
 .shopping-cart-products-buy-items {

@@ -102,19 +102,20 @@
                                 <div class="dropdown w-100">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
                                             data-bs-toggle="dropdown" aria-expanded="false">
-                                        All Books
+                                        All Products
                                     </button>
                                     <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
                                         <div class="card-body">
                                         <li>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="book_id" value="all_books" id="all_books" checked>
-                                                <label class="form-check-label" for="Checkme4">All Books</label>
+                                                <input class="form-check-input" type="checkbox" name="all_products" value="all_products" id="all_books" checked>
+                                                <label class="form-check-label" for="Checkme4">All Products</label>
                                             </div>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
+                                        <div><strong>Books</strong></div>
                                         @foreach($books as $book)
                                             <li>
                                                 <div class="form-check">
@@ -123,11 +124,26 @@
                                                 </div>
                                             </li>
                                         @endforeach
+                                        <div><strong>Accessors</strong></div>
+                                        @foreach($accessors as $accessor)
+                                            <li>
+                                                <div class="form-check">
+                                                    <input class="form-check-input book_id" name="accessor_id[]" type="checkbox" value="{{$accessor->id}}" id="book_id">
+                                                    <label class="form-check-label" for="book">{{ $accessor->{'title_' . app()->getLocale()} }}</label>
+                                                </div>
+                                            </li>
+                                        @endforeach
                                         </div>
                                     </ul>
                                 </div>
                             </div>
+                            @error('all_products')
+                            <div style="color: red" class="required--error">{{ $message }}</div>
+                            @enderror
                             @error('book_id')
+                            <div style="color: red" class="required--error">{{ $message }}</div>
+                            @enderror
+                            @error('accessor_id')
                             <div style="color: red" class="required--error">{{ $message }}</div>
                             @enderror
                         </div>

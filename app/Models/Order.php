@@ -60,6 +60,38 @@ class Order extends Model
         'status',
     ];
 
+    /**
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public static function changeInStock(): void
+    {
+        $cart = session()->get('cart');
+
+        $sessionBookId = [];
+        $sessionAccessorId = [];
+        foreach ($cart as $cartValue) {
+            match ($cartValue['product_type']) {
+                Categories::TYPE_BOOK => $sessionBookId[$cartValue['product_id']] = $cartValue['product_count'],
+                Categories::TYPE_ACCESSOR => $sessionAccessorId[$cartValue['product_id']] = $cartValue['product_count'],
+            };
+        }
+
+        if ($cart && is_array($cart) && count($sessionBookId) > 0 || count($sessionAccessorId) > 0) {
+            if(count($sessionAccessorId)) {
+                Accessor::changeInStockAfterOrder($sessionAccessorId);
+            }
+            if(count($sessionBookId)) {
+                Books::changeInStockAfterOrder($sessionBookId);
+            }
+        }
+
+        session()->forget('cart');
+    }
+
+
+
     //on create
     protected static function boot(): void
     {

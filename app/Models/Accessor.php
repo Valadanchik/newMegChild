@@ -42,6 +42,23 @@ class Accessor extends Model
     }
 
     /**
+     *
+     * @return void
+     */
+    public static function changeInStockAfterOrder($sessionAccessorId)
+    {
+        $getAccessorsId = array_keys($sessionAccessorId);
+        $accessors = Accessor::whereIn('id', $getAccessorsId)->get();
+        foreach ($accessors as $accessor) {
+            $oldInStock = $accessor->in_stock;
+            $newInStock = (int)$sessionAccessorId[$accessor->id];
+            $quantityToSubtract = $oldInStock - $newInStock;
+            $accessor->in_stock = $quantityToSubtract;
+            $accessor->save();
+        }
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function books()

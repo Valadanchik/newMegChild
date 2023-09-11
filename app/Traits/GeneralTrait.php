@@ -98,14 +98,14 @@ trait GeneralTrait
 
     /**
      * @param $sessionCart
-     * @return Collection
+     * @return array
      */
-    public static function separateProductsSessionIDAndGetProducts($sessionCart): Collection
+    public static function separateProductsSessionIDAndGetProducts($sessionCart): array
     {
         $sessionBookId = [];
         $sessionAccessorId = [];
-        $books = null;
-        $accessors = null;
+        $books = [];
+        $accessors = [];
 
         foreach ($sessionCart as $key => $cartValue) {
             match ($cartValue['product_type']) {
@@ -115,25 +115,27 @@ trait GeneralTrait
         }
 
         if (!empty($sessionBookId)) {
-            $books = Books::whereIn('id', $sessionBookId)->where('status', Books::ACTIVE)
+            $books = Books::whereIn('id', $sessionBookId)
+                ->where('status', Books::ACTIVE)
+                ->where('in_stock', '>', 0)
                 ->with('category')->get();
         }
         if (!empty($sessionAccessorId)) {
-            $accessors = Accessor::whereIn('id', $sessionAccessorId)->where('status', Accessor::ACTIVE)
+            $accessors = Accessor::whereIn('id', $sessionAccessorId)
+                ->where('status', Accessor::ACTIVE)
+                ->where('in_stock', '>', 0)
                 ->with('category')->get();
         }
 
-        if ($books && $accessors) {
-            $products = $books->merge($accessors);
-        } elseif ($books) {
-            $products = $books;
-        } elseif ($accessors) {
-            $products = $accessors;
-        } else {
-            $products = Collection::empty();
-        }
+//        dd([
+//            'books' => $books,
+//            'accessors' => $accessors,
+//        ]);
 
-        return $products;
+        return [
+            'books' => $books,
+            'accessors' => $accessors,
+        ];
     }
 
 }

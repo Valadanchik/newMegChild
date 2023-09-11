@@ -4,6 +4,9 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderStoreRequest;
+use App\Models\Accessor;
+use App\Models\Books;
+use App\Models\Categories;
 use App\Services\Frontend\OrderService;
 use App\Services\Frontend\PaymentService;
 use App\Services\Frontend\ShopService;
@@ -26,16 +29,16 @@ class OrderController extends Controller
      */
     public function index(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $cardBooks = [];
+        $cardProducts = [];
         if (session()->get('cart')) {
             $regions = $this->orderService->getRegions();
             $countries = $this->orderService->getCountries();
-            $cardBooks = $this->orderService->getCartProducts();
+            $cardProducts = $this->orderService->getCartProducts();
             $cardProductsTotalPrice = $this->shopService->getCartTotalPrice();
 
-            $data = compact('cardBooks', 'regions', 'countries', 'cardProductsTotalPrice');
+            $data = compact('cardProducts', 'regions', 'countries', 'cardProductsTotalPrice');
         } else {
-            $data = compact('cardBooks');
+            $data = compact('cardProducts');
         }
 
         return view('checkout.checkout', $data);
@@ -48,10 +51,11 @@ class OrderController extends Controller
      */
     public function checkIsProductsAvailable(): bool
     {
-        $cardBooks = $this->orderService->getCartProducts();
-        $sessionProductsId = array_keys(session()->get('cart'));
+        $cardProducts = $this->orderService->getCartProducts();
+        $checkProductsInStockCount = count($cardProducts['books']) + count($cardProducts['accessors']);
+        $sessionCartProductsId = count(session()->get('cart'));
 
-        return (count($sessionProductsId) === count($cardBooks));
+        return ($sessionCartProductsId === $checkProductsInStockCount);
     }
 
     /**

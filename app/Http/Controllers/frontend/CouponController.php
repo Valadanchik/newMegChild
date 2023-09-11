@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Books;
+use App\Models\Categories;
 use App\Models\Coupon;
 use App\Services\Frontend\ShopService;
 use Illuminate\Http\Request;
@@ -30,17 +31,13 @@ class CouponController extends Controller
         $userCoupon = $request->coupon;
         $coupon = self::checkCouponIsValid($userCoupon);
 
-//        dd($coupon);
-
         if ($coupon) {
             $total_price = 0;
             if ($coupon->type === Coupon::SINGLE_BOOK) {
                 $total_price = self::singleCouponFunction($coupon);
             } else if ($coupon->type === Coupon::EACH_BOOKS) {
-//                dd($coupon);
                 $total_price = self::eachBooksCouponFunction($coupon);
             }
-
 
             if ($includeCoupon) {
                 return $total_price;
@@ -81,10 +78,10 @@ class CouponController extends Controller
     public static function singleCouponFunction($couponModel): int|float
     {
         $total_price = 0;
-        if ($couponModel->book_id === Coupon::ALL_BOOKS) {
+        if ($couponModel->book_id === Coupon::ALL_PRODUCTS || $couponModel->accessor_id === Coupon::ALL_PRODUCTS) {
             $total_price = ShopService::getCartTotalPrice($couponModel->price, $couponModel->book_id, $total_price, Coupon::SINGLE_BOOK);
         } else {
-            $total_price = self::filterCouponBookData($couponModel);
+            $total_price = self::filterCouponProductData($couponModel);
         }
 
         return $total_price;
@@ -98,12 +95,11 @@ class CouponController extends Controller
      */
     public static function eachBooksCouponFunction($couponModel): float|int
     {
-//        dd($couponModel);
         $total_price = 0;
-        if ($couponModel->book_id === Coupon::ALL_BOOKS) {
+        if ($couponModel->book_id === Coupon::ALL_PRODUCTS || $couponModel->accessor_id === Coupon::ALL_PRODUCTS) {
             $total_price = ShopService::getCartTotalPrice($couponModel->price, $couponModel->book_id, $total_price, Coupon::EACH_BOOKS);
         } else {
-            $total_price = self::filterCouponBookData($couponModel);
+            $total_price = self::filterCouponProductData($couponModel);
         }
 
         return $total_price;
@@ -115,30 +111,56 @@ class CouponController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public static function filterCouponBookData($couponModel): float|int
+    public static function filterCouponProductData($couponModel): float|int
     {
         $total_price = 0;
-        $sessionProductsId = array_column(array_values(session()->get('cart')), "product_id");
-        $couponProductsId = json_decode($couponModel->book_id);
-        $checkProductsHasCouponIds = [];
-        $productsIdWithoutCouponIds = [];
+        $sessionCart = session()->get('cart');
+        $sessionBookId = [];
+        $sessionAccessorId = [];
 
-//        dd($sessionProductsId);
+        foreach ($sessionCart as $cartValue) {
+            match ($cartValue['product_type']) {
+                Categories::TYPE_BOOK => $sessionBookId[] = $cartValue['product_id'],
+                Categories::TYPE_ACCESSOR => $sessionAccessorId[] = $cartValue['product_id'],
+            };
+        }
 
+        $couponBookId = json_decode($couponModel->book_id);
+        $couponAccessorId = json_decode($couponModel->accessor_id);
+        $checkBookHasCouponIds = [];
+        $checkAccessorsHasCouponIds = [];
+        $accessorsIdWithoutCouponIds = [];
+        $booksIdWithoutCouponIds = [];
 
-        foreach ($sessionProductsId as $value) {
-            if (in_array($value, $couponProductsId)) {
-                $checkProductsHasCouponIds[] = $value;
+        foreach ($sessionBookId as $value) {
+            if ($couponBookId && in_array($value, $couponBookId)) {
+                $checkBookHasCouponIds[] = $value;
             } else {
-                $productsIdWithoutCouponIds[] = $value;
+                $booksIdWithoutCouponIds[] = $value;
             }
         }
-//dump($couponModel->price, $checkProductsHasCouponIds, $total_price, $couponModel->type);
-        if (count($checkProductsHasCouponIds)) {
-            $total_price = ShopService::getCartTotalPrice($couponModel->price, $checkProductsHasCouponIds, $total_price, $couponModel->type);
+
+        foreach ($sessionAccessorId as $value) {
+            if ($value && in_array($value, $couponAccessorId)) {
+                $checkAccessorsHasCouponIds[] = $value;
+            } else {
+                $accessorsIdWithoutCouponIds[] = $value;
+            }
         }
 
-        if (count($productsIdWithoutCouponIds)) {
+        $checkProductsHasCouponIds = [
+            'books_id' => $checkBookHasCouponIds,
+            'accessors_id' => $checkAccessorsHasCouponIds
+        ];
+
+        $productsIdWithoutCouponIds = [
+            'books_id' => $booksIdWithoutCouponIds,
+            'accessors_id' => $accessorsIdWithoutCouponIds
+        ];
+
+        if (count($checkProductsHasCouponIds['books_id']) || count($checkProductsHasCouponIds['accessors_id'])) {
+            $total_price = ShopService::getCartTotalPrice($couponModel->price, $checkProductsHasCouponIds, $total_price, $couponModel->type);
+        } else {
             $total_price = ShopService::getCartTotalPrice(false, $productsIdWithoutCouponIds, $total_price, $couponModel->type);
         }
 

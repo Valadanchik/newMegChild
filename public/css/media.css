@@ -2307,6 +2307,9 @@
     .shopping-cart-products-item {
         padding: 20px 10px;
     }
+    .article-box-item-img img {
+        height: 210px;
+    }
 
 }
 

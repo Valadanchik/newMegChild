@@ -7,7 +7,7 @@
                 <div class="{{"translators-section-title-".app()->getLocale()}}">
                     <h1>{{ __('messages.translators') }}</h1>
                 </div>
-                <div class="authors-boxes">
+                <div class="authors-boxes translators-single-page">
                     @foreach($translators as $translator)
                         <div>
                             <a href="{{ LaravelLocalization::localizeUrl('/translator/' . $translator['slug']) }}">

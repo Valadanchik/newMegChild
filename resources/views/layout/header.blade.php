@@ -9,6 +9,8 @@
             <nav class="nav">
                 <ul class="header-menu-list">
                     <li class="menu-about-us {{ isRouteActive('about') ? 'active-menu-underline' : '' }}">{{ __('header.about_us') }}
+                        ...
+                        <img src="{{ URL::to('/images/svg/chevron-down.svg') }} " alt="arrow img" class="arrow-menu">
                         <ul class="menu-drop-down">
                             <li>
                                 <a href="{{ LaravelLocalization::localizeUrl('/about') }}"
@@ -20,10 +22,10 @@
                         </ul>
                     </li>
                     <li class="book-menu-drop-down">
-                        <a href="{{ LaravelLocalization::localizeUrl('/books') }}"
-                           class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">{{ __('header.books') }}
+                        <a class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">{{ __('header.books') }}
                             ...</a>
-                        <ul  class="menu-drop-down books-drop-down">
+                        <img src="{{ URL::to('/images/svg/chevron-down.svg') }} " alt="arrow img" class="arrow-menu">
+                        <ul class="books-drop-down">
                             @foreach(\App\Models\Categories::where('type', \App\Models\Categories::TYPE_BOOK)->get() as $category)
                                 <li>
                                     <a href="{{ LaravelLocalization::localizeUrl('/category/' . $category['name_en']) }}">{{ $category['name_' . app()->getLocale()] }}</a>
@@ -44,7 +46,8 @@
                            class="{{ isRouteActive('translators') ? 'active-menu-underline' : '' }}">{{ __('header.translators') }}</a>
                     </li>
                     <li class="menu-drop-down-articles">
-                        {{ __('header.articles') }}
+                        {{ __('header.articles') }}...
+                        <img src="{{ URL::to('/images/svg/chevron-down.svg') }} " alt="arrow img" class="arrow-menu">
                         <ul class="drop-down-articles">
                             <li><a href="{{ LaravelLocalization::localizeUrl('/articles') }}"
                                    class="{{ isRouteActive('articles') ? 'active-menu-underline' : '' }}">{{ __('header.news') }}</a>
@@ -77,20 +80,20 @@
                 <div class="header-icon-img-left ">
                     <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">
                 </div>
-{{--                <div class="header-icon-img">--}}
-{{--                    <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">--}}
-{{--                </div>--}}
-{{--                <div class="header-icon-leng">
-                    <p>
-                        @if(LaravelLocalization::getCurrentLocale() == 'en')
-                            <a rel="alternate" hreflang="hy"
-                               href="{{ LaravelLocalization::getLocalizedURL('hy', null, [], true) }}">HY</a>
-                        @else
-                            <a rel="alternate" hreflang="en"
-                               href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">EN</a>
-                        @endif
-                    </p>
-                </div>--}}
+                {{--                <div class="header-icon-img">--}}
+                {{--                    <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">--}}
+                {{--                </div>--}}
+                {{--                <div class="header-icon-leng">
+                                    <p>
+                                        @if(LaravelLocalization::getCurrentLocale() == 'en')
+                                            <a rel="alternate" hreflang="hy"
+                                               href="{{ LaravelLocalization::getLocalizedURL('hy', null, [], true) }}">HY</a>
+                                        @else
+                                            <a rel="alternate" hreflang="en"
+                                               href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">EN</a>
+                                        @endif
+                                    </p>
+                                </div>--}}
             </div>
             <div id="nav-icon1">
                 <span></span>

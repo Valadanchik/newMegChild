@@ -496,6 +496,7 @@ main {
     height: 243px;
     object-fit: cover;
 }
+
 .article-info-and-video-description p a iframe {
     margin-top: 70px;
 }
@@ -656,7 +657,7 @@ main {
 
 .authors-section-title-hy h1,
 .authors-section-title-en h1,
-.title-authors{
+.title-authors {
     font-weight: 600;
     font-size: 40px;
     line-height: 49px;
@@ -681,7 +682,7 @@ main {
     max-width: 212px;
 }
 
-.authors-boxes  a {
+.authors-boxes a {
     position: relative;
     border: 4px solid #4DB848;
     border-radius: 100%;
@@ -691,7 +692,7 @@ main {
     overflow: hidden;
 }
 
-.authors-boxes  img {
+.authors-boxes img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -705,6 +706,7 @@ main {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
+    text-wrap: balance;
     line-height: 20px;
     letter-spacing: 0.01em;
     color: #000000;
@@ -1515,7 +1517,7 @@ section.book-page-item-banner {
 }
 
 .book-item-desc p,
-.book-item-desc span  {
+.book-item-desc span {
     font-family: 'Montserrat arm';
     font-style: normal;
     font-weight: 400;
@@ -1531,7 +1533,8 @@ section.book-page-item-banner {
     text-overflow: ellipsis;
     word-break: break-word;
 }
-.book-item-desc span{
+
+.book-item-desc span {
     margin-bottom: 10px;
     display: inline-block;
 }
@@ -3179,7 +3182,8 @@ section.contacts-page h1 {
     top: 6px;
     left: -8px;
 }
-.new-book-or-translation-desc ol li{
+
+.new-book-or-translation-desc ol li {
     color: #444444;
     font-size: 16px;
     line-height: 20px;
@@ -3492,10 +3496,12 @@ li.slick-active button {
     height: 14px;
     border-radius: 100%;
 }
+
 .slick-dots li.slick-active button:before {
     opacity: .75;
     color: #84499500;
 }
+
 .slick-dots li button {
     font-size: 0;
     line-height: 0;
@@ -3510,10 +3516,12 @@ li.slick-active button {
     border-radius: 100%;
     background: #e3e3e300;
 }
+
 .slick-dots li button:before {
     color: rgba(143, 82, 161, 1);
     opacity: 0;
 }
+
 .slick-dots li button:hover:before,
 .slick-dots li button:focus:before {
     opacity: 1;
@@ -3522,13 +3530,19 @@ li.slick-active button {
     height: 12px;
     border-radius: 100%;
 }
+
 .slick-dots {
     bottom: -44px !important;
 }
+
 .burger-menu-and-icons {
     display: flex;
     gap: 40px;
     align-items: center;
+}
+
+ul.books-drop-down {
+    display: none;
 }
 
 .book-menu-drop-down:hover .books-drop-down {
@@ -3540,21 +3554,31 @@ li.slick-active button {
     box-shadow: 0px 4px 20px rgba(176, 176, 176, 0.25);
     line-height: 30px;
 }
-.books-drop-down li a{
+
+.books-drop-down li a {
     text-transform: capitalize;
 }
-/*.header-menu-list li > a{*/
-/*    color: red;*/
-/*}*/
+
 
 /*summernote image padding*/
 p img {
     padding: 4px;
 }
 
-.header-icon-img-left,.header-icon-img{
+.header-icon-img-left, .header-icon-img {
     height: 48px;
 }
-.header-icon-img-left img{
+
+.header-icon-img-left img {
     display: none;
 }
+
+.form-text-info p a {
+    color: #f36f21;
+}
+
+.arrow-menu {
+    display: none;
+}
+
+/*66666*/

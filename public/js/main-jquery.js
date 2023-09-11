@@ -40,6 +40,18 @@ $(document).ready(function () {
             '</clipPath>\n' +
             '</defs>\n' +
             '</svg>\n'),
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    prevArrow: ('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">\n' +
+                        '<path d="M15 18L9 12L15 6" stroke="#8F52A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\n' +
+                        '</svg>\n'),
+                    nextArrow: ( '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">\n' +
+                        '<path d="M9 18L15 12L9 6" stroke="#8F52A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\n' +
+                        '</svg>'),
+                }
+            }]
     });
 
 });

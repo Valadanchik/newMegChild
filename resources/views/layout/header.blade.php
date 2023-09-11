@@ -10,7 +10,7 @@
                 <ul class="header-menu-list">
                     <li class="menu-about-us {{ isRouteActive('about') ? 'active-menu-underline' : '' }}">{{ __('header.about_us') }}
                         ...
-                        <img src="{{ URL::to('/images/svg/chevron-down.svg') }} " alt="arrow img" class="arrow-menu">
+                        <img src="{{ URL::to('/images/svg/chevron-down.svg') }} " alt="arrow img" class="arrow-menu about-us-arrow">
                         <ul class="menu-drop-down">
                             <li>
                                 <a href="{{ LaravelLocalization::localizeUrl('/about') }}"
@@ -22,9 +22,9 @@
                         </ul>
                     </li>
                     <li class="book-menu-drop-down">
-                        <a class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">{{ __('header.books') }}
+                        <a href="{{ LaravelLocalization::localizeUrl('/books') }}" class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">{{ __('header.books') }}
                             ...</a>
-                        <img src="{{ URL::to('/images/svg/chevron-down.svg') }} " alt="arrow img" class="arrow-menu">
+                        <img src="{{ URL::to('/images/svg/chevron-down.svg') }} " alt="arrow img" class="arrow-menu book-arrow">
                         <ul class="books-drop-down">
                             @foreach(\App\Models\Categories::where('type', \App\Models\Categories::TYPE_BOOK)->get() as $category)
                                 <li>

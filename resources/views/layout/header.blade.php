@@ -22,10 +22,7 @@
                         </ul>
                     </li>
                     <li class="book-menu-drop-down">
-                        <a
-                            href="{{ LaravelLocalization::localizeUrl('/books') }}"
-
-                           class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">{{ __('header.books') }}
+                        <a href="{{ LaravelLocalization::localizeUrl('/books') }}" class="{{ isRouteActive('books') ? 'active-menu-underline' : '' }}">{{ __('header.books') }}
                             ...</a>
                         <img src="{{ URL::to('/images/svg/chevron-down.svg') }} " alt="arrow img" class="arrow-menu book-arrow">
                         <ul class="books-drop-down">

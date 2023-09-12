@@ -16,15 +16,17 @@
             <div class="tab-items-article">
                 <div class="articles-list">
                     @foreach($posts as $post)
-                        <div class="articles-list-item">
-                            <div class="articles-list-item-img">
-                                <a href="{{ LaravelLocalization::localizeUrl('/article/' . $post['slug']) }}">
+                        <a href="{{ LaravelLocalization::localizeUrl('/article/' . $post['slug']) }}">
+                            <div class="articles-list-item">
+                                <div class="articles-list-item-img">
+
                                     <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
-                                </a>
+
+                                </div>
+                                <p>{{ $post['title_' . app()->getLocale()] }}</p>
+                                <span>{{ $post['created_at'] }}</span>
                             </div>
-                            <p>{{ $post['title_' . app()->getLocale()] }}</p>
-                            <span>{{ $post['created_at'] }}</span>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
             </div>

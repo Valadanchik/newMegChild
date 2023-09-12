@@ -2314,6 +2314,10 @@
     .menu-drop-down-articles:hover .drop-down-articles {
         display: none;
     }
+    .footer-menu-block{
+        width: 100%;
+        max-width: 375px;
+    }
 
 
 }

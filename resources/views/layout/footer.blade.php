@@ -1,6 +1,6 @@
 <footer>
     <div id="footer" class="footer content">
-        <div>
+        <div class="footer-menu-block">
             <div class="footer-logo">
                 <img src="{{ URL::to('/images/svg/footer-logo.svg') }}" alt="logo">
             </div>

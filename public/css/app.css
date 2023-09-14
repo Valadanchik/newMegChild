@@ -101,6 +101,12 @@ ul.header-menu-list {
     top: -8px;
     left: 20px;
 }
+.header-icon-img img {
+    height: 100%;
+}
+.header-icon-img-left img{
+    height: 100%;
+}
 
 .header-icon-leng a {
     color: #000;

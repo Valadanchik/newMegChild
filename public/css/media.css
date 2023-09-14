@@ -889,6 +889,7 @@
     .menu-show {
         right: 0;
         z-index: 9;
+        overflow: auto;
         top: 0px;
         padding-top: 120px;
         width: 100%;

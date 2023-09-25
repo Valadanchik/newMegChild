@@ -78,19 +78,20 @@
                     </div>
 
                     <div class="article-boxes">
-                        @foreach($data['posts'] as $post)
-                            <div class="article-box-item">
-                                <div class="article-box-item-img">
-                                    <a href="{{ LaravelLocalization::localizeUrl('/article/' . $post['slug']) }}">
-                                        <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="article-box-item-desc">
-                                    <h3>{{ $post['title_' . app()->getLocale()] }}</h3>
-                                    <span>{{ $post['created_at'] }}</span>
-                                </div>
-                            </div>
-                        @endforeach
+
+                            @foreach($data['posts'] as $post)
+                                <a href="{{ LaravelLocalization::localizeUrl('/article/' . $post['slug']) }}">
+                                    <div class="article-box-item">
+                                        <div class="article-box-item-img">
+                                            <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
+                                        </div>
+                                        <div class="article-box-item-desc">
+                                            <h3>{{ $post['title_' . app()->getLocale()] }}</h3>
+                                            <span>{{ $post['created_at'] }}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
                     </div>
                     <div class="article-btn">
                         <a href="{{ LaravelLocalization::localizeUrl('/articles/') }}"> {{ __('messages.see_more') }}

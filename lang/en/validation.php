@@ -26,9 +26,7 @@ return [
     'required_review' => 'The field is not filled',
     'coupon_not_found' => 'Wrong or expired coupon',
     'coupon_used_successfully' => 'Coupon used successfully',
-
-
-
+    'required_price' => 'Free',
     'accepted' => 'The :attribute field must be accepted.',
     'accepted_if' => 'The :attribute field must be accepted when :other is :value.',
     'active_url' => 'The :attribute field must be a valid URL.',

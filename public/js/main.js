@@ -226,6 +226,7 @@ deleteBtn?.forEach((item) => {
                 totalPriceElement.innerHTML = totalPrice - parseInt(rowItemCountElement.value) * itemPrice;
                 payPriceElement.innerHTML = payPrice - parseInt(rowItemCountElement.value) * itemPrice;
                 rowItemElement.remove();
+
             }
         };
 
@@ -647,3 +648,28 @@ article_menu_drop_down.addEventListener('click', () => {
     article_item.classList.toggle('clickOpen')
 })
 
+
+//shiping-price
+
+let selectElement = document.getElementById('country');
+let totalPrice = document.querySelector('.total-price-to-pay');
+let shipPrice = document.querySelector('.ship-price');
+let madeUpShipPrice = 0;
+let overallPrice = 0;
+
+selectElement.addEventListener('change', function () {
+    let selectedOption = selectElement.options[selectElement.selectedIndex];
+    let shippingPrice = parseFloat(selectedOption.getAttribute('data-shipping-price'));
+    let translate = document.getElementById('required_price').value
+
+    if (!isNaN(shippingPrice) && shippingPrice >= 0) {
+        let totalPriceValue = parseFloat(totalPrice.textContent);
+        overallPrice = totalPriceValue - madeUpShipPrice + shippingPrice;
+        madeUpShipPrice = shippingPrice;
+        shipPrice.innerHTML = shippingPrice + ' ֏' ;
+        totalPrice.textContent = overallPrice;
+    }
+    if (shippingPrice === 0) {
+        shipPrice.innerHTML = translate;
+    }
+});

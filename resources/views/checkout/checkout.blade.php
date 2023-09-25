@@ -195,6 +195,7 @@
                                             <option value="" hidden>{{ __('checkout.select_country') }}*</option>
                                             @foreach($countries as $country)
                                                 <option
+                                                    data-shipping-price="{{$country->shipping_price}}"
                                                     value="{{$country->id}}"
                                                     @if(old('country_id') == $country->id) selected @endif>
                                                     {{$country->{'name_'.app()->getLocale()} }}
@@ -361,7 +362,7 @@
                                                value="{{\App\Models\Order::PAYMENT_METHOD_TELCELL}}"
                                                @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_TELCELL) checked @endif>
                                         <label for="telcell">
-                                            <img src="{{ URL::to('images/svg/telcell.svg') }}" alt="telcell logo">
+                                            <img src="{{ URL::to('images/Telcell-Wallet_Logo.png') }}" alt="telcell logo" style="width:61px">
                                         </label>
                                     </div>
 
@@ -388,8 +389,9 @@
                                                                 </div>--}}
                                 <div class="all-result-shipment">
                                     <p>{{ __('checkout.shipping') }} ՝</p>
-                                    <span>{{ __('checkout.free') }}</span>
+                                    <span class="ship-price">{{ __('checkout.free') }} </span>
                                 </div>
+                                <input id="required_price" type="hidden" value="{{ __('validation.required_price') }}">
                                 <div class="all-result-payable-to">
                                     <p>{{ __('checkout.payable') }}՝</p>
                                     <span><span class="total-price-to-pay">{{$cardProductsTotalPrice}}</span> ֏</span>

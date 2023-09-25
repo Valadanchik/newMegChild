@@ -14,8 +14,7 @@ return [
     'required_review' => 'Դաշտը լրացված չէ',
     'coupon_not_found' => 'Սխալ կամ ավարտված արժեկտրոն',
     'coupon_used_successfully' => 'Կտրոնը հաջողությամբ օգտագործվեց',
-
-
+    'required_price' => 'Անվճար',
     'accepted' => 'The :attribute field must be accepted.',
     'accepted_if' => 'The :attribute field must be accepted when :other is :value.',
     'active_url' => 'The :attribute field must be a valid URL.',

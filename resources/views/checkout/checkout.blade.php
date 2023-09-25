@@ -362,7 +362,7 @@
                                                value="{{\App\Models\Order::PAYMENT_METHOD_TELCELL}}"
                                                @if(old('payment_method') == \App\Models\Order::PAYMENT_METHOD_TELCELL) checked @endif>
                                         <label for="telcell">
-                                            <img src="{{ URL::to('images/svg/telcell.svg') }}" alt="telcell logo">
+                                            <img src="{{ URL::to('images/Telcell-Wallet_Logo.png') }}" alt="telcell logo" style="width:61px">
                                         </label>
                                     </div>
 

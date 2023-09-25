@@ -904,7 +904,8 @@ a.footer-address:hover {
 .footer-money {
     display: flex;
     margin-top: 65px;
-    gap: 10px;
+    gap: 15px;
+    align-items: center;
 }
 
 .footer-money-visa {
@@ -919,7 +920,7 @@ a.footer-address:hover {
 
 .footer-money-telcell {
     width: 100%;
-    max-width: 112px;
+    max-width: 80px;
 }
 
 .footer-money-idram {

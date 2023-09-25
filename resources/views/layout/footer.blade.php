@@ -73,7 +73,7 @@
             <div class="footer-money">
                 <div class="footer-money-visa"><img src="{{ URL::to('/images/visa.png') }}" alt="visa"></div>
                 <div class="footer-money-master"><img src="{{ URL::to('/images/master.png') }}" alt="master"></div>
-                <div class="footer-money-telcell"><img src="{{ URL::to('/images/telcell.png') }}" alt="telcell"></div>
+                <div class="footer-money-telcell"><img src="{{ URL::to('/images/black_Logo_Main.png') }}" alt="telcell"></div>
                 <div class="footer-money-idram"><img src="{{ URL::to('/images/idram.png') }}" alt="idram"></div>
             </div>
             <div class="footer-book">

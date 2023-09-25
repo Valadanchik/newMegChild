@@ -77,7 +77,7 @@
                         <img src="{{ URL::to('/images/svg/shopping-cart.svg') }}" alt="sopping cart logo">
                     </a>
                 </div>
-                <div class="header-icon-img-left ">
+                <div class="header-icon-img-left @if(session()->get('cart')) pl @endif">
                     <img src="{{ URL::to('/images/Line%202.png') }}" alt="line">
                 </div>
                 {{--                <div class="header-icon-img">--}}

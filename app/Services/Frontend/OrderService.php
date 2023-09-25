@@ -43,7 +43,13 @@ class OrderService
      */
     public function create(Request $request): mixed
     {
-        $request->request->add(['total_price' => session()->get('total_price'), 'total_price_with_discount' => session()->get('total_price')]);
+        $country = Country::find($request->country_id);
+        $shipping_price = $country?->shipping_price ?: 0;
+
+        $request->request->add([
+            'total_price' => (session()->get('total_price') + $shipping_price),
+            'total_price_with_discount' => (session()->get('total_price') + $shipping_price),
+        ]);
 
         $order = Order::create($request->except(['_token', 'terms']));
 
@@ -60,7 +66,7 @@ class OrderService
      */
     public function createOrderProducts(Order $order)
     {
-        $order->load('region');
+        $order->load(['region', 'country']);
         $cart = session()->get('cart');
         $total_price = 0;
 
@@ -77,7 +83,7 @@ class OrderService
         }
 
         $order->update([
-            'total_price' => $total_price,
+            'total_price' => $total_price + ($order->country->shipping_price ?: 0),
         ]);
     }
 

@@ -122,6 +122,20 @@ class Order extends Model
             ->orderBy('id', 'DESC')->firstOrFail();
     }
 
+    /**
+     * @param $event
+     * @param $products
+     * @param $status
+     * @return void
+     */
+    public static function updateOrderProductsPivotStatus($products, $status): void
+    {
+        foreach ($products as $product) {
+            $product->pivot->update([
+                'status' => $status,
+            ]);
+        }
+    }
 
     //on create
     protected static function boot(): void

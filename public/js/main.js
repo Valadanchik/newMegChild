@@ -598,7 +598,6 @@ let cloud_modal_text = document.querySelector('.cloud-modal-text ');
 let modal_filter1 = document.querySelector('.modal')
 let filter_body1 = document.querySelector('.filter-body')
 let book_page_reviews_info = document.querySelectorAll('.book-page-reviews-item p')
-console.log(book_page_reviews_info)
 
 book_page_reviews_info.forEach((item) => {
 
@@ -618,7 +617,6 @@ book_page_reviews_info.forEach((item) => {
 
 modal_filter1.addEventListener('click', () => {
     cloud_modal.style.display = 'none'
-
 })
 
 
@@ -657,7 +655,7 @@ let shipPrice = document.querySelector('.ship-price');
 let madeUpShipPrice = 0;
 let overallPrice = 0;
 
-selectElement.addEventListener('change', function () {
+selectElement?.addEventListener('change', function () {
     let selectedOption = selectElement.options[selectElement.selectedIndex];
     let shippingPrice = parseFloat(selectedOption.getAttribute('data-shipping-price'));
     let translate = document.getElementById('required_price').value

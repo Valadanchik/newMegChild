@@ -30,6 +30,9 @@
     .color-info-description {
         max-width: 550px;
     }
+    .footer {
+        gap: 180px;
+    }
 
 
 }
@@ -76,7 +79,9 @@
     .footer-logo {
         max-width: 170px;
     }
-
+    .footer {
+        gap: 100px;
+    }
     .footer-menu a,
     a.footer-address,
     .footer-book a {
@@ -97,7 +102,7 @@
     }
 
     .footer-money-telcell {
-        max-width: 100px;
+        max-width: 75px;
     }
 
     .footer-money-idram {
@@ -409,7 +414,11 @@
     }
 
 }
-
+@media (max-width: 1300px) {
+    .footer {
+        gap: 50px;
+    }
+}
 @media (max-width: 1200px) {
 
     /*////////////////// home-page///////////////////*/
@@ -868,6 +877,9 @@
     .header-icon {
         gap: 8px;
     }
+    .footer {
+        gap: 0;
+    }
 }
 
 @media (max-width: 992px) {
@@ -997,6 +1009,10 @@
         grid-template-columns: repeat(2, 130px);
         justify-content: center;
         column-gap: 40px;
+        margin-bottom: 40px;
+    }
+    .footer-money {
+        margin-top: 40px;
     }
 
     .footer-icons {
@@ -1009,7 +1025,10 @@
     }
 
     .footer-form-box {
-        max-width: 285px;
+        max-width: 100% ; /*285px;*/
+    }
+    .footer-price, .footer-icon-input {
+        text-align: center;
     }
 
     .footer-money-visa {

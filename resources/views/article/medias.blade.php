@@ -50,15 +50,15 @@
                             </div>
                             <div class="media-list-section">
                                 @foreach($mediaPosts as $post)
-                                    <div class="media-list-item">
+                                    <a href="{{ LaravelLocalization::localizeUrl('/article/' . $post['slug']) }}">
+                                        <div class="media-list-item">
                                         <div class="media-list-item-img">
-                                            <a href="{{ LaravelLocalization::localizeUrl('/article/' . $post['slug']) }}">
                                                 <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
-                                            </a>
                                         </div>
                                         <p>{{ $post['title_' . app()->getLocale()] }}</p>
                                         <span>{{ $post['created_at'] }}</span>
                                     </div>
+                                    </a>
                                 @endforeach
                             </div>
                         </div>

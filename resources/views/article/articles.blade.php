@@ -19,9 +19,7 @@
                         <a href="{{ LaravelLocalization::localizeUrl('/article/' . $post['slug']) }}">
                             <div class="articles-list-item">
                                 <div class="articles-list-item-img">
-
                                     <img src="{{ URL::to('storage/' . $post['image']) }}" alt="">
-
                                 </div>
                                 <p>{{ $post['title_' . app()->getLocale()] }}</p>
                                 <span>{{ $post['created_at'] }}</span>

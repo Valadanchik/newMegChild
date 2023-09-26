@@ -795,6 +795,7 @@ footer {
     padding-bottom: 43px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 204px;
 }
 
 .footer-logo {
@@ -829,7 +830,6 @@ footer {
 }
 
 .footer-icons {
-    margin-top: 65px;
     margin-bottom: 32px;
     display: grid;
     grid-template-columns: repeat(5, 44px);
@@ -903,7 +903,6 @@ a.footer-address:hover {
 
 .footer-money {
     display: flex;
-    margin-top: 65px;
     gap: 15px;
     align-items: center;
 }
@@ -969,7 +968,11 @@ a.footer-address:hover {
     letter-spacing: 0.01em;
     color: #414141
 }
-
+.footer-price, .footer-icon-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
 /*_______________________TAB____________________________*/
 .tabs_wrap ul {
     display: flex;
@@ -1060,10 +1063,13 @@ a.footer-address:hover {
 .media-list-item-img {
     width: 100%;
     max-width: 342px;
+    height: 210px;
 }
 
-.media-list-item-img a img {
+.media-list-item-img img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .media-scrol-bar {
@@ -1244,10 +1250,13 @@ a.footer-address:hover {
 .articles-list-item-img {
     width: 100%;
     max-width: 342px;
+    height: 210px;
 }
 
 .articles-list-item-img img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /*//////////////////////////////article-itm-page//////////////////////*/

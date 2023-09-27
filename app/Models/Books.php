@@ -47,13 +47,13 @@ class Books extends Model
      * @param $sessionBookId
      * @return void
      */
-    public static function changeInStockAfterOrder($sessionBookId): void
+    public static function changeInStockAfterOrder($booksId): void
     {
-        $getBooksId = array_keys($sessionBookId);
+        $getBooksId = array_keys($booksId);
         $books = Books::whereIn('id', $getBooksId)->get();
         foreach ($books as $book) {
             $oldInStock = $book->in_stock;
-            $newInStock = (int)$sessionBookId[$book->id];
+            $newInStock = (int)$booksId[$book->id];
             $quantityToSubtract = $oldInStock - $newInStock;
             $book->in_stock = $quantityToSubtract;
             $book->save();

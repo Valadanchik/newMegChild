@@ -45,13 +45,13 @@ class Accessor extends Model
      * @param $sessionAccessorId
      * @return void
      */
-    public static function changeInStockAfterOrder($sessionAccessorId)
+    public static function changeInStockAfterOrder($accessorsId)
     {
-        $getAccessorsId = array_keys($sessionAccessorId);
+        $getAccessorsId = array_keys($accessorsId);
         $accessors = Accessor::whereIn('id', $getAccessorsId)->get();
         foreach ($accessors as $accessor) {
             $oldInStock = $accessor->in_stock;
-            $newInStock = (int)$sessionAccessorId[$accessor->id];
+            $newInStock = (int)$accessorsId[$accessor->id];
             $quantityToSubtract = $oldInStock - $newInStock;
             $accessor->in_stock = $quantityToSubtract;
             $accessor->save();

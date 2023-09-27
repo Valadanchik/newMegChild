@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Order extends Model
 {
@@ -61,33 +62,40 @@ class Order extends Model
     ];
 
     /**
-     * @return void
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @param $products
+     * @return array[]
      */
-    public static function changeInStock(): void
+    public static function filterProductsTypeId($products): array
     {
-        $cart = session()->get('cart');
-
         $sessionBookId = [];
         $sessionAccessorId = [];
-        foreach ($cart as $cartValue) {
-            match ($cartValue['product_type']) {
-                Categories::TYPE_BOOK => $sessionBookId[$cartValue['product_id']] = $cartValue['product_count'],
-                Categories::TYPE_ACCESSOR => $sessionAccessorId[$cartValue['product_id']] = $cartValue['product_count'],
+        foreach ($products as $product) {
+            match ($product->pivot->product_type) {
+                Categories::TYPE_BOOK => $sessionBookId[$product->pivot->product_id] = $product->pivot->quantity,
+                Categories::TYPE_ACCESSOR => $sessionAccessorId[$product->pivot->product_id] = $product->pivot->quantity,
             };
         }
 
-        if ($cart && is_array($cart) && count($sessionBookId) > 0 || count($sessionAccessorId) > 0) {
-            if (count($sessionAccessorId)) {
-                Accessor::changeInStockAfterOrder($sessionAccessorId);
+        return ['books_id' => $sessionBookId, 'accessors_id' => $sessionAccessorId];
+    }
+
+    /**
+     * @param $order
+     * @return void
+     */
+    public static function changeInStock($order): void
+    {
+        $sessionBook = self::filterProductsTypeId($order->books);
+        $sessionAccessor = self::filterProductsTypeId($order->accessors);
+
+        if (count($sessionBook['books_id']) || count($sessionAccessor['accessors_id'])) {
+            if (count($sessionAccessor['accessors_id'])) {
+                Accessor::changeInStockAfterOrder($sessionAccessor['accessors_id']);
             }
-            if (count($sessionBookId)) {
-                Books::changeInStockAfterOrder($sessionBookId);
+            if (count($sessionBook['books_id'])) {
+                Books::changeInStockAfterOrder($sessionBook['books_id']);
             }
         }
-
-        session()->forget('cart');
     }
 
     /**
@@ -123,7 +131,6 @@ class Order extends Model
     }
 
     /**
-     * @param $event
      * @param $products
      * @param $status
      * @return void
@@ -157,6 +164,13 @@ class Order extends Model
     {
         return $this->belongsTo(Region::class);
     }
+
+//    public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+//    {
+//        return $this->belongsToMany(Books::class, 'order_product_pivote', 'order_id', 'product_id')
+//            ->withPivot('id', 'quantity', 'price', 'status', 'product_type')
+//            ->withTimestamps();
+//    }
 
     public function books(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

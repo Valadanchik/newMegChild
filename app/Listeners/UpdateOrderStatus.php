@@ -24,11 +24,15 @@ class UpdateOrderStatus
      */
     public function handle(OrderPayment $event)
     {
-        $event->order->status = $event->status;
         $orderBooks = $event->order->books;
         $orderAccessors = $event->order->accessors;
-        Order::updateOrderProductsPivotStatus($orderBooks, $event->status);
-        Order::updateOrderProductsPivotStatus($orderAccessors, $event->status);
+
+        if($orderBooks !== null && count($orderBooks) > 0) {
+            Order::updateOrderProductsPivotStatus($orderBooks, $event->status);
+        }
+        if(count($orderAccessors) > 0) {
+            Order::updateOrderProductsPivotStatus($orderAccessors, $event->status);
+        }
 
         $event->order->save();
     }

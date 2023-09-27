@@ -17,6 +17,7 @@ class PaymentController extends Controller
 
     public function success()
     {
+        session()->forget('cart');
         return view('payments.order_success');
     }
 

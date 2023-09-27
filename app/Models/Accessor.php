@@ -42,7 +42,7 @@ class Accessor extends Model
     }
 
     /**
-     *
+     * @param $sessionAccessorId
      * @return void
      */
     public static function changeInStockAfterOrder($sessionAccessorId)

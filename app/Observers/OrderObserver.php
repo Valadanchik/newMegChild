@@ -27,7 +27,7 @@ class OrderObserver
     {
         if ($order->status === Order::STATUS_COMPLETED) {
             try {
-                Order::changeInStock();
+                Order::changeInStock($order);
             } catch (\Exception  $e) {
                 echo $e->getMessage();
             }

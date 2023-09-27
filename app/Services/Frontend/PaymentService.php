@@ -79,10 +79,6 @@ class PaymentService
 
                 event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
 
-                if (session()->get('coupon')) {
-                    event(new CouponQuantity(session()->get('coupon')));
-                }
-
                 echo "OK";
             } else {
                 event(new OrderPayment(false, $order, Order::STATUS_FAILED));

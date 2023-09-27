@@ -34,6 +34,8 @@ class UpdateOrderStatus
             Order::updateOrderProductsPivotStatus($orderAccessors, $event->status);
         }
 
-        $event->order->save();
+        $event->order->update([
+            'status' => $event->status,
+        ]);
     }
 }

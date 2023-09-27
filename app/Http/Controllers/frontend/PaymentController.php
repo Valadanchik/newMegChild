@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Events\CouponQuantity;
 use App\Http\Controllers\Controller;
 
 use App\Services\Frontend\PaymentService;
@@ -17,7 +18,11 @@ class PaymentController extends Controller
 
     public function success()
     {
+        if (session()->get('coupon')) {
+            event(new CouponQuantity(session()->get('coupon')));
+        }
         session()->forget('cart');
+
         return view('payments.order_success');
     }
 

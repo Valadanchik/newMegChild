@@ -165,13 +165,6 @@ class Order extends Model
         return $this->belongsTo(Region::class);
     }
 
-//    public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-//    {
-//        return $this->belongsToMany(Books::class, 'order_product_pivote', 'order_id', 'product_id')
-//            ->withPivot('id', 'quantity', 'price', 'status', 'product_type')
-//            ->withTimestamps();
-//    }
-
     public function books(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Books::class, 'order_product_pivote', 'order_id', 'product_id')

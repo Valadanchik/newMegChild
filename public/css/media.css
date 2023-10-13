@@ -1955,6 +1955,17 @@
         display: block;
         padding-right: 20px;
     }
+    .slick-prev-img {
+        top: 50%;
+        position: absolute;
+        left: -26px;
+    }
+
+    .slick-next-img {
+        top: 50%;
+        position: absolute;
+        right: -26px;
+    }
 
 }
 

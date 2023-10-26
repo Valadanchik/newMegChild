@@ -24,4 +24,21 @@ class BooksController extends Controller
 
         return response()->json($data);
     }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAllBooks(): \Illuminate\Http\JsonResponse
+    {
+        $getBooks = Books::with(['authors' => function ($query) {
+            $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
+        }])
+            ->where('status', Books::ACTIVE)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $data = BookResource::collection($getBooks);
+
+        return response()->json($data);
+    }
 }

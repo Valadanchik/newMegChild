@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AllBookResource;
 use App\Http\Resources\BookResource;
 use App\Models\Books;
 class BooksController extends Controller
@@ -30,14 +31,14 @@ class BooksController extends Controller
      */
     public function getAllBooks(): \Illuminate\Http\JsonResponse
     {
-        $getBooks = Books::with(['authors' => function ($query) {
-            $query->select('authors.id', 'authors.name_hy', 'authors.name_en');
+        $getBooks = Books::with(['authors', 'category' => function ($query) {
+            $query->select('categories.id', 'categories.name_hy', 'categories.name_en');
         }])
             ->where('status', Books::ACTIVE)
             ->orderBy('id', 'DESC')
             ->get();
 
-        $data = BookResource::collection($getBooks);
+        $data = AllBookResource::collection($getBooks);
 
         return response()->json($data);
     }

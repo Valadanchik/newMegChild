@@ -34,7 +34,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <link rel="stylesheet" href="{{ asset('/css/app.css?v=1.1') }}">
-    <link rel="stylesheet" href="{{ asset('/css/media.css?v=1.1') }}">
+    <link rel="stylesheet" href="{{ asset('/css/media.css?v=1.2') }}">
 </head>
 <body class="body filter-body">
 
@@ -50,7 +50,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
         integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('/js/main-jquery.js') }}"></script>
+<script src="{{ asset('/js/main-jquery.js?v=1.0') }}"></script>
 <script src="{{ asset('/js/main.js') }}"></script>
 
 </body>

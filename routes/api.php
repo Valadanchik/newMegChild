@@ -18,7 +18,7 @@ Route::post('/telcellCallback', [\App\Http\Controllers\frontend\PaymentControlle
 Route::post('/payment/idramCallback', [\App\Http\Controllers\frontend\PaymentController::class, 'idramCallback'])->name('payment.idram_callback');
 
 
-Route::get('/all-books', [\App\Http\Controllers\api\BooksController::class, 'getLastBooks'])->name('api.all.books');
+Route::get('/all-books', [\App\Http\Controllers\api\BooksController::class, 'getAllBooks'])->name('api.all.books');
 Route::get('/last-books', [\App\Http\Controllers\api\BooksController::class, 'getLastBooks'])->name('api.last.books');
 Route::get('/last-posts', [\App\Http\Controllers\api\PostsController::class, 'getLastPosts'])->name('api.last.posts');
 

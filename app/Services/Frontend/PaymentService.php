@@ -5,6 +5,7 @@ namespace App\Services\Frontend;
 use App\Events\CouponQuantity;
 use App\Http\Controllers\frontend\OrderController;
 use App\Models\Order;
+use App\Models\Country;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Events\OrderPayment;
@@ -76,7 +77,7 @@ class PaymentService
 
             if (strtoupper($request->EDP_CHECKSUM) == strtoupper($checksum) &&
                 $order->total_price_with_discount == $request->EDP_AMOUNT) {
-
+                $this->send_telegram_message($order);
                 event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
 
                 echo "OK";
@@ -174,7 +175,7 @@ class PaymentService
         $order = Order::where('order_payment_id', $request->order)->firstOrFail();
 
         if ($order->status == Order::STATUS_COMPLETED) {
-
+            $this->send_telegram_message($order);
             return redirect()->route('payment.success');
         } else {
 
@@ -227,7 +228,7 @@ class PaymentService
 
     public function arcaCallback(Request $request)
     {
-        if(!$request->has('orderId'))
+        if (!$request->has('orderId'))
             abort(404);
 
         $params = [
@@ -252,6 +253,7 @@ class PaymentService
 
         if ($response['orderStatus'] == 2) {
 
+            $this->send_telegram_message($order);
             event(new OrderPayment(true, $order, Order::STATUS_COMPLETED));
 
             if (session()->get('coupon')) {
@@ -265,4 +267,97 @@ class PaymentService
             return redirect()->route('payment.fail');
         }
     }
+
+    public function generateTelegramMessage($data)
+    {
+        $message = 'Yeraz';
+        $message .= "\n\n";
+        $message .= 'New order has been placed:';
+        $message .= "\n\n";
+        $message .= 'Order ID: ' . $data->id;
+        $message .= "\n";
+        $message .= 'Order date: ' . $data->created_at;
+        $message .= "\n";
+        $message .= 'Order status: ' . $this->get_status_text($data->status);
+        $message .= "\n";
+        $message .= 'Order total: ' . $data->total_price . ' ֏';
+        $message .= "\n";
+        $message .= 'TOTAL PAID:' . $data->total_price_with_discount . ' ֏';
+        $message .= "\n";
+        $message .= "\n";
+        $message .= 'Order payment method: ' . $this->get_payment_method_name($data->payment_method);
+        $message .= "\n";
+        $message .= 'Shipping address: ' . $data->country->name_en . ' ' . $data->region . ' ' . $data->postal_code . ' ' . $data->street . ' ' . $data->house;
+        $message .= "\n";
+        $message .= 'Customer: ' . $data->name . ' ' . $data->lastname . ' ' . $data->company;
+        $message .= "\n";
+        $message .= 'Customer contacts: ' . $data->phone . ' ' . $data->email;
+        $message .= "\n\n";
+        if ($data->order_text) {
+            $message .= 'Comment: ' . $data->order_text;
+            $message .= "\n\n";
+        }
+        $message .= 'Products:';
+        $message .= "\n";
+        $message .= "\n";
+        if(isset($data->books)){
+            foreach ($data->books as $book) {
+                $quantity = $book->pivot_quantity > 0 ? $book->pivot_quantity : 1;
+                $message .= $book->title_hy . "\n";
+                $message .= 'Price: ' . $book->price . ' ֏ x ' . $quantity . ' = ' . $book->price * $quantity . ' ֏'. "\n";
+                $message .= '--------------';
+                $message .= "\n";
+            }
+        }
+
+        return $message;
+    }
+
+    public function send_telegram_message($order)
+    {
+        $botToken = '6800224468:AAHVxUpXCvu8lVaK98ZU9LxZ61QD90Pdcnk';
+        $url = "https://api.telegram.org/bot$botToken/sendMessage";
+        $chatIds = [567142541, 537760571, 689205579, 887371267, 983775801];
+
+        $message = $this->generateTelegramMessage($order);
+
+        foreach ($chatIds as $chatId) {
+            $data = [
+                'chat_id' => $chatId,
+                'text' => $message,
+            ];
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            curl_exec($ch);
+            curl_close($ch);
+        }
+    }
+
+    public function get_payment_method_name($id)
+    {
+        $payment_methods = [
+            1 => 'Bank',
+            2 => 'Idram',
+            3 => 'Telcell',
+        ];
+        return $payment_methods[$id];
+    }
+
+    public function get_status_text($id)
+    {
+        $statuses = [
+            1 => 'New',
+            2 => 'Processing',
+            3 => 'Completed',
+            4 => 'Failed',
+            5 => 'Returned',
+        ];
+        return $statuses[$id];
+    }
+
 }

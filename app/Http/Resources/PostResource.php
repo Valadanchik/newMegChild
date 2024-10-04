@@ -18,6 +18,7 @@ class PostResource extends JsonResource
         return [
             'id'         => $this->id,
             'title_hy'   => $this->title_hy,
+            'title_am'   => $this->title_hy,
             'title_en'   => $this->title_en,
             'slug'       => $this->slug,
             'image'      => URL::to('storage/' . $this->image),

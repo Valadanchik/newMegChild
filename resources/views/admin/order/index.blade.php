@@ -34,27 +34,32 @@
                     <table id="datatablesSimple">
                         <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Order ID</th>
                             <th>Name</th>
                             <th>Date</th>
                             <th>Payment Method</th>
-                            <th>Shipping status</th>
+                            <th>Status</th>
+                            <th>Notify</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
+                            <th>ID</th>
                             <th>Order ID</th>
                             <th>Name</th>
                             <th>Date</th>
                             <th>Payment Method</th>
-                            <th>Shipping status</th>
+                            <th>Status</th>
+                            <th>Notify</th>
                             <th>Action</th>
                         </tr>
                         </tfoot>
                         <tbody>
                         @foreach($orders as $index => $order)
                             <tr>
+                                <td>{{ $order['id']  }}</td>
                                 <td>{{ $order['order_payment_id']  }}</td>
                                 <td>{{ $order['name']  }}</td>
                                 <td>{{ $order['created_at']  }}</td>
@@ -72,26 +77,39 @@
                                     @endswitch
                                 </td>
                                 <td>
-                                    @switch($order['payment_status'])
+                                    @switch($order['status'])
                                         @case(\App\Models\Order::STATUS_NEW)
-                                            <span>Չմշակված</span>
+                                            <span class="badge badge-warning">Չմշակված</span>
                                             @break
                                         @case(\App\Models\Order::STATUS_PROCESSING)
-                                            <span>Ընթացքում</span>
+                                            <span class="badge badge-primary">Մշակվում է</span>
                                             @break
                                         @case(\App\Models\Order::STATUS_COMPLETED)
-                                            <span>Առաքված</span>
+                                            <span class="badge badge-success">Կատարված</span>
                                             @break
                                         @case(\App\Models\Order::STATUS_FAILED)
-                                            <span>Մերժված</span>
+                                            <span class="badge badge-danger">Մերժված</span>
                                             @break
                                         @case(\App\Models\Order::STATUS_RETURNED)
-                                            <span>Վերադարձված</span>
+                                            <span class="badge badge-danger">Վերադարձված</span>
                                             @break
                                     @endswitch
                                 </td>
                                 <td>
-                                    <a href="{{ route('orders.show', $order['id']) }}" class="'bi bi-eye btn btn-datatable btn-icon btn-transparent-dark me-2"><i class="fa-regular fa-eye"></i></a>
+                                    <button data-route="{{ route('orders.notifyAdmin', $order['id']) }}"
+                                            class="notifyAdmin badge badge-primary p-2 border-0"><i
+                                                class="bi bi-envelope me-1"></i>
+                                        Admin
+                                    </button>
+                                    <button data-route="{{ route('orders.notifyUser', $order['id']) }}"
+                                            class="notifyUser badge badge-primary p-2 border-0"><i
+                                                class="bi bi-envelope me-1"></i>
+                                        User
+                                    </button>
+                                </td>
+                                <td>
+                                    <a href="{{ route('orders.show', $order['id']) }}"
+                                       class="badge badge-warning p-2"> <i class="bi bi-eye me-1"></i> Show</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -102,3 +120,20 @@
         </div>
     </main>
 @endsection
+
+@push('body-scripts')
+    <script>
+        $(document).on('click', '.notifyUser', function () {
+            let route = $(this).data('route');
+            if (confirm('Are you sure?')) {
+                window.location.href = route;
+            }
+        });
+        $(document).on('click', '.notifyAdmin', function () {
+            let route = $(this).data('route');
+            if (confirm('Are you sure?')) {
+                window.location.href = route;
+            }
+        });
+    </script>
+@endpush

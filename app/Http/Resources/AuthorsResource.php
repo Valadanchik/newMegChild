@@ -17,6 +17,7 @@ class AuthorsResource extends JsonResource
     {
         return [
             'name_hy' => $this->name_hy,
+            'name_am' => $this->name_hy,
             'name_en' => $this->name_en,
             "image" => URL::to('storage/' . $this->image),
             "description_en" => $this->about_en,

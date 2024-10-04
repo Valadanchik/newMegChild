@@ -17,7 +17,8 @@
                                    class="{{ isRouteActive('about') ? 'active-menu-underline' : '' }}">{{ __('header.about_directory') }}</a>
                             </li>
                             <li>
-                                <a href="{{ LaravelLocalization::localizeUrl('/contact-us') }}">{{ __('header.contact_us') }}</a>
+                                <a href="{{ LaravelLocalization::localizeUrl('/contact-us') }}"
+                                   class="{{ request()->is('contact-us') ? 'active-menu-underline' : '' }}">{{ __('header.contact_us') }}</a>
                             </li>
                         </ul>
                     </li>
@@ -28,7 +29,8 @@
                         <ul class="books-drop-down">
                             @foreach(\App\Models\Categories::where('type', \App\Models\Categories::TYPE_BOOK)->get() as $category)
                                 <li>
-                                    <a href="{{ LaravelLocalization::localizeUrl('/category/' . $category['name_en']) }}">{{ $category['name_' . app()->getLocale()] }}</a>
+                                    <a href="{{ LaravelLocalization::localizeUrl('/category/' . $category['name_en']) }}"
+                                       class="{{ request()->is('category/' . $category['name_en']) ? 'active-menu-underline' : '' }}">{{ $category['name_' . app()->getLocale()] }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -50,10 +52,12 @@
                         <img src="{{ URL::to('/images/svg/chevron-down.svg') }} " alt="arrow img" class="arrow-menu">
                         <ul class="drop-down-articles">
                             <li><a href="{{ LaravelLocalization::localizeUrl('/articles') }}"
-                                   class="{{ isRouteActive('articles') ? 'active-menu-underline' : '' }}">{{ __('header.news') }}</a>
+                                   class="{{ request()->is('articles') ? 'active-menu-underline' : '' }}">{{ __('header.news') }}</a>
                             </li>
                             <li>
-                                <a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}">{{ __('header.media') }}</a>
+                                <a href="{{ LaravelLocalization::localizeUrl('/media-articles') }}"
+                                   class="{{ request()->is('media-articles') ? 'active-menu-underline' : '' }}
+                                   ">{{ __('header.media') }}</a>
                             </li>
                         </ul>
                     </li>

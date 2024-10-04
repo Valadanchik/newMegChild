@@ -66,7 +66,7 @@ class HomeController extends Controller
      */
     public function getHomePosts(): mixed
     {
-        return $this->posts->orderBy('id', 'DESC')->limit(4)->get();
+        return $this->posts->orderBy('id', 'DESC')->where('post_category_id', NULL)->limit(4)->get();
     }
 
     /**

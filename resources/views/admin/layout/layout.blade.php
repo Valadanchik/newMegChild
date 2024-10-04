@@ -88,13 +88,13 @@
 
     </div>
 </div>
-<script src="{{ asset('/js/admin/scripts.js') }}"></script>
+<script src="{{ asset('/js/admin/scripts.js?v=1.0') }}"></script>
 <!--Page Scripts-->
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 <!-- include summernote css/js -->
 <script src="{{ asset('/js/admin/datatables/datatables-simple-demo.js') }}"></script>
-<script src="{{ asset('/js/admin/main.js') }}"></script>
+<script src="{{ asset('/js/admin/main.js?v=1.0') }}"></script>
 
-
+@stack('body-scripts')
 </body>
 </html>

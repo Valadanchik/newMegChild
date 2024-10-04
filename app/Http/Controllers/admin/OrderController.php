@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Services\Frontend\PaymentService;
+use App\Jobs\OrderAdminJob;
+use App\Jobs\OrderUserJob;
 
 class OrderController extends Controller
 {
@@ -14,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::orderBy('id', 'DESC')->whereIn('status', [Order::STATUS_FAILED, Order::STATUS_COMPLETED])->get();
         return view('admin.order.index', compact('orders'));
     }
 
@@ -42,6 +45,22 @@ class OrderController extends Controller
     public function update(Request $request, string $id)
     {
         //
+    }
+
+    public function notifyUser(Order $order)
+    {
+        OrderUserJob::dispatch($order);
+
+        return redirect()->back()->with('success', 'User has been notified successfully');
+    }
+
+    public function notifyAdmin(Order $order)
+    {
+        $paymentService = new PaymentService();
+        $paymentService->send_telegram_message($order);
+        OrderAdminJob::dispatch($order);
+
+        return redirect()->back()->with('success', 'Admin has been notified successfully');
     }
 
 }

@@ -62,7 +62,7 @@ $(document).ready(function() {
         }),
         autoOrientImage: true,
         overwriteInitial: true,
-        maxFileSize: 100,
+        maxFileSize: 30000,
         initialCaption: "The Moon and the Earth",
         showUpload: false,
         showRemove: true,

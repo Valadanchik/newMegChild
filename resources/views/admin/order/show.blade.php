@@ -24,23 +24,22 @@
                         <h3>Order Info։</h3>
                         <p><strong>ID:</strong> <span>#{{ $order->order_payment_id }}</span></p>
                         <p><strong>DATE:</strong> <span>{{ $order->created_at }}</span></p>
-                        <p><strong>STATUS:</strong> {{ $order->status ? 'Վճարված պատվեր' : 'Չվճարված պատվեր' }}</p>
-                        <p><strong>SHIPPING STATUS:</strong>
-                            @switch($order->payment_status)
+                        <p><strong>STATUS:</strong>
+                            @switch($order['status'])
                                 @case(\App\Models\Order::STATUS_NEW)
-                                    <span>Չմշակված</span>
+                                    <span class="badge badge-warning">Չմշակված</span>
                                     @break
                                 @case(\App\Models\Order::STATUS_PROCESSING)
-                                    <span>Ընթացքում</span>
+                                    <span class="badge badge-primary">Մշակվում է</span>
                                     @break
                                 @case(\App\Models\Order::STATUS_COMPLETED)
-                                    <span>Առաքված</span>
+                                    <span class="badge badge-success">Կատարված</span>
                                     @break
                                 @case(\App\Models\Order::STATUS_FAILED)
-                                    <span>Մերժված</span>
+                                    <span class="badge badge-danger">Մերժված</span>
                                     @break
                                 @case(\App\Models\Order::STATUS_RETURNED)
-                                    <span>Վերադարձված</span>
+                                    <span class="badge badge-danger">Վերադարձված</span>
                                     @break
                             @endswitch
                         </p>

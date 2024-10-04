@@ -14,7 +14,7 @@ class PostsController extends Controller
      */
     public function articles(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'desc')->where('post_category_id', NULL)->get();
         $postCategories = self::getPostCategories();
         return view('article/articles', compact('posts'), compact('postCategories'));
     }

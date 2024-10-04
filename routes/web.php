@@ -125,6 +125,8 @@ Route::middleware([SetSettingDataServiceMiddleware::class])->group(function () {
                 Route::resource('translators', TranslatorsController::class)->middleware('can:isAdmin');
                 Route::resource('categories', CategoriesController::class)->middleware('can:isAdmin');
                 Route::resource('orders', AdminOrderController::class)->middleware('can:isAdmin');
+                Route::get('orders/notifyAdmin/{order}', [AdminOrderController::class, 'notifyAdmin'])->name('orders.notifyAdmin')->middleware('can:isAdmin');
+                Route::get('orders/notifyUser/{order}', [AdminOrderController::class, 'notifyUser'])->name('orders.notifyUser')->middleware('can:isAdmin');
                 Route::resource('users', UserController::class)->middleware('can:isAdmin');
                 Route::resource('coupons', AdminCouponController::class)->middleware('can:isAdmin');
                 Route::resource('posts', PostsController::class);

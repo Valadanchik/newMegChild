@@ -17,6 +17,7 @@ class AllBookResource extends JsonResource
     {
         return [
             "name_hy" => $this->title_hy,
+            "name_am" => $this->title_hy,
             "name_en" => $this->title_en,
             "short_summary_hy" => "",
             "short_summary_en" => "",
@@ -34,6 +35,7 @@ class AllBookResource extends JsonResource
             "status" => $this->status,
             "trailer_url" => $this->video_url,
             "category_name_hy" => $this->category->name_hy,
+            "category_name_am" => $this->category->name_hy,
             "category_name_en" => $this->category->name_en,
             'authors' => AuthorsResource::collection($this->authors),
             "source" => "",

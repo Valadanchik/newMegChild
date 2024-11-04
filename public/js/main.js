@@ -1,3 +1,37 @@
+//shiping-price
+
+let selectElement = document.getElementById('country');
+let totalPrice = document.querySelector('.total-price-to-pay');
+let shipPrice = document.querySelector('.ship-price');
+let madeUpShipPrice = 0;
+let overallPrice = 0;
+
+selectElement?.addEventListener('change', function () {
+    let selectedOption = selectElement.options[selectElement.selectedIndex];
+    let shippingPrice = parseFloat(selectedOption.getAttribute('data-shipping-price'));
+    let translate = document.getElementById('required_price').value
+
+    if (!isNaN(shippingPrice) && shippingPrice >= 0) {
+
+        let countShop = document.querySelectorAll('.count-shop');
+        let countShopValue = 0;
+
+        countShop.forEach((item) => {
+            countShopValue += parseInt(item.value);
+        });
+        shippingPrice = shippingPrice * countShopValue;
+
+        let totalPriceValue = parseFloat(totalPrice.textContent);
+        overallPrice = totalPriceValue - madeUpShipPrice + shippingPrice;
+        madeUpShipPrice = shippingPrice;
+        shipPrice.innerHTML = shippingPrice + ' ֏';
+        totalPrice.textContent = overallPrice;
+    }
+    if (shippingPrice === 0) {
+        shipPrice.innerHTML = translate;
+    }
+});
+
 /*////////////articles-filter cloud effect//////////////*/
 
 let tabs = document.querySelectorAll(".tabs_wrap ul li");
@@ -127,6 +161,8 @@ function updateCartProductCount(quantity, productId, productType) {
                 totalPriceElement.innerHTML = data.total_price;
                 totalPriceToPayElement.innerHTML = data.total_price;
                 couponCallBackMessage.innerHTML = data.message;
+                //call selectElement change event to update shipping price
+                selectElement.dispatchEvent(new Event('change'));
             } else {
                 couponCallBackMessage.innerHTML = data.message;
             }
@@ -226,6 +262,9 @@ deleteBtn?.forEach((item) => {
                 totalPriceElement.innerHTML = totalPrice - parseInt(rowItemCountElement.value) * itemPrice;
                 payPriceElement.innerHTML = payPrice - parseInt(rowItemCountElement.value) * itemPrice;
                 rowItemElement.remove();
+                
+                //call selectElement change event to update shipping price
+                selectElement.dispatchEvent(new Event('change'));
 
             }
         };
@@ -632,7 +671,7 @@ let article_menu_drop_down = document.querySelector('.menu-drop-down-articles')
 let article_item = document.querySelector('.drop-down-articles')
 
 
-about_us.addEventListener('click', () =>{
+about_us.addEventListener('click', () => {
     menu_item.forEach((item) => {
         item.classList.toggle('clickOpen')
     })
@@ -645,29 +684,3 @@ book_menu_drop_down.addEventListener('click', () => {
 article_menu_drop_down.addEventListener('click', () => {
     article_item.classList.toggle('clickOpen')
 })
-
-
-//shiping-price
-
-let selectElement = document.getElementById('country');
-let totalPrice = document.querySelector('.total-price-to-pay');
-let shipPrice = document.querySelector('.ship-price');
-let madeUpShipPrice = 0;
-let overallPrice = 0;
-
-selectElement?.addEventListener('change', function () {
-    let selectedOption = selectElement.options[selectElement.selectedIndex];
-    let shippingPrice = parseFloat(selectedOption.getAttribute('data-shipping-price'));
-    let translate = document.getElementById('required_price').value
-
-    if (!isNaN(shippingPrice) && shippingPrice >= 0) {
-        let totalPriceValue = parseFloat(totalPrice.textContent);
-        overallPrice = totalPriceValue - madeUpShipPrice + shippingPrice;
-        madeUpShipPrice = shippingPrice;
-        shipPrice.innerHTML = shippingPrice + ' ֏' ;
-        totalPrice.textContent = overallPrice;
-    }
-    if (shippingPrice === 0) {
-        shipPrice.innerHTML = translate;
-    }
-});

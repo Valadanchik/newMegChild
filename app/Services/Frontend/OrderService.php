@@ -44,12 +44,6 @@ class OrderService
     public function create(Request $request): mixed
     {
         $country = Country::find($request->country_id);
-        $shipping_price = $country?->shipping_price ?: 0;
-
-        $request->request->add([
-            'total_price' => (session()->get('total_price') + $shipping_price),
-            'total_price_with_discount' => (session()->get('total_price') + $shipping_price),
-        ]);
 
         $order = Order::create($request->except(['_token', 'terms']));
 
@@ -69,6 +63,8 @@ class OrderService
         $order->load(['region', 'country']);
         $cart = session()->get('cart');
         $total_price = 0;
+        $shipping_price = $order->country->shipping_price ?: 0;
+        $products_count = 0;
 
         if ($cart && is_array($cart)) {
 
@@ -76,14 +72,19 @@ class OrderService
 
             foreach ($products['accessors'] as $product) {
                 $total_price = self::orderProductsPivotAttach($order, $product, $cart, $total_price);
+                $products_count += $cart[$product->category->type . '-' . $product->id]['product_count'] ?? 0;
             }
             foreach ($products['books'] as $product) {
                 $total_price = self::orderProductsPivotAttach($order, $product, $cart, $total_price);
+                $products_count += $cart[$product->category->type . '-' . $product->id]['product_count'] ?? 0;
             }
         }
 
+        $shipping_price *= $products_count;
+
         $order->update([
-            'total_price' => $total_price + ($order->country->shipping_price ?: 0),
+            'total_price' => $total_price + $shipping_price,
+            'total_price_with_discount' => (session()->get('total_price') + $shipping_price),
         ]);
     }
 

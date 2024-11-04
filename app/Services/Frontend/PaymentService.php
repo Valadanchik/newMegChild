@@ -302,7 +302,7 @@ class PaymentService
         $message .= "\n";
         if(isset($data->books)){
             foreach ($data->books as $book) {
-                $quantity = $book->pivot_quantity > 0 ? $book->pivot_quantity : 1;
+                $quantity = $book->pivot->quantity;
                 $message .= $book->title_hy . "\n";
                 $message .= 'Price: ' . $book->price . ' ֏ x ' . $quantity . ' = ' . $book->price * $quantity . ' ֏'. "\n";
                 $message .= '--------------';
@@ -317,7 +317,15 @@ class PaymentService
     {
         $botToken = '6800224468:AAHVxUpXCvu8lVaK98ZU9LxZ61QD90Pdcnk';
         $url = "https://api.telegram.org/bot$botToken/sendMessage";
-        $chatIds = [567142541, 537760571, 689205579, 887371267, 983775801];
+
+        $chatIds = [
+            567142541,
+            537760571,
+            689205579,
+            887371267,
+            983775801,
+            736628846
+        ];
 
         $message = $this->generateTelegramMessage($order);
 

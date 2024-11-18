@@ -2202,7 +2202,7 @@ h2.book-page-leave-review-title {
 
 .book-price {
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
     align-items: center;
 }
 
@@ -2214,6 +2214,17 @@ h2.book-page-leave-review-title {
     line-height: 20px;
     letter-spacing: 0.01em;
     color: #F36F21;
+}
+
+.book-old-pr {
+    font-family: 'Montserrat arm';
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    letter-spacing: 0.01em !important;
+    color: #444444 !important;
+    text-decoration: line-through;
 }
 
 .book-btn a {

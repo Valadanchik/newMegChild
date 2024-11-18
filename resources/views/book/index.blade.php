@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <h3>
-                    {{ $book['price'] }}֏
+                    {{ $book['price'] }}֏  @if($book['old_price']) <span class="book-old-pr">{{ $book['old_price'] }}֏</span> @endif
                 </h3>
                 <div class="book-page-item-btn">
                     {{--                    <a class="add-to-cart" href="{{ LaravelLocalization::localizeUrl('add-to-cart') }}">Գնել</a>--}}
@@ -332,7 +332,7 @@
                             @endforeach
                         </p>
                         <div class="book-price">
-                            <p class="book-pr">{{ $book['price']  }} ֏ </p>
+                            <p class="book-pr">{{ $book['price']  }} ֏ @if($book['old_price']) <span class="book-old-pr">{{ $book['old_price'] }}֏</span> @endif</p>
                         </div>
                         <div class="book-btn">
                             <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">

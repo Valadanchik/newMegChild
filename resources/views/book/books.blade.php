@@ -42,6 +42,9 @@
                             </a>
                             <div class="book-price">
                                 <p class="book-pr">{{ $book['price']  }} ֏ </p>
+                                @if($book['old_price'])
+                                    <p class="book-old-pr">{{ $book['old_price']  }} ֏</p>
+                                @endif
                             </div>
                             <div class="book-btn">
                                 <a href="{{ LaravelLocalization::localizeUrl('/book/' . $book['slug']) }}">

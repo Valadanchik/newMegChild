@@ -155,6 +155,17 @@
                         </div>
 
                         <div class="card mb-4">
+                            <div class="card-header">Old Price</div>
+                            <div class="card-body">
+                                <input type="number" class="form-control" id="old_price" name="old_price"
+                                       value="{{ old('old_price', $book->old_price) }}">
+                            </div>
+                            @error('old_price')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="card mb-4">
                             <div class="card-header">Word Count</div>
                             <div class="card-body">
                                 <input type="text" class="form-control" id="word_count" name="word_count"

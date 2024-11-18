@@ -32,6 +32,7 @@ class Books extends Model
         'video_url',
         'slug',
         'price',
+        'old_price',
         'word_count',
         'page_count',
         'font_size',

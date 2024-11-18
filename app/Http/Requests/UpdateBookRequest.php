@@ -33,6 +33,7 @@ class UpdateBookRequest extends FormRequest
             'video_url' => 'nullable|string',
             'slug' => 'required|string|max:255|unique:books,slug,' . $this->id,
             'price' => 'required|integer',
+            'old_price' => 'nullable|integer',
             'word_count' => 'nullable|string',
             'page_count' => 'required|integer',
             'font_size' => 'nullable|string',

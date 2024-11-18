@@ -38,9 +38,11 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Author</th>
                                 <th>Price</th>
+                                <th>Old Price</th>
                                 <th>In Stock</th>
                                 <th>Status</th>
                                 <th>Actions</th>
@@ -50,6 +52,7 @@
                         <tbody>
                             @foreach($books as $index => $book)
                                 <tr>
+                                    <td>{{ $book['id'] }}</td>
                                     <td>{{ $book['title_' . app()->getLocale()]  }}</td>
                                     <td>
                                         @foreach($book->authors as $key => $author)
@@ -57,6 +60,7 @@
                                         @endforeach
                                     </td>
                                     <td>{{ $book['price'] }} ֏</td>
+                                    <td>{{ $book['old_price'] }} ֏</td>
                                     <td>{{ $book['in_stock'] }}</td>
                                     <td>{{ $book['status'] ? 'Public' : 'Private'}}</td>
                                     <td>

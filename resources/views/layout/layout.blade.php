@@ -51,7 +51,7 @@
         .festival_top {
             position: fixed;
             z-index: 95000;
-            background-color: black;
+            background-color: #000;
             width: 100%;
             left: 0;
             top: 0;
@@ -79,7 +79,7 @@
         }
 
         .festival_top:hover {
-            background-color: #e3caca;
+            background-color: #fff !important;
             color: #000
         }
 
@@ -90,7 +90,7 @@
         .festival_top {
             width: 100%;
             font-weight: 900;
-            color: #fff
+            color: #fff;
         }
 
         .nav__bg-wrapper {
@@ -142,7 +142,7 @@
             pointer-events: none;
             opacity: 0;
             z-index: 20000;
-            background: #000;
+            background: #151515;
         }
 
         .hover-reveal__inner, .hover-reveal__img {
@@ -296,7 +296,7 @@
 
 </head>
 <body class="body filter-body">
-<div class="festival_top" data-img="">
+<div class="festival_top" data-img="https://newmag.am/public/assets/images/runningLines/92fe1808dc6c97ff6529b68215b1281b.jpg">
     <div class="container">
         <div class="marquee">
             <div class="marquee__inner second">
@@ -307,11 +307,15 @@
                 ?>
             </div>
         </div>
+        <div class="festival_title">
+            <a target="_blank" rel="noreferrer" href="{{ route('books') }}"></a>
+        </div>
         <div class="nav__bg-wrapper">
             <div class="grid-sizer"></div>
         </div>
     </div>
 </div>
+
 @include('layout.header')
 
 @yield('content')
@@ -326,6 +330,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ asset('/js/main-jquery.js?v=1.0') }}"></script>
 <script src="{{ asset('/js/main.js?v=1.1') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     const mapNumber = (X, A, B, C, D) => (X - A) * (D - C) / (B - A) + C;
     const getMousePos = (e) => {

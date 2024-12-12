@@ -28,8 +28,8 @@ class SalePriceCommand extends Command
         $books = \App\Models\Books::all();
 
         foreach ($books as $book) {
-            $currentPrice = $book->price;
-            $book->old_price = (int) $currentPrice * 2;
+            $book->old_price = $book->price;
+            $book->price = (int) $book->price / 2;
             $book->save();
         }
 

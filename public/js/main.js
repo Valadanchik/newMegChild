@@ -408,6 +408,13 @@ function checkInputsShoppingCart() {
     } else {
         setSuccessForShopping(country);
     }
+
+    if(Object.keys(errors).length){
+        document.querySelector('.all_errors').style.display = 'block';
+    } else {
+        document.querySelector('.all_errors').style.display = 'none';
+    }
+
     return !Object.keys(errors).length
 }
 

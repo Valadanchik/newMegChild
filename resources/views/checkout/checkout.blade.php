@@ -396,6 +396,7 @@
                                     <p>{{ __('checkout.payable') }}՝</p>
                                     <span><span class="total-price-to-pay">{{$cardProductsTotalPrice}}</span> ֏</span>
                                 </div>
+                                <small class="all_errors">{{__('checkout.all_errors')}}</small>
                             </div>
                             <div class="payment-cart-btn">
                                 <button>{{ __('checkout.go_to_checkout') }}</button>

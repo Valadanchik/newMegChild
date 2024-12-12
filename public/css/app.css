@@ -1818,11 +1818,16 @@ section.book-page-reviews.content h2 {
     display: none;
 }
 
-.form-control small {
+.form-control small, .all_errors {
     color: #c5101f;
     display: none;
     font-size: 14px;
     margin-top: 7px;
+}
+
+.all_errors {
+    display: none;
+    padding: 10px 20px;
 }
 
 .form-control.error small {

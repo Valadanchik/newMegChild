@@ -278,7 +278,7 @@ class PaymentService
         $message .= "\n";
         $message .= 'Order date: ' . $data->created_at;
         $message .= "\n";
-        $message .= 'Order status: ' . $this->get_status_text($data->status);
+        $message .= 'Order status: Paid';
         $message .= "\n";
         $message .= 'Order total: ' . $data->total_price . ' ֏';
         $message .= "\n";
